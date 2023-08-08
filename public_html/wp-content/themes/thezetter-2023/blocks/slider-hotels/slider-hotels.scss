@@ -1,0 +1,94 @@
+@import "../gutenberg_block";
+
+.slide-hotels-block {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    .slide-hotels-content{
+        width: 50%;
+        .subtitle{
+            margin-bottom: 3.5rem;
+            p{
+                @include size-L;
+            }
+        }
+        .hotels-list{
+            .hotel-list-item{
+                width: 100%;
+                margin-bottom: 1.75rem;
+                &:last-of-type{
+                    margin-bottom: 0;
+                }
+                .img-hotel-single-mobile{
+                    display: none;
+                }
+            }
+        }
+    }
+    .slide-hotels-img{
+        width: 50%;
+        .img{
+            display: none;
+            height: 100%;
+            &.active{
+                display: block;
+            }
+            .image-carousel,
+            .slick-list,
+            .slick-track{
+                height: 100%;
+                width: 100% !important;
+                img{
+                    width: 100% !important;
+                    // height: 100%;
+                }
+            }
+        }
+    }
+
+    @include breakpoint(S) {
+        .slide-hotels-content{
+            width: 100%;
+            h3{
+                text-align: center;
+            }
+            .subtitle{
+                text-align: center;
+            }
+            .hotels-list{
+                .hotel-list-item{
+                    .img-hotel-single-mobile{
+                        display: block;
+                        position: relative;
+                        margin-bottom: 1.643rem;
+                    }
+                    .img-hotel{
+                        width: 100%;
+                        aspect-ratio: 1/1;
+                        height: auto;
+                        .image-carousel,
+                        .slick-list,
+                        .slick-track{
+                            width: 100% !important;
+                            aspect-ratio: 1/1;
+                            height: auto;
+                            img{
+                                width: 100% !important;
+                                // height: 100%;
+                            }
+                        }
+                        .slick-controls{
+                            position: absolute;
+                            width: 100%;
+                            bottom: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+        .slide-hotels-img{
+            display: none;
+            width: 100%;
+        }
+    }
+}

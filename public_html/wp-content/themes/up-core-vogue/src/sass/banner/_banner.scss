@@ -1,0 +1,17 @@
+// banner
+.continue {
+    font-style: italic;
+}
+
+.banner-block.theme--default {
+    .banner-content-block {
+        &:after {
+            content: "";
+            display: block;
+            margin: 3rem auto 0 auto;
+            width: 48px;
+            height: 24px;
+            background-image: url('data:image/svg+xml,%3Csvg fill="none" height="24" viewBox="0 0 48 24" width="48" xmlns="http://www.w3.org/2000/svg"%3E%3Cg stroke="currentColor"%3E%3Cpath d="m16 23.375-15.166667-11.375 15.166667-11.375 15.1667 11.375z"/%3E%3Cpath d="m32 23.375-15.1667-11.375 15.1667-11.375 15.1667 11.375z"/%3E%3C/g%3E%3C/svg%3E');
+        }
+    }
+}

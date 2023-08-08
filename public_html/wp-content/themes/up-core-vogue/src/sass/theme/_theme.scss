@@ -1,0 +1,34 @@
+//Make standard cards use the main background colour rather than background alt
+.theme__card--standard {
+    --card-color-background: var(--color-background);
+}
+
+//For sections that use the dark or accent theme, make sure the standard card background colour reverts to background alt
+.theme--dark, .theme--accent {
+    .theme__card--standard {
+        --card-color-background: var(--color-background-alt);
+    }  
+}
+
+//Change accent card styling to use body colour as the background colour
+.theme__card--accent {
+    --card-color-background: var(--color-body);
+    --card-color-body: var(--color-background);
+    --card-color-accent-primary: var(--color-accent-primary);
+    --card-color-accent-reverse: var(--color-accent-reverse);
+}
+
+//For sections that use the accent theme, make sure the body and accent colours are swapped
+.theme--accent {
+    .theme__card--accent {
+        --card-color-body: var(--color-accent-primary);
+        --card-color-accent-primary: var(--color-background);
+    }
+}
+
+//For sections that use the image theme, make sure the accent colour on standard and accent cards show up
+.theme--image {
+    .theme__card--standard, .theme__card--accent {
+        --card-color-accent-primary: var(--color-accent-reverse-alt);
+    }
+}

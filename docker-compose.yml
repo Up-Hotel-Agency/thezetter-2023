@@ -1,0 +1,55 @@
+---
+  version: '3.1'
+  
+  # Example modified config:
+  #
+  # define('DB_NAME', getenv('WORDPRESS_DB_NAME') ? getenv('WORDPRESS_DB_NAME') : 'jtulands_jtu');
+  #
+  # /** MySQL database username */
+  # define('DB_USER', getenv('WORDPRESS_DB_USER') ? getenv('WORDPRESS_DB_USER') : 'jtulands_jtu');
+  #
+  # /** MySQL database password */
+  # define('DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD') ? getenv('WORDPRESS_DB_PASSWORD') : 'MyPass');
+  #
+  # /** MySQL hostname */
+  # define('DB_HOST', getenv('WORDPRESS_DB_HOST') ? getenv('WORDPRESS_DB_HOST') : 'localhost');
+  
+  #
+  services:
+    mysql:
+      image: mysql:5.7
+      environment:
+        MYSQL_ROOT_PASSWORD: example
+        MYSQL_DATABASE: wordpress
+      volumes:
+        # mysql will auto import any .sql file found here
+        - ./db/:/docker-entrypoint-initdb.d/
+      ports:
+        - 4306:3306
+      networks:
+        thezetter-2023:
+          aliases:
+            - thezetter-2023.sql
+    wordpress:
+      build:
+        context: .
+        dockerfile: docker/Dockerfile
+      ports:
+        - 80:80
+      volumes:
+        - ./public_html:/var/www/html
+      environment:
+        WORDPRESS_BASE_DIR: /var/www/html/
+        WORDPRESS_DB_HOST: mysql
+        WORDPRESS_DB_USER: root
+        WORDPRESS_DB_PASSWORD: example
+        WORDPRESS_DB_NAME: wordpress
+      networks:
+        thezetter-2023:
+          aliases:
+            - thezetter-2023.wp
+      depends_on: [mysql]
+
+  networks:
+    thezetter-2023:
+      driver: bridge

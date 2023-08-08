@@ -1,0 +1,46 @@
+// gallery carousel gutenberg block
+.gallery-carousel-row {
+    padding: 0;
+}
+.gallery-carousel-wrapper {
+    background-color: var(--color-background);
+    box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+
+    .slick-controls {
+        position: absolute;
+        right: 7.5rem;
+        bottom: 1.5rem;
+
+        @include breakpoint(ML) {
+            right: 5rem;
+        }
+        @include breakpoint(S) {
+            right: 3.5rem;
+        }
+        @include breakpoint(XS) {
+            right: 2rem;
+        }
+    }
+}
+.gallery-carousel {
+    .gallery-carousel-slide-img {
+        width: 100vw;
+        margin: 0;
+        box-shadow: none;
+    }
+    .caption {
+        text-align: left;
+        margin: 0;
+        padding: 1.5rem 7.5rem;
+
+        @include breakpoint(ML) {
+            padding-left: 5rem;
+        }
+        @include breakpoint(S) {
+            padding-left: 3.5rem;
+        }
+        @include breakpoint(XS) {
+            padding-left: 2rem;
+        }
+    }
+}

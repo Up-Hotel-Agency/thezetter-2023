@@ -1,0 +1,34 @@
+input[type=checkbox], input[type=radio] {
+    //Resets
+    width: auto;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    cursor: pointer;
+
+    margin-right: $unit;
+}
+
+span.wpcf7-list-item {
+
+    &.first {
+        margin-left: 0;
+    }
+    
+    .wpcf7-list-item-label {
+        margin-right: $unit * 2;
+    }
+}
+
+input[type=checkbox] {
+    appearance: checkbox;
+}
+
+input[type=radio] {
+    appearance: radio;
+}
+
+.wpcf7-checkbox {
+    text-align: left;
+}

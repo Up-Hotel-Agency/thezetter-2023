@@ -1,0 +1,186 @@
+@import "../gutenberg_block";
+
+.gallery-full {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    .slick-track,
+    .slick-list,
+    .gallery-full-slide,
+    img {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    @include breakpoint(S) {
+        height: calc(100vh - 15.5rem);
+    }
+}
+
+.gallery-full-container {
+    position: relative;
+    height: 100vh;
+}
+
+.gallery-full-controls {
+    position: absolute;
+    bottom: 0;
+    left: 8.375rem;
+    right: 8.375rem;
+    z-index: 5;
+    @include color(background-color, 'background');
+    @extend %transition;
+
+    @include breakpoint(L) {
+        left: 5rem;
+        right: 5rem;
+    }
+    @include breakpoint(M) {
+        left: 2rem;
+        right: 2rem;
+    }
+    @include breakpoint(S) {
+        position: relative;
+        height: 15.5rem;
+        padding-top: 10rem;
+        left: auto;
+        right: auto;
+        border-bottom: 1px solid;
+        @include color(border-color, 'body-10');
+    }
+    &.gallery-menu-hide {
+        @include color(background-color, 'background-75');
+    }
+}
+
+.header {
+    &.gallery-menu-hide {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.gallery-cat-select {
+    padding: 1rem;
+    border-right: 1px solid;
+    @include color(border-color, 'body-10');
+
+    @include breakpoint(S) {
+        width: 50%;
+        border-top: 1px solid;
+        @include color(border-color, 'body-10');
+        height: 5.5rem;
+        min-width: 14rem;
+        flex-grow: 1;
+    }
+    .dropdown {
+        padding: 0;
+        border: 0;
+        background: transparent;
+
+        select {
+            min-width: 12rem;
+            padding: 0;
+
+            @include breakpoint(M) {
+                min-width: 8rem;
+            }
+        }
+        &:after {
+            right: 0;
+        }
+    }
+}
+
+.gallery-controls {
+    padding: 0.75rem 1.5rem;
+
+    @include breakpoint(S) {
+        border-top: 1px solid;
+        @include color(border-color, 'body-10');
+        height: 5.5rem;
+        padding: 0.75rem 0;
+    }
+    .button {
+        margin-bottom: 0;
+
+        @include breakpoint(S) {
+            margin: 0 0.5rem;
+        }
+    }
+    .counter {
+        width: 4.5rem;
+
+        @include breakpoint(S) {
+            position: absolute;
+            width: 100%;
+            top: 1.5rem;
+            left: 0;
+            text-align: center;
+        }
+    }
+    .gallery-image-details {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .slick-slider,
+        .slick-list,
+        .slick-track,
+        .gallery-image-details-slide {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        @include breakpoint(S) {
+            position: static;
+            width: auto;
+            height: auto;
+
+            .slick-slider {
+                height: 10rem !important;
+            }
+            .gallery-image-details-slide {
+                padding-top: 3.5rem;
+                text-align: center;
+
+                .button {
+                    margin-top: 0.75rem;
+                }
+            }
+        }
+    }
+    .gallery-image-details-slide {
+        display: flex !important;
+    }
+}
+
+.hide-gallery {
+    padding: 1rem 2.25rem;
+    border-left: 1px solid;
+    @include color(border-color, 'body-10');
+    @include color(color, 'body');
+
+    @include breakpoint(M) {
+        padding: 1rem;
+    }
+    &:hover {
+        @include color(color, 'accent-primary');
+    }
+    .show {
+        display: none;
+    }
+    &.active {
+        .show {
+            display: block;
+        }
+        .hide {
+            display: none;
+        }
+    }
+}

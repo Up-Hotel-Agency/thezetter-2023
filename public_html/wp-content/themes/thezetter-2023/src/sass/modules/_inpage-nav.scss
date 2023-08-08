@@ -1,0 +1,68 @@
+.in-page-nav-wrap {
+    display: flex;
+    justify-content: center;
+    
+    @include breakpoint(S) {
+        width: 100%;
+        overflow: scroll;
+    }
+}
+
+.in-page-nav {
+    max-width: 100%;
+
+    @include breakpoint(S) {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-left: 1rem;
+    }
+    a {
+        @include color(color, 'body');
+        padding: 0.5rem 0;
+        margin: 0 1rem;
+        font-weight: bold;
+        flex-shrink: 0;
+        min-width: 2rem;
+        opacity: 0.25;
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 1px;
+            @include color(background-color, 'accent-primary');
+            @extend %transition;
+        }
+        &.active,
+        &:hover {
+            opacity: 1;
+            @include color(color, 'accent-primary');
+
+            &:after {
+                width: 100%;
+            }
+        }
+        @include breakpoint(S) {
+            &:last-child {
+                padding-right: 2rem;
+
+                &:after {
+                    left: calc(50% - 1rem);
+                }
+                &.active,
+                &:hover {
+                    &:after {
+                        width: calc(100% - 2rem);
+                    }
+                }
+            }
+        }
+        @include breakpoint(XS) {
+            @include size-XS;
+            margin: 0 0.75rem;
+        }
+    }
+}

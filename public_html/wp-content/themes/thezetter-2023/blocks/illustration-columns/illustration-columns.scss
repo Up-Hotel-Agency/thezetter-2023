@@ -1,0 +1,50 @@
+@import "../gutenberg_block";
+
+.illustration-columns{
+    text-align: center;
+    max-width: 61rem;
+    margin: auto;
+    .featured-content-image{
+        margin: auto;
+        margin-bottom: 3.438rem;
+        mix-blend-mode: multiply;
+        img{
+            margin: auto;
+        }
+    }
+    .column-list{
+        margin: auto;
+        // max-width: 61rem;
+        justify-content: space-between;
+        .column-list-item{
+            .underlined{
+                margin-bottom: 2.313rem;
+                position: relative;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: 1.75rem;
+                    height: 1px;
+                    @include color(background-color, 'body');
+                    left: 50%;
+                    transform: translateX(-50%);
+                    bottom: -1.188rem;
+                }
+            }
+            p{
+                a{
+                    text-decoration: underline;
+                }
+            }
+        }
+        @include breakpoint(XS) {
+            flex-direction: column;
+            .column-list-item{
+                margin-bottom: 2.786rem;
+                &:last-of-type{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

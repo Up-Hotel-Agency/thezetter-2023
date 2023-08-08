@@ -1,0 +1,22 @@
+// footer
+.footer {
+    background-color: var(--color-body);
+
+    .container {
+        --color-body: #fff;
+    }
+    .up-core-logo {
+        path,
+        g {
+            fill: #fff;
+        }
+    }
+}
+.copyright {
+    background-color: var(--color-body-75);
+
+    .container {
+        --color-body: #fff;
+        --color-body-50: rgba(255,255,255, 0.5);
+    }
+}

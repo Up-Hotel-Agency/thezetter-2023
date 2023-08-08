@@ -1,0 +1,150 @@
+.container {
+    padding-left: 7.5rem;
+    padding-right: 7.5rem;
+
+    @include breakpoint(ML) {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+    @include breakpoint(S) {
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+    @include breakpoint(XS) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    &.smaller {
+        max-width: 70rem;
+        margin: 0 auto;
+    }
+    &.nopadd-md {
+        @include breakpoint(M) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    &.nopadd-tablet {
+        @include breakpoint(S) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    &.nopadd-mob {
+        @include breakpoint(XS) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+.row {
+    position: relative;
+
+    &.theme--image {
+        z-index: 1;
+    }
+}
+
+.container-left {
+    padding-left: 7.5rem;
+    
+    @include breakpoint(ML) {
+        padding-left: 5rem;
+    }
+    @include breakpoint(S) {
+        padding-left: 3.5rem;
+    }
+    @include breakpoint(XS) {
+        padding-left: 2rem;
+    }
+    &.nopadd-mob {
+        @include breakpoint(XS) {
+            padding-left: 0;
+        }
+    }
+}
+
+.container-right {
+    padding-right: 7.5rem;
+    
+    @include breakpoint(ML) {
+        padding-right: 5rem;
+    }
+    @include breakpoint(S) {
+        padding-right: 3.5rem;
+    }
+    @include breakpoint(XS) {
+        padding-right: 2rem;
+    }
+    &.nopadd-mob {
+        @include breakpoint(XS) {
+            padding-right: 0;
+        }
+    }
+}
+
+.full-width {
+    width: 100%;
+
+    @include breakpoint(S) {
+        width: 100%;
+    }
+}
+
+.col {
+    padding: 0 0.75rem;
+
+    &.no-element-spacing {
+        .element {
+            margin: 0;
+        }
+    }
+    @include breakpoint(S) {
+        padding: 0;
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+}
+
+.half {
+    width: 50%;
+
+    @include breakpoint(S) {
+        width: 100%;
+    }
+}
+
+.third {
+    width: 33.333%;
+
+    @include breakpoint(S) {
+        width: 100%;
+    }
+}
+
+.two-thirds {
+    width: 66.666%;
+
+    @include breakpoint(S) {
+        width: 100%;
+    }
+}
+
+.quarter {
+    width: 25%;
+
+    @include breakpoint(S) {
+        width: 100%;
+    }
+}
+
+.fifth {
+    width: 20%;
+
+    @include breakpoint(S) {
+        width: 100%;
+    }
+}

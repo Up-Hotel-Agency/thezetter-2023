@@ -1,0 +1,63 @@
+@import "../gutenberg_block";
+
+.testimonial-carousel-wrapper {
+    text-align: center;
+    padding: 3rem 6rem;
+
+    @include breakpoint(S) {
+        padding: 2.25rem 3rem;
+    }
+    @include breakpoint(XS) {
+        padding: 2.25rem 2rem;
+    }
+    .testimonial-carousel-slide-inner {
+        max-width: 50rem;
+        margin: 0 auto;
+    }
+}
+
+.testimonial-block {
+    &.with-img {
+        .testimonial-carousel-wrapper {
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+
+            @include breakpoint(S) {
+                padding: 3rem;
+            }
+            @include breakpoint(XS) {
+                padding: 3rem 2rem;
+            }
+        }
+        .testimonial-carousel-wrapper,
+        .media-container{
+            width: 50%;
+
+            @include breakpoint(XS) {
+                width: 100%;
+            }
+        }
+        &.img-quotes {
+            .testimonial-carousel-wrapper {
+                order: 2;
+            }
+            .media-container{
+                order: 1;
+            }
+        }
+    }
+    .slick-control {
+        @include color(color, 'body');
+
+        &:hover {
+            @include color(color, 'accent-primary');
+        }
+    }
+    .media-container{
+        position: relative;
+        img {
+            box-shadow: 4px 8px 24px rgba($color-body, 0.1);
+        }
+    }
+}
+

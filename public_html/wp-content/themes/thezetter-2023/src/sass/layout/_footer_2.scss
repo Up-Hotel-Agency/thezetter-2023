@@ -1,0 +1,181 @@
+.footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
+    .social-links {
+        width: 5%;
+        flex-shrink: 0;
+
+        @include breakpoint(XS) {
+            width: 100%;
+        }
+        .button {
+            margin: 0 0 1rem 0;
+
+            @include breakpoint(XS) {
+                margin: 0 0.5rem;
+            }
+        }
+    }
+}
+
+.footer-logo {
+    width: 25%;
+    padding-right: 2rem;
+
+    @include breakpoint(S) {
+        width: 100%;
+        padding-right: 0;
+    }
+    svg {
+        max-width: 90%;
+
+        @include breakpoint(S) {
+            width: 8rem;
+            height: auto;
+        }
+        @include breakpoint(XS) {
+            width: 6rem;
+        }
+    }
+}
+
+.footer-content {
+    width: 70%;
+
+    @include breakpoint(S) {
+        width: 90%;
+    }
+    @include breakpoint(XS) {
+        width: 100%;
+    }
+    .footer-menu {
+        @include breakpoint(XS) {
+            width: 100%;
+        }
+    }
+}
+
+.footer-menu {
+    margin-bottom: 2rem;
+    padding-right: 1rem;
+
+    // Check if browser supports grid (IE doesn't support support queries themselves so it'll ignore everything in here)
+    @supports (display: grid) {
+        padding-right: 0;
+        width: 100%;
+    }
+    @include breakpoint(XS) {
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid;
+        @include color(border-color, 'body-10');
+    }
+    .footer-menu-wrap {
+        @include breakpoint(XS-up) {
+            display: block !important; // this is in case someone closes it on mobile and goes to a larger screen
+        }
+        @include breakpoint(XS) {
+            display: none;
+            padding-bottom: 0.5rem;
+        }
+    }
+    ul {
+        width: 100%;
+        display: grid;
+        // Make a 2 column grid where the columns have an auto min-width but a max-width of 18rem so they don't stretch ridiculously far
+        grid-template-columns: repeat(2, minmax(auto, 16rem));
+        column-gap: 2rem;
+        row-gap: 1rem;
+        padding-right: 1rem;
+
+        @supports (display: grid) {
+            margin-bottom: 0;
+            padding-right: 0;
+        }
+        li {
+            margin-bottom: 1rem;
+            padding-right: 1rem;
+
+            @supports (display: grid) {
+                margin-bottom: 0;
+                padding-right: 0;
+            }
+            @include breakpoint(XS) {
+                margin-bottom: 0;
+            }
+        }
+    }
+    a {
+        display: block;
+        @include color(color, 'body');
+        @include size-S;
+
+        @include breakpoint(XS) {
+            padding: 1rem 0;
+        }
+        &:hover {
+            @include color(color, 'accent-primary');
+        }
+    }
+}
+
+.mob-footer-menu-toggle {
+    width: 100%;
+
+    .button.icon {
+        display: none;
+
+        @include breakpoint(XS) {
+            display: flex;
+        }
+    }
+    @include breakpoint(XS) {
+        @include size-L;
+
+        &.active {
+            @include color(color, 'accent-primary');
+
+            .button {
+                @include color(border-color, 'accent-primary');
+
+                svg {
+                    @include color(color, 'accent-primary');
+                }
+            }
+        }
+    }
+}
+
+.footer-content-top {
+    display: grid;
+    // Basically this is saying "if there's enough space, fill in columns at comfortable width with a min-width of 16rem
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 2rem;
+}
+
+.footer-content-bottom {
+    @include breakpoint(XS) {
+        padding-top: 1.5rem;
+        text-align: center;
+    }
+    span {
+        margin-right: 2rem;
+
+        @include breakpoint(S) {
+            margin: 0 0 1.5rem 0;
+            width: 100%;
+
+            &:last-child {
+                margin-bottom: 3rem;
+            }
+        }
+    }
+    a {
+        @include color(color, 'body');
+
+        &:hover {
+            @include color(color, 'accent-primary');
+        }
+    }
+}

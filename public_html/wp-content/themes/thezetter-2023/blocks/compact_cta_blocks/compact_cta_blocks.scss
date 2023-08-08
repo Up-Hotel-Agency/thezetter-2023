@@ -1,0 +1,36 @@
+@import "../gutenberg_block";
+
+.cta-blocks {
+    &.compact {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+
+        @include breakpoint(XS) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}
+
+.cta {
+    &.compact {
+        margin: 0.5rem;
+        width: calc(16.666% - 1rem - 1px);
+        padding: 0;
+        height: auto;
+        min-height: 8.5rem;
+        flex-grow: 0;
+
+        .cta-inner {
+            padding: 1.5rem;
+            position: relative;
+        }
+        @include breakpoint(M) {
+            width: calc(33.333% - 1rem - 1px)
+        }
+        @include breakpoint(XS) {
+            width: calc(50% - 1rem - 1px);
+            min-height: 6.5rem;
+        }
+    }
+}

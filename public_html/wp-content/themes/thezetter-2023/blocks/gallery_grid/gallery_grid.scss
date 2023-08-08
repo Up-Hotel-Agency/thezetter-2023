@@ -1,0 +1,72 @@
+@import "../gutenberg_block";
+
+.gallery-grid {
+    margin-left: -1rem;
+    margin-right: -1rem;
+
+    @include breakpoint(S) {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    @include breakpoint(XS) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    a {
+        width: calc(33.333% - 2rem - 1px);
+        margin: 1rem;
+        position: relative;
+        height: 0;
+        padding-bottom: 25%;
+        @include color(background-color, 'background');
+
+        @include breakpoint(S) {
+            width: calc(50% - 2rem - 1px);
+            padding-bottom: 35%;
+        }
+        @include breakpoint(XS) {
+            width: 100%;
+            padding: 0;
+            height: 20rem;
+            margin: 0 0 0.5rem 0;
+        }
+        img,
+        figcaption,
+        &:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        &:after {
+            content: "";
+            z-index: 2;
+            transition: all 0.6s cubic-bezier(0.59, 0, 0.06, 1);
+            background: $color-body;
+            mix-blend-mode: multiply;
+            opacity: 0;
+        }
+        figcaption {
+            z-index: 3;
+            opacity: 0;
+            padding: 0;
+            transition: all 0.6s cubic-bezier(0.59, 0, 0.06, 1);
+        }
+        p {
+            position: absolute;
+            left: 1.5rem;
+            bottom: 1.5rem;
+            right: 1.5rem;
+        }
+        &:hover {
+            figcaption {
+                opacity: 1;
+            }
+            &:after {
+                opacity: 0.4;
+            }
+        }
+    }
+}

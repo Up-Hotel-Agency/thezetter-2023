@@ -1,0 +1,15 @@
+.single-offers .offer-share {
+    margin-bottom: 9rem;
+
+    @include breakpoint(XS) {
+        margin-bottom: 4.5rem;
+    }
+}
+
+.cta.events-month {
+    .cta-content {
+        p {
+            @include size-L;
+        }
+    }
+}

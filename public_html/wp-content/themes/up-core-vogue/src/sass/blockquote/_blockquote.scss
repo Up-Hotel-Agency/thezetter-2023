@@ -1,0 +1,8 @@
+blockquote {
+    background-color: var(--color-background);
+    box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+
+    p {
+        font-weight: 500;
+    }
+}

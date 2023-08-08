@@ -1,0 +1,12 @@
+.wp-block-image {
+    max-width: 50rem;
+    margin: 5rem auto 6rem auto;
+
+    img {
+        max-width: 100%;
+    }
+    figcaption {
+        @include color(color, 'body-50');
+        @include size-S;
+    }
+}

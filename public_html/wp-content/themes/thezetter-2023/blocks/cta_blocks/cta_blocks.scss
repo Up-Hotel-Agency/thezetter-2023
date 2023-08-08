@@ -1,0 +1,269 @@
+@import "../gutenberg_block";
+
+.cta-blocks {
+    position: relative;
+    margin-left: -1rem;
+    margin-right: -1rem;
+
+    @include breakpoint(XS) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.mobile-scroll {
+    @include breakpoint(XS) {
+        overflow: scroll;
+        scroll-snap-type: x proximity;
+        flex-wrap: nowrap;
+        justify-content: unset;
+        align-items: unset;
+        // this stops the scroll bar from overlapping the items
+        padding-bottom: 1rem;
+        margin-bottom: -1rem;
+
+        .cta,
+        .content-lockup {
+            flex-grow: unset;
+            flex-shrink: 0;
+            margin: 0 1rem 0 0;
+            width: 18rem;
+            scroll-snap-align: center;
+
+            &:first-child {
+                margin-left: 2rem;
+            }
+        }
+        .cta.compact {
+            width: calc(50% - 3rem - 1px);
+
+            &:first-child {
+                margin-left: 2.5rem;
+            }
+        }
+        &:after {
+            content:"";
+            padding-right: 1rem;
+        }
+        [data-aos^=fade][data-aos^=fade] {
+            transform: none !important;
+        }
+    }
+}
+
+.cta {
+    margin: 1rem;
+    min-height: 16rem;
+    flex-grow: 1;
+    overflow: hidden;
+    //height: 0;
+    //width: calc(33.333% - 2rem - 1px);
+    padding-bottom: calc(33.333% - 2rem - 1px);
+    position: relative;
+    @extend %nav-transition;
+    text-align: center;
+    will-change: transform;
+    background-color: var(--card-color-background);
+    // max-width: fit-content;
+    aspect-ratio: 1/1;
+
+    @media only screen and (max-width: 1000px) {
+        width: calc(50% - 2rem - 1px);
+        padding-bottom: calc(50% - 2rem - 1px);
+    }
+    @include breakpoint(XS) {
+        width: 100%;
+        margin: 0.75rem 0;
+        min-height: 22rem;
+        padding: 0;
+        height: auto;
+    }
+    &.half {
+        width: calc(50% - 2rem - 1px);
+        padding-bottom: calc(50% - 2rem - 1px);
+
+        @include breakpoint(XS) {
+            width: 100%;
+        }
+    }
+    &.quarter {
+        width: calc(25% - 2rem - 1px);
+        padding-bottom: calc(25% - 2rem - 1px);
+        min-height: 0;
+
+        .cta-inner {
+            padding: 1.333rem;
+        }
+        @media only screen and (max-width: 1000px) {
+            width: calc(50% - 2rem - 1px);
+            padding-bottom: calc(50% - 2rem - 1px);
+        }
+        @include breakpoint(XS) {
+            width: 100%;
+        }
+    }
+    &.no-grow {
+        flex-grow: 0;
+    }
+    &.js-category-target {
+        @extend %transition;
+    }
+    .cta-inner {
+        position: absolute;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: 2rem 1.75rem;
+
+        @include breakpoint(L) {
+            padding: 1rem;
+        }
+        @include breakpoint(XS) {
+            padding: 3.5rem 1.25rem;
+            position: relative;
+        }
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+    h2,
+    h3,
+    h4,
+    h5 {
+        width: 100%;
+    }
+    header,
+    div {
+        width: 100%;
+    }
+    p {
+        max-width: 36rem;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .buttons {
+        padding-top: 1.5rem;
+
+        @include breakpoint(M) {
+            margin-top: 0;
+        }
+        @include breakpoint(S) {
+            margin-top: 1rem;
+        }
+        
+    }
+    img {
+        z-index: 1;
+        @extend %nav-transition;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    &.no-img {
+        border: 2px solid;
+
+        @include color(border-color, 'accent-primary');
+        @include color(color, 'body');
+        @include color(background-color, 'background');
+
+        h2,
+        h3,
+        h4,
+        h5,
+        p,
+        .button {
+            @include color(color, 'body');
+        }
+        hr {
+            @include color(background-color, 'accent-primary');
+        }
+        &:before {
+            display: none;
+        }
+        &:hover {
+            @include color(background-color, 'accent-primary-lightest');
+
+            .button {
+                @include color(color, 'accent-primary');
+            }
+        }
+    }
+    &.not-square {
+        padding: 0;
+        height: auto;
+        min-height: 0;
+
+        .cta-inner {
+            position: static;
+        }
+    }
+    &.xs\:not-square {
+        @include breakpoint(XS) {
+            padding: 0;
+            height: auto;
+            min-height: 0;
+    
+            .cta-inner {
+                position: static;
+            }
+        }
+    }
+    &.theme__card--image {
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            @extend %nav-transition;
+            background: $color-body;
+            mix-blend-mode: multiply;
+            opacity: 0.4;
+        }
+    }
+    &:hover {
+        transform: translateY(-0.5rem);
+    }
+    &.no-hover {
+        &:hover {
+            transform: translateY(0);
+        }
+    }
+}
+
+.cta-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: -1rem;
+    margin-right: -1rem;
+
+    @include breakpoint(XS) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .cta {
+        flex-grow: 0;
+
+        @include breakpoint(M) {
+            min-height: 22em;
+        }
+        .cta-inner {
+            width: 100%;
+        }
+    }
+}
+
+.events-grid {
+    .cta {
+        flex-grow: 0;
+    }
+}

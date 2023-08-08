@@ -1,0 +1,10 @@
+// column content
+.column-content {
+    .content-lockup {
+        box-shadow: 4px 8px 24px rgba($color-body, 0.075);     
+        
+        .column-content-content {
+            padding: 0 2rem 1.5rem 2rem;
+        }      
+    }
+}

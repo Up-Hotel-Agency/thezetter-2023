@@ -1,0 +1,3 @@
+#!/bin/bash
+php /usr/local/bin/wait-for-mysql.php
+exec wp --allow-root "$@"

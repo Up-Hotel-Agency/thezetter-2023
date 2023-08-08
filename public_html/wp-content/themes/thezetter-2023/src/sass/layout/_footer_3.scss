@@ -1,0 +1,218 @@
+.footer {
+    padding-top: 7.688rem; 
+    padding-bottom: 6.313rem;
+    display: flex;
+    flex-direction: row;
+    @include color(background, 'footer');
+
+    .social-links {
+        .button {
+            margin: 0 0 0 1rem;
+
+            @include breakpoint(XS) {
+                margin: 0 1rem 0 0;
+            }
+        }
+    }
+    @include breakpoint(S) {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 4.214rem;
+        padding-bottom: 3.286rem;
+        .footer-logo{
+            a{
+                margin: auto;
+            }
+        }
+        .footer-menu{
+            align-items: center;
+        }
+    }
+}
+
+.footer-logo {
+    flex-basis: 25%;
+    @include breakpoint(S) {
+        width: 100%;
+    }
+    svg {
+        @include breakpoint(S) {
+            width: 10rem;
+            height: auto;
+        }
+    }
+}
+
+.footer-content {
+    flex-basis: 75%;
+    .footer-contact {
+        flex-basis: 25%;
+        flex-grow: 1;
+
+        @include breakpoint(XS) {
+            width: 100%;
+            flex-basis: 100%;
+        }
+    }
+    a{
+        margin-bottom: 0.688rem;
+    }
+}
+
+.footer-menus {
+    flex-basis: 75%;
+    display: grid;
+    // Basically this is saying "if there's enough space, fill in columns at comfortable width with a min-width of 16rem
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 2rem;
+
+    @include breakpoint(XS) {
+        flex-basis: 100%;
+        width: 100%;
+        display: block;
+    }
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .contact-details{
+        display: flex;
+        flex-direction: column;
+        a{
+            text-transform: uppercase;
+        }
+    }
+    .credits{
+        font-size: 8px;
+        font-family: $font-stack-headings;
+    }
+    a {
+        @include color(color, 'body');
+
+        &:hover {
+            @include color(color, 'accent-primary');
+        }
+    }
+    .credits{
+        @include color(color, 'body');
+    }
+    .tel,
+    .email {
+        white-space: nowrap;
+    }
+    @include breakpoint(XS) {
+        padding-top: 1rem;
+        padding-bottom: 1.5rem;
+
+        h5 {
+            @include size-L;
+        }
+    }
+}
+
+.footer-menu {
+    padding-right: 1rem;
+
+    &.footer-menu-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    @include breakpoint(XS) {
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+    }
+    .footer-menu-wrap {
+        @include breakpoint(XS-up) {
+            display: block !important; // this is in case someone closes it on mobile and goes to a larger screen
+        }
+        @include breakpoint(XS) {
+            display: none;
+            padding-bottom: 0.5rem;
+        }
+    }
+    .h5{
+        margin-bottom: 1.813rem;
+    }
+    ul {
+        width: 100%;
+
+        @include breakpoint(XS) { 
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li {
+            // margin-bottom: 1rem;
+            padding-right: 1rem;
+
+            @include breakpoint(XS) {
+                width: 50%;
+                margin-bottom: 0;
+            }
+        }
+    }
+    a {
+        display: block;
+        @include color(color, 'body');
+        @include size-S;
+        text-transform: uppercase;
+
+        @include breakpoint(XS) {
+            padding: 1rem 0;
+        }
+        &:hover {
+            @include color(color, 'accent-primary');
+        }
+    }
+}
+
+.mob-footer-menu-toggle {
+    width: 100%;
+
+    .button.icon {
+        display: none;
+
+        @include breakpoint(XS) {
+            display: flex;
+        }
+    }
+    @include breakpoint(XS) {
+        @include size-L;
+
+        &.active {
+            @include color(color, 'accent-primary');
+
+            .button {
+                @include color(border-color, 'accent-primary');
+
+                svg {
+                    @include color(color, 'accent-primary');
+                }
+            }
+        }
+    }
+}
+
+.copyright {
+    @include breakpoint(XS) {
+        .uphotel {
+            padding-left: 0;
+        }
+        .copyright-menu {
+            width: 100%;
+            margin-bottom: 0.5rem;
+
+            ul {
+                display: block;
+                padding: 0 0 0 0.5rem;
+
+                li {
+                    display: inline-block;
+                    width: auto;
+                }
+            }
+        }
+    }
+}

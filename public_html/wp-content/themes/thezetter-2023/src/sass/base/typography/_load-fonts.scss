@@ -1,0 +1,38 @@
+//Load the fonts you want to use globally
+@font-face {
+     font-family: 'Gill Sans';
+     src:  url('/wp-content/themes/thezetter-2023/assets/fonts/GillSans/GillSansStd.otf') format('opentype');
+     font-display: swap;
+     font-style: normal;
+     font-weight: 500;
+}
+
+@font-face {
+     font-family: 'Louize';
+     src:  url('/wp-content/themes/thezetter-2023/assets/fonts/Louize/Louize.otf') format('opentype');
+     font-display: swap;
+     font-style: normal;
+     font-weight: 400;
+}
+@font-face {
+     font-family: 'Louize';
+     src:  url('/wp-content/themes/thezetter-2023/assets/fonts/Louize/Louize-Bold.otf') format('opentype');
+     font-display: swap;
+     font-style: normal;
+     font-weight: 700;
+}
+@font-face {
+     font-family: 'Louize';
+     src:  url('/wp-content/themes/thezetter-2023/assets/fonts/Louize/Louize-Italic.otf') format('opentype');
+     font-display: swap;
+     font-style: italic;
+     font-weight: 400;
+}
+@font-face {
+     font-family: 'Louize';
+     src:  url('/wp-content/themes/thezetter-2023/assets/fonts/Louize/Louize-Medium.otf') format('opentype');
+     font-display: swap;
+     font-style: normal;
+     font-weight: 500;
+}
+  

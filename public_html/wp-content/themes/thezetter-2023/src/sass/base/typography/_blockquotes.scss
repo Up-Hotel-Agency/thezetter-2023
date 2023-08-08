@@ -1,0 +1,35 @@
+blockquote {
+    @include size-L;
+    padding: 3rem;
+    margin-bottom: 1.5rem;
+    @include color(background, 'body-05');
+
+    @include breakpoint(XS) {
+        padding: 2rem;
+    }
+    p {
+        @include size-L;
+        font-weight: 700;
+        
+        &:before {
+            content: "“";
+        }
+        &:after {
+            content: "”";
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    cite {
+        @include size-S;
+        @include color(color, 'body-50');
+        margin: 0;
+
+        &:before {
+            content: "-";
+            margin-right: 0.25rem;
+        }
+    }
+}

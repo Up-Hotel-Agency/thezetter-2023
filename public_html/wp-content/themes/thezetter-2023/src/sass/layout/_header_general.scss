@@ -1,0 +1,75 @@
+.nav-toggle {
+    margin: 0;
+
+    .menu-icon {
+        height: 16px;
+        width: 22px;
+        position: relative;
+
+        @include breakpoint(XS) {
+            width: 22px;
+            margin-left: 0;
+        }
+        span {
+            display: block;
+            @include color(background-color, 'body');
+            height: 1px;
+            width: 22px;
+            transition: all 0.5s cubic-bezier(0.7, 0, 0, 1);
+            position: absolute;
+            left: 0;
+            transition-timing-function: ease;
+            transition-duration: .15s;
+            transition-property: transform, opacity;
+    
+            @include breakpoint(XS) {
+                width: 22px;
+            }
+            &:nth-child(1) {
+                top: 0;
+            }
+            &:nth-child(2) {
+                top: calc(50% - 1px);
+            }
+            &:nth-child(3) {
+                bottom: 0;
+            }
+        }
+    }
+    &.active {
+        .menu-icon {
+            span {
+                &:nth-child(1) {
+                    top: 0;
+                    transform: translate3d(0,7px,0) rotate(45deg);
+                }
+                &:nth-child(2) {
+                    opacity: 0;
+                    transform: translateX(-1rem);
+                }
+                &:nth-child(3) {
+                    bottom: 0;
+                    transform: translate3d(0,-7px,0) rotate(-45deg);
+                }
+            }
+        }
+    }
+}
+
+.header .button {
+    .hide-mobile {
+        padding: 0 0.25rem;
+
+        @include breakpoint(XS) {
+            display: none;
+        }
+    }
+    .hide-desktop {
+        padding: 0 0.25rem;
+        display: none;
+
+        @include breakpoint(XS) {
+            display: block;
+        }
+    }
+}

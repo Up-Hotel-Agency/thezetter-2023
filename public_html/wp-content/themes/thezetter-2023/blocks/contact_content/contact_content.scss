@@ -1,0 +1,163 @@
+@import "../gutenberg_block";
+
+.form-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+
+    @include breakpoint(XS) {
+        flex-direction: column;
+    }
+    .content {
+        width: 45%;
+        padding: 0 0 0 5rem;
+        flex-grow: 1;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include breakpoint(S) {
+            padding: 0 0 0 3rem;
+        }
+        @include breakpoint(XS) {
+            padding: 2rem;
+            margin: 0;
+            width: 100%;
+            text-align: left;
+            flex-basis: auto;
+
+            .buttons {
+                justify-content: center;
+                margin-bottom: 0;
+                width: 100%;
+                
+                .button {
+                    white-space: nowrap;
+                }
+            }
+            &.xs\:text-left {
+                text-align: left;
+                
+                .content-inner {
+                    align-items: flex-start;
+                }
+                .buttons {
+                    justify-content: flex-start;
+                }
+            }
+        }
+        .content-inner {
+            width: 100%;
+            max-width: 32rem;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+
+            @include breakpoint(XS) {
+                align-items: center;
+            }
+        }
+        .content-wrap {
+            width: 100%;
+        }
+    }
+    .form {
+        width: 55%;
+        position: relative;
+
+        @include breakpoint(XS) {
+            width: 100%;
+        }
+    }
+    &.text-form {
+        .content {
+            order: 1;
+            padding: 0 5rem 0 0;
+
+            @include breakpoint(S) {
+                padding: 0 3rem 0 0;
+            }
+            @include breakpoint(XS) {
+                padding: 2rem 0 0 0;
+                display: block;
+                margin: 0;
+                order: unset;
+            }
+        }
+        .form {
+            order: 2;
+
+            @include breakpoint(XS) {
+                order: unset;
+                width: 100%;
+            }
+        }
+    }
+    &.mob-form-bottom {
+        @include breakpoint(XS) {
+            .content {
+                order: 1;
+                padding: 0 0 2rem 0;
+            }
+            .form {
+                order: 2;
+            }
+        }
+    }
+    &.column {
+        flex-direction: column;
+
+        .content {
+            padding: 2rem 0 0 0;
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            flex-basis: auto;
+
+            .buttons {
+                justify-content: center;
+                margin-bottom: 0;
+            }
+        }
+        .form {
+            width: 100%;
+        }
+    }
+}
+
+.content-carousel-container {
+    @include breakpoint(S) {
+        padding-bottom: 7rem;
+    }
+}
+
+.form-content-columns {
+    padding-left: 5rem;
+    padding-right: 5rem;
+
+    @include breakpoint(ML) {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    @include breakpoint(S) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .form-content {
+        margin: 0 1rem;
+        width: calc(50% - 2rem - 1px);
+
+        @include breakpoint(XS) {
+            margin: 0;
+            width: 100%;
+            padding-bottom: 2rem;
+        }
+    }
+    &.flex-wrap {
+        .form-content {
+            margin-bottom: 5.5rem;
+        }
+    }
+}

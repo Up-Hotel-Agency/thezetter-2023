@@ -1,0 +1,56 @@
+a {
+    position: relative;
+    @include color(color, 'accent-primary');
+    text-decoration: none;
+    @extend %transition;
+
+    &:hover {
+        @include color(color, 'accent-primary-lighter');
+    }
+
+    &.underlined {
+        display: inline-block;
+        color: #000;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 1px;
+            @include color(background-color, 'body');
+            bottom: 0;
+            width: 100%;
+        }
+        &:after {
+            position: absolute;
+            content: "";
+            height: 1px;
+            @include color(background-color, 'accent-primary');
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            transform: translateX(-50%);
+            @extend %nav-transition;
+        }
+        &:hover {
+            @include color(color, 'accent-primary');
+
+            &:after {
+                width: 100%;
+            }
+        }
+        &.small {
+            font-size: 0.875em;
+        }
+        &.white {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+
+            &:hover {
+                @include color(color, 'accent-primary');
+            }
+            &:after {
+                @include color(background-color, 'accent-primary');
+            }
+        }
+    }
+}

@@ -1,0 +1,105 @@
+$font-stack-primary: 'Lora', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-stack-headings: 'Playfair Display', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+// overwrite all the css variables from the parent theme!
+
+$color-body: #181B18;
+$color-background: #FFF;
+$color-background-alt: #F5F4F5;
+$color-accent-primary: #BE8619;
+
+$color-success: #4F772D;
+$color-warning: #EFBC25;
+$color-error: #EF233C;
+
+@import "../thezetter-2023/src/sass/utilities/variables";
+@import "../thezetter-2023/src/sass/utilities/mixins";
+@import "../thezetter-2023/src/sass/utilities/placeholders";
+@import "../thezetter-2023/src/sass/base/typography/type-scales/type-scales";
+
+
+// wrap all our CSS in body {} to be more specific
+.up-core-vogue, .theme--default {
+
+    --color-body: #{$color-body};
+    --color-body-75: #{rgba($color-body, 0.75)};
+    --color-body-50: #{rgba($color-body, 0.50)};
+    --color-body-25: #{rgba($color-body, 0.25)};
+    --color-body-10: #{rgba($color-body, 0.10)};
+    --color-body-05: #{rgba($color-body, 0.05)};
+    --color-body-01: #{rgba($color-body, 0.01)};
+
+    --color-background: #{$color-background};
+    --color-background-75: #{rgba($color-background, 0.75)};
+    --color-background-50: #{rgba($color-background, 0.5)};
+    --color-background-25: #{rgba($color-background, 0.25)};
+    --color-background-10: #{rgba($color-background, 0.10)};
+    --color-background-05: #{rgba($color-background, 0.05)};
+    --color-background-01: #{rgba($color-background, 0.01)};
+
+    --color-background-alt: #{$color-background-alt};
+
+    --color-accent-primary: #{$color-accent-primary};
+    --color-accent-primary-lightest: #{mix($color-accent-primary, #FFF, 25%)};
+    --color-accent-primary-lighter: #{mix($color-accent-primary, #FFF, 50%)};
+    --color-accent-primary-light: #{mix($color-accent-primary, #FFF, 87.5%)};
+    --color-accent-primary-dark: #{mix($color-accent-primary, #000, 87.5%)};
+    --color-accent-primary-darker: #{mix($color-accent-primary, #000, 50%)};
+    --color-accent-primary-darkest: #{mix($color-accent-primary, #000, 25%)};
+
+    --color-accent-reverse: #{$color-background};
+    --color-accent-reverse-alt: #{$color-body};
+
+    --color-success: #{$color-success};
+    --color-success-lightest: #{mix($color-success, #FFF, 25%)};
+    --color-success-lighter: #{mix($color-success, #FFF, 50%)};
+    --color-success-light: #{mix($color-success, #FFF, 87.5%)};
+    --color-success-dark: #{mix($color-success, #000, 87.5%)};
+    --color-success-darker: #{mix($color-success, #000, 50%)};
+    --color-success-darkest: #{mix($color-success, #000, 25%)};
+
+    --color-warning: #{$color-warning};
+    --color-warning-lightest: #{mix($color-warning, #FFF, 25%)};
+    --color-warning-lighter: #{mix($color-warning, #FFF, 50%)};
+    --color-warning-light: #{mix($color-warning, #FFF, 87.5%)};
+    --color-warning-dark: #{mix($color-warning, #000, 87.5%)};
+    --color-warning-darker: #{mix($color-warning, #000, 50%)};
+    --color-warning-darkest: #{mix($color-warning, #000, 25%)};
+
+    --color-error: #{$color-error};
+    --color-error-lightest: #{mix($color-error, #FFF, 25%)};
+    --color-error-lighter: #{mix($color-error, #FFF, 50%)};
+    --color-error-light: #{mix($color-error, #FFF, 87.5%)};
+    --color-error-dark: #{mix($color-error, #000, 87.5%)};
+    --color-error-darker: #{mix($color-error, #000, 50%)};
+    --color-error-darkest: #{mix($color-error, #000, 25%)};
+            
+    background: var(--color-background-alt);
+    
+    .overline {
+        font-family: $font-stack-headings;
+        font-weight: 800;
+    }
+
+    .button, button, input[type="submit"], input[type="button"] {
+        color: var(--color-background);
+
+        &.secondary {
+            color: var(--color-body);
+        }
+
+        &.minor {
+            color: var(--color-body);
+
+            &:hover {
+                color: var(--color-accent-primary);
+            }
+        }
+    }
+}
+
+.up-core-vogue {
+
+@import "*/*.scss";
+
+}

@@ -1,0 +1,62 @@
+//Secondary Button Styling
+
+.button,
+button,
+input[type="button"] {
+    &.secondary {
+        padding-top: 0;
+        padding-bottom: 0;
+        text-decoration: underline;
+        border: none;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        // margin: 0.5rem 2.375rem;
+        padding-right: 1rem;
+        //Secondary button default styling
+        @include color(color, 'body');
+        @include color(border-color, 'body');
+
+        margin-right: .5rem;
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            @include color(background-color, 'body');
+            mask-image: url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.6084 8.49268L4.91889 4.60867L1.31023 1.00002' stroke='black' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+            mask-repeat: no-repeat no-repeat;
+            mask-position: center center;
+            mask-size: inherit;
+            height: 0.9rem;
+            width: 1rem;
+        }
+        svg {
+            @include color(color, 'body');
+        }
+        //Hover state
+        &:hover,
+        &.active {
+            @include color(color, 'accent-reverse');
+            // @include color(background-color, 'accent-primary-lighter');
+            // @include color(border-color, 'accent-primary-lighter');
+    
+            svg {
+                @include color(color, 'accent-reverse');
+            }
+        }
+    }
+
+    &.disabled {
+        @include color(color, 'body-25');
+        @include color(border-color, 'body-25');
+        background: transparent;
+        pointer-events: none;
+
+        svg {
+            @include color(color, 'body-25');
+        }
+    }
+}

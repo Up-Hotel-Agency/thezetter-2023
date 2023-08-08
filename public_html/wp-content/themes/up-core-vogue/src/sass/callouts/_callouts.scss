@@ -1,0 +1,18 @@
+// callouts
+.callout {
+    box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+
+    &.theme--accent,
+    &.theme--dark {
+        background: var(--color-accent-primary);
+
+        h3 {
+            color: var(--color-background);
+        }
+    }
+    &.theme--standard {
+        h3 {
+            color: var(--color-accent-primary);
+        }
+    }
+}

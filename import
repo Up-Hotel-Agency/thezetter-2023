@@ -1,0 +1,29 @@
+#!/bin/bash -x
+
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 https://www.original-url.com (no trailing slash)"
+  exit 1
+fi
+
+OLD_URL=$1
+LOCAL_URL="localhost:4444"
+
+docker-compose up --build -d
+
+function wp_run_cmd() {
+  docker-compose run --rm wordpress wp  --allow-root "$@"
+}
+
+docker-compose exec wordpress wait-for-mysql version
+
+# I know this looks weird, but it seems some entries
+# in the DB refer to things like local.qbichotels.com already so
+# we have to set everything back to create a consistent state
+# and avoid local.local.qbichotels.com
+wp_run_cmd search-replace --all-tables "https://$LOCAL_URL" "http://$OLD_URL"
+wp_run_cmd search-replace --all-tables "http://$LOCAL_URL" "http://$OLD_URL"
+wp_run_cmd search-replace --all-tables "https://$OLD_URL" "http://$OLD_URL"
+wp_run_cmd search-replace --all-tables "$OLD_URL" "$LOCAL_URL"
+
+
+echo "All done! Visit $LOCAL_URL to see the fruits of your labours."

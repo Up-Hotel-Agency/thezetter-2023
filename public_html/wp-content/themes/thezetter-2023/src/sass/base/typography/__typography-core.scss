@@ -1,0 +1,35 @@
+//HTML and Body Styling
+html {
+    font-size: 100%;
+    font-variant-numeric: lining-nums;
+
+    @include breakpoint(S) {
+        font-size: 87.5%;
+    }
+    @include breakpoint(XXXL) {
+        font-size: 112.5%;
+    }
+}
+
+body {
+    line-height: 1.5;
+    font-family: $font-stack-primary;
+
+    &.menu-open {
+        overflow: hidden;
+    }
+}
+
+//Import base style partials
+@import "load-fonts";
+@import "type-scales/type-scales";
+@import "type-styles";
+@import "headings";
+@import "paragraphs";
+@import "content-rhythm";
+@import "lists";
+@import "links";
+@import "tables";
+@import "blockquotes";
+@import "captions";
+@import "hr";

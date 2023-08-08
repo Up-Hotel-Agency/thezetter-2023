@@ -1,0 +1,145 @@
+//Define type styles that can be used as utility classes or mixins elsewhere.
+
+@mixin heading-1 {
+    font-family: $font-stack-headings;
+    font-weight: 700;
+    @include size-3XL;
+    line-height: 1.1;
+}
+
+@mixin heading-2 {
+    font-family: $font-stack-headings;
+    font-weight: 700;
+    @include size-2XL;
+    line-height: 1.2;
+}
+
+@mixin heading-3 {
+    font-family: $font-stack-headings;
+    font-weight: 700;
+    @include size-XL;
+    line-height: 1.33;
+}
+
+@mixin heading-4 {
+    font-family: $font-stack-headings;
+    font-weight: 700;
+    @include size-L;
+    line-height: 1.33;
+}
+
+@mixin heading-5 {
+    font-family: $font-stack-headings;
+    font-weight: 700;
+    @include size-M;
+    line-height: 1.33;
+}
+
+@mixin subtitle-1 {
+    font-family: $font-stack-headings;
+    font-weight: 400;
+    @include size-L;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+@mixin subtitle-2 {
+    font-family: $font-stack-headings;
+    font-style: italic;
+    font-weight: 400;
+    @include size-M;
+    line-height: 1.5;
+}
+
+@mixin body-L {
+    font-family: $font-stack-headings;
+    font-weight: 400;
+    @include size-L;
+    line-height: 1.5;
+}
+
+@mixin body-M {
+    font-family: $font-stack-headings;
+    font-weight: 400;
+    @include size-M;
+    line-height: 1.5;
+}
+
+@mixin body-S {
+    font-family: $font-stack-headings;
+    font-weight: 400;
+    @include size-S;
+    line-height: 1.5;
+}
+
+@mixin body-XS {
+    font-family: $font-stack-headings;
+    font-weight: 400;
+    @include size-XS;
+    line-height: 1.5;
+}
+
+@mixin overline {
+    font-family: $font-stack-primary;
+    font-weight: 400;
+    text-transform: uppercase;
+    // letter-spacing: 0.125em;
+    @include size-S;
+    line-height: 1.5;
+}
+
+@mixin button-text {
+    font-family: $font-stack-primary;
+    text-transform: uppercase;
+    font-weight: 400;
+    @include size-M;
+    line-height: 1.5;
+    letter-spacing: 0.25em;
+}
+
+@mixin label {
+    font-family: $font-stack-primary;
+    font-weight: 400;
+    text-transform: uppercase;
+    @include size-XS;
+    line-height: 1.5;
+}
+
+
+//Define utility classes here (TODO: merge _headings.scss into this section)
+
+.subtitle-1 {
+    @include subtitle-1;
+}
+
+.subtitle-2 {
+    @include subtitle-2;
+}
+
+.body-l {
+    @include body-L;
+}
+
+.body-m {
+    @include body-M;
+}
+
+.body-s {
+    @include body-S;
+}
+
+.body-xs {
+    @include body-XS;
+}
+
+.overline {
+    @include overline;
+}
+
+.button-text {
+    @include button-text;
+}
+
+.label {
+    @include label;
+}

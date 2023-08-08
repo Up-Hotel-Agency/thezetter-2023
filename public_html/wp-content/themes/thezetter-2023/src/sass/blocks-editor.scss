@@ -1,0 +1,51 @@
+//This is the generic CSS for the Gutenberg editor in the back end
+
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/animations";
+@import "utilities/placeholders";
+
+@import "base/colors/_colors-core";
+@import "base/colors/_color-themes";
+@import "base/typography/_typography-core";
+@import "utilities/utilities";
+@import "base/buttons/_buttons-core";
+@import "base/grid";
+@import "base/base-styles";
+
+@import "layout/banner";
+@import "layout/page";
+
+@import "base/typography/type-scales/type-scales";
+@import "base/typography/type-styles";
+
+@import "layout/single";
+@import "layout/modal";
+@import "base/forms/_forms-core";
+
+@import "blocks-legacy/*.scss";
+
+@import "modules/inpage-nav";
+
+body {
+    [data-aos^=fade][data-aos^=fade] {
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+
+    // Prevent image and video backgrounds falling behind the editor
+    isolation: isolate;
+}
+
+.editor-styles-wrapper,
+body {
+    height: auto !important;
+    width: auto !important;
+}
+
+@import "blocks-editor/editor";
+@import "blocks-editor/post_title";
+@import "blocks-editor/toolbar";
+@import "blocks-editor/text_elements";
+@import "blocks-editor/acf_fields_reset";

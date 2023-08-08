@@ -1,0 +1,101 @@
+// booking mask
+.booking-mask {
+    border: 0;
+    box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+
+    .dates-fields,
+    .dates-fields .date-field:first-child {
+        border-color: var(--color-body-25);
+    }
+}
+
+.banner-portrait {
+    .block-bg-img {
+       background-color: var(--color-background);
+
+        img {
+            filter: grayscale(1);
+            mix-blend-mode: multiply;
+        }
+        &:after {
+            display: none;
+        }
+    }
+    .booking-mask {
+        box-shadow: none;
+        background: none;
+        color: var(--color-background);
+        border-color: var(--color-background);
+        align-items: flex-start;
+
+        @media only screen and (max-width: 1023px) {
+            align-items: center;
+        }
+        p {
+            color: var(--color-background);
+        }
+        .color-body-50 {
+            color: var(--color-background-50);
+        }
+        .dates-fields {
+            border: 0;
+            width: 100%;
+
+            svg {
+                color: var(--color-background);
+            }
+            .date-field {
+                padding-left: 0;
+                padding-right: 0;
+                border: 0;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid;
+                border-color: var(--color-background-25);
+    
+                &:nth-child(1) {
+                    margin-right: 0.75rem;
+                }
+                &:nth-child(2) {
+                    margin-left: 0.75rem;
+                }
+            }
+            @media only screen and (max-width: 1023px) {
+                display: none;
+            }
+        }
+        .check-out-field {
+            svg {
+                display: none;
+            }
+        }
+        .rooms-guests-fields {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid;
+            border-color: var(--color-background-25);
+
+            @media only screen and (max-width: 1023px) {
+                display: none;
+            }
+            .rooms-guests {
+                padding-top: 0;
+                padding-left: 0;
+
+                svg {
+                    color: var(--color-background);
+                }
+            }
+        }
+        .button.primary {
+            background-color: var(--color-background);
+            border-color: var(--color-background);
+            color: var(--color-body);
+
+            &:hover {
+                color: var(--color-background);
+                background-color: var(--color-accent-primary);
+                border-color: var(--color-accent-primary);
+            }
+        }
+    }
+}

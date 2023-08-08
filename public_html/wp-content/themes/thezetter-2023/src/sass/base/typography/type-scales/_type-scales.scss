@@ -1,0 +1,95 @@
+//Choose type scale values you wish to use for desktop sizes
+@import '16px/type-scale-16px-1.333';
+
+//Fudge a placeholder so we can redefine map to be desktop-specific
+$desktop-placeholder: (
+    placeholder: value,
+);
+
+$desktop: map-merge($type-scale, $desktop-placeholder);
+
+//Choose type scale values you wish to use for mobile sizes
+@import '14px/type-scale-14px-1.25';
+
+//Fudge a placeholder so we can redefine map to be mobile-specific
+$mobile-placeholder: (
+    placeholder: value,
+);
+
+$mobile: map-merge($type-scale, $mobile-placeholder);
+
+
+
+//Define Size mixins here
+//====================================================
+
+@mixin size-XS() {
+    font-size: map-deep-get($desktop, 'sizes', 'XS'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile, 'sizes', 'XS')}, #{map-get($desktop, 'scale-ratio')}vw, #{map-deep-get($desktop, 'sizes', 'XS')});
+    
+    //Mobile sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile, 'sizes', 'XS');
+    }
+};
+  
+@mixin size-S() {
+    font-size: map-deep-get($desktop, 'sizes', 'S'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile, 'sizes', 'S')}, #{map-get($desktop, 'scale-ratio')}vw, #{map-deep-get($desktop, 'sizes', 'S')});
+    
+    //Mobile sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile, 'sizes', 'S');
+    };
+};
+  
+@mixin size-M() {
+    font-size: map-deep-get($desktop, 'sizes', 'M'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile, 'sizes', 'M')}, #{map-get($desktop, 'scale-ratio')}vw, #{map-deep-get($desktop, 'sizes', 'M')});
+        
+    //Mobile sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile, 'sizes', 'M');
+    };
+};
+  
+@mixin size-L() {
+    font-size: map-deep-get($desktop, 'sizes', 'L'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile, 'sizes', 'L')}, #{pow(map-get($desktop, 'scale-ratio'), 2)}vw, #{map-deep-get($desktop, 'sizes', 'L')});
+    
+    //Mobile sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile, 'sizes', 'L');
+    };
+};
+  
+@mixin size-XL() {
+    font-size: map-deep-get($desktop, 'sizes', 'XL'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile, 'sizes', 'XL')}, #{pow(map-get($desktop, 'scale-ratio'), 3)}vw, #{map-deep-get($desktop, 'sizes', 'XL')});
+    
+    //Mobile sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile, 'sizes', 'XL');
+    };
+};
+
+
+@mixin size-2XL() {
+    font-size: map-deep-get($desktop, 'sizes', '2XL'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile, 'sizes', '2XL')}, #{pow(map-get($desktop, 'scale-ratio'), 4)}vw, #{map-deep-get($desktop, 'sizes', '2XL')});
+    
+    //Mobile sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile, 'sizes', '2XL');
+    };
+};
+
+@mixin size-3XL() {
+    font-size: map-deep-get($desktop, 'sizes', "3XL"); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile, 'sizes', "3XL")}, #{pow(map-get($desktop, 'scale-ratio'), 5)}vw, #{map-deep-get($desktop, 'sizes', "3XL")});
+    
+    //Mobile sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile, 'sizes', "3XL");
+    };
+};

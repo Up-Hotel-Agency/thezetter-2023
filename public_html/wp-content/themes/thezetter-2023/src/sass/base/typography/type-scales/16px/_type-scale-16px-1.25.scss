@@ -1,0 +1,13 @@
+//Type scale for a 16px base size with a 1.25 ratio
+$type-scale: (
+    "sizes": (
+        "XS": 0.75rem,
+        "S": 0.875rem,
+        "M": 1rem,
+        "L": 1.25rem,
+        "XL": 1.5625rem,
+        "2XL": 1.9375rem,
+        "3XL": 2.4286rem,
+    ),
+    "scale-ratio": 1.25,
+);

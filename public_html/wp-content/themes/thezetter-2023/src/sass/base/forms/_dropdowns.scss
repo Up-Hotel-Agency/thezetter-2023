@@ -1,0 +1,64 @@
+//Dropdown select styling
+
+.dropdown {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: block;
+    cursor: pointer;
+
+    select {
+        appearance: none;
+        position: relative;
+        z-index: 3;
+        background: transparent;
+        cursor: pointer;
+        border: 0;
+        padding: 0;
+        padding-top: 0.888rem;
+        width: 100%;
+        font-family: $font-stack-primary;
+        font-weight: 400;
+        @include color(color, 'body');
+        @include size-M;
+
+        @include breakpoint(XS) {
+            font-size: 16px;
+        }
+        &:focus {
+            outline: 0;
+        }
+        option {
+            color: $color-body;
+        }
+    }
+    &:after {
+        position: absolute;
+        content: "";
+        right: 1.111rem;
+        z-index: 2;
+        top: calc(50% - 0.625rem);
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"%3E%3Ctitle%3Ecaret-down%3C/title%3E%3Cg class="caret-down"%3E%3Cpolyline class="arrowhead" points="36.036 18.982 24 31.018 11.964 18.982" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/%3E%3C/g%3E%3C/svg%3E');
+        background-repeat: no-repeat;
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+    &.transparent {
+        background: none;
+        color: #fff;
+        border: 0;
+        border-bottom: 1px solid #fff;
+
+        select {
+            color: #fff;
+        }
+        &:after {
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"%3E%3Ctitle%3Ecaret-down%3C/title%3E%3Cg class="caret-down"%3E%3Cpolyline class="arrowhead" points="36.036 18.982 24 31.018 11.964 18.982" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/%3E%3C/g%3E%3C/svg%3E');
+        }
+    }
+    &.label-active {
+        select {
+            opacity: 1;
+        }
+    }
+}

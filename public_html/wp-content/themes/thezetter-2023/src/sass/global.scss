@@ -1,0 +1,33 @@
+@import "utilities/aos";
+
+//Variables, Functions, Mixins, etc
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/placeholders";
+@import "base/colors/_colors-core";
+@import "base/typography/type-scales/type-scales";
+@import "base/typography/type-styles";
+
+//styles particular to layout
+@import "layout/footer_general";
+@import "layout/single";
+@import "layout/modal";
+@import "base/forms/_forms-core";
+
+// legacy blocks
+@import "blocks-legacy/*.scss";
+
+// pick your footer
+// @import "layout/footer_1";
+// @import "layout/footer_2";
+@import "layout/footer_3";
+
+// modules
+@import "modules/inpage-nav";
+
+// Plugins
+@import "utilities/fancybox";
+@import "utilities/slick";
+
+// Print
+@import "base/print";

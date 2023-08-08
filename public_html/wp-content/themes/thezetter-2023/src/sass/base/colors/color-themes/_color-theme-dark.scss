@@ -1,0 +1,45 @@
+// Dark theme colours
+
+// Define your colour variables here
+$color-vars-dark: (
+    body: $color-background,
+    body-75: rgba($color-background, 0.75),
+    body-50: rgba($color-background, 0.50),
+    body-25: rgba($color-background, 0.25),
+    body-10: rgba($color-background, 0.10),
+    body-05: rgba($color-background, 0.05),
+    body-01: rgba($color-background, 0.01),
+
+    background: $color-body,
+    background-75: rgba($color-body, 0.75),
+    background-50: rgba($color-body, 0.5),
+    background-25: rgba($color-body, 0.25),
+    background-10: rgba($color-body, 0.10),
+    background-05: rgba($color-body, 0.05),
+    background-01: rgba($color-body, 0.01),
+
+    background-alt: mix($color-body, #FFF, 90%),
+
+    accent-primary: $color-accent-primary,
+);
+
+// Generate each value you defined above as CSS variables
+.theme--dark {
+    @each $name, $value in $color-vars-dark {
+        --color-#{$name}: #{$value};
+    }
+
+    @include color(background-color, 'background');
+
+    input,
+    textarea,
+    .dropdown {
+        @include placeholder {
+            @include color(color, 'background');
+        }
+    }
+
+    &.faqs {
+        @include color(background-color, 'background-75');
+    }
+}

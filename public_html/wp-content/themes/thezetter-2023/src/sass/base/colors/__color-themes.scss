@@ -1,0 +1,43 @@
+// Generate each value you defined above as CSS variables at root level
+// ================================================
+
+:root,
+.theme--default {
+    @each $name, $value in $color-vars {
+        --color-#{$name}: #{$value};
+    }
+}
+
+// Create utility classes for each colour in your color-vars map
+// ================================================
+
+@each $name, $value in $color-vars {
+    .bg--#{$name} {
+        @include color(background-color, #{$name})
+    }
+
+    .text--#{$name} {
+        @include color(color, #{$name})
+    }
+
+    .hover\:bg--#{$name}:hover {
+        @include color(background-color, #{$name})
+    }
+
+    .hover\:text--#{$name}:hover {
+        @include color(color, #{$name})
+    }
+}
+
+
+//Import colour theme variation files here
+// ================================================
+@import 'color-themes/color-theme-dark';
+@import 'color-themes/color-theme-accent-primary';
+@import 'color-themes/color-theme-secondary-accent';
+@import 'color-themes/color-theme-custom';
+
+@import 'color-themes/color-theme-background-alt';
+@import 'color-themes/color-theme-image';
+
+@import 'color-themes/cards/color-theme-cards';

@@ -1,0 +1,19 @@
+%transition {
+    transition: all 0.3s ease-out;
+}
+
+%link-transition {
+    transition: transform 0.3s cubic-bezier(0, 0, 0.21, 0.99), opacity 0.3s cubic-bezier(0, 0, 0.21, 1);
+}
+
+%button-transition {
+    transition: all 0.3s cubic-bezier(0, 0, 0.21, 1);
+}
+
+%nav-transition {
+    transition: all 1s cubic-bezier(0.59, 0, 0.06, 1);
+}
+
+%slow-transition {
+    transition: all 3s ease-in-out;
+}

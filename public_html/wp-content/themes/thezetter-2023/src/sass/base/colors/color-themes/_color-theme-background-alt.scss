@@ -1,0 +1,15 @@
+//Background alt theme colours
+
+// Define your colour variables here
+$color-vars-background-alt: (
+    background: $color-background-alt,
+
+    background-alt: $color-background
+);
+
+// Generate each value you defined above as CSS variables
+.theme--background-alt {
+    @each $name, $value in $color-vars-background-alt {
+        --color-#{$name}: #{$value};
+    }
+}

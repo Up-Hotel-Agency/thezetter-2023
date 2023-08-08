@@ -1,0 +1,38 @@
+// buttons 
+.button {
+    border-width: 1px;
+
+    &.primary {
+        background-color: var(--color-body);
+        border-color: var(--color-body);
+
+        &:hover {
+            background-color: var(--color-accent-primary);
+            border-color: var(--color-accent-primary);
+        }
+    }
+    &.secondary {
+        font-style: italic;
+        border-color: var(--color-body-25);
+        border-top-color: transparent !important;
+        border-left-color: transparent !important;
+        border-right-color: transparent !important;
+
+        &.icon {
+            border: solid 1px !important;
+            border-color: var(--color-body);
+        }
+        &:hover {
+            border-color: transparent !important;
+        }
+    }
+    &.modal-fixed-button {
+        background-color: var(--color-accent-primary);
+        border-color: var(--color-accent-primary);
+
+        &:hover {
+            background-color: var(--color-body);
+            border-color: var(--color-body);
+        }
+    }
+}

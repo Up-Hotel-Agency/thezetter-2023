@@ -1,0 +1,4 @@
+#!/bin/bash -x
+docker-compose up --build -d
+
+echo "All done!"

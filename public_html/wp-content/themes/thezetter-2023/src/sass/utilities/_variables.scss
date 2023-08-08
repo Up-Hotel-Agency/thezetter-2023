@@ -1,0 +1,28 @@
+// Fonts for UP Core
+// $font-stack-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// $font-stack-headings: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+// // Fonts for UP Core Vogue
+// $font-stack-primary: 'Lora', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// $font-stack-headings: 'Playfair Display', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+// // Fonts for My Style Hotel
+$font-stack-primary: 'Gill Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-stack-headings: 'Louize', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+// General Breakpoints
+$breakpoints: (
+    'XXS': ( max-width:  30em ),
+    'XS': ( max-width:  40em ),
+    'XS-up': ( min-width:  641px ),
+    'S': ( max-width:  48em ),
+    'S-up': ( min-width: 769px ),
+    'M': ( max-width:  64em ),
+    'M-up': ( min-width:  64em ),
+    'ML': ( max-width:  75em ),
+    'ML-up': ( min-width:  75em ),
+    'L': ( max-width: 91em ),
+    'XL': ( min-width: 91em ),
+    'XXL': ( min-width: 105em ),
+    'XXXL': ( min-width: 112em )
+);

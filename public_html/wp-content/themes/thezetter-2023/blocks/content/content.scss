@@ -1,0 +1,40 @@
+@import "../gutenberg_block";
+
+.content-block {
+    text-align: center;
+    max-width: 51rem;
+    margin-left: auto;
+    margin-right: auto;
+    .featured-content-image{
+        margin-bottom: 3.286rem;
+        mix-blend-mode: multiply;
+        img{
+            margin: auto;
+            mix-blend-mode: multiply;
+        }
+    }
+    h2{
+        font-weight: 400;
+    }
+    &.text-align-left {
+        text-align: left;
+    }
+    &.text-align-right {
+        text-align: right;
+    }
+    > {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        ul,
+        ol {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

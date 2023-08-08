@@ -1,0 +1,46 @@
+@import "../gutenberg_block";
+
+.team-block {
+    text-align: center;
+    .the-team{
+        .team-block{
+            .single-team{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 3.25rem 1.75rem;
+                .team-member{
+                    width: calc(25% - 1.75rem);
+                    .img{
+                        padding: 2.188rem;
+                        aspect-ratio: 1/1;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            filter: grayscale(1);
+                        }
+                    }
+                    &:hover{
+                        .img{
+                            img{
+                                @extend %transition;
+                                filter: grayscale(0);
+                            }
+                        }
+                        div{
+                            @extend %transition;
+                            @include color(color, 'body-50');
+                        }
+                    }
+                }
+                @include breakpoint(S) {
+                    flex-direction: column;
+                    .team-member{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

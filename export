@@ -1,0 +1,8 @@
+#!/bin/bash 
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <file to dump to>"
+  echo "Example: $0 /tmp/dump.sql"
+  exit 1
+fi
+
+docker-compose exec -T mysql /usr/bin/mysqldump -uroot -pexample wordpress > $1

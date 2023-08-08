@@ -1,0 +1,57 @@
+//Primary Button Styling, which is default
+
+.primary,
+button,
+input[type="submit"],
+input[type="button"] {
+
+    //Primary button default styling
+    @include color(color, 'accent-reverse');
+    @include color(background, 'buttons');
+
+    border: none;
+
+    //Icon styling
+    svg {
+        @include color(color, 'accent-reverse');
+    }
+
+    //Hide pseudo element of other buttons
+    &:after {
+        display: none;
+    }
+
+    //Hover state
+    &:hover,
+    &.active {
+        @include color(color, 'accent-reverse');
+        @include color(background-color, 'accent-primary-lighter');
+        border: none;
+
+        svg {
+            @include color(color, 'accent-reverse');
+        }
+    }
+
+    &.white {
+        @include color(background-color, 'accent-reverse');
+        @include color(color, 'accent-primary');
+
+        svg {
+            @include color(color, 'accent-primary');
+        }
+        &:hover {
+            @include color(background-color, 'accent-primary-light');
+        }
+    }
+
+    &.disabled {
+        @include color(background-color, 'body-25');
+        border-color: transparent;
+        pointer-events: none;
+
+        svg {
+            @include color(color, 'body-25');
+        }
+    }
+}

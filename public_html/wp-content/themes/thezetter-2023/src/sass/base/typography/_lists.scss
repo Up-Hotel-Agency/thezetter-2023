@@ -1,0 +1,130 @@
+li {
+    @include size-M;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    font-family: $font-stack-primary;
+}
+
+ul {
+    margin-bottom: 1.5rem;
+
+    &.no-margin {
+        margin-bottom: 0;
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &.less-margin {
+        margin-bottom: 0.5rem;
+    }
+    &.more-margin {
+        margin-bottom: 2.5rem;
+    }
+    li {
+        &:before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 100%;
+            position: absolute;
+            top: 0.5rem;
+            left: 0;
+            @include color(background-color, 'accent-primary');
+            border: 1px solid;
+            @include color(border-color, 'accent-primary');
+            display: block;
+        }
+    }
+    &.unstyled {
+        padding: 0;
+        margin: 0;
+        
+        li {
+            padding: 0;
+            margin: 0;
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+    ul {
+        margin-bottom: 0;
+        margin-top: 1rem;
+
+        li {
+            &:before {
+                background: none;
+            }
+        }
+    }
+}
+
+
+//Wordpress editor UL fix 
+.wp-editor, .block-editor-page{
+    ul{
+        li{
+            margin-left: unset;
+            &::before{
+                display: none;
+            }
+        }
+    }
+}
+
+ol {
+    margin-bottom: 1.5rem;
+    counter-reset: ol-counter;
+
+    li {
+        &::marker {
+            display: none;
+        }
+        &:before {
+            background: none;
+            border: 0;
+            width: auto;
+            height: auto;
+            position: absolute;
+            left: 0;
+            @include color(color, 'accent-primary');
+            @include size-M;
+            font-family: $font-stack-headings;
+            display: block;
+            content: counter(ol-counter)'.';
+            counter-increment: ol-counter;
+            top: 0;
+        }
+        ol {
+            margin-bottom: 0;
+            margin-top: 1rem;
+            counter-reset: letter;
+
+            li {
+                &:before {
+                    content: counter(letter, lower-alpha)'.';
+                    counter-increment: letter;
+                  
+                }
+            }
+        }
+    }
+}
+
+.text-align-center,
+.text-center {
+    ul {
+        li {
+            padding: 0 0 1rem 0;
+            border-bottom: 1px solid;
+            @include color(border-color, 'body-10');
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,178 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/_checkbrowser";
+@import "base/colors/_colors-core";
+
+//Hide check browser popup by default
+
+.check-browser-pop-up {
+    display: none;
+}
+
+//Target IE 10-11
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+    @include checkBrowser;
+
+    // stop AOS
+    [data-aos^=fade][data-aos^=fade],
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+
+    //Fix alignment issue with featured horizontal rules under headings
+
+    h1 + hr,
+    h2 + hr,
+    h3 + hr,
+    h4 + hr,
+    h5 + hr,
+    h6 + hr {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    //Force primary button text color
+    .button.primary {
+        color: $color-background !important;
+    }
+
+    //More robust fallbacks for theme colours
+    .theme {
+        &--image {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            em,
+            strong,
+            b,
+            .logo svg,
+            .nav-toggle,
+            .cta.graphic svg,
+            .cta.graphic h3,
+            .cta.graphic p {
+                color: #fff;
+            }
+            .nav-toggle .menu-icon span {
+                background-color: #fff;
+            }
+            hr {
+                border-color: #fff;
+            }
+            .button {
+                &.secondary,
+                &.minor {
+                    color: #fff;
+                    border-color: #fff;
+
+                    svg {
+                        color: #fff;
+                    }
+                }
+            }
+            .number-callout,
+            .theme--dark,
+            .theme--accent-primary,
+            .theme--default {
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                p,
+                em,
+                strong,
+                b {
+                    color: $color-body;
+                }
+            }
+        }
+    }
+
+    .bob {
+        animation: none;
+    }
+
+    //Disable zoom animations on banners (causes serious rendering bugs)
+    .banner img {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .page-bg-img,
+    .block-bg-img {
+        &:after {
+            opacity: 0.7;
+        }
+        img[data-src*="svg"] {
+            width: 200%;
+            height: 200%;
+        }
+    }
+
+    .accordion-lockup .accordion {
+        max-width: none;
+        width: 100%;
+    }
+
+    .cta--accent {
+        .color-accent {
+            color: #fff;
+        }
+    }
+
+    .banner-block {
+        &.theme--image {
+            height: 35rem;
+
+            .continue {
+                color: #fff;
+            }
+        }
+        &.banner-portrait {
+            height: auto;
+        }
+    }
+
+    .explore-controls {
+        .explore-nav {
+            color: #fff;
+        }
+        .slick-dots {
+            li {
+                button {
+                    background: #fff;
+                }
+            }
+        }
+    }
+
+    .footer-content-top {
+        display: flex;
+    }
+
+    .footer-menu {
+        flex-grow: 1;
+    }
+
+    .footer-menus {
+        display: flex;
+
+        @include breakpoint(XS) {
+            display: block;        
+        }
+    }
+
+    .single-modal-inner {
+        .modal-images {
+            position: relative;
+        }
+    }
+}

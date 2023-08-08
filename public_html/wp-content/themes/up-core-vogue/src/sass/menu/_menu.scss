@@ -1,0 +1,22 @@
+// menu
+.nav-wrap .nav-primary {
+    background-color: var(--color-body);
+
+    li {
+        a {
+            color: var(--color-background);
+            font-weight: 400;
+        }
+    }
+    ul.sub-menu {
+        background-color: var(--color-background);
+
+        a {
+            color: var(--color-body);
+
+            &:hover {
+                color: var(--color-accent-primary);
+            }
+        }
+    }
+}

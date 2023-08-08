@@ -1,0 +1,102 @@
+// cta blocks 
+.full-width-cta-row {
+    padding: 0;
+}
+.cta {
+    box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+
+    &.cta--accent {
+        --cta-background-color: var(--color-accent-reverse-alt);
+
+        .color-accent {
+            color: var(--color-accent-primary);
+        }
+        &.compact {
+            h4 {
+                color: var(--color-accent-primary);
+            }
+        }
+        .button.primary {
+            border-color: var(--color-accent-reverse);
+            background: var(--color-accent-reverse);
+            color: var(--color-accent-reverse-alt);
+
+            svg {
+                color: var(--color-accent-reverse-alt);
+            }
+            &:hover {
+                background: var(--color-accent-primary);
+                border-color: var(--color-accent-primary);
+            }
+        }
+        .button.secondary {
+            &:hover {
+                color: var(--color-accent-primary);
+                border-color: var(--color-accent-primary);
+
+                svg {
+                    color: var(--color-accent-primary);
+                }
+            }
+        }
+    }
+    .cta-content {
+        p {
+            font-style: italic;
+            font-family: $font-stack-headings;
+        }
+    }
+}
+
+// cta full width gutenberg block
+.row .cta.full-width {
+    box-shadow: none;
+
+    .cta-inner {
+        max-width: 62rem;
+        flex-direction: row;
+        align-items: normal;
+        text-align: left;
+
+        @include breakpoint(XS) {
+            flex-direction: column;
+            text-align: center;
+        }
+        header {
+            width: 50%;
+            border-right: 1px solid;
+            border-color: var(--color-body-25);
+            padding: 1.5rem 4rem;
+
+            @include breakpoint(XS) {
+                border: 0;
+                padding: 0;
+                width: 100%;
+            }
+        }
+        article {
+            width: 50%;
+            padding: 1.5rem 4rem;
+
+            @include breakpoint(XS) {
+                width: 100%;
+                padding: 0;
+            }
+        }
+        .buttons.centered {
+            justify-content: flex-start;
+
+            @include breakpoint(XS) {
+                justify-content: center;
+            }
+            .button {
+                margin-left: 0;
+                margin-right: 1.5rem;
+
+                @include breakpoint(XS) {
+                    margin: 0.5rem;
+                }
+            }
+        }
+    }
+}

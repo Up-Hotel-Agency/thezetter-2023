@@ -1,0 +1,441 @@
+.gallery-modal {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include color(background-color, 'background');
+
+    .gallery-modal-images {
+        width: calc(100% - 6rem);
+        position: relative;
+
+        @include breakpoint(S) {
+            width: 100%;
+            height: calc(100% - 4.5rem);
+        }
+        .button {
+            position: absolute;
+            z-index: 3;
+            bottom: 1.5rem;
+            right: 3rem;
+            margin: 0;
+
+            @include breakpoint(XS) {
+                max-width: 40vw;
+                bottom: 2rem;
+                right: 2rem;
+            }
+        }
+        .gallery-modal-slider,
+        .slick-list,
+        .slick-track,
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .modal-img-blanker {
+            position: absolute;
+            top: 0;
+            left: -1px;
+            z-index: 1;
+
+            @include breakpoint(S) {
+                display: none;
+            }
+        }
+    }
+    .gallery-modal-counter {
+        text-align: center;
+
+        .slash {
+            margin: 0 0.25rem;
+        }
+        @include breakpoint(S) {
+            order: 3;
+        }
+    }
+    .gallery-modal-slide {
+        .caption {
+            position: absolute;
+            bottom: 2.25rem;
+            left: 3rem;
+            z-index: 3;
+            margin: 0;
+
+            @include breakpoint(XS) {
+                left: 2rem;
+                bottom: 2.5rem;
+                max-width: 60vw;
+            }
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 75%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 32.5%, rgba(0, 0, 0, 0.5) 100%);
+            background-blend-mode: multiply;
+        }
+    }
+    .gallery-modal-sidebar {
+        width: 6rem;
+        padding: 1.5rem;
+        position: relative;
+        @include color(background-color, 'background');
+
+        @include breakpoint(S) {
+            width: 100%;
+            height: 4.5rem;
+            
+            .gallery-close {
+                order: 2;
+            }
+        }
+    }
+    .gallery-modal-controls {
+        button {
+            margin-bottom: 1rem;
+            display: block;
+
+            @include breakpoint(S) {
+                margin: 0 1rem 0 0;
+                
+                &:nth-child(1) {
+                    order: 2;
+                }
+                &:nth-child(2) {
+                    order: 1;
+                }
+            }
+        }
+        @include breakpoint(S) {
+            order: 1;
+        }
+    }
+}
+
+.custom-modal-close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 5rem;
+    height: 5rem;
+    padding: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    @include color(border-color, 'accent-primary');
+
+    svg {
+        display: block;
+        @extend %transition;
+    }
+    &:hover {
+        svg {
+            transform: rotate(180deg)
+        }
+    }
+    @include breakpoint(S) {
+        border-bottom: 0;
+        background: #fff;
+        width: 3.5em;
+        height: 3.5em;
+    }
+}
+
+.inpage-modal,
+.fancybox-slide .inpage-modal {
+    text-align: center;
+    width: 70vw;
+    max-width: 56rem;
+    padding: 5rem;
+    background: #fff;
+    background: var(--color-bg);
+    background-size: 100%;
+    margin: 5rem auto;
+
+    @include breakpoint(S) {
+        width: 90vw;
+        padding: 5rem;
+    }
+    @include breakpoint(XS) {
+        padding: 3rem 2rem;
+    }
+    ul {
+        width: 50%;
+        float: left;
+        text-align: left;
+        padding: 0 1rem;
+
+        @include breakpoint(S) {
+            width: 100%;
+            float: none;
+            padding: 0;
+        }
+        li {
+            font-size: 0.875rem;
+
+            &:before {
+                @include color(background-color, 'accent-primary');
+                width: 6px;
+                height: 6px;
+                top: 0.5rem;
+            }
+        }
+    }
+}
+
+.fancybox-button--fullscreen {
+    display: none !important;
+}
+
+body .fancybox-button--close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    border-radius: 100%;
+    background: #fff;
+    background: var(--color-reverse);
+    display: block;
+    width: 4.5rem;
+    height: 4.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 11;
+    font-size: 1rem;
+    @extend %transition;
+
+    @include breakpoint(XS) {
+        top: 1.25rem;
+        left: 1.25rem;
+    }
+    &:before,
+    &:after {
+        display: block;
+        @include color(background-color, 'body');
+        position: absolute;
+        left: 1.125rem;
+        top: 2.125rem;
+        width: 2.25em;
+        border-radius: 2px;
+        opacity: 1;
+        height: 4px;
+        @extend %transition;
+    }
+    &:before {
+        transform: rotate(45deg);
+    }
+    &:after {
+        transform: rotate(-45deg);
+    }
+    &:hover {
+        @include color(background-color, 'background');
+        
+        &:before,
+        &:after {
+            @include color(background-color, 'body');
+        }
+    }
+}
+
+.single-modal-inner {
+    display: flex;
+    @include color(background-color, 'background');
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: auto;
+    scrollbar-width: none; // to hide the scrollbars on firefox
+
+    @media (max-aspect-ratio: 3/4) {
+        display: block;
+        overflow: scroll;
+    }
+    @include breakpoint(XS) {
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        height: auto;
+    }
+    @media screen and (max-height: 600px) {
+        display: block;
+        overflow: scroll;
+    }
+    .modal-images {
+        width: 50%;
+        height: 100%;
+        position: sticky;
+        z-index: 5;
+        top: 0;
+
+        @media (max-aspect-ratio: 3/4) and (min-width: 640px) {
+            width: 100%;
+            height: 32rem;
+        }
+        @include breakpoint(XS) {
+            width: 100%;
+            height: auto;
+            order: 2;
+        }
+        @media screen and (max-height: 600px) {
+            position: relative;
+            width: 100%;
+        }
+        .image-carousel,
+        .slick-list,
+        .slick-track,
+        .slide,
+        .slide img,
+        > img {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .slick-controls {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 0;
+            width: 100%;
+            z-index: 5;
+        }
+        .slide {
+            &:after {
+                content: "";
+                z-index: 2;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(180deg, rgba(#000, 0) 32.5%, rgba(#000, 0.5) 100%);
+                background-blend-mode: multiply;
+            }
+        }
+        .media-container{
+            height: 100%;
+            width: 100%;
+            img{
+                height: 100%;
+            }
+            @include breakpoint(XS){
+                height: unset;
+                img{
+                    height: 20rem;
+                }
+            }
+        }
+    }
+    .modal-content {
+        width: 50%;
+
+        @media (max-aspect-ratio: 3/4) {
+            width: 100%;
+            height: auto;
+            overflow: auto;
+        }
+        @include breakpoint(XS) {
+            width: 100%;
+            height: auto;
+            overflow: auto;
+            order: 1;
+        }
+        @media screen and (max-height: 600px) {
+            width: 100%;
+            height: auto;
+            overflow: auto;
+        }
+        .modal-content-inner {
+            padding: 9rem 6rem 3.625rem 6rem;
+            width: 100%;
+
+            @include breakpoint(M) {
+                padding-left: 3.5rem;
+                padding-right: 3.5rem;
+            }
+            @media (max-aspect-ratio: 3/4) {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            @include breakpoint(XS) {
+                padding: 3rem 2rem;
+                padding-top: 5rem;
+            }
+        }
+        .modal-content-block {
+            border-top: 1px solid;
+            @include color(border-color, 'body-10');
+            padding-top: 3rem;
+        }
+        .cta {
+            height: 17.5rem;
+            width: 100%;
+            display: block;
+            margin: 0;
+
+            @include breakpoint(XS) {
+                height: 16rem;
+            }
+        }
+    }
+}
+
+.modal-close {
+    display: flex;
+    align-items: end;
+    cursor: pointer;
+    position: absolute;
+    top: 2.5rem;
+    z-index: 10;
+    left: auto;
+    right: 3.75rem;
+    .close{
+        text-decoration: underline;
+        text-transform: uppercase;
+        padding-right: 2rem;
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            width: 1.375rem;
+            height: 1px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            @include color(background-color, 'body');
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            width: 1.375rem;
+            height: 1px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+            @include color(background-color, 'body');
+        }
+    }
+}
+.modal-fixed-button {
+    position: absolute;
+    top: 0;
+    right: 4.5rem;
+    height: 4.5rem;
+    display: flex;
+    z-index: 10;
+
+    @include breakpoint(XS) {
+        right: 3.5rem;
+        height: 3.5rem;
+    }
+}

@@ -1,0 +1,18 @@
+.faqs-search {
+    border: 0;
+    box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+}
+
+.faq-group {
+    .overline {
+        text-transform: none;
+        font-weight: 400;
+        @include size-M;
+        letter-spacing: normal;
+        font-family: $font-stack-primary;
+    }
+}
+
+.faqs-cta.theme--accent {
+    --color-background: var(--color-accent-primary);
+}

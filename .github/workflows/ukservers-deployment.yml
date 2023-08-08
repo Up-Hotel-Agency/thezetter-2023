@@ -1,0 +1,60 @@
+name: build-deploy-site
+on: 
+  push:
+    branches:
+      - master
+      - main
+
+env:
+  SSH_PASSWORD: pS!RmR^Wq*x)
+  SERVER_ADDRESS: 78.157.221.126
+  WHM_ACCOUNT_NAME: upcore
+
+jobs:
+  build-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          (ls public_html | grep -q .) || (echo "Only Theme present in Repo, old site no need to build, exiting...") && exit
+          echo "Building Site..."
+          curl --silent --output /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod a+x \
+            /usr/local/bin/wp \
+            ./docker/wait-for-mysql \
+            ./docker/wait-for-mysql.php && \
+          wp --allow-root --version
+          cd public_html
+          wp core download --allow-root
+          echo "Site Built!"
+
+  deploy-first-site:
+    runs-on: ubuntu-latest
+    needs: [build-site]
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          which sshpass || ( apt-get update -y && apt-get install sshpass -y )
+          echo "sshpass installed!"
+          (sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no root@${SERVER_ADDRESS} "ls -1qp /home/${WHM_ACCOUNT_NAME}/public_html | grep -q .") && echo "Site has already been built, exiting..." && exit
+          which zip || ( apt-get update -y && apt-get install zip -y )
+          echo "zip installed!"
+          zip -r site_archive.zip public_html -x "public_html/.htaccess"
+          sshpass -p $SSH_PASSWORD scp -v -r site_archive.zip root@${SERVER_ADDRESS}:/home/${WHM_ACCOUNT_NAME}/
+          sshpass -p $SSH_PASSWORD ssh root@${SERVER_ADDRESS} "ls /home/${WHM_ACCOUNT_NAME} && unzip -o -d /home/${WHM_ACCOUNT_NAME}/ /home/${WHM_ACCOUNT_NAME}/site_archive.zip"
+      
+  deploy-prod:
+    runs-on: ubuntu-latest
+    needs: [deploy-first-site,build-site]
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          which sshpass || ( apt-get update -y && apt-get install sshpass -y )
+          echo "sshpass installed!"
+          which zip || ( apt-get update -y && apt-get install zip -y )
+          echo "zip installed!"
+          export THEME_PATH=$(find . -type f -name 'gulpfile.js' -not \( -path */node_modules/* -prune \) -print -quit | sed 's/gulpfile.js//')
+          ([ "$THEME_PATH" != "" ] && [ "$THEME_PATH" != "./" ] && cd $THEME_PATH && cd ../ && zip -r changes_archive.zip ./ -x ".gitlab-ci.yml" -x "README.md" -x ".git/*" -x "*/acf-json/*") || zip -r changes_archive.zip ./ -x ".gitlab-ci.yml" -x "README.md" -x ".git/*" -x "*/acf-json/*"
+          sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no root@${SERVER_ADDRESS} && sshpass -p $SSH_PASSWORD scp -v -r $(find . -type f -name 'changes_archive.zip') root@${SERVER_ADDRESS}:/home/${WHM_ACCOUNT_NAME}/
+          sshpass -p $SSH_PASSWORD ssh root@${SERVER_ADDRESS} "ls /home/${WHM_ACCOUNT_NAME} && unzip -o -d /home/${WHM_ACCOUNT_NAME}/public_html/wp-content/themes/ /home/${WHM_ACCOUNT_NAME}/changes_archive.zip"
+          sshpass -p $SSH_PASSWORD ssh root@${SERVER_ADDRESS} "cd /home/${WHM_ACCOUNT_NAME} && chown -R ${WHM_ACCOUNT_NAME}:${WHM_ACCOUNT_NAME} . && chmod 755 public_html"

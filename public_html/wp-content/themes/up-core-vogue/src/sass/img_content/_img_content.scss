@@ -1,0 +1,40 @@
+// image / content gutenberg block
+.img-content-row {
+    padding: 0;
+}
+.img-content {
+    padding: 0;
+    background-color: var(--color-background);
+
+    .content,
+    &.text-image .content {
+        padding: 12rem 5rem;
+
+        @include breakpoint(M) {
+            padding: 5rem 3.5rem;
+        }
+        @include breakpoint(XS) {
+            padding: 2rem;
+        }
+    }
+    .img {
+        .image-carousel {
+            height: 100%;
+        }
+        .slick-controls {
+            position: absolute;
+            padding: 0;
+            bottom: 1.5rem;
+            left: 0;
+
+            .slick-control {
+                color: var(--color-background);
+            }
+            li {
+                button {
+                    background-color: var(--color-background);
+                }
+            }
+        }
+    }
+}

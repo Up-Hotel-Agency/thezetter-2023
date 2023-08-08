@@ -1,0 +1,10 @@
+.wp-block-media-text {
+    p.has-large-font-size {
+        @include size-3XL;
+        font-family: $font-stack-headings;
+        @include color(color, 'accent-primary');
+        margin-bottom: $unit * 2;
+        display: block;
+        font-weight: 700;
+    }
+}

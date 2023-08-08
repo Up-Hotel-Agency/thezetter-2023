@@ -1,0 +1,93 @@
+h1,
+.h1 {
+    @include heading-1;
+
+    .subtitle {
+        @include subtitle-1;
+    }
+}
+
+h2,
+.h2 {
+    @include heading-2;
+
+    .subtitle {
+        @include subtitle-1;
+    }
+}
+
+h3,
+.h3 {
+    @include heading-3;
+
+    .subtitle {
+        @include subtitle-2;
+    }
+}
+
+h4,
+.h4 {
+    @include heading-4;
+
+    .subtitle {
+        @include subtitle-2;
+    }
+}
+
+h5,
+.h5,
+h6,
+.h6 {
+    @include heading-5;
+
+    .subtitle {
+        @include size-XS;
+    }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+    margin-bottom: 1.5rem;
+    display: block;
+    @include color(color, 'body');
+
+    &.no-margin {
+        margin-bottom: 0;
+    }
+    &.less-margin {
+        margin-bottom: 0.5rem;
+    }
+    &.more-margin {
+        margin-bottom: 2.5rem;
+    }
+    .subtitle {
+        font-weight: 400;
+        margin-top: 0.25rem;
+        display: block;
+    }
+    strong {
+        text-transform: none;
+        @include color(color, 'accent-primary');
+    }
+}
+
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+    .subtitle {
+        margin-top: 0;
+    }
+}

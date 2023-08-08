@@ -1,0 +1,277 @@
+// reset animate on scroll
+.editor-styles-wrapper [data-aos^=fade][data-aos^=fade] {
+    opacity: 1;
+    transform: none;
+}
+
+ // Prevent image and video backgrounds falling behind the editor
+ body {
+    isolation: isolate;
+}
+
+.block-editor-block-list__layout {
+    padding: 0;
+
+    .wp-block[data-type^=acf] {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+.wp-block {
+    max-width: 100%;
+}
+
+body .editor-styles-wrapper {
+    font-family: $font-stack-primary;
+}
+
+.wp-switch-editor {
+    height: auto;
+}
+
+.gallery-carousel:not(.slick-initialized) {
+    .gallery-carousel-slide {
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+
+        &-img {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 90%;
+
+            &:before {
+                display: none;
+            }
+        }
+        &:nth-child(1) {
+            display: block;
+        }
+        .caption {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+    }
+}
+
+.testimonial-carousel:not(.slick-initialized) {
+    .testimonial-carousel-slide {
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:nth-child(1) {
+            display: block;
+        }
+    }
+}
+
+.js-content-carousel:not(.slick-initialized) {
+    .img-content {
+        display: none !important;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:nth-child(1) {
+            display: flex !important;
+        }
+    }
+}
+
+.js-image-carousel:not(.slick-initialized) {
+    img{
+        display: none!important;
+        &:nth-child(1){
+            display: flex!important;
+        }
+    }
+}
+
+a.cta {
+    pointer-events: none;
+}
+
+.vimeo-player:not(.vimeo-player-initialized){
+    background-color: #c9c9c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:after {
+        content: "Vimeo Player will load in the front end";
+        font-family: $font-stack-primary;
+    }
+}
+
+// cloned theme group tidy up
+.acf-field-5f22df005795e {
+    > .acf-label {
+        display: none;
+    }
+    .acf-field-5f22cd70c0d44 .acf-label {
+        display: none;
+    }
+    .acf-field {
+        padding: 15px 0 !important;
+    }
+    .acf-fields.-border {
+        border: 0;
+    }
+}
+
+.block-editor-block-list__layout .block-editor-block-list__block:before {
+    display: none;
+}
+
+.components-popover.block-editor-block-list__block-popover .components-popover__content .block-editor-block-contextual-toolbar, .components-popover.block-editor-block-list__block-popover .components-popover__content .block-editor-block-list__breadcrumb {
+    margin: 0 !important;
+}
+
+.edit-post-visual-editor__post-title-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.acf-field-radio {
+    ul {
+        li {
+            &:before {
+                display: none !important;
+            }
+        }
+    }
+}
+
+.subtitle {
+    @include color(color, 'body');
+    padding: 0;
+}
+
+.map-container,
+.explore-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:after {
+        content: "Google Map will load on the front end";
+        font-family: $font-stack-primary;
+    }
+}
+
+.explore-carousel-slide:not(.slick-slide) {
+    height: 100%;
+    display: none !important;
+
+    &:nth-child(1) {
+        display: block !important;
+    }
+}
+
+.slick-dots{
+    padding-left: inherit;
+}
+
+// fix all the cheeky margins added in the editor
+.block-editor-block-list__layout .acf-block-preview {
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
+    p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    .mb {
+        &-0	{
+            margin-bottom: 0;
+        }
+    
+        &-1	{
+            margin-bottom: 0.25rem;
+        }
+    
+        &-2	{
+            margin-bottom: 0.5rem;
+        }
+    
+        &-3	{
+            margin-bottom: 0.75rem;
+        }
+    
+        &-4	{
+            margin-bottom: 1rem;
+        }
+    
+        &-5	{
+            margin-bottom: 1.25rem;
+        }
+    
+        &-6	{
+            margin-bottom: 1.5rem;
+        }
+    
+        &-8	{
+            margin-bottom: 2rem;
+        }
+    
+        &-10 {
+           margin-bottom: 2.5rem;
+        }
+    
+        &-12 {
+           margin-bottom: 3rem;
+        }
+    
+        &-14 {
+           margin-bottom: 3.5rem;
+        }
+    
+        &-16 {
+           margin-bottom: 4rem;
+        }
+    
+        &-20 {
+           margin-bottom: 5rem;
+        }
+    
+        &-24 {
+           margin-bottom: 6rem;
+        }
+    
+        &-32 {
+           margin-bottom: 8rem;
+        }
+    
+        &-40 {
+           margin-bottom: 10rem;
+        }
+    
+        &-48 {
+           margin-bottom: 12rem;
+        }
+    
+        &-56 {
+           margin-bottom: 14rem;
+        }
+    
+        &-64 {
+           margin-bottom: 16rem;
+        }
+    }
+}
+
+.components-editor-notices__dismissible {
+    position: static !important;
+}

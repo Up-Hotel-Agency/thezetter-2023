@@ -1,0 +1,51 @@
+// Background image theme colours
+
+// Define your colour variables here
+$color-vars-image: (
+    buttons: $color-background,
+    body: $color-background,
+    body-75: rgba($color-background, 0.75),
+    body-50: rgba($color-background, 0.50),
+    body-25: rgba($color-background, 0.25),
+    body-10: rgba($color-background, 0.10),
+    body-05: rgba($color-background, 0.05),
+    body-01: rgba($color-background, 0.01),
+
+    background: $color-body,
+    background-75: rgba($color-body, 0.75),
+    background-50: rgba($color-body, 0.5),
+    background-25: rgba($color-body, 0.25),
+    background-10: rgba($color-body, 0.10),
+    background-05: rgba($color-body, 0.05),
+    background-01: rgba($color-body, 0.01),
+
+    background-alt: mix($color-body, #FFF, 90%),
+
+    accent-primary: #fff,
+
+    accent-reverse: $color-body,
+    accent-reverse-alt: $color-accent-primary,
+);
+
+// Generate each value you defined above as CSS variables
+.theme--image,
+.theme--video,
+.theme__card--image {
+    @each $name, $value in $color-vars-image {
+        --color-#{$name}: #{$value};
+    }
+
+    &.cta .buttons .button.secondary,
+    .buttons .button.secondary,
+    .button.secondary {
+        &:hover {
+            @include color(color, 'accent-reverse');
+            @include color(background-color, 'accent-primary-lighter');
+            @include color(border-color, 'accent-primary-lighter');
+    
+            svg {
+                @include color(color, 'accent-reverse');
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+// newsletter gutenberg block
+.newsletter-block {
+    background-color: var(--color-background);
+    box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+
+    .newsletter {
+        box-shadow: 4px 8px 24px rgba($color-body, 0.075);
+        border: 0;
+
+        button {
+            background-color: var(--color-body);
+            border-color: var(--color-body);
+
+            &:hover {
+                background-color: var(--color-accent-primary);
+                border-color: var(--color-accent-primary);
+            }
+        }
+    }
+}

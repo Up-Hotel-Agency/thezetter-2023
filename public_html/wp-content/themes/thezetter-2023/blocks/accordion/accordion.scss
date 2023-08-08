@@ -1,0 +1,174 @@
+@import "../gutenberg_block";
+
+.accordion {
+    margin: 0 auto;
+    max-width: 50rem;
+
+    .accordion-title {
+        cursor: pointer;
+        position: relative;
+        @extend %transition;
+
+        &:focus {
+            outline: 0;
+        }
+        &.has-icon {
+            padding-right: 5rem;
+
+            @include breakpoint(XS) {
+                padding-right: 3.5rem;
+            }
+        }
+        span.button.icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            margin: 0;
+        }
+        h3,
+        h4,
+        h5,
+        p {
+            font-style: normal;
+            @include color(color, 'body');
+            margin: 0;
+            padding: 2.444rem 0;
+            @extend %transition;
+            @include size-L;
+            font-weight: 700;
+
+            @include breakpoint(XS) {
+                padding: 1.5rem 0;
+            }
+        }
+        &.inner-padding {
+            h3,
+            h4,
+            h5,
+            p {
+                padding: 1.5rem 5rem 1.5rem 1.5rem;
+            }
+            .icon {
+                right: 1.5rem;
+            }
+        }
+        &:hover {
+            h3,
+            h4,
+            h5,
+            p {
+                @include color(color, 'accent-primary');
+            }
+            .icon {
+                @include color(border-color, 'accent-primary');
+
+                svg {
+                    @include color(color, 'accent-primary');
+                }
+            }
+        }
+        &.open {
+            h3,
+            h4,
+            h5,
+            p {
+                @include color(color, 'accent-primary');
+            }
+            .icon {
+                @include color(border-color, 'accent-primary');
+
+                svg {
+                    @include color(color, 'accent-primary');
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+    .accordion-content {
+        display: none;
+        padding-bottom: 1.5rem;
+
+        &.inner-accordion {
+            padding: 1rem 3rem 1.5em 3rem;
+        }
+        p {
+            max-width: none;
+            @include color(color, 'body');
+        }
+        p:last-child,
+        ul:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .accordion-group {
+        border-bottom: 1px solid;
+        @include color(border-color, 'body-10');
+
+        @include breakpoint(XS) {
+            margin-bottom: 1rem;
+        }
+    }
+    &.opened {
+        .accordion-title {
+            opacity: 0.25;
+
+            &.open {
+                opacity: 1;
+            }
+        }       
+    }
+}
+
+.accordion-lockup {
+    .content-lockup-wrapper {
+        max-width: 24rem;
+
+        @include breakpoint(S) {
+            max-width: none;
+            margin-bottom: 1rem;
+        }
+    }
+    .content-lockup {
+        position: sticky;
+        top: 7rem;
+
+        @include breakpoint(S) {
+            position: static;
+        }
+    }
+    .accordion {
+        flex-grow: 1;
+        margin: 0;
+    }
+    &.content-accordion {
+        .content-lockup-wrapper {
+            padding-right: 4rem;
+
+            @include breakpoint(S) {
+                padding-right: 0;
+            }
+        }
+    }
+    &.accordion-content {
+        .content-lockup-wrapper {
+            padding-left: 4rem;
+            order: 2;
+
+            @include breakpoint(S) {
+                padding-left: 0;
+            }
+        }
+        .accordion {
+            order: 1;
+        }
+        @include breakpoint(S) {
+            .content-lockup-wrapper {
+                order: 1;
+            }
+            .accordion {
+                order: 2;
+            }
+        }
+    }
+}

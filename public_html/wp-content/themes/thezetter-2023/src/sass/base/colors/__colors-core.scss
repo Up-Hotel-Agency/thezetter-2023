@@ -1,0 +1,95 @@
+//Configure your project's core colour palette here
+// ================================================
+
+$color-body: #000410;
+$color-background: #F2ECE6;
+$color-background-alt: #F2F2F3;
+$color-accent-primary: #000000;
+$color-accent-secondary: #525535;
+$color-buttons: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, #56593B, #56593B);
+$color-footer: #101921;
+
+$color-success: #4CC27B;
+$color-warning: #EEBE43;
+$color-error: #DE3C4B;
+
+// Define your standard colour variables here
+// ================================================
+
+$color-vars: (
+  buttons: $color-buttons,
+  footer: $color-footer,
+
+  body: $color-body,
+  body-75: rgba($color-body, 0.75),
+  body-50: rgba($color-body, 0.50),
+  body-25: rgba($color-body, 0.25),
+  body-10: rgba($color-body, 0.10),
+  body-05: rgba($color-body, 0.05),
+  body-01: rgba($color-body, 0.01),
+
+  background: $color-background,
+  background-75: rgba($color-background, 0.75),
+  background-50: rgba($color-background, 0.5),
+  background-25: rgba($color-background, 0.25),
+  background-10: rgba($color-background, 0.10),
+  background-05: rgba($color-background, 0.05),
+  background-01: rgba($color-background, 0.01),
+
+  background-alt: $color-background-alt,
+
+  accent-primary: $color-accent-primary,
+  accent-primary-lightest: mix($color-accent-primary, #FFF, 25%),
+  accent-primary-lighter: mix($color-accent-primary, #FFF, 50%),
+  accent-primary-light: mix($color-accent-primary, #FFF, 87.5%),
+  accent-primary-dark: mix($color-accent-primary, #000, 87.5%),
+  accent-primary-darker: mix($color-accent-primary, #000, 50%),
+  accent-primary-darkest: mix($color-accent-primary, #000, 25%),
+
+  accent-reverse: $color-background,
+  accent-reverse-alt: $color-body,
+
+  success: $color-success,
+  success-lightest: mix($color-success, #FFF, 25%),
+  success-lighter: mix($color-success, #FFF, 50%),
+  success-light: mix($color-success, #FFF, 87.5%),
+  success-dark: mix($color-success, #000, 87.5%),
+  success-darker: mix($color-success, #000, 50%),
+  success-darkest: mix($color-success, #000, 25%),
+
+  warning: $color-warning,
+  warning-lightest: mix($color-warning, #FFF, 25%),
+  warning-lighter: mix($color-warning, #FFF, 50%),
+  warning-light: mix($color-warning, #FFF, 87.5%),
+  warning-dark: mix($color-warning, #000, 87.5%),
+  warning-darker: mix($color-warning, #000, 50%),
+  warning-darkest: mix($color-warning, #000, 25%),
+
+  error: $color-error,
+  error-lightest: mix($color-error, #FFF, 25%),
+  error-lighter: mix($color-error, #FFF, 50%),
+  error-light: mix($color-error, #FFF, 87.5%),
+  error-dark: mix($color-error, #000, 87.5%),
+  error-darker: mix($color-error, #000, 50%),
+  error-darkest: mix($color-error, #000, 25%),
+);
+
+// A mixin that gives you an appropriate fallback for browsers that don't support CSS variables (basically just IE)
+// Usage example:
+//  @include color(background-color, 'accent-primary', #333);
+// outputs:
+//  background-color: #333;
+//  background-color: var(--accent-primary, #333);
+//
+// Tip: You don't need to include a fallback variable for most cases – you only need to use it when your desired
+//      IE fallback isn't the standard default value (e.g. setting text colour over an image background)
+
+@mixin color($property, $color, $fallback: null) {
+    @if $fallback {
+        #{$property}: #{$fallback};
+        #{$property}: var(--color-#{$color}, #{$fallback});
+    } @else {
+        #{$property}: map-deep-get($color-vars, $color);
+        #{$property}: var(--color-#{$color}, map-get($color-vars, $color));
+    }
+}

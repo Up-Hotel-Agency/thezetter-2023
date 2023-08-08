@@ -1,0 +1,38 @@
+p {
+    @include size-L;
+    font-family: $font-stack-headings;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    @include color(color, 'body');
+    font-weight: 400;
+
+    &.no-margin {
+        margin-bottom: 0;
+    }
+    &.less-margin {
+        margin-bottom: 0.5rem;
+    }
+    &.quote {
+        &:before {
+            content: open-quote;
+        }
+        &:after {
+            content: close-quote;
+        }
+    }
+}
+
+strong,
+b {
+    font-weight: 700;
+    @include color(color, 'body');
+}
+
+i,
+em {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: 700;
+}

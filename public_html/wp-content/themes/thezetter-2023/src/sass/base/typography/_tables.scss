@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+    margin-bottom: 2rem;
+    text-align: left;
+
+    th {
+        @include color(color, 'body');
+        font-weight: 700;
+        padding: 1rem;
+        border-bottom: 1px solid;
+        @include color(border-color, 'body-10');
+        @include size-XS;
+        // min-width: 10rem;
+    }
+    tr {
+        td {
+            padding: 1rem;
+            // min-width: 10rem;
+            @include size-S;
+
+            > * {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    tfoot {
+        td {
+            font-weight: 700;
+            @include size-XS;
+            padding: 1rem;
+            border-top: 1px solid;
+            @include color(border-color, 'body-10');
+        }
+    }
+    @include breakpoint(XS) {
+        overflow-x: scroll;
+        display: block;
+    }
+}
+
+    

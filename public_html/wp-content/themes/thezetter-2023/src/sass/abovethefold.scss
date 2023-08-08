@@ -1,0 +1,25 @@
+//Plugins
+@import "base/reset";
+
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/animations";
+@import "utilities/placeholders";
+
+@import "base/colors/_colors-core";
+@import "base/colors/_color-themes";
+@import "base/typography/_typography-core";
+@import "utilities/utilities";
+@import "base/buttons/_buttons-core";
+@import "base/grid";
+@import "base/base-styles";
+
+@import "layout/banner";
+@import "layout/page";
+
+@import "layout/header_general";
+
+// pick your header
+// @import "layout/header_1";
+// @import "layout/header_2";
+@import "layout/header_3";

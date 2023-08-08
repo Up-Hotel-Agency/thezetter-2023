@@ -1,0 +1,40 @@
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bob {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-0.5em);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fade-in 0.5s ease-out;
+    animation-fill-mode: forwards;
+}
+
+.bob {
+    animation: bob 3s ease-out infinite;
+}
+
+[data-aos^=fade][data-aos^=fade] {
+    opacity: 0;
+    transition-property: opacity,transform;
+}
+
+@keyframes underline-menu {
+    from {width: 0;}
+    to {width: calc(100% - 2.5rem);}
+}

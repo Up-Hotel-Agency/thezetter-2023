@@ -1,0 +1,188 @@
+//Global Button Styling
+
+.button,
+button,
+input[type="submit"],
+input[type="button"] {
+
+    //Resets
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    appearance: none;
+    cursor: pointer;
+    width: auto;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    @extend %button-transition;
+    margin-bottom: 1.5rem;
+    @include size-M;
+    font-family: $font-stack-primary;
+    font-weight: 400;
+    padding: 0.5rem 2.375rem;
+    letter-spacing: 0.25em;
+    border-radius: 10px;
+    text-transform: uppercase;
+
+    //Set icon transitions
+    svg {
+        @extend %button-transition;
+    }
+
+    //Set up focus styling
+    &:before {
+        content:"";
+        background: transparent;
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        border-radius: 4px;
+        box-shadow: 0px 0px 18px $color-success, 0px 0px 18px $color-success;
+
+        //Hide until active
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    //Focus reset
+    &:focus {
+        outline: 0;
+
+        &:before {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &.unstyled {
+        background: none;
+        min-width: 0;
+        border-radius: 0;
+        border: 0;
+        padding: 0;
+        @include color(color, 'accent-primary');
+
+        &:hover {
+            @include color(color, 'accent-primary-light');
+
+            svg {
+                @include color(color, 'accent-primary-light');
+            }
+        }
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    &.transparent {
+        @include color(color, 'background');
+        background: none;
+        border: 1px solid;
+        @include color(border-color, 'background');
+
+        &:hover {
+            border: 1px solid;
+
+            @include color(color, 'background');
+            @include color(background-color, 'body');
+            @include color(border-color, 'body');
+        }
+    }
+
+    &.invert {
+        @include color(color, 'accent-primary');
+        @include color(background-color, 'body');
+        border: 0;
+
+        &:hover {
+            border: 0;
+            @include color(background-color, 'accent-primary');
+            @include color(color, 'body');
+        }
+    }
+
+    //Buttons with icons
+    &.icon-left,
+    &.icon-right,
+    &.icon-both {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        &.size-s {
+            svg {
+                width: 1.25rem;
+                height: 1.25rem;
+            }   
+        }
+    }
+    &.icon-left {
+        padding: 0.75rem 1.5rem 0.75rem 0.777rem;
+    }
+    &.icon-right {
+        padding: 0.75rem 0.777rem 0.75rem 1.5rem;
+    }
+    &.icon-both {
+        padding: 0.75rem 0.777rem;
+    }
+    &.icon-top {
+        svg {
+            display: block;
+            margin: 0 auto 0.25rem auto;
+        }
+    }
+    &.icon-both {
+        svg {
+            &:first-child {
+                margin-right: $unit;
+            }
+            &:last-child {
+                margin-left: $unit;
+            }
+        }
+    }
+    &.icon-right {
+        svg {
+            margin-left: 0.5rem;
+        }
+    }
+    &.icon-left {
+        svg {
+            margin-right: 0.5rem;
+        }
+    }
+
+    //Set spacing between button elements
+    margin-right: 1rem;
+
+    &.no-margin {
+        margin: 0;
+    }
+    &.no-margin-right {
+        margin-right: 0;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+    &.no-padd-horz {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    &.no-padd-bottom {
+        padding-bottom: 0;
+    }
+}
+
+//Import Button variations
+@import "primary-buttons";
+@import "secondary-buttons";
+@import "minor-buttons";
+@import "icon-buttons";

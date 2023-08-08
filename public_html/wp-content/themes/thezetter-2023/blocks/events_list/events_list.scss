@@ -1,0 +1,79 @@
+@import "../gutenberg_block";
+
+.event-divider {
+    border-bottom: 1px solid;
+    @include color(border-color, 'body-10');
+}
+
+.events-grid {
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.event-block {
+    width: calc(50% - 2rem - 1px);
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    @include breakpoint(XS) {
+        width: calc(100% - 2rem - 1px);
+    }
+    .event-img-outer {
+        width: 50%;
+
+        @include breakpoint(S) {
+            width: 6rem;
+            flex-shrink: 0;
+        }
+    }
+    .event-img {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        width: 100%;
+
+        @include breakpoint(S) {
+            height: 8.5rem;
+            padding: 0;
+        }
+    }
+    .event-content {
+        width: 50%;
+        padding-top: 0.75rem;
+        padding-left: 2rem;
+
+        @include breakpoint(S) {
+            min-width: 0;
+            width: 100%;
+        }
+        p {
+            svg {
+                @include color(color, 'accent-primary');
+                margin-right: 0.75rem;
+            }
+        }
+    }
+}
+
+.events-actions {
+    .addeventatc {
+        margin-left: 2rem;
+
+        @include breakpoint(XS) {
+            margin-left: 0;
+            margin-top: 2rem;
+            margin-bottom: 0;
+            width: 100%;
+        }
+    }
+}
+
+.single-event-details {
+    p {
+        width: 50%;
+
+        svg {
+            @include color(color, 'accent-primary');
+            margin-right: 0.75rem;
+        }
+    }
+}

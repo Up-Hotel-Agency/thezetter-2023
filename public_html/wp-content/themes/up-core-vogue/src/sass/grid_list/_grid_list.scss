@@ -1,0 +1,18 @@
+// grid list
+.grid-list {
+    .list-counter.numbers {
+        font-weight: 500;
+        @include size-XL;
+
+        .number {
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            border: 1px solid;
+            border-color: var(--color-body-10);
+        }
+    }
+}

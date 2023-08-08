@@ -1,0 +1,97 @@
+.copyright {
+    padding: 1.125rem 0;
+    @include color(background-color, 'body-05');
+
+    @include breakpoint(XS) {
+        padding: 1.5rem 0;
+    }
+    .copyright-menu p {
+        margin-right: 1.5rem;
+
+        @include breakpoint(XS) {
+            margin-right: 0;
+            margin-bottom: 0.5rem;
+        }
+    }
+    a {
+        @include color(color, 'body');
+
+        @include breakpoint(XS) {
+            padding: 0.5rem;
+        }
+        &:hover {
+            @include color(color, 'accent-primary');
+        }
+    }
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+
+        @include breakpoint(XS) {
+            justify-content: center;
+            margin: 0;
+            padding: 0.5rem 0;
+        }
+        li {
+            @include breakpoint(XS) {
+                width: 100%;
+                text-align: center;
+            }
+            a {
+                @include size-S;
+                display: block;
+                margin-right: 1.5rem;
+
+                @include breakpoint(XS) {
+                    margin: 0;
+                    padding: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+.grecaptcha-badge {
+    display: none !important;
+}
+
+.error.notice {
+    display: none;
+    position: fixed;
+    width: 17em;
+    right: 5em;
+    bottom: 2em;
+    z-index: 20;
+    @include color(color, 'background');
+    font-size: 16px;
+    border-radius: 8px;
+    @include color(background-color, 'background');
+    border: 1px solid;
+    @include color(border-color, 'body');
+    
+    :before {
+        content: "Caching is disabled";
+        display: block;
+        font-weight: 700;
+        @include color(color, 'body');
+    }
+    p {
+        margin-bottom: 0em;
+        padding: 2em;
+    }
+}
+
+.js-category-target {
+    @extend %transition;
+
+    &.filtered {
+        display: none;
+    }
+    &.fade-out {
+        opacity: 0;
+    }
+}
+
+.footer {
+    clear: both; // just in case any floating elements
+}

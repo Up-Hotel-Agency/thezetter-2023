@@ -1,0 +1,19 @@
+.edit-post-visual-editor__post-title-wrapper {
+    padding: 0;
+    background: $color-accent-primary;
+    margin:0;
+
+        .wp-block-post-title {
+            text-align: center;
+            color: #fff;
+            font-family: $font-stack-headings;
+            height: auto;
+            margin: 0;
+            padding:1rem;
+
+            &:focus {
+                color: #fff;
+            }
+        }
+    
+}

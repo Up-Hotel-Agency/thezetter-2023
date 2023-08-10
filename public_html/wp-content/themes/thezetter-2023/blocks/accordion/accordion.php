@@ -104,7 +104,7 @@ function accordion_render_callback( $block, $content = '', $is_preview = false )
                     <div class="accordion-title has-icon">
                         <h4>
                             <?php the_sub_field('question'); ?>
-                            <span class="button secondary icon"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>caret-down</title><g class="caret-down"><polyline class="arrowhead" points="36.036 18.982 24 31.018 11.964 18.982" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></span>
+                            <span class="button icon"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>caret-down</title><g class="caret-down"><polyline class="arrowhead" points="36.036 18.982 24 31.018 11.964 18.982" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></span>
                         </h4>
                     </div>
                     <div class="accordion-content"><?php the_sub_field('answer'); ?></div>

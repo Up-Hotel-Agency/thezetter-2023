@@ -28,7 +28,7 @@ function banner_default_render_callback( $block, $content = '', $is_preview = fa
     extract(set_theme_override_values());
     ?>
     <section
-    class="row container banner-block flex justify-center items-center flex-col<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?><?php if(array_key_exists('full_height', $block) && $block['full_height'] != false): echo ' full-height'; endif; ?>"
+    class="row container full-height banner-block flex justify-center items-center flex-col<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?><?php if(array_key_exists('full_height', $block) && $block['full_height'] != false): echo ' full-height'; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="

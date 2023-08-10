@@ -1,7 +1,6 @@
 a {
     position: relative;
     @include color(color, 'accent-primary');
-    text-decoration: none;
     @extend %transition;
 
     &:hover {
@@ -52,5 +51,10 @@ a {
                 @include color(background-color, 'accent-primary');
             }
         }
+    }
+}
+p{
+    a{
+        text-decoration: underline;
     }
 }

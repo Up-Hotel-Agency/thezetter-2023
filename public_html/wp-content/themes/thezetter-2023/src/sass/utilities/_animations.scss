@@ -38,3 +38,11 @@
     from {width: 0;}
     to {width: calc(100% - 2.5rem);}
 }
+@keyframes underline-minor {
+    from {width: 0;}
+    to {width: 100%;}
+}
+@keyframes underline-menu-leave {
+    from {width: 100%;}
+    to {width: 0;}
+}

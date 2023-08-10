@@ -55,7 +55,7 @@ function callouts_render_callback( $block, $content = '', $is_preview = false ) 
                         <?php endif; ?>
                     </header>
                     <?php if( isLink( $link ) ): ?>
-                        <span class="button icon secondary no-margin">
+                        <span class="button icon no-margin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"><title>arrow-right</title><g class="arrow-right"><line class="arrow-stem" x1="39.964" y1="23.964" x2="7.964" y2="23.964" stroke-width="3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline class="arrowhead" points="28 11.929 40.036 23.964 28 36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg>
                         </span>
                     <?php endif; ?>        

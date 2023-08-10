@@ -39,8 +39,7 @@ $color-vars-image: (
     .buttons .button.secondary,
     .button.secondary {
         &:hover {
-            @include color(color, 'accent-reverse');
-            @include color(background-color, 'accent-primary-lighter');
+            @include color(color, 'body');
             @include color(border-color, 'accent-primary-lighter');
     
             svg {

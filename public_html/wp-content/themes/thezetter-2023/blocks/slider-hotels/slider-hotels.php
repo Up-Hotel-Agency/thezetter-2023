@@ -44,7 +44,7 @@ function slider_hotels_render_callback( $block, $content = '', $is_preview = fal
 
                 <div class="hotels-list flex flex-col items-start" data-aos="fade-up">
                     <?php $hoteID=1;while ( have_rows('hotel') ) : the_row(); ?>
-                        <div class="hotel-list-item flex flex-col items-start" data-aos="fade-up">
+                        <div class="hotel-list-item flex flex-col items-start" data-aos="fade-up" data-hotel="<?php echo $hoteID; ?>">
                             <div class="img img-hotel img-hotel-single img-hotel-single-mobile" data-aos="fade-up">
                                 <?php if( have_rows('hotel_images') ): ?>
                                     <div class="image-carousel js-image-carousel img-abs">

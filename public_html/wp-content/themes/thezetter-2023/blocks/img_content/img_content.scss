@@ -1,7 +1,7 @@
 @import "../gutenberg_block";
 
 .img-content-banner{
-    min-height: calc(100vh - 5.375rem);
+    min-height: calc(100vh - var(--header-height));
     .img{
         .media-container{
             height: 100%;
@@ -182,10 +182,39 @@
             @include breakpoint(XS) {
                 align-items: start;
                 text-align: left;
+                &.mobile-left{
+                    align-items: start;
+                    text-align: left;
+                }
+                &.mobile-centre{
+                    align-items: center;
+                    text-align: center;
+                    .buttons{
+                        justify-content: center;
+                    }
+                }
+                &.mobile-right{
+                    align-items: end;
+                    text-align: right;
+                    .buttons{
+                        justify-content: end;
+                    }
+                }
             }
         }
         .content-wrap {
             width: 100%;
+            &.content-wrap-careers{
+                p{
+                    @include size-S;
+                    margin-bottom: 0;
+                }
+                ul li{
+                    font-family: $font-stack-headings;
+                    @include size-S;
+                    margin-bottom: 0;
+                }
+            }
         }
     }
     .img {

@@ -373,9 +373,19 @@ body .fancybox-button--close {
             }
         }
         .modal-content-block {
-            border-top: 1px solid;
-            @include color(border-color, 'body-10');
-            padding-top: 3rem;
+            font-family: $font-stack-headings;
+            &--line{
+                position: relative;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: 2.875rem;
+                    height: 1px;
+                    bottom: -1.5rem;
+                    left: 0;
+                    @include color(background-color, 'body');
+                }
+            }
         }
         .cta {
             height: 17.5rem;

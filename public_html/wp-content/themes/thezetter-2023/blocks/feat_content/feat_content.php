@@ -39,7 +39,7 @@ function feat_content_render_callback( $block, $content = '', $is_preview = fals
                 <?php if(get_field('image')): echo img_sizes(get_field('image'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
             </div>
             <?php if( get_field('content') ): ?>
-                <h2 class="mb-8" data-aos="fade-up">
+                <h2 class="mb-8 regular-weight" data-aos="fade-up">
                     <?php the_field('content'); ?>
                 </h2>
             <?php endif; ?>

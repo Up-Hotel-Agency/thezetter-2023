@@ -2486,23 +2486,23 @@ ul.list-reset {
     padding-bottom: 5.714rem;
 
     @include breakpoint(XS) {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding-top: 4.071rem;
+        padding-bottom: 4.071rem;
     }
 
     &--top {
-        padding-top: 3rem;
+        padding-top: 5.714rem;
 
         @include breakpoint(XS) {
-            padding-top: 2rem;
+            padding-top: 4.071rem;
         }
     }
 
     &--bottom {
-        padding-bottom: 3rem;
+        padding-bottom: 5.714rem;
 
         @include breakpoint(XS) {
-            padding-bottom: 2rem;
+            padding-bottom: 4.071rem;
         }
     }
 

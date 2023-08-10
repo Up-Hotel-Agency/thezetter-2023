@@ -6,7 +6,7 @@ $color-background: #F2ECE6;
 $color-background-alt: #F2F2F3;
 $color-accent-primary: #000000;
 $color-accent-secondary: #525535;
-$color-buttons: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(0deg, #56593B, #56593B);
+$color-buttons: #45472E;
 $color-footer: #101921;
 
 $color-success: #4CC27B;
@@ -19,6 +19,12 @@ $color-error: #DE3C4B;
 $color-vars: (
   buttons: $color-buttons,
   footer: $color-footer,
+  footer-75: rgba($color-footer, 0.75),
+  footer-50: rgba($color-footer, 0.50),
+  footer-25: rgba($color-footer, 0.25),
+  footer-10: rgba($color-footer, 0.10),
+  footer-05: rgba($color-footer, 0.05),
+  footer-01: rgba($color-footer, 0.01),
 
   body: $color-body,
   body-75: rgba($color-body, 0.75),
@@ -37,7 +43,8 @@ $color-vars: (
   background-01: rgba($color-background, 0.01),
 
   background-alt: $color-background-alt,
-
+  
+  accent-secondary: $color-accent-secondary,
   accent-primary: $color-accent-primary,
   accent-primary-lightest: mix($color-accent-primary, #FFF, 25%),
   accent-primary-lighter: mix($color-accent-primary, #FFF, 50%),

@@ -107,7 +107,7 @@ jQuery(function($){
         var target;
         target = $(this).parents('.row').nextAll('.row');
         $('html, body').animate({
-            scrollTop: $(target).offset().top - 172
+            scrollTop: $(target).offset().top 
         });
         return false;
     });
@@ -202,12 +202,12 @@ jQuery(function($){
     /*
         Footer 2 mobile menu toggles
     */
-    $('.js-mob-footer-menu-toggle').click(function() {
-        if ($(window).width() < 641) {
-            $(this).toggleClass('active');
-            $(this).parents('.footer-menu').find('.js-footer-menu').slideToggle();
-        }
-    });
+    // $('.js-mob-footer-menu-toggle').click(function() {
+    //     if ($(window).width() < 641) {
+    //         $(this).toggleClass('active');
+    //         $(this).parents('.footer-menu').find('.js-footer-menu').slideToggle();
+    //     }
+    // });
 
     /*
         Nav for header 3

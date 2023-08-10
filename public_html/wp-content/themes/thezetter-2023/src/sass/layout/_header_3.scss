@@ -1,9 +1,29 @@
-body {
-    padding-top: 5.375rem;
-
-    @include breakpoint(S) {
-        padding-top: 3.938rem;
+:root{
+    --header-height:5.375rem;
+    @include breakpoint(XS) {
+        --header-height:3.938rem;
     }
+}
+section.row{
+    position: relative;
+    &::after,
+    &::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        @include color(background-color, 'footer-25');
+    }
+    &::after{
+        top: 0px;
+    }
+    &::before{
+        bottom: -1px;
+    }
+}
+body {
+    padding-top: var(--header-height);
 }
 
 .header {
@@ -12,7 +32,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 20;
-    height: 5.375rem;
+    height: var(--header-height);
     // @include color(background-color, 'background');
     background: rgba($color-background, .85);
     border-bottom: 1px solid;
@@ -22,9 +42,6 @@ body {
         background: $color-background;
     }
 
-    @include breakpoint(S) {
-        height: 3.938rem;
-    }
     ul {
         display: flex;
 
@@ -56,7 +73,7 @@ body {
         width: 100%;
         margin: 0;
         @include color(background-color, 'accent-primary');
-        top: 5.375rem;
+        top: var(--header-height);
         justify-content: center;
         align-items: center;
         height: 0;
@@ -67,7 +84,7 @@ body {
 
         &.active {
             opacity: 1;
-            height: 5.375rem;
+            height: var(--header-height);
             visibility: visible;
         }
         a {
@@ -127,6 +144,11 @@ body {
         @include color(background, 'buttons');
         margin-left: 1.25rem;
         height: auto !important;
+        &:hover{
+            @include color(color, 'body');
+            @include color(background-color, 'background');
+            @include color(border-color, 'buttons');
+        }
         @include breakpoint(S) {
             padding: 0.429rem 0.929rem !important;
         }
@@ -146,7 +168,15 @@ body {
         > li {
             &.current-menu-item{
                 a{
-                    text-decoration: underline;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        width: calc(100% - 2.5rem);
+                        height: 1px;
+                        left: 1.25rem;
+                        bottom: calc(50% - 4px);
+                        @include color(background-color, 'body');
+                    }
                 }
             }
             &:hover{
@@ -158,7 +188,7 @@ body {
                         width: calc(100% - 2.5rem);
                         height: 1px;
                         left: 1.25rem;
-                        bottom: calc(50% - 3px);
+                        bottom: calc(50% - 4px);
                         @include color(background-color, 'body');
                         animation-name: underline-menu;
                         animation-duration: .5s;
@@ -183,7 +213,7 @@ body {
                 }
             }
             > a {
-                height: 5.375rem;
+                height: var(--header-height);
                 text-transform: uppercase;
             }
             &.active{
@@ -227,7 +257,7 @@ body {
             padding: 0.5rem 0.875rem;
         }
         @include breakpoint(S) {
-            height: 3.938rem;
+            height: var(--header-height);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -248,10 +278,10 @@ body {
 }
 .overlay-menu{
     position: absolute;
-    top: 5.375rem;
+    top: var(--header-height);
     right: -50vw;
     @include color(background-color, 'background');
-    min-height: calc(100vh - 5.375rem);
+    min-height: calc(100vh - var(--header-height));
     min-width: 23.87rem;
     padding: 3rem 2.56rem;
     opacity: 0;
@@ -265,6 +295,8 @@ body {
         right: 0;
         opacity: 1;
         visibility: visible;
+        overflow: scroll;
+        max-height: calc(100vh - var(--header-height));
     }
     .mini-menu{
         margin-bottom: 3.5rem;
@@ -305,6 +337,7 @@ body {
         width: 100%;
         bottom: 0;
         height: auto;
+        margin-top: 1rem;
         .close-overlay-menu{
             display: flex;
             align-items: end;
@@ -352,11 +385,11 @@ body {
 
 .menu-wrapper {
     position: fixed;
-    top: 3.938rem;
+    top: var(--header-height);
     left: 0;
     transform: translateY(-150%);
     width: 100%;
-    max-height: calc(100% - 3.938rem);
+    max-height: calc(100% - var(--header-height));
     z-index: 1;
     @include color(background-color, 'background-alt');
     overflow: auto;
@@ -377,6 +410,20 @@ body {
         right: 0;
         opacity: 1;
         visibility: visible;
+    }
+    .mini-menu{
+        margin-bottom: 2.64rem;
+        p{
+            font-family: $font-stack-primary;
+            padding-bottom: 0.786rem;
+            text-transform: uppercase;
+        }
+        ul li a,
+        a{
+            @include heading-2;
+            font-weight: 400 !important;
+            margin-bottom: 0;
+        }
     }
     .side-menu{
         display: flex;
@@ -432,11 +479,7 @@ body {
 }
 
 .gallery-full-container:first-child {
-    margin-top: -5.375rem;
-
-    @include breakpoint(S) {
-        margin-top: -3.938rem;
-    }
+    margin-top: calc(var(--header-height) * -1);
 }
 .nav-wrap {
     display: flex;
@@ -456,6 +499,7 @@ body {
         left: 0;
         max-width: none;
         flex-direction: column;
+        justify-content: flex-start;
     }
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
         left: -100%;
@@ -643,13 +687,35 @@ body {
         width: 50%;
         height: 100%;
         @include color(background-color, 'background');
+        flex-direction: column;
+        justify-content: center;
 
         @include breakpoint(S) {
+            justify-content: flex-start;
+            padding-top: 2rem !important;
             min-height: 100vh;
             height: auto;
             position: relative;
         }
-
+        .bookingmask-footer{
+            width: 100%;
+            justify-content: space-between;
+            align-items: end;
+            .bookingmask-footer-content{
+                p{
+                    @include size-L;
+                    margin: 0;
+                }
+            }
+            @include breakpoint(S) {
+                .bookingmask-footer-content{
+                    margin-top: 2.5rem;
+                }
+                .bookingmask-footer-image{
+                    display: none;
+                }
+            } 
+        }
         .close-booking-menu{
             display: flex;
             align-items: end;

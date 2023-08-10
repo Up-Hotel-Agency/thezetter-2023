@@ -8,8 +8,8 @@ input[type="button"] {
     //Primary button default styling
     @include color(color, 'accent-reverse');
     @include color(background, 'buttons');
-
-    border: none;
+    border: 1px solid;
+    @include color(border-color, 'buttons');
 
     //Icon styling
     svg {
@@ -24,9 +24,9 @@ input[type="button"] {
     //Hover state
     &:hover,
     &.active {
-        @include color(color, 'accent-reverse');
-        @include color(background-color, 'accent-primary-lighter');
-        border: none;
+        @include color(color, 'body');
+        @include color(background-color, 'background');
+        @include color(border-color, 'buttons');
 
         svg {
             @include color(color, 'accent-reverse');

@@ -17,13 +17,17 @@
         <div class="content<?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>">
             <div class="content-inner">
                 <div>
-                    <p class="mb-6 h4 color-accent" data-aos="fade-up">
-                        Error 404
-                    </p>
+                    <?php if(get_field('overline_404', 'options')): ?>
+                        <p class="mb-6 h4 color-accent" data-aos="fade-up">
+                            <?php the_field('overline_404', 'options'); ?>
+                        </p>
+                    <?php endif; ?>
 
-                    <h2 class="regular-weight" data-aos="fade-up" data-aos-delay="100">
-                        We're sorry, the page you requested could not be found or does not exist.
-                    </h2>
+                    <?php if(get_field('text_404', 'options')): ?>
+                        <h2 class="regular-weight" data-aos="fade-up" data-aos-delay="100">
+                            <?php the_field('text_404', 'options'); ?>
+                        </h2>
+                    <?php endif; ?>
                 </div>
                 
                 <div class="buttons no-margin" data-aos="fade-up" data-aos-delay="200">

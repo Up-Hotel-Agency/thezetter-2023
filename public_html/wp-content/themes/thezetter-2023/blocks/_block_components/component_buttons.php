@@ -3,6 +3,7 @@
 //Media Component 
 function block_buttons($field, $opts = [] ){
 
+
     //Exit early if field set is not defined 
     if(!isset($field)){
         return;

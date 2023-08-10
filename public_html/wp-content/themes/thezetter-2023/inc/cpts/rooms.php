@@ -5,7 +5,7 @@ if(!function_exists('get_room_single_type')){
 		// set the room single type here
 		// room_1 is page with gutenberg
 		// room_2 is modal using the rooms grid gutenberg block
-		$room_type = 'room_1';
+		$room_type = 'room_2';
 		return $room_type;
 	}
 }
@@ -19,116 +19,6 @@ if( get_room_single_type() == 'room_1' ) {
 			wp_enqueue_style( 'block-acf-image-content-block', get_template_directory_uri() . '/assets/css/img_content/img_content.css' );
 		}
 	}
-	
-	// here are some ACF fields just for room_1
-	if( function_exists('acf_add_local_field_group') ):
-
-		acf_add_local_field_group(array(
-			'key' => 'group_more_rooms',
-			'title' => 'More Rooms',
-			'fields' => array(
-				array(
-					'key' => 'field_5fa3de5c8b4e2',
-					'label' => 'More Rooms Overline',
-					'name' => 'more_rooms_overline',
-					'type' => 'text',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'default_value' => '',
-					'placeholder' => '',
-					'prepend' => '',
-					'append' => '',
-					'maxlength' => '',
-				),
-				array(
-					'key' => 'field_5fa3de708b4e3',
-					'label' => 'More Rooms Title',
-					'name' => 'more_rooms_title',
-					'type' => 'text',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'default_value' => 'More Rooms & Suites',
-					'placeholder' => '',
-					'prepend' => '',
-					'append' => '',
-					'maxlength' => '',
-				),
-				array(
-					'key' => 'field_5fa3de7d8b4e4',
-					'label' => 'More Rooms',
-					'name' => 'more_rooms',
-					'type' => 'repeater',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'collapsed' => '',
-					'min' => 0,
-					'max' => 2,
-					'layout' => 'table',
-					'button_label' => '',
-					'sub_fields' => array(
-						array(
-							'key' => 'field_5fa3de858b4e5',
-							'label' => 'Room',
-							'name' => 'room',
-							'type' => 'post_object',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'post_type' => array(
-								0 => 'rooms',
-							),
-							'taxonomy' => '',
-							'allow_null' => 0,
-							'multiple' => 0,
-							'return_format' => 'id',
-							'ui' => 1,
-						),
-					),
-				),
-			),
-			'location' => array(
-				array(
-					array(
-						'param' => 'post_type',
-						'operator' => '==',
-						'value' => 'rooms',
-					),
-				),
-			),
-			'menu_order' => 20,
-			'position' => 'normal',
-			'style' => 'default',
-			'label_placement' => 'top',
-			'instruction_placement' => 'label',
-			'hide_on_screen' => '',
-			'active' => true,
-			'description' => '',
-		));
-		
-	endif;
 
 }
 

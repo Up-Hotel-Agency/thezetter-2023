@@ -20,7 +20,7 @@ jQuery(function($){
             dots: true,
             customPaging : function(slider, i) {
             var thumb = $(slider.$slides[i]).data();
-            return '<a class="dot">'+i+'</a>';}
+            return '<a class="dot">'+ (i + 1) +'</a>';}
         });
     });
 

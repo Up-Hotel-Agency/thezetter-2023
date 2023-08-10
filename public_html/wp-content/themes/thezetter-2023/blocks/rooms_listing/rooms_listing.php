@@ -16,15 +16,15 @@ acf_register_block_type(array(
                                     'mode'      => true
                                 ),
     'enqueue_assets' => function(){
-        wp_enqueue_style( 'block-acf-image-content-block', get_template_directory_uri() . '/assets/css/img_content/img_content.css' );
-        wp_enqueue_style( 'block-acf-featured-list', get_template_directory_uri() . '/assets/css/featured_list/featured_list.css' );
+        wp_enqueue_style( 'block-acf-image-content-block', get_template_directory_uri() . '/assets/css/content/content.css' );
+        // wp_enqueue_style( 'block-acf-featured-list', get_template_directory_uri() . '/assets/css/featured_list/featured_list.css' );
     }
 ));
 function rooms_listing_render_callback( $block, $content = '', $is_preview = false ) {
     extract(set_theme_override_values());
     ?>
     <section
-    class="rooms-listing row spacing <?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
+    class="rooms-listing row container spacing <?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     data-aos="fade-up"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
@@ -39,6 +39,22 @@ function rooms_listing_render_callback( $block, $content = '', $is_preview = fal
     >
         <?php block_background_media(); ?>
         
+        <div class="content-block featured-content text-align-center<?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>">
+            <div class="featured-content-image" data-aos="fade-up">
+                <?php if(get_field('illustration')): echo img_sizes(get_field('illustration'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
+            </div>
+            <?php if( get_field('title_title') ): ?>
+                <h2 class="h3 mb-8" data-aos="fade-up">
+                    <?php the_field('title_title'); ?>
+                </h2>
+            <?php endif; ?>
+            <?php if( get_field('content_content') ): ?>
+                <div class="mb-12 size-l" data-aos="fade-up">
+                    <?php the_field('content_content', false, false); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
         <?php
         $args = array(
             'posts_per_page' => -1,
@@ -46,73 +62,73 @@ function rooms_listing_render_callback( $block, $content = '', $is_preview = fal
         );
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) :
-            $roomsCount = 1;
-            while ( $the_query->have_posts() ) : $the_query->the_post(); $room = get_the_ID(); ?>
-                <div class="img-content container spacing <?php if( $roomsCount % 2 ): ?>text-image<?php else: ?>image-text<?php endif; ?>">
-                    <div class="img" data-aos="fade-up">
+            $roomsCount = 1; ?>
+            <div class="posts-grid flex flex-wrap">
+                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); $room = get_the_ID(); ?>
+                    
+                
+                
+
+                <div class="post-item mb-12 two xs:flex xs:items-center" data-aos="fade-up">
+                    <a href="<?php the_permalink(); ?>" class="post-item-img mb-6">
                         <?php block_media( get_field('room_media', $room), [
-                            'img_sizes' => array('default' => 'img_800', 'page_area' => 100, 'mobile_page_area' => 100),
-                            'default_aspect' => '4/3',
-                            'slick_dots' => true,
+                            'img_sizes' => array('default' => 'img_1367', 'page_area' => 100, 'mobile_page_area' => 100),
+                            'default_aspect' => '16/9',
+                            'video_aspect' => '16/9',
+                            'slick_dots' => false,
+                            'dynamic_mobile' => false
                         ]); ?>
-                    </div>
+                    </a>
+                    <div class="post-item-content">
+                        <h4 class="mb-4" data-aos="fade-up" data-aos-delay="100"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                        <p class="mb-4 size-s" data-aos="fade-up" data-aos-delay="150">
+                            <?php echo get_field('intro_content', $room, false); ?>
+                        </p>
 
-                    <div class="content xs:text-left">
-                        <div class="content-inner">
-                            <header>
-                                <?php if( get_field('overline', $room) ): ?>
-                                    <p class="mb-1 overline color-accent" data-aos="fade-up">
-                                        <?php the_field('overline', $room); ?>
-                                    </p>
+                        <?php if(get_field('sleeps', $room) || get_field('bed_size', $room) || get_field('average_size', $room)): ?>
+                            <div class="post-item-items mb-2 flex flex-row">
+                                <?php if(get_field('sleeps', $room)): ?>
+                                    <div class="item">
+                                        <?php the_field('sleeps', $room); ?>
+                                    </div>
                                 <?php endif; ?>
-
-                                <h2 data-aos="fade-up">
-                                    <?php if( get_field('title', $room) ): ?>
-                                        <?php the_field('title', $room); ?>
-                                    <?php else: ?>
-                                        <?php the_title(); ?>
-                                    <?php endif; ?>
-                                    <?php if( get_field('price_tag', $room) ): ?>
-                                        <span class="subtitle" data-aos="fade-up" data-aos-delay="50">
-                                            <?php the_field('price_tag', $room); ?>
-                                        </span>
-                                    <?php endif; ?>
-                                </h2>
-                            </header>
-
-                            <article class="content-wrap" data-aos="fade-up" data-aos-delay="150"<?php if( get_field('hide_content_on_mobile') ): ?> class="hide-mobile"<?php endif; ?>>
-                                <?php the_field('intro_content', $room); ?>
-                            </article>
-                            
-                            <?php if( have_rows('features', $room) ): ?>
-                                <div class="featured-list half-items flex flex-wrap mb-8">
-                                    <?php $listCount = 1; while ( have_rows('features', $room) ) : the_row(); ?>
-                                        <div class="featured-list-item flex items-center" data-aos="fade-up">
-                                            <div class="list-counter flex items-center icons">
-                                                <?php the_sub_field('autoloaded_icon'); ?>
-                                            </div>
-                                            <div class="list-content">
-                                                <?php if( get_sub_field('title') ): ?><p class="overline mb-0"><?php the_sub_field('title'); ?></p><?php endif; ?>
-                                                <?php if( get_sub_field('subtitle') ): ?><p class="size-xs mb-0"><?php the_sub_field('subtitle'); ?></p><?php endif; ?>
-                                            </div>
-                                        </div>
-                                    <?php $listCount++; endwhile; ?>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <div class="buttons" data-aos="fade-up" data-aos-delay="150">
-                                <a class="button secondary" href="<?php echo get_the_permalink(); ?>">
-                                    Room Details
-                                </a>
-                                <?php block_buttons(get_field('link_field', $post_id), [
-                                    'class' => 'button primary '
-                                ]); ?>
+                                <?php if(get_field('bed_size', $room)): ?>
+                                    <div class="item">
+                                        <?php the_field('bed_size', $room); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if(get_field('average_size', $room)): ?>
+                                    <div class="item"> 
+                                        <?php the_field('average_size', $room); ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
+                        <?php endif; ?>
+                        <div class="buttons" data-aos="fade-up" data-aos-delay="150">
+                            <a class="button secondary" href="<?php echo get_the_permalink(); ?>">
+                                More information
+                            </a>
+                            <?php block_buttons(get_field('link_field', $room), [
+                                'class' => 'button primary '
+                            ]); ?>
                         </div>
                     </div>
                 </div>
-            <?php $roomsCount++; endwhile;
-        endif; wp_reset_query(); ?>
+
+
+
+
+
+
+
+                
+                
+                
+                
+                    
+                <?php $roomsCount++; endwhile; ?>
+            </div>
+        <?php endif; wp_reset_query(); ?>
     </section>
     <?php
 }

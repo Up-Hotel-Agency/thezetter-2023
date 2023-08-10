@@ -4,20 +4,49 @@
 button.minor,
 input[type="button"].minor {
     padding-left: 0;
-    text-decoration: underline;
+    padding-right: 0;
+    text-decoration: none;
     @include color(color, 'body');
     background: none;
     border: 1px solid transparent;
 
+    &::after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: -1px;
+        bottom: calc(50% - 8px);
+        @include color(background-color, 'body');
+        animation-name: underline-minor;
+        animation-duration: .5s;
+    }
+    @extend %transition;
     svg {
         @include color(color, 'body');
     }
     
+    @include breakpoint(XS) {
+        text-align: left;
+    }
     //Hover state
     &:hover,
     &.active {
+        @extend %transition;
         transform: none;
 
+        &::after{
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 1px;
+            right: -1px;
+            left: unset;
+            bottom: calc(50% - 8px);
+            @include color(background-color, 'body');
+            animation-name: underline-menu-leave;
+            animation-duration: .5s;
+        }
         @include color(color, 'accent-primary');
 
         //Icons on Hover

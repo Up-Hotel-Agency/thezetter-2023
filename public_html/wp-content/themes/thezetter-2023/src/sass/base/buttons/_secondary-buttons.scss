@@ -19,6 +19,9 @@ input[type="button"] {
 
         margin-right: .5rem;
         position: relative;
+        @include breakpoint(XS) {
+            text-align: left;
+        }
         &::after{
             content: "";
             position: absolute;
@@ -32,6 +35,7 @@ input[type="button"] {
             mask-size: inherit;
             height: 0.9rem;
             width: 1rem;
+            @extend %transition;
         }
         svg {
             @include color(color, 'body');
@@ -39,10 +43,14 @@ input[type="button"] {
         //Hover state
         &:hover,
         &.active {
-            @include color(color, 'accent-reverse');
+            // @include color(color, 'accent-reverse');
             // @include color(background-color, 'accent-primary-lighter');
             // @include color(border-color, 'accent-primary-lighter');
     
+            &::after{
+                right: -0.5rem;
+                @extend %transition;
+            }
             svg {
                 @include color(color, 'accent-reverse');
             }

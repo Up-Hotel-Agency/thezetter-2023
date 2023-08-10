@@ -1,3 +1,70 @@
+.footer-newsletter{
+    align-items: center;
+    gap: 4.438rem;
+    .footer-newsletter-left,
+    .newsletter-form{
+        width: 50%;
+        align-items: center;
+    }
+    .footer-newsletter-left{
+        gap: 3rem;
+        article p{
+            @include size-M;
+            a{
+                text-decoration: underline;
+            }
+        }
+    }
+    .newsletter-form{
+        .newsletter-signup_input{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 3.5rem 1rem;
+            input[type=text],
+            input[type=email]{
+                @include size-XS;
+                padding: 0;
+                padding-bottom: .5rem;
+                border: none;
+                border-bottom: 1px solid;
+                @include color(border-color, 'buttons');
+                @include color(color, 'buttons');
+                width: calc(50% - .5rem);
+                &::placeholder {
+                    @include color(color, 'buttons');
+                }
+            }
+
+        }
+    }
+    @include breakpoint(S) {
+        padding-left: 3rem;
+        padding-right: 3rem;
+        flex-direction: column;
+        .footer-newsletter-left,
+        .newsletter-form{
+            width: 100%;
+            flex-direction: column;
+        }
+        .footer-newsletter-left{
+            text-align: center;
+        }
+        .newsletter-form{
+            .newsletter-signup_input{
+                flex-direction: column;
+                input[type=text],
+                input[type=email]{
+                    width: 100%;
+                }
+                button{
+                    width: fit-content;
+                    margin: auto;
+                }
+            }
+        }
+    }
+}
 .footer {
     padding-top: 7.688rem; 
     padding-bottom: 6.313rem;
@@ -81,12 +148,21 @@
         display: flex;
         flex-direction: column;
         a{
+            @include size-S;
             text-transform: uppercase;
+            @include breakpoint(XS) {
+                padding: 0.357rem 0 !important;
+                margin: 0;
+            }
         }
     }
     .credits{
         font-size: 8px;
         font-family: $font-stack-headings;
+        @include color(color, 'body');
+        @include breakpoint(XS) {
+            margin-top: 1.786rem;
+        }
     }
     a {
         @include color(color, 'body');
@@ -94,9 +170,6 @@
         &:hover {
             @include color(color, 'accent-primary');
         }
-    }
-    .credits{
-        @include color(color, 'body');
     }
     .tel,
     .email {
@@ -122,19 +195,40 @@
     }
     @include breakpoint(XS) {
         padding-right: 0;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        .footer-submenu{
+            margin-bottom: 2rem;
+        }
     }
     .footer-menu-wrap {
         @include breakpoint(XS-up) {
             display: block !important; // this is in case someone closes it on mobile and goes to a larger screen
         }
         @include breakpoint(XS) {
-            display: none;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0;
+            ul{
+                display: flex;
+                flex-direction: column;
+                li{
+                    margin: auto;
+                    padding: 0;
+                    a{
+                        padding: 0.357rem 0 !important;
+                        margin: 0;
+                        &:first-of-type{
+                            padding-top: 0;
+                        }
+                        &:last-of-type{
+                            padding-bottom: 0;
+                        }
+                    }
+                }
+            }
         }
     }
     .h5{
         margin-bottom: 1.813rem;
+        @include size-M;
     }
     ul {
         width: 100%;
@@ -146,7 +240,10 @@
         li {
             // margin-bottom: 1rem;
             padding-right: 1rem;
-
+            margin-bottom: 0.688rem;
+            &:last-of-type{
+                margin-bottom: 0;
+            }
             @include breakpoint(XS) {
                 width: 50%;
                 margin-bottom: 0;
@@ -160,10 +257,14 @@
         text-transform: uppercase;
 
         @include breakpoint(XS) {
-            padding: 1rem 0;
+            padding: 0.357rem 0 !important;
+            margin: 0;
         }
         &:hover {
             @include color(color, 'accent-primary');
+        }
+        &:last-of-type{
+            margin: 0;
         }
     }
 }

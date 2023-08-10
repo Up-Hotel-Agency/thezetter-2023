@@ -61,13 +61,13 @@ function cta_blocks_render_callback( $block, $content = '', $is_preview = false 
                         </div>
                         <?php if( isLink( $link ) && linkField( $link, 'text' ) ): ?>
                             <div class="buttons justify-center">
-                                <span class="button secondary no-margin">
+                                <span class="button minor no-margin">
                                     <?php echo linkField( $link, 'text' ); ?>
                                 </span>
                             </div>
                         <?php elseif( isLink( $link ) && !linkField( $link, 'text' ) ): ?>
                             <div class="buttons justify-center">
-                                <span class="button secondary icon no-margin">
+                                <span class="button icon no-margin">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 48 48"><title>arrow-right</title><g class="arrow-right"><line class="arrow-stem" x1="39.964" y1="23.964" x2="7.964" y2="23.964" stroke-width="3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polyline class="arrowhead" points="28 11.929 40.036 23.964 28 36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg>
                                 </span>
                             </div>

@@ -110,7 +110,7 @@ body {
 
 .slick-controls{
     position: relative;
-    bottom: 2rem;
+    bottom: 2.5rem;
 }
 .slick-control {
     display: block;
@@ -188,6 +188,7 @@ body {
 
     &.active,
     &.forced {
+        height: 100vh;
         visibility: visible;
         transform: translateY(0);
     }

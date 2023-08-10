@@ -6,7 +6,11 @@
     height: 35rem;
 
     .slick-controls {
-        margin-top: 1rem;
+        top: 0;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        margin: 0;
     }
     .slick-control {
         @include color(color, 'body');

@@ -13,9 +13,10 @@
     // Accent card colour (e.g. accent primary background CTA blocks)
     &--accent {
         --card-color-body: var(--color-accent-reverse);
-        --card-color-background: var(--color-accent-primary);
-        --card-color-accent-primary: var(--color-accent-reverse-alt);
+        --card-color-background: var(--color-accent-secondary);
+        --card-color-accent-primary: var(--color-accent-reverse);
         --card-color-accent-reverse: var(--color-accent-primary);
+        --color-accent-primary: #fff;
     }
 
     // Image card colour (e.g. image background CTA blocks)

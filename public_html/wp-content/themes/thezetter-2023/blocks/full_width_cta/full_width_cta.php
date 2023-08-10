@@ -23,7 +23,7 @@ function full_width_cta_render_callback( $block, $content = '', $is_preview = fa
     extract(set_theme_override_values());
     ?>
     <section
-    class="row full-width-cta<?php if(wp_get_theme() != 'MyStyle City Hotel') { ?> spacing<?php } ?><?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( get_field('contained') ):?> container<?php endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
+    class="row full-width-cta<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( get_field('contained') ):?> container<?php endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="
@@ -38,7 +38,7 @@ function full_width_cta_render_callback( $block, $content = '', $is_preview = fa
         <?php block_background_media(); ?>
         
         <div class="theme--image full-width-cta__wrapper flex items-center justify-center not-square img-abs" data-aos="fade-up">
-            <div class="full-width-cta__inner text-center flex items-center flex-col justify-center">
+            <div class="full-width-cta__inner text-left flex items-start flex-col justify-start">
                 <header>
                     <?php if( get_field('overline_overline') ): ?>
                         <p class="mb-1 overline color-accent">
@@ -47,7 +47,7 @@ function full_width_cta_render_callback( $block, $content = '', $is_preview = fa
                     <?php endif; ?>
 
                     <?php if( get_field('title_title') ): ?>
-                        <h2 class="h1"><?php the_field('title_title'); ?>
+                        <h2 class="h3"><?php the_field('title_title'); ?>
                             <?php if( get_field('subtitle_subtitle') ): ?><span class="subtitle"><?php the_field('subtitle_subtitle'); ?></span><?php endif; ?>
                         </h2>
                     <?php endif; ?>
@@ -57,8 +57,9 @@ function full_width_cta_render_callback( $block, $content = '', $is_preview = fa
                     <article>
                         <?php the_field('content_content'); ?>
 
+                        <?php print_r(get_field('buttons')); ?>
                         <?php block_buttons(get_field('buttons'), [
-                            'class' => 'no-margin centered'
+                            'class' => 'no-margin'
                         ]); ?>
                     </article>    
                 <?php endif; ?>

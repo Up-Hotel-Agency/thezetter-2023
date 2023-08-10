@@ -46,7 +46,7 @@ function img_content_render_callback( $block, $content = '', $is_preview = false
             </div>
 
             <div class="content<?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>">
-                <div class="content-inner">
+                <div class="content-inner mobile-<?php echo get_field('mobile_text_alignment'); ?>">
                     <header>
                         <?php if( get_field('overline_overline') ): ?>
                             <p class="mb-6 h4 color-accent" data-aos="fade-up">

@@ -25,7 +25,10 @@ input[type="button"] {
     letter-spacing: 0.25em;
     border-radius: 10px;
     text-transform: uppercase;
-
+    @include breakpoint(XS) {
+        text-wrap: wrap !important;
+        width: fit-content;
+    }
     //Set icon transitions
     svg {
         @extend %button-transition;
@@ -41,7 +44,7 @@ input[type="button"] {
         width: calc(100% + 4px);
         height: calc(100% + 4px);
         border-radius: 4px;
-        box-shadow: 0px 0px 18px $color-success, 0px 0px 18px $color-success;
+        box-shadow: 0px 0px 18px #F4CB01, 0px 0px 18px #F4CB01;
 
         //Hide until active
         opacity: 0;

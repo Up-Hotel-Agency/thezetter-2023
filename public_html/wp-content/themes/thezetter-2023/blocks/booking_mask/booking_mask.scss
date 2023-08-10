@@ -6,6 +6,9 @@
     .button.primary{
         width: fit-content;
     }
+    .logo{
+        margin-bottom: 3.5rem;
+    }
     @include breakpoint(S) {
         width: 100%;
         max-width: 32rem;

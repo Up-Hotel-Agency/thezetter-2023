@@ -1,20 +1,20 @@
 <section class="menu-wrapper js-menu-toggle flex header-with-dropdowns">
 	<div>
-		<div>
-			<p class="size-m xs:mb-0">Locations</p>
+		<div class="mini-menu">
+			<p class="size-s xs:mb-0">Locations</p>
 			<?php $i=0; while ( have_rows('hotel_navigation', 'options') ) : the_row(); ?>
 				<?php $link = get_sub_field('link', 'options'); ?>
 				<a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>" class="h2 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>
 			<?php $i++; endwhile; ?>
 		</div>
 
-		<div>
-			<p class="size-m xs:mb-0">About the Zetter</p>
+		<div class="mini-menu">
+			<p class="size-s xs:mb-0">About the Zetter</p>
 			<?php wp_nav_menu( array( 'theme_location' => 'Side Menu' , 'container' => false, 'menu_class' => 'list-reset side-menu' ) ); ?>
 		</div>
 
-		<div>
-			<p class="size-m xs:mb-0">Our other Hotels</p>
+		<div class="mini-menu">
+			<p class="size-s xs:mb-0">Our other Hotels</p>
 			<?php $i=0; while ( have_rows('other_hotels', 'options') ) : the_row(); ?>
 				<?php $link = get_sub_field('link', 'options'); ?>
 				<a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>" class="h2 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>

@@ -1,5 +1,6 @@
 .page-container {
     @extend %transition;
+
     
     > {
         h1,
@@ -23,14 +24,24 @@
     }
     // clear AOS on first 2 gutenberg blocks. Has to be up to nth-child(4) due to inline style tags for the first 2 block
     .row {
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3),
-        &:nth-child(4) {
+        &:nth-child(1):not(.full-height) ~ .row:nth-child(2 of .row) {
             [data-aos^=fade][data-aos^=fade] {
                 opacity: 1;
                 transform: none;
             }
+        }
+    }
+    .full-height {
+        &::after{
+            display: none;
+        }
+    }
+    &:not(:has(.row)){
+        padding: 6.813rem 0;
+        p,
+        ul,
+        li{
+            @include size-S;
         }
     }
 }

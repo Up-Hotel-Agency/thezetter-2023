@@ -17,7 +17,6 @@ function illustration_columns_render_callback( $block, $content = '', $is_previe
     <section
     class="row spacing container content-block-container<?php if(get_field('has_patterned_background')): ?> has-patterned-background<?php endif; ?><?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
-    data-aos="fade-up"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="
         <?php if( $custom_text ): ?>--color-body: <?php echo $custom_text; ?>;<?php endif; ?>
@@ -32,7 +31,7 @@ function illustration_columns_render_callback( $block, $content = '', $is_previe
 
         <div class="illustration-columns <?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>">
             
-            <div class="featured-content-image">
+            <div class="featured-content-image" data-aos="fade-up">
                 <?php if(get_field('illustration')): echo img_sizes(get_field('illustration'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
             </div>
             <?php if( get_field('title_title') ): ?>

@@ -1,0 +1,50 @@
+{
+    "key": "group_5f324ba691825",
+    "title": "Blog Featured Image",
+    "fields": [
+        {
+            "key": "field_644e544fa1a39",
+            "label": "Featured Image \/ Video",
+            "name": "featured_image__video",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "Select a single image, or video for this posts media",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "field_643fdae25b202"
+            ],
+            "display": "group",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "excerpt",
+        "featured_image"
+    ],
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1692110706
+}

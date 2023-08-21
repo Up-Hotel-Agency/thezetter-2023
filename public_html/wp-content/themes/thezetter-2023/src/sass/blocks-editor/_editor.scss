@@ -4,6 +4,13 @@
     transform: none;
 }
 
+:root{
+    --header-height:5.375rem;
+    @include breakpoint(XS) {
+        --header-height:3.938rem;
+    }
+}
+
  // Prevent image and video backgrounds falling behind the editor
  body {
     isolation: isolate;

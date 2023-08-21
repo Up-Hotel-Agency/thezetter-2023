@@ -8,7 +8,7 @@
             <?php endif; ?>
             <div class="content-newsletter flex flex-col">
                 <?php if(get_field('title_newsletter', 'options')): ?>
-                    <h4 class="bold color-accent mb-5"  data-aos="fade-up"><?php echo get_field('title_newsletter', 'options');?></h4>
+                    <h4 class="bold mb-5"  data-aos="fade-up"><?php echo get_field('title_newsletter', 'options');?></h4>
                 <?php endif; ?>
                 <?php if(get_field('content_newsletter', 'options')): ?>
                     <article  data-aos="fade-up">
@@ -38,13 +38,23 @@
 <footer class="footer container theme--image">
     <div class="footer-logo flex justify-between items-center mb-14">
         <a href="<?php echo get_bloginfo( 'url' ); ?>" title="<?php echo get_bloginfo( 'name' ); ?>" class="footer-logo flex xs:justify-start">
-            <?php echo img_sizes(get_field('footer_logo', 'options'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); ?>
+            <?php if(!get_field('not_zetter', 'options')):  
+                switch_to_blog(1);
+                    echo file_get_contents( get_field('footer_logo', 'options') ); 
+                restore_current_blog();
+            else: 
+                echo file_get_contents( get_field('footer_logo', 'options') ); 
+            endif; ?>
         </a>
     </div>
     <div class="footer-content">
         <div class="footer-content-top flex xs:flex-wrap">
             <div class="footer-menus">
                 <div class="footer-menu footer-menu-main">
+                <?php if(get_field('not_zetter')): ?>
+
+                <?php else: ?>
+                    <?php switch_to_blog(1); ?>
                     <div class="footer-submenu">
                         <h3 class="h5 mob-footer-menu-toggle  xs:flex xs:justify-between xs:items-center">   
                             Our Locations
@@ -63,6 +73,8 @@
                             <a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>"><?php echo get_sub_field('title_site', 'options');?></a>
                         <?php $i++; endwhile; ?>
                     </div>
+                    <?php restore_current_blog(); ?>
+                <?php endif; ?>
                 </div>
                 <?php if( have_rows('footer_menus', 'options') ): while ( have_rows('footer_menus', 'options') ) : the_row(); ?>
                     <div class="footer-menu">

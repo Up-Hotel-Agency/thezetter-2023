@@ -37,12 +37,44 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
     <?php endif; ?>
     >
         <?php block_background_media(); ?>
-        
+
         <?php
-        $args = array(
-            'posts_per_page' => -1,
-            'post_type' => 'offers',
-        );
+
+            $current_site = get_current_blog_id(); 
+            switch_to_blog(1); 
+            
+        ?>
+        <?php
+        if($current_site == 1):
+            $args = array(
+                'posts_per_page' => -1,
+                'post_type' => 'offers',
+            );
+        else:
+
+            $terms = get_terms(array(
+                'taxonomy'   => 'hotel_categories',
+            ));
+
+            foreach($terms as $term):
+                $id = $term->term_id;
+            endforeach;
+
+            $args = array(
+                'posts_per_page' => -1,
+                'post_type' => 'offers',
+                'orderby' => 'menu_order',
+                'order' => 'ASC',
+                'tax_query' => array(
+                    'relation' => 'AND',
+                        array(
+                            'taxonomy' => 'hotel_categories', 
+                            'field' => 'id',
+                            'terms' => $hotel
+                        ),
+                    ),
+            );
+        endif; 
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) :
             $offersCount = 1;
@@ -106,6 +138,7 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                 </div>
             <?php $offersCount++; endwhile;
         endif; wp_reset_query(); ?>
+        <?php restore_current_blog(); ?>
     </section>
     <?php
 }

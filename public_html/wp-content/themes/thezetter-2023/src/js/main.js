@@ -94,12 +94,17 @@ jQuery(function($){
         return false;
     });
     
-    $(".open-menu").click(function(e) {
+    $(".js-open-side-menu").click(function(e) {
         e.preventDefault();
-        $(".open-menu").toggleClass('active');
+        $(".js-open-side-menu").toggleClass('active');
         $(".overlay-menu").toggleClass('active');
         $(".header").toggleClass('active');
     });
+    $(".js-locations-dropdown").click(function(e) {
+        e.preventDefault();
+        $(this).toggleClass('active');
+    }); 
+
 
     // scroll to next block
     $(".js-scroll-next-block").click(function(e) {

@@ -38,6 +38,17 @@
     }
 }
 
+.container-small {
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+    @include breakpoint(XS) {
+        padding-left: 4.071rem;
+        padding-right: 4.071rem;
+    }
+
+}
+
 .row {
     position: relative;
 

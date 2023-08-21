@@ -56,8 +56,6 @@ function full_width_cta_render_callback( $block, $content = '', $is_preview = fa
                 <?php if( get_field('content_content') || have_rows('buttons_buttons') ): ?>
                     <article>
                         <?php the_field('content_content'); ?>
-
-                        <?php print_r(get_field('buttons')); ?>
                         <?php block_buttons(get_field('buttons'), [
                             'class' => 'no-margin'
                         ]); ?>

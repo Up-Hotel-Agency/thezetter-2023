@@ -56,9 +56,24 @@ function rooms_listing_render_callback( $block, $content = '', $is_preview = fal
         </div>
 
         <?php
+        if(get_field('display_room_type')):
+            $room_type_id = get_field('display_room_type');
+        else:
+            return; 
+        endif; 
         $args = array(
             'posts_per_page' => -1,
             'post_type' => 'rooms',
+            'orderby' => 'menu_order',
+            'order' => 'ASC',
+            'tax_query' => array(
+                'relation' => 'AND',
+                    array(
+                        'taxonomy' => 'room_categories', 
+                        'field' => 'id',
+                        'terms' => $room_type_id
+                    ),
+                ),
         );
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) :
@@ -108,24 +123,14 @@ function rooms_listing_render_callback( $block, $content = '', $is_preview = fal
                             <a class="button secondary" href="<?php echo get_the_permalink(); ?>">
                                 More information
                             </a>
-                            <?php block_buttons(get_field('link_field', $room), [
-                                'class' => 'button primary '
-                            ]); ?>
+                            <?php if(get_field('show_button', $room)): ?>
+                                <?php block_buttons(get_field('link_field', $room), [
+                                    'class' => 'button primary '
+                                ]); ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-                
-                
-                
-                
-                    
                 <?php $roomsCount++; endwhile; ?>
             </div>
         <?php endif; wp_reset_query(); ?>

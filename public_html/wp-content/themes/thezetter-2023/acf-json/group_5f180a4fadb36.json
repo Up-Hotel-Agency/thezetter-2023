@@ -146,7 +146,15 @@
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -182,20 +190,26 @@
                     "parent_repeater": "field_64cb9d3776c58"
                 },
                 {
-                    "key": "field_64cb9d6076c59",
-                    "label": "Link",
-                    "name": "link",
+                    "key": "field_64e136ce7243a",
+                    "label": "Site ID",
+                    "name": "site_id",
                     "aria-label": "",
-                    "type": "link",
+                    "type": "number",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "url",
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": "",
                     "parent_repeater": "field_64cb9d3776c58"
                 }
             ]
@@ -208,7 +222,15 @@
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -244,20 +266,26 @@
                     "parent_repeater": "field_64cba15f7e524"
                 },
                 {
-                    "key": "field_64cba15f7e526",
-                    "label": "Link",
-                    "name": "link",
+                    "key": "field_64e136e97243b",
+                    "label": "Site ID",
+                    "name": "site_id",
                     "aria-label": "",
-                    "type": "link",
+                    "type": "number",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "url",
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "placeholder": "",
+                    "step": "",
+                    "prepend": "",
+                    "append": "",
                     "parent_repeater": "field_64cba15f7e524"
                 }
             ]
@@ -364,11 +392,11 @@
             "endpoint": 0
         },
         {
-            "key": "field_64cb6fdd4071b",
-            "label": "Header Logo",
-            "name": "header_logo",
+            "key": "field_64de29f04c04f",
+            "label": "Is this site the group?",
+            "name": "is_group",
             "aria-label": "",
-            "type": "image",
+            "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -377,7 +405,70 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "id",
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_64de2a0b4c050",
+            "label": "Is this site separate to Zetter? (Apply different branding)",
+            "name": "not_zetter",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_64cb6fdd4071b",
+            "label": "Header Logo",
+            "name": "header_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_64de2a0b4c050",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -389,6 +480,34 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_64df3cdde0436",
+            "label": "Location Name",
+            "name": "location_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_64cbb05f3034a",
             "label": "Side Menu Logo",
             "name": "side_menu_logo",
@@ -396,7 +515,22 @@
             "type": "image",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_64de2a0b4c050",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -421,13 +555,28 @@
             "type": "image",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_64de2a0b4c050",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "return_format": "id",
+            "return_format": "url",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -736,5 +885,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692110709
+    "modified": 1692481343
 }

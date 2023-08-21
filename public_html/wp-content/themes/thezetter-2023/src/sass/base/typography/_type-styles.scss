@@ -2,35 +2,35 @@
 
 @mixin heading-1 {
     font-family: $font-stack-headings;
-    font-weight: 700;
+    font-weight: 500;
     @include size-3XL;
     line-height: 1.1;
 }
 
 @mixin heading-2 {
     font-family: $font-stack-headings;
-    font-weight: 700;
+    font-weight: 500;
     @include size-2XL;
     line-height: 1.2;
 }
 
 @mixin heading-3 {
     font-family: $font-stack-headings;
-    font-weight: 700;
+    font-weight: 500;
     @include size-XL;
     line-height: 1.33;
 }
 
 @mixin heading-4 {
     font-family: $font-stack-headings;
-    font-weight: 700;
+    font-weight: 500;
     @include size-L;
     line-height: 1.33;
 }
 
 @mixin heading-5 {
     font-family: $font-stack-headings;
-    font-weight: 700;
+    font-weight: 500;
     @include size-M;
     line-height: 1.33;
 }

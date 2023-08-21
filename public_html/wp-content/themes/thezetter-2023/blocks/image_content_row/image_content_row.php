@@ -20,7 +20,7 @@ function image_content_row_render_callback( $block, $content = '', $is_preview =
     extract(set_theme_override_values());
     ?>
     <section
-    class="row spacing container<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
+    class="row spacing image-content-row container<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="
@@ -36,7 +36,11 @@ function image_content_row_render_callback( $block, $content = '', $is_preview =
 
         <div class="image-content-block flex flex-row text-align-<?php echo get_field('align'); ?><?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>">
             <div class="featured-content-image" data-aos="fade-up">
-                <?php if(get_field('image')): echo img_sizes(get_field('image'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
+                <?php block_media( get_field('image'), [
+                    'img_sizes' => array('default' => 'img_1367', 'page_area' => 100, 'mobile_page_area' => 100),
+                    'default_aspect' => '1/1',
+                    'slick_dots' => true,
+                ]); ?>
             </div>
             <div class="content">
                 <?php if( get_field('description_content') ): ?>

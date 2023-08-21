@@ -34,272 +34,6 @@ if( get_room_single_type() == 'room_2' ) {
 		}
 	}
 
-	if( function_exists('acf_add_local_field_group') ):
-
-		acf_add_local_field_group(array(
-			'key' => 'group_room_2_details',
-			'title' => 'Room Details',
-			'fields' => array(
-				array(
-					'key' => 'field_room_2_overview',
-					'label' => 'Room Overview',
-					'name' => 'room_overview',
-					'type' => 'wysiwyg',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'default_value' => '',
-					'placeholder' => '',
-					'prepend' => '',
-					'append' => '',
-					'maxlength' => '',
-				),
-				array(
-					'key' => 'field_room_2_amenities',
-					'label' => 'Amenities',
-					'name' => 'amenities',
-					'type' => 'repeater',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'collapsed' => '',
-					'min' => 0,
-					'max' => 0,
-					'layout' => 'table',
-					'button_label' => '',
-					'sub_fields' => array(
-						array(
-							'key' => 'field_room_2_amenities_title',
-							'label' => 'Title',
-							'name' => 'title',
-							'type' => 'text',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'default_value' => '',
-							'placeholder' => '',
-							'prepend' => '',
-							'append' => '',
-							'maxlength' => '',
-						),
-						array(
-							'key' => 'field_room_2_amenities_content',
-							'label' => 'Content',
-							'name' => 'content',
-							'type' => 'text',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'default_value' => '',
-							'placeholder' => '',
-							'prepend' => '',
-							'append' => '',
-							'maxlength' => '',
-						),
-					),
-				),
-				array(
-					'key' => 'field_room_cta_activate',
-					'label' => 'Show room CTA?',
-					'name' => 'show_room_cta',
-					'type' => 'true_false',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'message' => '',
-					'default_value' => 0,
-					'ui' => 0,
-					'ui_on_text' => '',
-					'ui_off_text' => '',
-				),
-				array(
-					'key' => 'field_room_cta_overline',
-					'label' => 'CTA Overline',
-					'name' => 'room_cta_overline',
-					'type' => 'text',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => array(
-						array(
-							array(
-								'field' => 'field_room_cta_activate',
-								'operator' => '==',
-								'value' => '1',
-							),
-						),
-					),
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'default_value' => '',
-					'placeholder' => '',
-					'prepend' => '',
-					'append' => '',
-					'maxlength' => '',
-				),
-				array(
-					'key' => 'field_room_cta_title',
-					'label' => 'CTA Title',
-					'name' => 'room_cta_title',
-					'type' => 'text',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => array(
-						array(
-							array(
-								'field' => 'field_room_cta_activate',
-								'operator' => '==',
-								'value' => '1',
-							),
-						),
-					),
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'default_value' => '',
-					'placeholder' => '',
-					'prepend' => '',
-					'append' => '',
-					'maxlength' => '',
-				),
-				array(
-					'key' => 'field_room_cta_subheading',
-					'label' => 'CTA Subheading',
-					'name' => 'room_cta_subheading',
-					'type' => 'text',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => array(
-						array(
-							array(
-								'field' => 'field_room_cta_activate',
-								'operator' => '==',
-								'value' => '1',
-							),
-						),
-					),
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'default_value' => '',
-					'placeholder' => '',
-					'prepend' => '',
-					'append' => '',
-					'maxlength' => '',
-				),
-				array(
-					'key' => 'field_room_cta',
-					'label' => 'Room CTA',
-					'name' => 'room_cta',
-					'type' => 'clone',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => array(
-						array(
-							array(
-								'field' => 'field_room_cta_activate',
-								'operator' => '==',
-								'value' => '1',
-							),
-						),
-					),
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'clone' => array(
-						0 => 'field_5f75b04e969d7',
-					),
-					'display' => 'group',
-					'layout' => 'block',
-					'prefix_label' => 0,
-					'prefix_name' => 1,
-				),
-				array(
-					'key' => 'field_room_cta_img',
-					'label' => 'CTA Image',
-					'name' => 'room_cta_image',
-					'type' => 'image',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => array(
-						array(
-							array(
-								'field' => 'field_room_cta_activate',
-								'operator' => '==',
-								'value' => '1',
-							),
-						),
-					),
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'return_format' => 'id',
-					'preview_size' => 'medium',
-					'library' => 'all',
-					'min_width' => '',
-					'min_height' => '',
-					'min_size' => '',
-					'max_width' => '',
-					'max_height' => '',
-					'max_size' => '',
-					'mime_types' => '',
-				),
-			),
-			'location' => array(
-				array(
-					array(
-						'param' => 'post_type',
-						'operator' => '==',
-						'value' => 'rooms',
-					),
-				),
-			),
-			'menu_order' => 30,
-			'position' => 'normal',
-			'style' => 'default',
-			'label_placement' => 'top',
-			'instruction_placement' => 'label',
-			'hide_on_screen' => '',
-			'active' => true,
-			'description' => '',
-		));
-		
-	endif;
 }
 
 function rooms_func() {
@@ -360,5 +94,33 @@ function rooms_func() {
 
 }
 add_action( 'init', 'rooms_func', 0 );
+
+register_taxonomy(
+	'room_categories',
+	array('rooms' ), //  The Custom Post Type it will belong to  //
+	array(
+		'labels' => array(
+			'name'              => _x( 'Room Categories', 'Room Categories'),
+			'singular_name'     => _x( 'Room Categories', 'Room Categories'),
+			'search_items'      => __( 'Search Room Categories'),
+			'all_items'         => __( 'All Room Categories'),
+			'parent_item'       => __( 'Parent Room Categories'),
+			'parent_item_colon' => __( 'Parent Room Categories'),
+			'edit_item'         => __( 'Edit Room Categorys'),
+			'update_item'       => __( 'Update Room Category'),
+			'add_new_item'      => __( 'Add New Room Category'),
+			'new_item_name'     => __( 'New Room Category'),
+			'menu_name'         => __( 'Room Categories')
+		),
+		'hierarchical'      => true,
+		'hasArchive'        => true,
+		'public'			=> true,
+		'show_ui'           => true,
+		'show_in_rest'      => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite' => array('with_front' => false, 'slug' => 'room')
+	)
+);
 
 // here are some hard coded fields depending on the room listing you're using

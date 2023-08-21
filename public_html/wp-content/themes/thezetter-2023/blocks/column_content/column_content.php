@@ -20,7 +20,7 @@ function col_content_render_callback( $block, $content = '', $is_preview = false
     extract(set_theme_override_values());
     ?>
     <section
-    class="row container spacing<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?><?php if( get_field('mobile_layout') == 'scroll' ): ?> nopadd-mob<?php endif; ?>"
+    class="row container-small spacing<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?><?php if( get_field('mobile_layout') == 'scroll' ): ?> nopadd-mob<?php endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="
@@ -33,6 +33,20 @@ function col_content_render_callback( $block, $content = '', $is_preview = false
     <?php endif; ?>
     >
         <?php block_background_media(); ?>
+
+        <?php if(get_field('add_intro_content')): ?>
+
+            <div class="content col-content-intro">
+                <?php if(get_field('illustration')): echo img_sizes(get_field('illustration'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
+                <?php if(get_field('title')): ?>
+                    <h3 class="h2 mb-4"><?php the_field('title'); ?></h3>
+                <?php endif; ?>
+                <?php if(get_field('content')): ?>
+                    <?php the_field('content'); ?>
+                <?php endif; ?>
+            </div>  
+
+        <?php endif; ?>
 
         <div class="column-content images-<?php the_field('image_size'); ?> flex justify-center flex-wrap<?php if( get_field('mobile_layout') == 'scroll' ): ?> mobile-scroll<?php endif; ?><?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>" data-aos="fade-up">
             <?php while ( have_rows('column') ) : the_row(); ?>

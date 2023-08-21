@@ -1,8 +1,26 @@
 @import "../gutenberg_block";
-
+.col-content-intro{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    img{
+        margin-bottom: 3.5rem;
+        aspect-ratio: 1/1;
+        max-width: 11.5rem;
+        object-fit: contain;
+        height: fit-content;
+    }
+}
 .column-content {
     margin-left: -1rem;
     margin-right: -1rem;
+
+    .column-content-content{
+        padding: 0 5rem;
+    }
 
     @include breakpoint(XS) {
         margin-left: 0;
@@ -10,7 +28,7 @@
     }
     .content-lockup {
         margin: 1rem;
-        width: calc(33.333% - 2rem - 1px);
+        width: calc(50% - 2rem - 1px);
 
         @include breakpoint(XS) {
             width: 100%;

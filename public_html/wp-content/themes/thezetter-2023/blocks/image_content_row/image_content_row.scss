@@ -1,47 +1,58 @@
 @import "../gutenberg_block";
-
-.image-content-block{
-    align-items: center;
-    .featured-content-image{
-        mix-blend-mode: multiply;
-    }
-    &.text-align-left{
-        .content{
-            padding-left: 3.375rem;
-        }
-    }
-    &.text-align-right{
+.image-content-row{
+    padding-left: 3rem;
+    .image-content-block{
+        align-items: center;
         .featured-content-image{
-            order: 2;
+            mix-blend-mode: multiply;
+            width: 35%;
         }
         .content{
-            order: 1;
-            padding-right: 3.375rem;
+            width: 65%;
         }
-        @include breakpoint(XS) {
+        @include breakpoint(S){
+            .content, .featured-content-image{
+                width: 100%;
+            }
+        }
+        &.text-align-left{
+            .content{
+                padding-left: 3.375rem;
+            }
+        }
+        &.text-align-right{
             .featured-content-image{
-                order: 1;
+                order: 2;
             }
             .content{
-                order: 2;
-                padding: 0;
-                padding-top: 1.214rem;
-                text-align: center;
-                .buttons{
-                    justify-content: center;
+                order: 1;
+                padding-right: 3.375rem;
+            }
+            @include breakpoint(XS) {
+                .featured-content-image{
+                    order: 1;
+                }
+                .content{
+                    order: 2;
+                    padding: 0;
+                    padding-top: 1.214rem;
+                    text-align: center;
+                    .buttons{
+                        justify-content: center;
+                    }
                 }
             }
         }
-    }
-    @include breakpoint(XS) {
-        flex-direction: column;
-        &.text-align-left{
-            .content{
-                text-align: center;
-                padding: 0;
-                padding-top: 1.214rem;
-                .buttons{
-                    justify-content: center;
+        @include breakpoint(XS) {
+            flex-direction: column;
+            &.text-align-left{
+                .content{
+                    text-align: center;
+                    padding: 0;
+                    padding-top: 1.214rem;
+                    .buttons{
+                        justify-content: center;
+                    }
                 }
             }
         }

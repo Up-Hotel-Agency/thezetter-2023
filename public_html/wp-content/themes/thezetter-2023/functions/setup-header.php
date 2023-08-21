@@ -8,7 +8,10 @@ if(!function_exists('get_header_type')){
 }
 
 register_nav_menu( 'Main Menu', 'Main Menu' );
+register_nav_menu( 'Secondary Menu', 'Secondary Menu' );
 register_nav_menu( 'Side Menu', 'Side Menu' );
+
+register_nav_menu( 'Side Menu Locations', 'Side Menu Locations' );
 
 if( get_header_type() == 'header_1' ) {
     // register menus for header type 1

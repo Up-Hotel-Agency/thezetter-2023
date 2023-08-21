@@ -6,7 +6,6 @@ input[type="button"] {
     &.secondary {
         padding-top: 0;
         padding-bottom: 0;
-        text-decoration: underline;
         border: none;
         display: flex;
         align-items: center;
@@ -36,6 +35,20 @@ input[type="button"] {
             height: 0.9rem;
             width: 1rem;
             @extend %transition;
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            width: calc(100% - 1rem);
+            height: 1px;
+            left: 0rem;
+            bottom: -6px;
+            top: unset;
+            background-color: transparent;
+            box-shadow: unset;
+            @include color(background-color, 'body');
+            opacity: 1;
+            visibility: visible;
         }
         svg {
             @include color(color, 'body');

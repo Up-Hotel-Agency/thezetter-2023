@@ -15,6 +15,13 @@
             }
         }
     }
+    .illustration-newsletter{
+        img{
+            max-width: 7rem;
+            height: fit-content;
+            object-fit: contain;
+        }
+    }
     .newsletter-form{
         .newsletter-signup_input{
             display: flex;
@@ -64,6 +71,11 @@
             }
         }
     }
+}
+.footer-menu-main{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 .footer {
     padding-top: 7.688rem; 

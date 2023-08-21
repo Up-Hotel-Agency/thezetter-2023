@@ -53,6 +53,29 @@
             "prefix_name": 1
         },
         {
+            "key": "field_64e2084b15903",
+            "label": "Display Room Type",
+            "name": "display_room_type",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "room_categories",
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "field_type": "multi_select",
+            "allow_null": 0,
+            "multiple": 0
+        },
+        {
             "key": "field_64d4f274f8569",
             "label": "Illustration",
             "name": "illustration",
@@ -140,5 +163,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692110709
+    "modified": 1692534909
 }

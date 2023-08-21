@@ -26,12 +26,17 @@
     &.layout-text-image{
         &.side-spacing{
             padding-right: 0;
+            padding-left: 0;
             .img{
-                width: calc(50% + 3.75rem);
+                width: 50%;
+            }
+            .content{
+                padding-left: 8.125rem;
+                padding-right: 8.125rem;
             }
             &.wide-image{
                 .img {
-                    width: calc(60% + 3.75rem);
+                    width: 60%;
                 }
                 .content {
                     width: 40%;
@@ -72,13 +77,18 @@
     }
     &.layout-image-text{
         &.side-spacing{
+            padding-right: 0;
             padding-left: 0;
             .img{
-                width: calc(50% + 3.75rem);
+                width: calc(50%);
+            }
+            .content{
+                padding-left: 8.125rem;
+                padding-right: 8.125rem;
             }
             &.wide-image{
                 .img {
-                    width: calc(60% + 3.75rem);
+                    width: 60%;
                 }
                 .content {
                     width: 40%;
@@ -138,6 +148,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-top: 10.125rem;
+        padding-bottom: 10.125rem;
 
         @include breakpoint(S) {
             padding: 0 0 0 3rem;
@@ -269,6 +281,8 @@
         .content {
             order: 1;
             padding: 0 3.714rem 0 0;
+            padding-top: 10.125rem;
+            padding-bottom: 10.125rem;
 
             @include breakpoint(S) {
                 padding: 0 3rem 0 0;
@@ -396,5 +410,14 @@
         .img-content {
             margin-bottom: 5.5rem;
         }
+    }
+}
+.image-fill-content{
+    .img{
+        overflow: hidden;
+    }
+    .media-container, img, video{
+        height: 100%;
+        aspect-ratio: 1/1;
     }
 }

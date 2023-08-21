@@ -139,6 +139,37 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_64e21a7430bd1",
+            "label": "Notice:",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64cd01e6840f4",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_64cd0636a36df",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "This image content block has been set the remove spacing and will resume a 1 \/ 1 aspect fixed.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_5f07321ee559c",
             "label": "Images",
             "name": "images",
@@ -247,6 +278,26 @@
             "layout": "block",
             "prefix_label": 0,
             "prefix_name": 1
+        },
+        {
+            "key": "field_64e21c5877c28",
+            "label": "Content Text Size Small",
+            "name": "content_text_size_small",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_5f770c641bdf1",
@@ -404,5 +455,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692110708
+    "modified": 1692540022
 }

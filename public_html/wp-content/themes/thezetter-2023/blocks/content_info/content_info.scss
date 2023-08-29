@@ -44,6 +44,7 @@
             aspect-ratio: 1/1;
             @include breakpoint(S){
                 width: 100%;
+                max-width: 9.4375rem;
             }
             img{
                 position: absolute;

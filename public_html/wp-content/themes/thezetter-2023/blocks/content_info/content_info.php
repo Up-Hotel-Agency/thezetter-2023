@@ -53,13 +53,15 @@ function content_info_render_callback( $block, $content = '', $is_preview = fals
                 </div>
             <?php endif; ?>
             </div>
-            <div class="content-wrap-buttons">
-            <?php block_buttons(get_field('buttons'), [
-                'class' => 'no-margin centered',
-                'aos' => true, 
-                'aos_delay' => '200'
-            ]); ?>
-            </div>
+            <?php if( have_rows('buttons_buttons') ): ?>
+                <div class="content-wrap-buttons">
+                <?php block_buttons(get_field('buttons'), [
+                    'class' => 'no-margin centered',
+                    'aos' => true, 
+                    'aos_delay' => '200'
+                ]); ?>
+                </div>
+            <?php endif; ?>
             <div class="content-wrap-icon">
                 <?php if(get_field('illustration')): echo img_sizes(get_field('illustration'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
             </div>

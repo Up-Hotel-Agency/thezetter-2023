@@ -34,7 +34,7 @@ var neighbourhoodScriptLoaded;
 <style>
 <?php echo file_get_contents(get_template_directory() . '/assets/css/abovethefold.css'); ?>
 </style>
-<?php if(get_field('not_zetter', 'options')): ?>
+<?php if(get_field('not_zetter', 'options') || !get_field('is_group', 'options')): ?>
     <?php include 'secondary_styles.php'; ?>
 <?php endif; ?>
 

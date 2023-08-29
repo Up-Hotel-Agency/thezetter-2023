@@ -18,7 +18,9 @@ if($change_colours):
 	--color-accent-primary: <?php echo $accent_primary; ?>;
 	--color-background-alt: <?php echo 	$background_alt; ?>;
 	--color-buttons:  <?php echo $accent_primary; ?>;
+	<?php if(get_field('no_zetter')): ?>
 	--color-footer: <?php echo $accent_primary; ?>;
+	<?php endif; ?>
 	
 }
 .block-editor .editor-styles-wrapper .theme--default, .block-editor .editor-styles-wrapper .theme--default *, .theme--default, .theme--default *{
@@ -37,7 +39,7 @@ if($change_colours):
 }
 .theme--background-alt, .theme--background-alt *{
 	--color-background: <?php echo $background_alt; ?>
-
+}
 </style>
 
 <?php endif; ?>

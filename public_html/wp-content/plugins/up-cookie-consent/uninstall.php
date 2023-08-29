@@ -22,10 +22,47 @@
  * @link       https://uphotel.agency
  * @since      1.0.0
  *
- * @package    Up_Cookie_Consent
+ * @package    up_cookie_consent
  */
 
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+function remove_plugin_options_on_uninstall() {
+    // Check if Multisite is enabled
+    if ( is_multisite() ) {
+        global $wpdb;
+
+        // Get all site IDs
+        $sites = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+
+        // Loop through each site
+        foreach ( $sites as $site ) {
+            switch_to_blog( $site );
+
+            // Get all options with the prefix "up_cookie_consent_"
+            $options = wp_load_alloptions();
+            foreach ( $options as $option_name => $option_value ) {
+                if ( strpos( $option_name, 'up_cookie_consent_' ) === 0 ) {
+                    // Delete the option
+                    delete_option( $option_name );
+                }
+            }
+
+            restore_current_blog();
+        }
+    } else {
+        // Get all options with the prefix "up_cookie_consent_"
+        $options = wp_load_alloptions();
+        foreach ( $options as $option_name => $option_value ) {
+            if ( strpos( $option_name, 'up_cookie_consent_' ) === 0 ) {
+                // Delete the option
+                delete_option( $option_name );
+            }
+        }
+    }
+}
+
+remove_plugin_options_on_uninstall();

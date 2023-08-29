@@ -153,6 +153,13 @@
                         "operator": "==",
                         "value": "1"
                     }
+                ],
+                [
+                    {
+                        "field": "field_64de2a0b4c050",
+                        "operator": "==",
+                        "value": "1"
+                    }
                 ]
             ],
             "wrapper": {
@@ -226,6 +233,13 @@
                 [
                     {
                         "field": "field_64de29f04c04f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_64de2a0b4c050",
                         "operator": "==",
                         "value": "1"
                     }
@@ -595,7 +609,15 @@
             "type": "color_picker",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -613,7 +635,15 @@
             "type": "color_picker",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -621,6 +651,32 @@
             },
             "default_value": "",
             "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
+            "key": "field_64eca65f0c8e3",
+            "label": "Site Background Alt",
+            "name": "site_background_alt",
+            "aria-label": "",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64de29f04c04f",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "enable_opacity": 1,
             "return_format": "string"
         },
         {
@@ -885,5 +941,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692481343
+    "modified": 1693230964
 }

@@ -22,7 +22,7 @@ function img_content_banner_render_callback( $block, $content = '', $is_preview 
     // the img-content-row class below is for vogue
     ?>
     <section
-    class="row full-height <?php if(!get_field('no_spacings')):?>spacing<?php endif; ?> <?php if(get_field('no_side_spacing')):?>side-spacing<?php endif; ?> layout-<?php the_field('layout'); ?> <?php if(get_field('wide_image')):?>wide-image<?php endif; ?> container img-content-row<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
+    class="row full-height banner-image-content  side-spacing layout-text-image container img-content-row<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="

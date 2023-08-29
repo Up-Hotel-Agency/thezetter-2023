@@ -9,7 +9,7 @@
  * @link       https://uphotel.agency
  * @since      1.0.0
  *
- * @package    Up_Cookie_Consent
+ * @package    up_cookie_consent
  * @subpackage Up_Cookie_Consent/includes
  */
 
@@ -23,7 +23,7 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Up_Cookie_Consent
+ * @package    up_cookie_consent
  * @subpackage Up_Cookie_Consent/includes
  * @author     UP Hotel Agency <dev@uphotel.agency>
  */
@@ -98,7 +98,7 @@ class Up_Cookie_Consent {
 	 * @access   private
 	 */
 	private function load_dependencies() {
-
+		
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -120,8 +120,10 @@ class Up_Cookie_Consent {
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
+	
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-up-cookie-consent-public.php';
 
+		
 		$this->loader = new Up_Cookie_Consent_Loader();
 
 	}
@@ -171,11 +173,12 @@ class Up_Cookie_Consent {
 	private function define_public_hooks() {
 
 		$plugin_public = new Up_Cookie_Consent_Public( $this->get_plugin_name(), $this->get_version() );
-
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'up_load_cookies', 2);
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
-		$this->loader->add_action( 'wp_head', $plugin_public, 'enqueue_front_display');
+		if(up_check_license()){  
+			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'up_load_cookies', 2);
+			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+			$this->loader->add_action( 'wp_head', $plugin_public, 'enqueue_front_display');
+		}
 
 	}
 

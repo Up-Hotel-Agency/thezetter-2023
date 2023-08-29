@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"img_content_banner.css","sourcesContent":[]}
+{"version":3,"sources":["img_content_banner/img_content_banner.scss"],"names":[],"mappings":"AAEI,8EACI,iBAAA,CACA,6FACI,eAAA","file":"img_content_banner.css","sourcesContent":["@import \"../gutenberg_block\";\n.img-content-row.banner-image-content.side-spacing.layout-text-image{\n    .content{\n        padding-left: 3rem;\n        .content-inner{\n            max-width: unset;\n        }\n    }\n}"]}

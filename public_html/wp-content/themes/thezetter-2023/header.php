@@ -2,7 +2,7 @@
 <p style="text-align: center;">Please activate Advanced Custom Fields</p>
 <?php die; endif; ?>
 <!DOCTYPE html>
-<html id="html" lang="en">
+<html id="html" lang="en" <?php if(get_field('not_zetter', 'options')): ?> class="secondary-typography" <?php endif; ?>>
 <head>
 
 <script>
@@ -34,8 +34,9 @@ var neighbourhoodScriptLoaded;
 <style>
 <?php echo file_get_contents(get_template_directory() . '/assets/css/abovethefold.css'); ?>
 </style>
-
-<?php include 'colors.php'; ?>
+<?php if(get_field('not_zetter', 'options')): ?>
+    <?php include 'secondary_styles.php'; ?>
+<?php endif; ?>
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

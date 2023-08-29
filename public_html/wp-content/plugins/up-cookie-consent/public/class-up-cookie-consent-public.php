@@ -6,7 +6,7 @@
  * @link       https://uphotel.agency
  * @since      1.0.0
  *
- * @package    Up_Cookie_Consent
+ * @package    up_cookie_consent
  * @subpackage Up_Cookie_Consent/public
  */
 
@@ -16,7 +16,7 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Up_Cookie_Consent
+ * @package    up_cookie_consent
  * @subpackage Up_Cookie_Consent/public
  * @author     UP Hotel Agency <dev@uphotel.agency>
  */
@@ -120,7 +120,6 @@ class Up_Cookie_Consent_Public {
 	 */
 	public function up_load_cookies() {
 		global $cookie_cats, $head_scripts, $body_scripts; 
-
 		$cookie_cats = array(
 			array('slug' => 'strictly_necessary', 'name' => 'Strictly Necessary', 'desc' => 'Forced active always'),
 			array('slug' => 'functional', 'name' => 'Functional', 'desc' => 'Scripts for the sites functions'),
@@ -129,15 +128,41 @@ class Up_Cookie_Consent_Public {
 		
 		);
 
+		$translating_mode = false;
+		if(!up_get_option('translations')){
+			$current_lang = substr( get_bloginfo ( 'language' ), 0, 2 );
+			$current_supported_langs = up_get_option('languages');
+			if($current_lang != null){
+				if(!empty($current_supported_langs[$current_lang])){
+					$translating_mode = true;
+				}
+				
+			}
+		}
+
 		$head_scripts = array(); 
 		$body_scripts = array();
-		if(isset($cookie_cats)){ foreach($cookie_cats as $current_cat){ 
-			$settings = get_option('up_cookie_consent_'.$current_cat['slug']);
-			if(isset($settings['head'])){
-				array_push($head_scripts, array($current_cat['slug'], $settings['head']));
-			}
-			if(isset($settings['body'])){
-				array_push($body_scripts, array($current_cat['slug'], $settings['body']));
+		if(!empty($cookie_cats)){ foreach($cookie_cats as $current_cat){ 
+			$settings = up_get_option($current_cat['slug']);
+			if($translating_mode){
+				$settings_translated = up_get_option($current_cat['slug']."_".$current_lang);
+				if(!empty($settings_translated['head'])){
+					array_push($head_scripts, array($current_cat['slug'], $settings_translated['head']));
+				}else if(!empty($settings['head'])){
+					array_push($head_scripts, array($current_cat['slug'], $settings['head']));
+				}
+				if(!empty($settings_translated['body'])){
+					array_push($body_scripts, array($current_cat['slug'], $settings_translated['body']));
+				}else if(!empty($settings['body'])){
+					array_push($body_scripts, array($current_cat['slug'], $settings['body']));
+				}
+			}else{
+				if(!empty($settings['head'])){
+					array_push($head_scripts, array($current_cat['slug'], $settings['head']));
+				}
+				if(!empty($settings['body'])){
+					array_push($body_scripts, array($current_cat['slug'], $settings['body']));
+				}
 			}
 		}}
 		function theme_enqueue_scripts() {

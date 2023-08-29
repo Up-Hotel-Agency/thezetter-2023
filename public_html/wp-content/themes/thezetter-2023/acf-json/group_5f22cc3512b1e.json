@@ -36,15 +36,16 @@
                         "default": "Default",
                         "dark": "Dark",
                         "accent": "Accent",
+                        "background-alt": "Background Alt",
                         "image": "Image",
                         "video": "Video",
                         "custom": "Custom"
                     },
                     "default_value": false,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
                     "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
                     "ajax": 0,
                     "placeholder": ""
                 },
@@ -1577,5 +1578,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692110708
+    "modified": 1693230562
 }

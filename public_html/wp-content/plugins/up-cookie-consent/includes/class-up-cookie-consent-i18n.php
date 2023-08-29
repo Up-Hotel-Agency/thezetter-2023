@@ -9,7 +9,7 @@
  * @link       https://uphotel.agency
  * @since      1.0.0
  *
- * @package    Up_Cookie_Consent
+ * @package    up_cookie_consent
  * @subpackage Up_Cookie_Consent/includes
  */
 
@@ -20,7 +20,7 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Up_Cookie_Consent
+ * @package    up_cookie_consent
  * @subpackage Up_Cookie_Consent/includes
  * @author     UP Hotel Agency <dev@uphotel.agency>
  */

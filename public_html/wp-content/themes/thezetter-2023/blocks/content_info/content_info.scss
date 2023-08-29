@@ -1,0 +1,60 @@
+@import "../gutenberg_block";
+.col-content-info{
+    .content-block{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4.5rem;
+        max-width: 100%;
+        flex-wrap: wrap;
+        @include breakpoint(S){
+            flex-direction: column;
+            justify-content: center;
+        }
+        .content-wrap-text{
+            width: 40%;
+            @include breakpoint(S){
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        .content-wrap-buttons{
+            width: fit-content;
+            .buttons{
+                margin-top: unset;
+                display: flex;
+                justify-content: left;
+                flex-direction: column;
+                align-items: start;
+                .button{
+                    width: fit-content;
+                }
+                @include breakpoint(S){
+                    align-items: center;
+                }
+            }
+           
+        }
+        .content-wrap-icon{
+            flex-grow: 1;
+            display: flex;
+            position: relative;
+            aspect-ratio: 1/1;
+            @include breakpoint(S){
+                width: 100%;
+            }
+            img{
+                position: absolute;
+                object-fit: contain;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                width: 100%;
+                height: 100%;
+                max-width: 9.4375rem;
+            }
+        }
+    }
+}

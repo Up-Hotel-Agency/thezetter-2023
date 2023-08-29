@@ -1,5 +1,14 @@
 @import "../gutenberg_block";
-
+.content-block-container{
+    .content-block{
+        .subtitle{
+            margin-top: 2rem;
+        }
+        .buttons{
+            margin-top: 3rem;
+        }
+    }
+}
 .content-block {
     text-align: center;
     max-width: 51rem;

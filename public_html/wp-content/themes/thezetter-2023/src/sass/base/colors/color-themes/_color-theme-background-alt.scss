@@ -12,4 +12,5 @@ $color-vars-background-alt: (
     @each $name, $value in $color-vars-background-alt {
         --color-#{$name}: #{$value};
     }
+    @include color(background-color, 'background');
 }

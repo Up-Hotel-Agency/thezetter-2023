@@ -22,7 +22,7 @@ function img_content_render_callback( $block, $content = '', $is_preview = false
     // the img-content-row class below is for vogue
     ?>
     <section
-    class="row <?php if(get_field('no_side_spacing') && get_field('no_spacings')): ?> image-fill-content <?php endif; ?> <?php if(!get_field('no_spacings')):?>spacing<?php endif; ?> <?php if(get_field('no_side_spacing')):?>side-spacing<?php endif; ?> layout-<?php the_field('layout'); ?> <?php if(get_field('wide_image')):?>wide-image container-small<?php endif; ?> container img-content-row<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
+    class="row <?php if(get_field('content_text_list_style')): ?> content-style-list <?php endif; ?> <?php if(get_field('no_side_spacing') && get_field('no_spacings')): ?> image-fill-content <?php endif; ?> <?php if(!get_field('no_spacings')):?>spacing<?php endif; ?> <?php if(get_field('no_side_spacing')):?>side-spacing<?php endif; ?> layout-<?php the_field('layout'); ?> <?php if(get_field('wide_image')):?>wide-image container-small<?php endif; ?> container img-content-row<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="

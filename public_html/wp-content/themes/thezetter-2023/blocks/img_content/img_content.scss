@@ -421,3 +421,16 @@
         aspect-ratio: 1/1;
     }
 }
+
+.content-style-list{
+    .subtitle-2{
+        font-style: normal;
+        margin-top: 2rem;
+        @include size-L;
+    }
+    .content-wrap{
+        p{
+            text-transform: uppercase;
+        }
+    }
+}

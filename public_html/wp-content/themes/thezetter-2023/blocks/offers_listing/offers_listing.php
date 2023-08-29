@@ -41,7 +41,6 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
         <?php
 
             $current_site = get_current_blog_id(); 
-            switch_to_blog(1); 
             
         ?>
         <?php
@@ -51,29 +50,39 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                 'post_type' => 'offers',
             );
         else:
+            if(get_field('list_global_offers')):
+                switch_to_blog(1); 
+                $terms = get_terms(array(
+                    'taxonomy'   => 'hotel_categories',
+                ));
 
-            $terms = get_terms(array(
-                'taxonomy'   => 'hotel_categories',
-            ));
+                foreach($terms as $term):
+                    $id = $term->term_id;
+                endforeach;
 
-            foreach($terms as $term):
-                $id = $term->term_id;
-            endforeach;
-
-            $args = array(
-                'posts_per_page' => -1,
-                'post_type' => 'offers',
-                'orderby' => 'menu_order',
-                'order' => 'ASC',
-                'tax_query' => array(
-                    'relation' => 'AND',
-                        array(
-                            'taxonomy' => 'hotel_categories', 
-                            'field' => 'id',
-                            'terms' => $hotel
+                $args = array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'offers',
+                    'orderby' => 'menu_order',
+                    'order' => 'ASC',
+                    'tax_query' => array(
+                        'relation' => 'AND',
+                            array(
+                                'taxonomy' => 'hotel_categories', 
+                                'field' => 'id',
+                                'terms' => $hotel
+                            ),
                         ),
-                    ),
-            );
+                );
+                restore_current_blog(); 
+            else:
+                $args = array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'offers',
+                    'orderby' => 'menu_order',
+                    'order' => 'ASC',
+                );
+            endif; 
         endif; 
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) :
@@ -95,12 +104,16 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                                 <h1 class="mb-6 h4" data-aos="fade-up">
                                     Special Offer
                                 </h1>
-                                <?php if( get_field('description', $offer) ): ?>
-                                    <h2 class="regular-weight" data-aos="fade-up"  data-aos-delay="100"><?php the_field('description', $offer, false); ?></h2>
-                                <?php endif; ?>
+                                <h2 class="regular-weight" data-aos="fade-up">
+                                    <?php if( get_field('title', $offer) ): ?>
+                                        <?php the_field('title', $offer); ?>
+                                    <?php else: ?>
+                                        <?php the_title(); ?>
+                                    <?php endif; ?>
+                                </h2>
                                 <div class="buttons" data-aos="fade-up" data-aos-delay="150">
                                     <a class="button minor" href="<?php echo get_the_permalink(); ?>">
-                                        Book now
+                                        Learn More
                                     </a>
                                     <?php block_buttons(get_field('link_field', $offer), [
                                         'class' => 'button minor '
@@ -138,7 +151,6 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                 </div>
             <?php $offersCount++; endwhile;
         endif; wp_reset_query(); ?>
-        <?php restore_current_blog(); ?>
     </section>
     <?php
 }

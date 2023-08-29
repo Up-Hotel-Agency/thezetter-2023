@@ -75,7 +75,7 @@
 .footer-menu-main{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4rem;
 }
 .footer {
     padding-top: 7.688rem; 
@@ -196,7 +196,11 @@
         }
     }
 }
-
+.contact-details{
+    .h5{
+        @include size-M;
+    }
+}
 .footer-menu {
     padding-right: 1rem;
 

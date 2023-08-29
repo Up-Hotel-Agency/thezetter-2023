@@ -54,26 +54,37 @@
                 <?php if(get_field('not_zetter')): ?>
 
                 <?php else: ?>
-                    <?php switch_to_blog(1); ?>
+           
                     <div class="footer-submenu">
                         <h3 class="h5 mob-footer-menu-toggle  xs:flex xs:justify-between xs:items-center">   
-                            Our Locations
+                            <?php if(get_field('not_zetter', 'options')): ?> Our Hotels <?php else: ?> Our Locations <?php endif; ?>
                         </h3>
+                        <?php if(!get_field('not_zetter', 'options')): ?>
+                            <?php switch_to_blog(1); ?>
+                        <?php endif; ?>
                         <?php $i=0; while ( have_rows('hotel_navigation', 'options') ) : the_row(); ?>
                             <?php $link = get_sub_field('link', 'options'); ?>
                             <a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>"><?php echo get_sub_field('title_site', 'options');?></a>
                         <?php $i++; endwhile; ?>
+                        <?php if(!get_field('not_zetter', 'options')): ?>
+                            <?php restore_current_blog(); ?>
+                        <?php endif; ?>
                     </div>
                     <div class="footer-submenu">
                         <h3 class="h5 mob-footer-menu-toggle  xs:flex xs:justify-between xs:items-center">   
-                            Managed by The Zetter
+                            Managed by <?php if(get_field('not_zetter', 'options')): ?> The Ailesbury <?php else: ?> The Zetter <?php endif; ?>
                         </h3>
+                        <?php if(!get_field('not_zetter', 'options')): ?>
+                            <?php switch_to_blog(1); ?>
+                        <?php endif; ?>
                         <?php $i=0; while ( have_rows('other_hotels', 'options') ) : the_row(); ?>
                             <?php $link = get_sub_field('link', 'options'); ?>
                             <a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>"><?php echo get_sub_field('title_site', 'options');?></a>
                         <?php $i++; endwhile; ?>
+                        <?php if(!get_field('not_zetter', 'options')): ?>
+                            <?php restore_current_blog(); ?>
+                        <?php endif; ?>
                     </div>
-                    <?php restore_current_blog(); ?>
                 <?php endif; ?>
                 </div>
                 <?php if( have_rows('footer_menus', 'options') ): while ( have_rows('footer_menus', 'options') ) : the_row(); ?>

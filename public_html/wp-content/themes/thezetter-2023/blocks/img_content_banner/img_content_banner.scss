@@ -1,1 +1,9 @@
 @import "../gutenberg_block";
+.img-content-row.banner-image-content.side-spacing.layout-text-image{
+    .content{
+        padding-left: 3rem;
+        .content-inner{
+            max-width: unset;
+        }
+    }
+}

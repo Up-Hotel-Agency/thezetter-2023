@@ -26,7 +26,7 @@ const 	urlToPreview = 'http://localhost/';
 // function to compile main sass
 function compileSass() {
 	return gulp
-		.src(['./src/sass/**/*.scss', '!./src/sass/abovethefold.scss'])
+		.src(['./src/sass/**/*.scss', '!./src/sass/abovethefold.scss', '!./src/sass/secondary_styles.scss'])
 		.pipe(sourcemaps.init())
 		.pipe(sassGlob())
 		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -52,7 +52,7 @@ function compileBlocksSass() {
 // function to complie abovethefold sass
 function compileAbovethefold() {
 	return gulp
-		.src('./src/sass/abovethefold.scss')
+		.src(['./src/sass/abovethefold.scss', './src/sass/secondary_styles.scss'])
 		.pipe(sassGlob())
 		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
 		.pipe(browserSync.stream())

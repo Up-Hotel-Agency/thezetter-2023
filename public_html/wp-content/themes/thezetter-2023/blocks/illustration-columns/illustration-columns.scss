@@ -2,7 +2,7 @@
 
 .illustration-columns{
     text-align: center;
-    max-width: 61rem;
+    //max-width: 61rem;
     margin: auto;
     .featured-content-image{
         margin: auto;
@@ -14,8 +14,10 @@
     }
     .column-list{
         margin: auto;
-        // max-width: 61rem;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
+        justify-content: center; /* Center grid items horizontally */
+        gap: 3rem;
         .column-list-item{
             .underlined{
                 margin-bottom: 2.313rem;

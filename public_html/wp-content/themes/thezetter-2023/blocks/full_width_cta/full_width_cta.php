@@ -37,7 +37,7 @@ function full_width_cta_render_callback( $block, $content = '', $is_preview = fa
     >
         <?php block_background_media(); ?>
         
-        <div class="theme--image full-width-cta__wrapper flex items-center justify-center not-square img-abs" data-aos="fade-up">
+        <div class="<?php if(get_field('disable_overlay')): ?> disable-overlay <?php endif; ?> theme--image full-width-cta__wrapper flex items-center justify-center not-square img-abs" data-aos="fade-up">
             <div class="full-width-cta__inner text-left flex items-start flex-col justify-start">
                 <header>
                     <?php if( get_field('overline_overline') ): ?>

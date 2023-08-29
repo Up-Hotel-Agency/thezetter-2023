@@ -1,0 +1,200 @@
+//Plugins
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/placeholders";
+
+//Load Type Scales
+//Choose type scale values you wish to use for desktop-secondary sizes
+@import 'base/typography/type-scales/16px/type-scale-16px-1.333-secondary';
+
+//Fudge a placeholder so we can redefine map to be desktop-secondary-specific
+$desktop-secondary-placeholder: (
+    placeholder: value,
+);
+
+$desktop-secondary: map-merge($type-scale-secondary, $desktop-secondary-placeholder);
+
+//Choose type scale values you wish to use for mobile-secondary sizes
+@import 'base/typography/type-scales/14px/type-scale-14px-1.25-secondary';
+
+//Fudge a placeholder so we can redefine map to be mobile-secondary-specific
+$mobile-secondary-placeholder: (
+    placeholder: value,
+);
+
+$mobile-secondary: map-merge($type-scale-secondary, $mobile-secondary-placeholder);
+
+
+
+//Define Size mixins here
+//====================================================
+
+
+@mixin secondary-size-XXS() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', 'XXS'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', 'XXS')}, #{map-get($desktop-secondary, 'scale-ratio')}vw, #{map-deep-get($desktop-secondary, 'sizes', 'XXS')});
+    
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', 'XS');
+    }
+};
+
+@mixin secondary-size-XS() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', 'XS'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', 'XS')}, #{map-get($desktop-secondary, 'scale-ratio')}vw, #{map-deep-get($desktop-secondary, 'sizes', 'XS')});
+    
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', 'XS');
+    }
+};
+  
+@mixin secondary-size-S() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', 'S'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', 'S')}, #{map-get($desktop-secondary, 'scale-ratio')}vw, #{map-deep-get($desktop-secondary, 'sizes', 'S')});
+    
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', 'S');
+    };
+};
+  
+@mixin secondary-size-M() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', 'M'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', 'M')}, #{map-get($desktop-secondary, 'scale-ratio')}vw, #{map-deep-get($desktop-secondary, 'sizes', 'M')});
+        
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', 'M');
+    };
+};
+  
+@mixin secondary-size-L() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', 'L'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', 'L')}, #{pow(map-get($desktop-secondary, 'scale-ratio'), 2)}vw, #{map-deep-get($desktop-secondary, 'sizes', 'L')});
+    
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', 'L');
+    };
+};
+  
+@mixin secondary-size-XL() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', 'XL'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', 'XL')}, #{pow(map-get($desktop-secondary, 'scale-ratio'), 3)}vw, #{map-deep-get($desktop-secondary, 'sizes', 'XL')});
+    
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', 'XL');
+    };
+};
+
+
+@mixin secondary-size-2XL() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', '2XL'); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', '2XL')}, #{pow(map-get($desktop-secondary, 'scale-ratio'), 4)}vw, #{map-deep-get($desktop-secondary, 'sizes', '2XL')});
+    
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', '2XL');
+    };
+};
+
+@mixin secondary-size-3XL() {
+    font-size: map-deep-get($desktop-secondary, 'sizes', "3XL"); //Fallback for browsers that don't support clamp
+    font-size: clamp(#{map-deep-get($mobile-secondary, 'sizes', "3XL")}, #{pow(map-get($desktop-secondary, 'scale-ratio'), 5)}vw, #{map-deep-get($desktop-secondary, 'sizes', "3XL")});
+    
+    //mobile-secondary sizes
+    @include breakpoint(S) {
+        font-size: map-deep-get($mobile-secondary, 'sizes', "3XL");
+    };
+};
+
+//File for secondary styles 
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@600&display=swap');
+@font-face {
+    font-family:'Abhaya Libre', serif;
+    src:  url('/wp-content/themes/thezetter-2023/assets/fonts/Abhaya_Libre/AbhayaLibre-SemiBold.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+    font-weight: 600;
+}
+.secondary-typography{
+    //Define font type
+    h1,.h1, h2,.h2, h3,.h3, h4,.h4, h5,.h5, h6,.h6, a{
+        font-family: "termina", sans-serif;
+    }
+    a{
+        font-weight:600!important;
+    }
+    p{
+        font-family:'Abhaya Libre', serif;
+        a{
+            font-family:'Abhaya Libre', serif;
+        }
+    }
+    .button, button, .primary, .secondary{
+        font-family: "termina", sans-serif;
+    }
+    .js-scroll-next-block .overline{
+        font-family: "termina", sans-serif;
+        font-weight: 600;
+        @include secondary-size-XS();
+    }
+    .header-right{
+        #menu-main-menu{
+            a{
+                @include secondary-size-XXS();
+            }
+        }
+    }
+    .footer-contact .credits{
+        @include secondary-size-XS();
+        line-height: normal;
+    }
+
+    .up-button, .cookie-options{
+        font-family: "termina", sans-serif;
+        font-weight: 500!important;
+        font-size: 10px;
+    }
+
+    .cookie-options{
+        border-color: white!important;
+    }
+
+    //Define scales
+    h1, .h1{
+        @include secondary-size-3XL();
+        font-weight: 400;
+    }
+    h2, .h2{
+        @include secondary-size-XL();
+        font-weight: 500;
+    }
+    h3, .h3{
+        @include secondary-size-2XL();
+        font-weight: 500;
+    }
+    h4, .h4{
+        @include secondary-size-XL();
+        font-weight: 400;
+    }
+    h5, .h5{
+        @include secondary-size-XL();
+        font-weight: 400;
+        font-family:'Abhaya Libre', serif;
+    }
+    p{
+        @include secondary-size-M();
+        font-weight: 600;
+    }
+    .button, button{
+        @include secondary-size-XS();
+        font-weight: 600;
+    }
+}
+
+
+

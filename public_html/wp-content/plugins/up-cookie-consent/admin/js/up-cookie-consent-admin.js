@@ -1,14 +1,20 @@
 (function( $ ) {
 	'use strict';
 	$(function() {
-		console.log("FOUND");
 		$(".code-editor").each(function(){
-			console.log("FOUND");
-			CodeMirror.fromTextArea(this, {
-				mode: "htmlmixed",
-				lineNumbers: true,
-				lineWrapping: true
-			});
+			if($(this).hasClass("css-code-editor")){
+				CodeMirror.fromTextArea(this, {
+					mode: "text/css",
+					lineNumbers: true,
+					lineWrapping: true
+				});
+			}else{
+				CodeMirror.fromTextArea(this, {
+					mode: "htmlmixed",
+					lineNumbers: true,
+					lineWrapping: true
+				});
+			}
 		});
 
 		$('.js-up-save-changes').click(function(e){
@@ -23,10 +29,11 @@
 			$('.js-layout').submit();
 		});
 
-		$('.js-update-widget-setting').change(function(e){
+		$('.js-form-submit').change(function(e){
 			e.preventDefault();
-			$('.js-widget-setting').submit();
+			$(this).parents('form').submit();
 		});
+		
 
 		$('.js-layout .up-card').hover(function(e){
 			var current = $(this).attr('data-value');
@@ -53,6 +60,42 @@
 				updating = false;
 			}
 		});
+
+		var $form = $( ".js-licence-key-wrapper" );
+		var $input = $form.find( ".js-licence-key" );
+
+		$input.on( "keyup", function( event ) {
+			
+			
+			// When user select text in the document, also abort.
+			var selection = window.getSelection().toString();
+			if ( selection !== '' ) {
+				return;
+			}
+			
+			// When the arrow keys are pressed, abort.
+			if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+				return;
+			}
+			
+			var $this = $(this);
+			var input = $this.val();
+					input = input.replace(/[\W\s\._\-]+/g, '');
+				
+				var split = 4;
+				var chunk = [];
+
+				for (var i = 0, len = input.length; i < len; i += split) {
+					split = 4;
+					chunk.push( input.substr( i, split ) );
+				}
+
+				$this.val(function() {
+					return chunk.join("-").toUpperCase();
+				});
+		
+		} );
+
 	});
 
 })( jQuery );

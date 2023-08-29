@@ -1,10 +1,12 @@
 //Load the fonts you want to use globally
+
 @font-face {
      font-family: 'Gill Sans';
-     src:  url('/wp-content/themes/thezetter-2023/assets/fonts/GillSans/GillSansStd.otf') format('opentype');
+     src:  url('/wp-content/themes/thezetter-2023/assets/fonts/GillSans/GillSansMTStd-Medium.otf') format('opentype'), local('Gill Sans');
      font-display: swap;
      font-style: normal;
      font-weight: 500;
+     ascent-override: 100%;
 }
 
 @font-face {
@@ -13,6 +15,7 @@
      font-display: swap;
      font-style: normal;
      font-weight: 400;
+     
 }
 @font-face {
      font-family: 'Louize';

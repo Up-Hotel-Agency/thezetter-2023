@@ -101,6 +101,26 @@
             "prefix_name": 1
         },
         {
+            "key": "field_64ec8ef129426",
+            "label": "Remove background on image?",
+            "name": "remove_background_on_image",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Attempt to remove background colour",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_64d48fc02fadb",
             "label": "Description",
             "name": "description",
@@ -163,5 +183,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692484567
+    "modified": 1693237028
 }

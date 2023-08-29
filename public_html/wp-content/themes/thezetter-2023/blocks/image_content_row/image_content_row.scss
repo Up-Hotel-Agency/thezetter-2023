@@ -1,10 +1,19 @@
 @import "../gutenberg_block";
 .image-content-row{
     padding-left: 3rem;
+    min-height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    &.remove-background{
+        .featured-content-image{
+            mix-blend-mode: multiply;
+        }
+    }
     .image-content-block{
         align-items: center;
         .featured-content-image{
-            mix-blend-mode: multiply;
             width: 35%;
         }
         .content{

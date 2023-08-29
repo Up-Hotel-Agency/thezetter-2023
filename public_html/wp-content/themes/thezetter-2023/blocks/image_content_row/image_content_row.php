@@ -20,7 +20,7 @@ function image_content_row_render_callback( $block, $content = '', $is_preview =
     extract(set_theme_override_values());
     ?>
     <section
-    class="row spacing image-content-row container<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
+    class="row <?php if(get_field('remove_background_on_image')): ?> remove-background <?php endif; ?> spacing image-content-row container<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"
     <?php if( get_field('override_page_theme') && $theme == 'custom' ): ?>
     style="

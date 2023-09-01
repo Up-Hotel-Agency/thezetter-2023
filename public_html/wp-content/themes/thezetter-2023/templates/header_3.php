@@ -85,8 +85,11 @@
 				<div class="mini-menu">
 					<p class="label xs:mb-0">Our other Hotels</p>
 					<?php $i=0; while ( have_rows('other_hotels', 'options') ) : the_row(); ?>
-						<?php $link = get_sub_field('link', 'options'); ?>
-						<a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>" class="h4 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>
+						<?php 
+							$site_id = get_sub_field('site_id'); 
+							$site_url = get_site_url($site_id);  
+						?>
+						<a data-id="<?php echo $i; ?>" href="<?php echo $site_url; ?>" class="h4 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>
 					<?php $i++; endwhile; ?>
 				</div>
 			<?php endif; ?>

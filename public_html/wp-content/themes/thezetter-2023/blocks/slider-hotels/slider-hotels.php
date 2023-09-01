@@ -46,36 +46,25 @@ function slider_hotels_render_callback( $block, $content = '', $is_preview = fal
                     <?php $hoteID=1;while ( have_rows('hotel') ) : the_row(); ?>
                         <div class="hotel-list-item flex flex-col items-start" data-aos="fade-up" data-hotel="<?php echo $hoteID; ?>">
                             <div class="img img-hotel img-hotel-single img-hotel-single-mobile" data-aos="fade-up">
-                                <?php if( have_rows('hotel_images') ): ?>
-                                    <div class="image-carousel js-image-carousel img-abs">
-                                        <?php while ( have_rows('hotel_images') ) : the_row(); ?>
-                                                <?php echo img_sizes(get_sub_field('image'), ['default' => 'img_1367', 'page_area' => '50', 'mobile_page_area' => '85', 'lazy_load' => true, 'object_fit' => 'cover']); ?>
-                                        <?php endwhile; ?>
+                                <?php if( get_sub_field('hotel_image') ): ?>
+                                    <div class="image-carousel img-abs">
+                                        <?php echo img_sizes(get_sub_field('hotel_image'), ['default' => 'img_1367', 'page_area' => '50', 'mobile_page_area' => '85', 'lazy_load' => true, 'object_fit' => 'cover']); ?>
                                     </div>
-                                    
-                                    <?php $count = count((array) get_sub_field('hotel_images'));
-                                    if( $count > 1 ): ?>
-                                        <div class="slick-controls flex justify-center items-center">
-                                            <a href="#" class="js-img-prev slick-control" title="Previous slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Previous</title><g class="caret-left"><polyline class="arrowhead" points="29.018 36.036 16.982 24 29.018 11.964" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
-                                            <div class="slick-dots img-content-dots"></div>
-                                            <a href="#" class="js-img-next slick-control" title="Next slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Next</title><g class="caret-right"><polyline class="arrowhead" points="18.982 11.964 31.018 24 18.982 36.036" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
-                                        </div>
-                                    <?php endif; ?>
                                 <?php endif; ?>
                             </div>
                             
                             <?php if( get_sub_field('title_title') ): ?>
-                                <h4 class="mb-0" data-aos="fade-up">
+                                <h4 class="mb-0">
                                     <?php the_sub_field('title_title'); ?>
                                 </h4>
                             <?php endif; ?>
                             <?php if( get_sub_field('subtitle_subtitle') ): ?>
-                                <div class="subtitle-2" data-aos="fade-up">
+                                <div class="subtitle-2">
                                     <?php the_sub_field('subtitle_subtitle'); ?>
                                 </div>
                             <?php endif; ?>
                             <?php if( have_rows('buttons_buttons') ): ?>
-                                <div class="buttons" data-aos="fade-up" data-aos-delay="150">
+                                <div class="buttons">
                                     <?php while ( have_rows('buttons_buttons') ) : the_row(); ?>
                                         <?php
                                         $class = get_sub_field('button_type');
@@ -94,45 +83,26 @@ function slider_hotels_render_callback( $block, $content = '', $is_preview = fal
                 </div>
             </div>
             <div class="slide-hotels-img">
-                <div class="img img-hotel active" data-aos="fade-up">
-                    <?php if( have_rows('default_images') ): ?>
-                        <div class="image-carousel js-image-carousel img-abs">
-                            <?php while ( have_rows('default_images') ) : the_row(); ?>
-                                    <?php echo img_sizes(get_sub_field('image'), ['default' => 'img_1367', 'page_area' => '50', 'mobile_page_area' => '85', 'lazy_load' => true, 'object_fit' => 'cover']); ?>
-                            <?php endwhile; ?>
-                        </div>
-                        
-                        <?php $count = count((array) get_field('default_images'));
-                        if( $count > 1 ): ?>
-                            <div class="slick-controls flex justify-center items-center">
-                                <a href="#" class="js-img-prev slick-control" title="Previous slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Previous</title><g class="caret-left"><polyline class="arrowhead" points="29.018 36.036 16.982 24 29.018 11.964" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
-                                <div class="slick-dots img-content-dots"></div>
-                                <a href="#" class="js-img-next slick-control" title="Next slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Next</title><g class="caret-right"><polyline class="arrowhead" points="18.982 11.964 31.018 24 18.982 36.036" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
+                    <div class="js-slider-hotels">
+                        <?php if( get_field('default_image') ): ?>
+                            <div class="image-carousel img-abs">
+                                <?php echo img_sizes(get_field('default_image'), ['default' => 'img_1367', 'page_area' => '50', 'mobile_page_area' => '85', 'lazy_load' => true, 'object_fit' => 'cover']); ?>
                             </div>
                         <?php endif; ?>
-                    <?php endif; ?>
-                </div>
-
-                <?php $hoteID=1; while ( have_rows('hotel') ) : the_row(); ?>
-                    <div class="img img-hotel img-hotel-single img-hotel-single-<?php echo $hoteID; ?>" data-aos="fade-up" data-id="<?php echo $hoteID; ?>">
-                        <?php if( have_rows('hotel_images') ): ?>
-                            <div class="image-carousel js-image-carousel img-abs">
-                                <?php while ( have_rows('hotel_images') ) : the_row(); ?>
-                                        <?php echo img_sizes(get_sub_field('image'), ['default' => 'img_1367', 'page_area' => '50', 'mobile_page_area' => '85', 'lazy_load' => true, 'object_fit' => 'cover']); ?>
-                                <?php endwhile; ?>
+                        <?php $hoteID=1; while ( have_rows('hotel') ) : the_row(); ?>
+                        <?php if( get_sub_field('hotel_image') ): ?>
+                            <div class="image-carousel img-abs">
+                                <?php echo img_sizes(get_sub_field('hotel_image'), ['default' => 'img_1367', 'page_area' => '50', 'mobile_page_area' => '85', 'lazy_load' => true, 'object_fit' => 'cover']); ?>
                             </div>
-                            
-                            <?php $count = count((array) get_sub_field('hotel_images'));
-                            if( $count > 1 ): ?>
-                                <div class="slick-controls flex justify-center items-center">
-                                    <a href="#" class="js-img-prev slick-control" title="Previous slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Previous</title><g class="caret-left"><polyline class="arrowhead" points="29.018 36.036 16.982 24 29.018 11.964" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
-                                    <div class="slick-dots img-content-dots"></div>
-                                    <a href="#" class="js-img-next slick-control" title="Next slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Next</title><g class="caret-right"><polyline class="arrowhead" points="18.982 11.964 31.018 24 18.982 36.036" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
-                                </div>
-                            <?php endif; ?>
                         <?php endif; ?>
+                        <?php $hoteID++; endwhile; ?>
                     </div>
-                <?php $hoteID++; endwhile; ?>
+                    <div class="slick-controls flex justify-center items-center">
+                        <a href="#" class="js-img-prev-hotel-slider slick-control" title="Previous slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Previous</title><g class="caret-left"><polyline class="arrowhead" points="29.018 36.036 16.982 24 29.018 11.964" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
+                        <div class="slick-dots hotel-slider-dots"></div>
+                        <a href="#" class="js-img-next-hotel-slider slick-control" title="Next slide"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>Next</title><g class="caret-right"><polyline class="arrowhead" points="18.982 11.964 31.018 24 18.982 36.036" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg></a>
+                    </div>
+        
             </div>
         </div>
     </section>

@@ -37,6 +37,85 @@
         min-height: calc(100vh - var(--header-height));
     }
 
+    @keyframes bannerZoom {
+        100% {
+            transform: scale(1.3); 
+        }
+    }
+    @include breakpoint(S){
+        @keyframes bannerZoom {
+            100% {
+                transform: scale(1.1); 
+            }
+        }
+    }
+
+
+    &.theme--image {
+        .bg-image-carousel:not(.slick-initialized){
+           img{
+                opacity: 0;
+                visibility: hidden;
+                &:first-of-type{
+                    opacity: 1;
+                    visibility: visible;
+                }
+           }
+        }
+        img{
+            overflow: hidden;
+            @include breakpoint(S){
+                animation: unset;
+            }
+            
+            &.animation-active{
+                animation: bannerZoom 15s;
+                animation-fill-mode: forwards;
+                animation-timing-function: linear;
+                @include breakpoint(S){
+                    animation: unset;
+                }
+            }
+            &:nth-of-type(even){
+                &.animation-active{
+            
+                    animation: bannerZoom 15s;
+                    animation-fill-mode: forwards;
+                    animation-direction: reverse;
+                    animation-timing-function: linear;
+                    @include breakpoint(S){
+                        animation: unset;
+                    }
+               
+                }
+            }
+            &:not(.slick-slide){
+              
+                animation: bannerZoom 15s;
+                animation-fill-mode: forwards;
+                @include breakpoint(S){
+                    animation: unset;
+                }
+                
+            }
+            @-moz-document url-prefix() {
+                video{
+                    animation: unset!important; //FF is slow
+                }
+            }
+        
+            @media not all and (min-resolution:.001dpcm) { 
+                @supports (-webkit-appearance:none) {
+                    video{
+                        animation: unset!important; //FF is slow
+                    }
+                }
+           }
+            
+        }
+       
+    }
+
     &.full-height {
         min-height: calc(100vh - var(--header-height));
     }

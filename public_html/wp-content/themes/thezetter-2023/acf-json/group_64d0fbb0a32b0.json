@@ -98,10 +98,10 @@
         },
         {
             "key": "field_64d0fbc9f5abc",
-            "label": "Default Images",
-            "name": "default_images",
+            "label": "Default Image",
+            "name": "default_image",
             "aria-label": "",
-            "type": "repeater",
+            "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -110,41 +110,16 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
-            "pagination": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "",
-            "button_label": "Add Row",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_64d0fbdbf5abd",
-                    "label": "Image",
-                    "name": "image",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "id",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "preview_size": "medium",
-                    "parent_repeater": "field_64d0fbc9f5abc"
-                }
-            ]
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium"
         },
         {
             "key": "field_64d0fbeaf5abe",
@@ -239,10 +214,10 @@
                 },
                 {
                     "key": "field_64d0fc55f5ac2",
-                    "label": "Hotel Images",
-                    "name": "hotel_images",
+                    "label": "Hotel Image",
+                    "name": "hotel_image",
                     "aria-label": "",
-                    "type": "repeater",
+                    "type": "image",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -251,42 +226,17 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "block",
-                    "pagination": 0,
-                    "min": 0,
-                    "max": 0,
-                    "collapsed": "",
-                    "button_label": "Add Row",
-                    "rows_per_page": 20,
-                    "parent_repeater": "field_64d0fbeaf5abe",
-                    "sub_fields": [
-                        {
-                            "key": "field_64d0fc61f5ac3",
-                            "label": "Image",
-                            "name": "image",
-                            "aria-label": "",
-                            "type": "image",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "id",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": "",
-                            "preview_size": "medium",
-                            "parent_repeater": "field_64d0fc55f5ac2"
-                        }
-                    ]
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_64d0fbeaf5abe"
                 }
             ]
         }
@@ -309,5 +259,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1692110709
+    "modified": 1693386853
 }

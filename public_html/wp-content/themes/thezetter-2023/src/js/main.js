@@ -52,7 +52,9 @@ if (navigator.hasOwnProperty('serviceWorker')) {
 jQuery(function($){
 
     $(".bg-image-carousel").each(function(){
-        $(this).not('.slick-initialized').slick({
+        $(this).not('.slick-initialized').filter(function() {
+            return $(this).parents('.banner-block').length === 0;
+        }).slick({
             arrows: false,
             infinite: true,
             adaptiveHeight: false,
@@ -69,6 +71,32 @@ jQuery(function($){
             dots: false,
         });
     });
+
+    $(".banner-block .bg-image-carousel").each(function(){
+        $(this).find('img:first-of-type').addClass('animation-active');
+        $(this).not('.slick-initialized').slick({
+            arrows: false,
+            infinite: true,
+            speed: 1500,
+            focusOnSelect: false,
+            pauseOnHover: false,
+            fade: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 6000,
+            rows: 0,
+            dots: true,
+        });
+    });
+
+    $('.banner-block .bg-image-carousel').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        $(this).find('[data-slick-index='+nextSlide+']').addClass('animation-active');
+        var target = $(this);
+        setTimeout(function(){
+                $(target).find('[data-slick-index='+currentSlide+']').removeClass('animation-active');
+            }, 2000, target);
+      });
 
     if( $('html').hasClass('no-cssgrid') ) {
         // this is IE, load in the IE css file
@@ -461,6 +489,8 @@ jQuery(function($){
         });
     }
     catNav();
+
+    
 
     $(".back-to-top").click(function(e) {
         e.preventDefault();

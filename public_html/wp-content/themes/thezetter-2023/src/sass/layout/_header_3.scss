@@ -170,9 +170,16 @@ body {
     padding-left: 3.125rem;
     height: 4rem;
     .logo{
-        height: 4rem;
-        padding: 1rem 0;
+        height: 2.8125rem;
+        padding: unset;
         align-items: end;
+        @include breakpoint(S){
+            svg{
+                max-width: 10rem;
+            }
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
+        }
         svg{
             height: 100%;
             width: auto;

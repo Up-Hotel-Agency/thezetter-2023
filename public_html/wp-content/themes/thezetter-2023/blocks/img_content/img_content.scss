@@ -422,6 +422,12 @@
     }
 }
 
+.content-text-small{
+    *{
+        @include size-S;
+    }
+}
+
 .content-style-list{
     .subtitle-2{
         font-style: normal;
@@ -431,6 +437,14 @@
     .content-wrap{
         p{
             text-transform: uppercase;
+        }
+    }
+}
+
+.img-content{
+    .buttons{
+        .button.primary:last-child{
+            margin-top: 3rem;
         }
     }
 }

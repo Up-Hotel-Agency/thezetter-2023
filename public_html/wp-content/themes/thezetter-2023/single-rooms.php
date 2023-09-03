@@ -32,7 +32,7 @@ while ( have_posts() ) : the_post(); ?>
                     </h2>
                     <?php if( get_field('content') ): ?>
                         <div class="modal-content-block modal-content-block--line size-m mb-12">
-                            <?php the_field('content', false, false); ?>
+                            <p><?php the_field('content', false, false); ?></p>
                         </div>
                     <?php endif; ?>
                     <?php if( have_rows('features') ): ?>

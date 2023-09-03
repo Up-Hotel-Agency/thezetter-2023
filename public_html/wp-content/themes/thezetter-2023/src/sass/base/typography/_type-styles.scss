@@ -9,7 +9,7 @@
 
 @mixin heading-2 {
     font-family: $font-stack-headings;
-    font-weight: 500;
+    font-weight: 400;
     @include size-2XL;
     line-height: 1.2;
 }

@@ -65,7 +65,7 @@ function img_content_render_callback( $block, $content = '', $is_preview = false
                         <?php endif; ?>
                     </header>
 
-                    <article class="content-wrap mb-4 <?php if(get_field('content_text_size_small')): ?> content-text-small <?php endif; ?>" data-aos="fade-up" data-aos-delay="150"<?php if( get_field('hide_content_on_mobile') ): ?> class="hide-mobile"<?php endif; ?>>
+                    <article class="content-wrap mb-4 <?php if(get_field('overide_font')): the_field('content_text_font'); endif ?> <?php if(get_field('content_text_size_small')): ?> content-text-small <?php endif; ?>" data-aos="fade-up" data-aos-delay="150"<?php if( get_field('hide_content_on_mobile') ): ?> class="hide-mobile"<?php endif; ?>>
                         <?php the_field('content_content'); ?>
                     </article>
                     <?php while ( have_rows('items') ) : the_row(); ?>

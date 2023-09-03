@@ -19,6 +19,15 @@
     }
 }
 
+.blog-banner.img-content-row.layout-text-image.side-spacing{
+    .content{
+        padding-left: 3rem;
+        .content-inner{
+            max-width: unset;
+        }
+    }
+}
+
 .blog-post {
     p,
     li {
@@ -27,6 +36,11 @@
 
         @include breakpoint(S) {
             max-width: calc(100vw - 4rem);
+        }
+    }
+    &.page-container{
+        p{
+            font-size: 14px;
         }
     }
     p {
@@ -275,6 +289,7 @@
 
             .post-share {
                 padding-top: 1.5rem;
+    
             }
         }
     }
@@ -349,6 +364,10 @@
 }
 
 .post-share {
+    span.bold{
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+    }
     .button {
         margin-left: 1rem;
     }
@@ -364,7 +383,8 @@
     }
     a {
         @include color(color, 'body');
-
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
         @include breakpoint(XS) {
             padding: 1.5rem 2rem;
             border-bottom: 1px solid;

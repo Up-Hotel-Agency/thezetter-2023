@@ -35,7 +35,7 @@ function illustration_columns_render_callback( $block, $content = '', $is_previe
                 <?php if(get_field('illustration')): echo img_sizes(get_field('illustration'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
             </div>
             <?php if( get_field('title_title') ): ?>
-                <h3 data-aos="fade-up"><?php the_field('title_title'); ?></h3>
+                <h2 data-aos="fade-up"><?php the_field('title_title'); ?></h2>
             <?php endif; ?>
             <div class="column-list flex flex-row items-center" data-aos="fade-up">
                 <?php while ( have_rows('content') ) : the_row(); ?>

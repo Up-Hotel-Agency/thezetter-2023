@@ -70,11 +70,11 @@ wp_reset_postdata();
 </div>
 
 <?php if( $wp_the_query->post_count > '9' ): ?>
-<p class="loadmore-wrapper text-center">
+<div class="loadmore-wrapper text-center">
     <a href="#" class="button secondary" id="loadmore" data-posts-per-page="12" data-count-posts="<?php echo wp_count_posts('post')->publish ?>">
         Load More Posts
     </a>
-</p>
+</div>
 <?php endif; ?>
 
 <?php get_footer(); ?>

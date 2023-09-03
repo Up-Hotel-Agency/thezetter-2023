@@ -145,7 +145,8 @@ $mobile-secondary: map-merge($type-scale-secondary, $mobile-secondary-placeholde
     .header-right{
         #menu-main-menu{
             a{
-                @include secondary-size-XXS();
+                @include secondary-size-XS();
+                letter-spacing:  0.10em;
             }
         }
     }

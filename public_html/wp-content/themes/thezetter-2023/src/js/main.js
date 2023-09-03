@@ -128,6 +128,13 @@ jQuery(function($){
         $(".overlay-menu").toggleClass('active');
         $(".header").toggleClass('active');
     });
+    $(".close-overlay-menu").click(function(e) {
+        e.preventDefault();
+        $(".js-open-side-menu").toggleClass('active');
+        $(".overlay-menu").toggleClass('active');
+        $(".header").toggleClass('active');
+    });
+
     $(".js-locations-dropdown").click(function(e) {
         e.preventDefault();
         $(this).toggleClass('active');
@@ -153,11 +160,30 @@ jQuery(function($){
         $('.js-menu-toggle, html, body, header').toggleClass('menu-open');
     });
 
-    
+    //Handles booking mask dropdown
+    $('.location-drop-down').click(function(e){
+        e.preventDefault();
+        $('.location-selector-inner').toggleClass('active');
+    });
+
+    $('.location-selector-inner a').click(function(e){
+        e.preventDefault();
+        var locationText = $(this).text(); 
+        $('.location-display').text(locationText);
+    });
 
     $('.button-header').click(function(e) {
         e.preventDefault();
         $('.js-booking-toggle').toggleClass('menu-open');
+    });
+
+    if(window.location.hash == "#book") {
+        $('.js-booking-toggle').toggleClass('menu-open');
+    }
+    window.addEventListener('hashchange', function () {
+        if(window.location.hash == "#book") {
+            $('.js-booking-toggle').toggleClass('menu-open');
+        }
     });
     
     $('.close-booking-menu').click(function(e) {

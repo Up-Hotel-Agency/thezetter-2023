@@ -44,7 +44,7 @@ function feat_content_render_callback( $block, $content = '', $is_preview = fals
                 </h2>
             <?php endif; ?>
             <?php if( get_field('description_content') ): ?>
-                <div class="mb-8 size-l" data-aos="fade-up">
+                <div class="mb-8 size-l font-secondary" data-aos="fade-up">
                     <?php the_field('description_content', false, false); ?>
                 </div>
             <?php endif; ?>

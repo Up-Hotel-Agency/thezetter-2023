@@ -4,7 +4,7 @@
     wp_enqueue_script( 'img-content', get_template_directory_uri() . '/assets/js/img_content/img_content.min.js' );
     wp_enqueue_style( 'img-content', get_template_directory_uri() . '/assets/css/img_content/img_content.css' );
 ?>
-<section class="row side-spacing layout-text-image  container img-content-row theme--accent">
+<section class="row side-spacing blog-banner layout-text-image  container img-content-row theme--accent">
     <div class="img-content img-content-banner text-image">
         <div class="img" data-aos="fade-up">
             <?php block_media( get_field('posts_image', get_option( 'page_for_posts' )), [
@@ -58,11 +58,11 @@ endif;
 
 <?php global $wp_query;
 if( $wp_query->found_posts > '9' ): ?>
-<p class="loadmore-wrapper buttons centered mb-16">
+<div class="loadmore-wrapper buttons centered mb-16">
     <a href="#" class="button secondary" id="loadmore" data-posts-per-page="9" data-count-posts="<?php echo wp_count_posts('post')->publish ?>">
         Load More Articles
     </a>
-</p>
+</div>
 <?php endif; ?>
 
 <?php get_footer(); ?>

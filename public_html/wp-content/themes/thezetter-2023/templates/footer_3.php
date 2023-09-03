@@ -8,7 +8,7 @@
             <?php endif; ?>
             <div class="content-newsletter flex flex-col">
                 <?php if(get_field('title_newsletter', 'options')): ?>
-                    <h4 class="bold mb-5"  data-aos="fade-up"><?php echo get_field('title_newsletter', 'options');?></h4>
+                    <h4 class="bold h2 mb-5"  data-aos="fade-up"><?php echo get_field('title_newsletter', 'options');?></h4>
                 <?php endif; ?>
                 <?php if(get_field('content_newsletter', 'options')): ?>
                     <article  data-aos="fade-up">

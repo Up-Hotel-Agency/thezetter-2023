@@ -93,6 +93,7 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                         <?php block_media( get_field('offers_media', $offer), [
                             'img_sizes' => array('default' => 'img_800', 'page_area' => 100, 'mobile_page_area' => 100),
                             'default_aspect' => '4/3',
+                            'allow_aspect' => false,
                             'slick_dots' => true,
                         ]); ?>
                     </div>

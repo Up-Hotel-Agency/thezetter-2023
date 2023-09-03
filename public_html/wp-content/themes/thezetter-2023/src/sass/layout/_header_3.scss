@@ -22,6 +22,11 @@ section.row{
         bottom: -1px;
     }
 }
+section:last-of-type{
+    &::before{
+        display: none;
+    }
+}
 body {
     padding-top: var(--header-height);
 }
@@ -55,6 +60,8 @@ body {
                         left: 0;
                         bottom: calc(50% - 6px);
                         @include color(background-color, 'body');
+                        animation-name: underline-menu;
+                        animation-duration: .5s;
                     }
                 }
             }
@@ -142,6 +149,7 @@ body {
     cursor: pointer;
     display: flex;
     justify-content: center;
+    letter-spacing: 0.15em;
     .locations-drop-down{
         display: flex;
         flex-direction: column;
@@ -207,6 +215,9 @@ body {
 }
 
 .header-right {
+    a{
+        letter-spacing: 0.15em;
+    }
     .open-menu{
         text-transform: uppercase;
         padding-right: 1.5rem;
@@ -281,7 +292,7 @@ body {
                         width: calc(100% - 2.5rem);
                         height: 1px;
                         left: 1.25rem;
-                        bottom: calc(50% - 6px);
+                        bottom: calc(50% - 10px);
                         @include color(background-color, 'body');
                     }
                 }
@@ -295,7 +306,7 @@ body {
                         width: calc(100% - 2.5rem);
                         height: 1px;
                         left: 1.25rem;
-                        bottom: calc(50% - 6px);
+                        bottom: calc(50% - 10px);
                         @include color(background-color, 'body');
                         animation-name: underline-menu;
                         animation-duration: .5s;
@@ -395,6 +406,7 @@ body {
         }
         a.h4{
             font-weight: 400;
+            margin-bottom: 0;
             &:last-of-type{
                 margin: 0;
             }

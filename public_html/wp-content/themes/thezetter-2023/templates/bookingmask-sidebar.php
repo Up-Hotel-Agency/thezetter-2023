@@ -24,19 +24,19 @@
     <h2><?php _e('Reserve A Room', 'zetter'); ?></h2>
     <div class="input-wrap location-select input-styled">
         <label class="size-l"><?php _e('Destination', 'zetter'); ?></label>
-        <div>
+        <div class="location-drop-down">
             <span class="location-display size-xs"><?php if($curBlog == 1): _e('Choose Location', 'zetter'); else: echo get_bloginfo('name'); endif; ?></span>
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>caret-down</title><g class="caret-down"><polyline class="arrowhead" points="36.036 18.982 24 31.018 11.964 18.982" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg>
-            <div class="location-selector js-location-selector-up">
-                <div class="location-selector-inner">
-                <?php
-                    foreach ( $sites as $site ):
-                        switch_to_blog( $site->blog_id ); ?>
-                        <a href="#" data-property-id="<?php the_field('booking_property_id', 'options'); ?>" data-url="<?php echo get_bloginfo( 'url' ); ?>/book"><?php echo $site->blogname; ?></a>
-                        <?php restore_current_blog();
-                    endforeach; ?>                
-                </div>
+            
+            <div class="location-selector-inner">
+            <?php
+                foreach ( $sites as $site ):
+                    switch_to_blog( $site->blog_id ); ?>
+                    <a href="#" class="" data-property-id="<?php the_field('booking_property_id', 'options'); ?>" data-url="<?php echo get_bloginfo( 'url' ); ?>/book"><?php echo $site->blogname; ?></a>
+                    <?php restore_current_blog();
+                endforeach; ?>                
             </div>
+
         </div>
     </div>
     <div class="dates-fields flex">
@@ -59,7 +59,7 @@
     <div class="rooms-guests-fields flex justify-between mb-10">
         <div class="selector-wrap flex flex-col items-start justify-between mb-6 input-styled" data-max="4" data-min="1">
             <input type="hidden" class="js-count-adults" name="adults" value="2" />
-            <label class="size-l mb-0">Number of Guests</label>
+            <label class="size-l mb-5">Number of Guests</label>
             <div class="selector flex items-center justify-between mb-2">
                 <div class="buttons">
                     <button class="selector-control minus button icon secondary size-xs no-margin"><svg fill="none" height="11" viewBox="0 0 11 11" width="11" xmlns="http://www.w3.org/2000/svg"><title>minus</title><g fill="#525535"><path d="m3.75 6v-1h3.5v1z"/><path clip-rule="evenodd" d="m5.5 10c2.48528 0 4.5-2.01472 4.5-4.5s-2.01472-4.5-4.5-4.5-4.5 2.01472-4.5 4.5 2.01472 4.5 4.5 4.5zm0 1c3.03757 0 5.5-2.46243 5.5-5.5s-2.46243-5.5-5.5-5.5-5.5 2.46243-5.5 5.5 2.46243 5.5 5.5 5.5z" fill-rule="evenodd"/></g></svg></button>
@@ -72,7 +72,7 @@
         </div>        
         <div class="selector-wrap flex flex-col items-start justify-between mb-6 input-styled" data-max="4" data-min="1">
             <input type="hidden" class="js-count-rooms" name="rooms" value="1" />
-            <label class="size-l mb-0">Number of Rooms</label>
+            <label class="size-l mb-5">Number of Rooms</label>
             <div class="selector flex items-center justify-between mb-2">
                 <div class="buttons">
                     <button class="selector-control minus button icon secondary size-xs no-margin disabled"><svg fill="none" height="11" viewBox="0 0 11 11" width="11" xmlns="http://www.w3.org/2000/svg"><title>minus</title><g fill="#525535"><path d="m3.75 6v-1h3.5v1z"/><path clip-rule="evenodd" d="m5.5 10c2.48528 0 4.5-2.01472 4.5-4.5s-2.01472-4.5-4.5-4.5-4.5 2.01472-4.5 4.5 2.01472 4.5 4.5 4.5zm0 1c3.03757 0 5.5-2.46243 5.5-5.5s-2.46243-5.5-5.5-5.5-5.5 2.46243-5.5 5.5 2.46243 5.5 5.5 5.5z" fill-rule="evenodd"/></g></svg></button>

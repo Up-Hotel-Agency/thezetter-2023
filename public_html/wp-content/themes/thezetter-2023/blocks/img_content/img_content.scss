@@ -448,3 +448,53 @@
         }
     }
 }
+
+//Addional styling for map style block
+section.map-style-block{
+    .img-content{
+        .content{
+            padding-top: 0;
+            padding-bottom: 0;
+            width: 30%;
+            @include breakpoint(L){
+                width: 40%;
+            }
+            @include breakpoint(S){
+                width: 100%;
+            }
+        }
+        .img{
+            width: 70%;
+            @include breakpoint(L){
+                width: 60%;
+            }
+            @include breakpoint(S){
+                width: 100%;
+            }
+            .media-container{
+                height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+        &.text-image{
+            .content{
+                padding-left: 5.5rem;
+                @include breakpoint(M){
+                    padding-left: 0;
+                }
+            }
+        }
+        &.image-text{
+            .content{
+                padding-right: 5.5rem;
+                @include breakpoint(M){
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}

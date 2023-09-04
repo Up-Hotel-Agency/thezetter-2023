@@ -17,9 +17,14 @@
     .featured-content-image{
         margin-bottom: 3.286rem;
         mix-blend-mode: multiply;
+        max-width: 15rem;
+        margin: 0 auto;
         img{
             margin: auto;
             mix-blend-mode: multiply;
+            width: 100%;
+            object-fit: contain;
+            height: fit-content;
         }
     }
     &.text-align-left {

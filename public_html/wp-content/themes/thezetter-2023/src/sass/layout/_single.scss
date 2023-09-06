@@ -122,6 +122,9 @@
 }
 .rooms-listing{
     .featured-content{
+        .featured-content-image{
+            margin-bottom: 4.375rem;
+        }
         .size-l{
             font-family: $font-stack-headings;
         }
@@ -183,6 +186,11 @@
             flex-grow: unset;
             .post-item-content{
                 padding: 0 5rem;
+            }
+            .buttons{
+                .button.primary{
+                    margin: 1rem 0;
+                }
             }
             .post-item-img{
                 aspect-ratio: 16/9;

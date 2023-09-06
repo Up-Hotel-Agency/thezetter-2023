@@ -33,6 +33,9 @@
             .content{
                 padding-left: 8.125rem;
                 padding-right: 8.125rem;
+                h2{
+                    font-weight: 700;
+                }
             }
             &.wide-image{
                 .img {
@@ -85,6 +88,9 @@
             .content{
                 padding-left: 8.125rem;
                 padding-right: 8.125rem;
+                h2{
+                    font-weight: 700;
+                }
             }
             &.wide-image{
                 .img {
@@ -216,6 +222,11 @@
         }
         .content-wrap {
             width: 100%;
+            @include breakpoint(XS) {
+                p{
+                    @include size-M;
+                }
+            }
             &.content-wrap-careers{
                 p{
                     @include size-S;

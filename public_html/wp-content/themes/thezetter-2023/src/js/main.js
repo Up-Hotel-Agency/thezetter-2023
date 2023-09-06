@@ -139,7 +139,9 @@ jQuery(function($){
         e.preventDefault();
         $(this).toggleClass('active');
     }); 
-
+    $( ".js-locations-dropdown .locations-drop-down" ).click(function(e){
+        e.stopPropagation();
+    });
 
     // scroll to next block
     $(".js-scroll-next-block").click(function(e) {

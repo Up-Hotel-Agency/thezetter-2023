@@ -206,6 +206,11 @@ body {
             .location-logo-text{
                 margin-bottom: 0;
                 @include size-M;
+                font-style: italic;
+                font-weight: 500;
+                line-height: normal;
+                letter-spacing: 0.72px;
+                text-transform: capitalize;
             }
         }
     }
@@ -525,6 +530,12 @@ body {
             @include heading-2;
             font-weight: 400 !important;
             margin-bottom: 0;
+        }
+        li{
+            padding-left: 0;
+            &::before{
+                display: none;
+            }
         }
     }
     .side-menu{

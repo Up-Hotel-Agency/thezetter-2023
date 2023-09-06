@@ -34,7 +34,7 @@ function slider_hotels_render_callback( $block, $content = '', $is_preview = fal
         <div class="slide-hotels-block <?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>">
             <div class="slide-hotels-content spacing container">
                 <?php if( get_field('title_title') ): ?>
-                    <h3 data-aos="fade-up"><?php the_field('title_title'); ?></h3>
+                    <h3 class="font-bold" data-aos="fade-up"><?php the_field('title_title'); ?></h3>
                 <?php endif; ?>
                 <?php if( get_field('content_content') ): ?>
                     <div class="subtitle" data-aos="fade-up">
@@ -54,12 +54,12 @@ function slider_hotels_render_callback( $block, $content = '', $is_preview = fal
                             </div>
                             
                             <?php if( get_sub_field('title_title') ): ?>
-                                <h4 class="mb-0">
+                                <h4 class="mb-2">
                                     <?php the_sub_field('title_title'); ?>
                                 </h4>
                             <?php endif; ?>
                             <?php if( get_sub_field('subtitle_subtitle') ): ?>
-                                <div class="subtitle-2">
+                                <div class="subtitle-2 mb-2">
                                     <?php the_sub_field('subtitle_subtitle'); ?>
                                 </div>
                             <?php endif; ?>

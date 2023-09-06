@@ -67,6 +67,9 @@
             }
             .subtitle{
                 text-align: center;
+                p{
+                    @include size-M;
+                }
             }
             .hotels-list{
                 width: 100%;

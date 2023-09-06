@@ -2,7 +2,7 @@
     <div class="footer-newsletter container spacing flex flex-row">
         <div class="footer-newsletter-left flex flex-row">
             <?php if(get_field('illustration_newsletter', 'options')): ?>
-                <div class="illustration-newsletter"  data-aos="fade-up">
+                <div class="illustration-newsletter <?php if(get_field('add_blend_mode', 'options')):?> blend-mode <?php endif; ?>"  data-aos="fade-up">
                     <?php echo img_sizes(get_field('illustration_newsletter', 'options'), ['default' => 'img_1367', 'page_area' => '30', 'mobile_page_area' => '85', 'lazy_load' => true]); ?>
                 </div>
             <?php endif; ?>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="credits">
                     Copyright 2023, The Zetter. All Rights Reserved.<br>
-                    Design by Ruth Costello. Build by <a href="https://uphotel.agency" target="_blank" rel="nofollow">UP HOTEL AGENCY</a>.
+                    Design by Ruth Costello. Build by <a class="credits" href="https://uphotel.agency" target="_blank" rel="nofollow">UP HOTEL AGENCY</a>.
                 </div>
             </div>
         </div>

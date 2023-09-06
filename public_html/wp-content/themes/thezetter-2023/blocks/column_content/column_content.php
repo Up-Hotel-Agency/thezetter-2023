@@ -36,7 +36,7 @@ function col_content_render_callback( $block, $content = '', $is_preview = false
 
         <?php if(get_field('add_intro_content')): ?>
 
-            <div class="content col-content-intro">
+            <div class="content col-content-intro <?php if(get_field('add_blend_mode')):?> blend-mode <?php endif; ?>">
                 <?php if(get_field('illustration')): echo img_sizes(get_field('illustration'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
                 <?php if(get_field('title')): ?>
                     <h3 class="h2 mb-4"><?php the_field('title'); ?></h3>

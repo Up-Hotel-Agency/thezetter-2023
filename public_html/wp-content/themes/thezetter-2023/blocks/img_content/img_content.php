@@ -37,7 +37,7 @@ function img_content_render_callback( $block, $content = '', $is_preview = false
         <?php block_background_media(); ?>
         
         <div class="img-content <?php the_field('layout'); ?><?php if( get_field('images_bottom_mob') ): ?> mob-img-bottom<?php endif; ?>">
-            <div class="img" data-aos="fade-up">
+            <div class="img <?php if(get_field('add_blend_mode')):?> blend-mode <?php endif; ?>" data-aos="fade-up">
                 <?php block_media( get_field('images'), [
                     'img_sizes' => array('default' => 'img_1367', 'page_area' => 100, 'mobile_page_area' => 100),
                     'default_aspect' => '1/1',
@@ -55,7 +55,7 @@ function img_content_render_callback( $block, $content = '', $is_preview = false
                         <?php endif; ?>
 
                         <?php if( get_field('title_title') ): ?>
-                            <h2 data-aos="fade-up"  data-aos-delay="100"><?php the_field('title_title'); ?>
+                            <h2 class="font-bold" data-aos="fade-up"  data-aos-delay="100"><?php the_field('title_title'); ?>
                                 <?php if( get_field('subtitle_subtitle') ): ?>
                                     <div class="subtitle-2" data-aos="fade-up" data-aos-delay="150">
                                         <?php the_field('subtitle_subtitle'); ?>

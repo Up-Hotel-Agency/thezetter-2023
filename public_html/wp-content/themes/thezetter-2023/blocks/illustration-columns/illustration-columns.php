@@ -31,7 +31,7 @@ function illustration_columns_render_callback( $block, $content = '', $is_previe
 
         <div class="illustration-columns <?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>">
             
-            <div class="featured-content-image" data-aos="fade-up">
+            <div class="featured-content-image <?php if(get_field('add_blend_mode')):?> blend-mode <?php endif; ?>" data-aos="fade-up">
                 <?php if(get_field('illustration')): echo img_sizes(get_field('illustration'), ['default' => 'img_1367', 'page_area' => '42', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
             </div>
             <?php if( get_field('title_title') ): ?>

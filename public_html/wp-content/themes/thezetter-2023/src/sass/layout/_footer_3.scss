@@ -190,11 +190,12 @@
             text-transform: uppercase;
             @include breakpoint(XS) {
                 padding: 0.357rem 0 !important;
-                margin: 0;
+                margin: 0 auto;
             }
         }
     }
     .credits{
+        font-weight: 400 !important;
         font-size: 8px;
         font-family: $font-stack-headings;
         @include color(color, 'body');
@@ -256,7 +257,7 @@
                     padding: 0;
                     a{
                         padding: 0.357rem 0 !important;
-                        margin: 0;
+                        margin: 0 auto;
                         &:first-of-type{
                             padding-top: 0;
                         }
@@ -271,6 +272,9 @@
     .h5{
         margin-bottom: 1.813rem;
         @include size-M;
+        @include breakpoint(XS) { 
+            justify-content: center;
+        }
     }
     ul {
         width: 100%;

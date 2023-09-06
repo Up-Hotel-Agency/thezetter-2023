@@ -2200,7 +2200,7 @@ ul.list-reset {
     letter-spacing: 1.68px;
 }
 .regular-weight{
-    font-weight: 400;
+    font-weight: 400 !important;
 }
 
 /* Font size
@@ -2480,7 +2480,12 @@ ul.list-reset {
 
 /* Spacing
    ========================================================================== */
-
+.blend-mode{
+    @include color(background-color, 'background');
+    img{
+        mix-blend-mode: multiply;
+    }
+}
 .spacing {
     padding-top: 5.714rem;
     padding-bottom: 5.714rem;

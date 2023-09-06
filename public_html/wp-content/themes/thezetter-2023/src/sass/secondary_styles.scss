@@ -164,7 +164,6 @@ $mobile-secondary: map-merge($type-scale-secondary, $mobile-secondary-placeholde
     .cookie-options{
         border-color: white!important;
     }
-
     //Define scales
     h1, .h1{
         @include secondary-size-3XL();
@@ -194,6 +193,59 @@ $mobile-secondary: map-merge($type-scale-secondary, $mobile-secondary-placeholde
     .button, button{
         @include secondary-size-XS();
         font-weight: 600;
+    }
+    .banner-image-content{
+        h1{
+            font-family:'Abhaya Libre', serif;
+            @include secondary-size-XL();
+        }
+    }
+    .rooms-listing{
+        .featured-content{
+            div.mb-12.size-l{
+                font-family:'Abhaya Libre', serif;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 130%; /* 23.4px */
+                letter-spacing: 0.36px;
+                @include secondary-size-M();
+            }
+        }
+    }
+    .single-modal{
+        .single-modal-inner .modal-content .modal-content-inner .modal-content-block{
+            .feature-title{
+                margin: 0.5rem 0;
+            }
+        }
+    }
+    .content-style-list{
+        .content .content-inner header .subtitle-2{
+            font-family:'Abhaya Libre', serif;
+            @include secondary-size-M();
+            font-weight: 600;
+            line-height: 130%; /* 23.4px */
+            letter-spacing: 0.36px;
+        }
+    }
+    .content-block-container{
+        .content-block{
+            .subtitle{
+                font-family:'Abhaya Libre', serif;
+            }
+        }
+    }
+    .newsletter-signup_input{
+        input[type="text"],
+        input[type="email"]{
+            font-family: "termina", sans-serif;
+        }
+    }
+    .footer-menu a,
+    .footer-contact .contact-details a{
+        @include secondary-size-XXS();
+        padding: 6px 0;
+        letter-spacing: 1.44px;
     }
 }
 

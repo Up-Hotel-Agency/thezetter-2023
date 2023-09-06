@@ -49,13 +49,13 @@ function img_content_banner_render_callback( $block, $content = '', $is_preview 
                 <div class="content-inner">
                     <header>
                         <?php if( get_field('title_title') ): ?>
-                            <h1 class="mb-6 h4" data-aos="fade-up">
+                            <h1 class="mb-6 h4 font-bold" data-aos="fade-up">
                                 <?php the_field('title_title'); ?>
                             </h1>
                         <?php endif; ?>
 
                         <?php if( get_field('content_content') ): ?>
-                            <h2 data-aos="fade-up"><?php the_field('content_content', false, false); ?>
+                            <h2  data-aos="fade-up" class="regular-weight"><?php the_field('content_content', false, false); ?>
                             </h2>
                         <?php endif; ?>
                     </header>

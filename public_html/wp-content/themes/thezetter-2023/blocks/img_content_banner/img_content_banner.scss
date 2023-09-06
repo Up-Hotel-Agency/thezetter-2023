@@ -1,9 +1,19 @@
 @import "../gutenberg_block";
-.img-content-row.banner-image-content.side-spacing.layout-text-image{
-    .content{
-        padding-left: 3rem;
-        .content-inner{
-            max-width: unset;
+.img-content-row.banner-image-content{
+    .img-content-banner{
+        img{
+            order: 2;
+        }
+        @include breakpoint(S){
+            display: revert;
+        }
+    }
+    .side-spacing.layout-text-image{
+        .content{
+            padding-left: 3rem;
+            .content-inner{
+                max-width: unset;
+            }
         }
     }
 }

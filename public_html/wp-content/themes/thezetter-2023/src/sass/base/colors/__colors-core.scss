@@ -7,7 +7,7 @@ $color-background-alt: #F2F2F3;
 $color-accent-primary: #000000;
 $color-accent-secondary: #525535;
 $color-buttons: #45472E;
-$color-footer: #101921;
+$color-footer: var(--color-footer);
 
 $color-success: #4CC27B;
 $color-warning: #EEBE43;
@@ -19,12 +19,12 @@ $color-error: #DE3C4B;
 $color-vars: (
   buttons: $color-buttons,
   footer: $color-footer,
-  footer-75: rgba($color-footer, 0.75),
-  footer-50: rgba($color-footer, 0.50),
-  footer-25: rgba($color-footer, 0.25),
-  footer-10: rgba($color-footer, 0.10),
-  footer-05: rgba($color-footer, 0.05),
-  footer-01: rgba($color-footer, 0.01),
+  footer-75: color-mix(in SRGB, var($color-footer) 25%, #FFF),
+  footer-50: color-mix(in SRGB, var($color-footer) 50%, #FFF),
+  footer-25: color-mix(in SRGB, var($color-footer) 87.5%, #FFF),
+  footer-10: color-mix(in SRGB, var($color-accent-primary) 87.5%, #000),
+  footer-05: color-mix(in SRGB, var($color-accent-primary) 50%, #000),
+  footer-01: color-mix(in SRGB, var($color-accent-primary) 25%, #000),
 
   body: $color-body,
   body-75: rgba($color-body, 0.75),

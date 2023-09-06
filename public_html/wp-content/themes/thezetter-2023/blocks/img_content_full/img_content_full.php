@@ -81,12 +81,12 @@ function img_content_full_render_callback( $block, $content = '', $is_preview = 
         <?php if( $middle_block ): ?>
             <div class="row middle-block">
                 <?php if( $middle_block['left_image'] ): ?>
-                    <div class="img-content image-left">
+                    <div class="img-content image-left <?php if($middle_block['add_blend_mode_li']):?> blend-mode <?php endif; ?>">
                         <img src="<?php echo $middle_block['left_image']; ?>" class="lazyload object-fit contain" alt="popup image" width="100%" height="64">
                     </div>
                 <?php endif; ?>
                 <?php if( $middle_block['right_image'] ): ?>
-                    <div class="img-content image-right">
+                    <div class="img-content image-right <?php if($middle_block['add_blend_mode_ri']):?> blend-mode <?php endif; ?>">
                         <img src="<?php echo $middle_block['right_image']; ?>" class="lazyload object-fit contain" alt="popup image" width="100%" height="64">
                     </div>
                 <?php endif; ?>

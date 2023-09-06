@@ -32,6 +32,8 @@
     }
     &.text-align-right {
         text-align: right;
+    }.mb-6.size-s.uppercase{
+        font-family: $font-stack-headings;
     }
     > {
         h1,

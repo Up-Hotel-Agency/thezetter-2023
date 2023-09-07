@@ -19,7 +19,7 @@ if($change_colours):
 	--color-background-alt: <?php echo 	$background_alt; ?>;
 	--color-buttons:  <?php echo $accent_primary; ?>;
 	<?php if(get_field('no_zetter')): ?>
-	--color-footer: <?php echo $accent_primary; ?>;
+	--color-foter: <?php echo $accent_primary; ?>;
 	<?php endif; ?>
 	
 }

@@ -130,9 +130,11 @@ jQuery(function($){
     });
     $(".close-overlay-menu").click(function(e) {
         e.preventDefault();
-        $(".js-open-side-menu").toggleClass('active');
-        $(".overlay-menu").toggleClass('active');
-        $(".header").toggleClass('active');
+        $(".js-open-side-menu").removeClass('active');
+        $(".overlay-menu").removeClass('active');
+        $(".header").removeClass('active');
+        $(".header").removeClass('active');
+        $(".menu-wrapper.js-menu-toggle.header-with-dropdowns.menu-open").removeClass('active');
     });
 
     $(".js-locations-dropdown").click(function(e) {

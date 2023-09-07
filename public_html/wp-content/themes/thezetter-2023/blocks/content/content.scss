@@ -16,7 +16,8 @@
     margin-right: auto;
     .featured-content-image{
         margin-bottom: 3.286rem;
-        mix-blend-mode: multiply;
+        background-color: var(--color-background);
+        // mix-blend-mode: multiply;
         max-width: 15rem;
         margin: 0 auto;
         img{

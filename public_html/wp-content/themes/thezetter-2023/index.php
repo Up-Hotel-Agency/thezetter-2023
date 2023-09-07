@@ -17,7 +17,7 @@
             <div class="content-inner">
                 <div>
                     <?php if(get_field('posts_page_title', get_option( 'page_for_posts' ))): ?>
-                        <h1 class="mb-6 h4 color-accent" data-aos="fade-up">
+                        <h1 class="mb-6 h4 font-bold " data-aos="fade-up">
                             <?php the_field('posts_page_title', get_option( 'page_for_posts' )); ?>
                         </h1>
                     <?php endif; ?>

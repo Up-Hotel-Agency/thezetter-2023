@@ -41,7 +41,7 @@ function featured_grid_render_callback( $block, $content = '', $is_preview = fal
                             <?php $count = 1; ?>
                             <?php while(have_rows('grid_items')): the_row(); ?>
                                     <div class="grid-item" data-aos="fade-up" data-aos-delay="200">
-                                    <div class="img">
+                                    <div class="img <?php if(get_sub_field('add_blend_mode')):?> blend-mode <?php endif; ?>">
                                         <?php if( get_sub_field('image')): echo img_sizes(get_sub_field('image', $featured_grid), ['default' => 'img_800', 'page_area' => '26', 'mobile_page_area' => '85', 'lazy_load' => true]); endif; ?>
                                     </div>
                                     <div class="size-l h3 mt-6">

@@ -8,7 +8,10 @@
     justify-content: center;
     &.remove-background{
         .featured-content-image{
-            mix-blend-mode: multiply;
+            background-color: var(--color-background);
+            img{
+                mix-blend-mode: multiply;
+            }
         }
     }
     .image-content-block{

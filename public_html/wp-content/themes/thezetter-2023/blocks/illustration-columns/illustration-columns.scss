@@ -5,10 +5,11 @@
     //max-width: 61rem;
     margin: auto;
     .featured-content-image{
+        background-color: var(--color-background);
         margin: auto;
         margin-bottom: 3.438rem;
-        mix-blend-mode: multiply;
         img{
+            mix-blend-mode: multiply;
             margin: auto;
         }
     }
@@ -39,8 +40,9 @@
                 }
             }
         }
-        @include breakpoint(XS) {
+        @include breakpoint(S) {
             flex-direction: column;
+            grid-template-columns: unset;
             .column-list-item{
                 margin-bottom: 2.786rem;
                 &:last-of-type{

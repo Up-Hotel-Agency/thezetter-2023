@@ -42,6 +42,7 @@
         ul,
         li{
             @include size-S;
+            font-family: $font-stack-headings;
         }
     }
 }

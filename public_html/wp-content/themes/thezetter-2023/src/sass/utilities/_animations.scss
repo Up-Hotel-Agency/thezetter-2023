@@ -34,9 +34,13 @@
     transition-property: opacity,transform;
 }
 
-@keyframes underline-menu {
+@keyframes underline-menu-header {
     from {width: 0;}
     to {width: calc(100% - 2.5rem);}
+}
+@keyframes underline-menu {
+    from {width: 0;}
+    to {width: 100%;}
 }
 @keyframes underline-minor {
     from {width: 0;}

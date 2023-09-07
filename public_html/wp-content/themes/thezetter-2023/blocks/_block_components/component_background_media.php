@@ -5,6 +5,7 @@ function block_background_media() {
     if( get_field('override_page_theme')): 
         $themeField = get_field('block_theme_theme');
         $theme = $themeField['theme_select'];
+        $themeVid = $themeField['background_video'];
         if($theme == 'image' || $theme == 'seasonal'): 
         ?>
             <div class="block-bg-img

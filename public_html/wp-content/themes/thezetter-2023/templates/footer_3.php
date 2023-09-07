@@ -63,8 +63,8 @@
                             <?php switch_to_blog(1); ?>
                         <?php endif; ?>
                         <?php $i=0; while ( have_rows('hotel_navigation', 'options') ) : the_row(); ?>
-                            <?php $link = get_sub_field('link', 'options'); ?>
-                            <a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>"><?php echo get_sub_field('title_site', 'options');?></a>
+                            <?php $link = get_sub_field('site_id', 'options'); ?>
+                            <a data-id="<?php echo $i; ?>" href="<?php echo get_blogaddress_by_id($link); ?>"><?php echo get_sub_field('title_site', 'options');?></a>
                         <?php $i++; endwhile; ?>
                         <?php if(!get_field('not_zetter', 'options')): ?>
                             <?php restore_current_blog(); ?>
@@ -72,14 +72,14 @@
                     </div>
                     <div class="footer-submenu">
                         <h3 class="h5 mob-footer-menu-toggle  xs:flex xs:justify-between xs:items-center">   
-                            Managed by <?php if(get_field('not_zetter', 'options')): ?> The Ailesbury <?php else: ?> The Zetter <?php endif; ?>
+                            Managed by <?php if(get_field('not_zetter', 'options')): ?> Marrable's <?php else: ?> The Zetter <?php endif; ?>
                         </h3>
                         <?php if(!get_field('not_zetter', 'options')): ?>
                             <?php switch_to_blog(1); ?>
                         <?php endif; ?>
                         <?php $i=0; while ( have_rows('other_hotels', 'options') ) : the_row(); ?>
-                            <?php $link = get_sub_field('link', 'options'); ?>
-                            <a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>"><?php echo get_sub_field('title_site', 'options');?></a>
+                            <?php $link = get_sub_field('site_id', 'options'); ?>
+                            <a data-id="<?php echo $i; ?>" href="<?php echo get_blogaddress_by_id($link); ?>"><?php echo get_sub_field('title_site', 'options');?></a>
                         <?php $i++; endwhile; ?>
                         <?php if(!get_field('not_zetter', 'options')): ?>
                             <?php restore_current_blog(); ?>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="credits">
                     Copyright 2023, The Zetter. All Rights Reserved.<br>
-                    Design by Ruth Costello. Build by <a class="credits" href="https://uphotel.agency" target="_blank" rel="nofollow">UP HOTEL AGENCY</a>.
+                    Design by <a class="credits" href="https://ruthcostello.com" target="_blank" rel="nofollow">Ruth Costello</a>. Build by <a class="credits" href="https://uphotel.agency" target="_blank" rel="nofollow">UP Hotel Agency</a>.
                 </div>
             </div>
         </div>

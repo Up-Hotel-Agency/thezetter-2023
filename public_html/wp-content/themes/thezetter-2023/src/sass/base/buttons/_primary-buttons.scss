@@ -22,8 +22,7 @@ input[type="button"] {
     }
 
     //Hover state
-    &:hover,
-    &.active {
+    &:hover {
         @include color(color, 'body');
         @include color(background-color, 'background');
         @include color(border-color, 'buttons');

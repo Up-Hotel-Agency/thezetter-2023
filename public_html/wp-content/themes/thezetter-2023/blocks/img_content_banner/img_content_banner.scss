@@ -1,11 +1,17 @@
 @import "../gutenberg_block";
 .img-content-row.banner-image-content{
     .img-content-banner{
-        img{
+        .img{
             order: 2;
         }
         @include breakpoint(S){
             display: revert;
+        }
+    }
+    .content{
+        padding-left: 3rem !important;
+        .content-inner{
+            max-width: unset !important;
         }
     }
     .side-spacing.layout-text-image{

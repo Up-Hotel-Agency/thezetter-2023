@@ -21,10 +21,13 @@
 
 .blog-banner.img-content-row.layout-text-image.side-spacing{
     .content{
-        padding-left: 3rem;
+        padding-left: 3rem !important;
         .content-inner{
             max-width: unset;
         }
+        // @include breakpoint(S){
+        //     padding-left: 3rem !important;
+        // }
     }
 }
 
@@ -40,7 +43,7 @@
     }
     &.page-container{
         p{
-            font-size: 14px;
+            font-size: 16px;
         }
     }
     p {
@@ -96,7 +99,6 @@
         }
     }
 }
-
 .post-actions {
     max-width: 50rem;
     margin: 6rem auto;

@@ -60,58 +60,58 @@ if( get_footer_type() == 'footer_2' ) {
     add_action('acf/init', 'footer_2_group');
 }
 
-if( get_footer_type() == 'footer_3' ) {
+// if( get_footer_type() == 'footer_3' ) {
 
-    // add fields for footer type 3
-    function footer_3_group() {
+//     // add fields for footer type 3
+//     function footer_3_group() {
 	
-        acf_add_local_field_group(array(
-            'key' => 'footer_2_group',
-            'title' => 'Footer',
-            'menu_order' => '20',
-            'fields' => array (
-                array (
-                    'key' => 'field_footer_contact_title',
-                    'label' => 'Contact Title',
-                    'name' => 'contact_title',
-                    'type' => 'text',
-                    'default_value' => 'Get In Touch',
-                ),
-                array (
-                    'key' => 'field_footer_address',
-                    'label' => 'Address',
-                    'name' => 'address',
-                    'type' => 'text',
-                    'default_value' => '123 Address Street, City, County, AB1 2CD',
-                ),
-                array (
-                    'key' => 'field_footer_telephone',
-                    'label' => 'Telephone',
-                    'name' => 'telephone',
-                    'type' => 'text',
-                    'default_value' => '01234 567890',
-                ),
-                array (
-                    'key' => 'field_footer_email',
-                    'label' => 'Email',
-                    'name' => 'email',
-                    'type' => 'text',
-                    'default_value' => 'companyemail@email.com',
-                )
-            ),
-            'location' => array (
-                array (
-                    array (
-                        'param' => 'options_page',
-                        'operator' => '==',
-                        'value' => 'acf-options-site-options',
-                    ),
-                ),
-            ),
-        ));
-    }
-    add_action('acf/init', 'footer_3_group');
-}
+//         acf_add_local_field_group(array(
+//             'key' => 'footer_2_group',
+//             'title' => 'Footer',
+//             'menu_order' => '20',
+//             'fields' => array (
+//                 array (
+//                     'key' => 'field_footer_contact_title',
+//                     'label' => 'Contact Title',
+//                     'name' => 'contact_title',
+//                     'type' => 'text',
+//                     'default_value' => 'Get In Touch',
+//                 ),
+//                 array (
+//                     'key' => 'field_footer_address',
+//                     'label' => 'Address',
+//                     'name' => 'address',
+//                     'type' => 'text',
+//                     'default_value' => '123 Address Street, City, County, AB1 2CD',
+//                 ),
+//                 array (
+//                     'key' => 'field_footer_telephone',
+//                     'label' => 'Telephone',
+//                     'name' => 'telephone',
+//                     'type' => 'text',
+//                     'default_value' => '01234 567890',
+//                 ),
+//                 array (
+//                     'key' => 'field_footer_email',
+//                     'label' => 'Email',
+//                     'name' => 'email',
+//                     'type' => 'text',
+//                     'default_value' => 'companyemail@email.com',
+//                 )
+//             ),
+//             'location' => array (
+//                 array (
+//                     array (
+//                         'param' => 'options_page',
+//                         'operator' => '==',
+//                         'value' => 'acf-options-site-options',
+//                     ),
+//                 ),
+//             ),
+//         ));
+//     }
+//     add_action('acf/init', 'footer_3_group');
+// }
 
 if( get_footer_type() == 'footer_2' || get_footer_type() == 'footer_3' ) {
     // menus for footer type 2 and 3

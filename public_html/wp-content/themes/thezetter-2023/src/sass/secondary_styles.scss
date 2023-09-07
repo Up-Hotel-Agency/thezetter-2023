@@ -160,7 +160,9 @@ $mobile-secondary: map-merge($type-scale-secondary, $mobile-secondary-placeholde
         font-weight: 500!important;
         font-size: 10px;
     }
-
+    .subtitle-2{
+        font-family:'Abhaya Libre', serif;
+    }
     .cookie-options{
         border-color: white!important;
     }
@@ -199,6 +201,40 @@ $mobile-secondary: map-merge($type-scale-secondary, $mobile-secondary-placeholde
             font-family:'Abhaya Libre', serif;
             @include secondary-size-XL();
         }
+    }
+    .footer-content a.credits{
+        letter-spacing: 0;
+        &:hover{
+            &::after{
+                display: none;
+            }
+        }
+    }
+    .team-block .the-team .team-block .single-team .team-member{
+        .size-l{
+            font-family:'Abhaya Libre', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .size-s{
+            font-family:'Abhaya Libre', serif;
+        }
+    }
+    .img-content .content .content-wrap,
+    .img-content .content .content-wrap p, 
+    .img-content .content .content-wrap ul li{
+        font-family:'Abhaya Libre', serif;
+    }
+    .img-content .content .item .subtitle-2{
+        letter-spacing: 0;
+        font-family:'Abhaya Libre', serif;
+        font-style: normal;
+    }
+    .footer-contact .credits{
+        font-family:'Abhaya Libre', serif;
+    }
+    .posts-grid .post-item .post-item-items .item{
+        font-family:'Abhaya Libre', serif;
     }
     .rooms-listing{
         .featured-content{
@@ -246,6 +282,12 @@ $mobile-secondary: map-merge($type-scale-secondary, $mobile-secondary-placeholde
         @include secondary-size-XXS();
         padding: 6px 0;
         letter-spacing: 1.44px;
+    }
+    .page-container:not(:has(.row)) p, 
+    .page-container:not(:has(.row)) ul, 
+    .page-container:not(:has(.row)) li{
+        font-family:'Abhaya Libre', serif;
+        font-size: 14px;
     }
 }
 

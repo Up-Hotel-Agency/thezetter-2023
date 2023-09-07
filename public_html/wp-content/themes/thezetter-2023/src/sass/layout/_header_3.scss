@@ -6,8 +6,13 @@
 }
 section.row{
     position: relative;
-    &::after,
-    &::before{
+    &.full-height.banner-image-content{
+        &::after,
+        &::before{
+            display: none;
+        }
+    }
+    &::after{
         content: "";
         position: absolute;
         left: 0;
@@ -16,14 +21,14 @@ section.row{
         @include color(background-color, 'footer-25');
     }
     &::after{
-        top: 0px;
+        bottom: 0px;
     }
-    &::before{
-        bottom: -1px;
-    }
+    // &::before{
+    //     bottom: -1px;
+    // }
 }
 section:last-of-type{
-    &::before{
+    &::after{
         display: none;
     }
 }
@@ -50,6 +55,8 @@ body {
     .header-right{
         .locations-drop-down{
             a{
+                width: fit-content;
+                margin: auto;
                 @include color(color, 'body');
                 &.active, &:hover{
                     &::after{
@@ -68,7 +75,8 @@ body {
         }
         .open-menu{
             font-weight: 400;
-            @include size-S;
+            // @include size-S;
+            font-size: 11px;
             @extend .flex;
             @extend .items-center;
             padding: 0 1.25rem;
@@ -95,7 +103,8 @@ body {
         }
         a {
             font-weight: 400;
-            @include size-S;
+            // @include size-S;
+            font-size: 11px;
             @extend .flex;
             @extend .items-center;
             padding: 0 1.25rem;
@@ -313,7 +322,7 @@ body {
                         left: 1.25rem;
                         bottom: calc(50% - 10px);
                         @include color(background-color, 'body');
-                        animation-name: underline-menu;
+                        animation-name: underline-menu-header;
                         animation-duration: .5s;
                     }
                 }
@@ -811,6 +820,7 @@ body {
             position: relative;
         }
         .bookingmask-footer{
+            margin-top: 1rem;
             width: 100%;
             justify-content: space-between;
             align-items: end;
@@ -818,6 +828,12 @@ body {
                 p{
                     @include size-L;
                     margin: 0;
+                }
+            }
+            .bookingmask-footer-image{
+                svg{
+                    max-height: 84px;
+                    width: auto;
                 }
             }
             @include breakpoint(S) {

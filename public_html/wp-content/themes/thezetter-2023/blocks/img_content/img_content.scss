@@ -154,8 +154,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 10.125rem;
-        padding-bottom: 10.125rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
 
         @include breakpoint(S) {
             padding: 0 0 0 3rem;
@@ -220,8 +220,17 @@
                 }
             }
         }
+        .item{
+            .subtitle-2{
+                letter-spacing: 0.15em;
+            }
+        }
         .content-wrap {
             width: 100%;
+            font-family: $font-stack-headings;
+            p, ul li{
+                font-family: $font-stack-headings;
+            }
             @include breakpoint(XS) {
                 p{
                     @include size-M;
@@ -292,8 +301,8 @@
         .content {
             order: 1;
             padding: 0 3.714rem 0 0;
-            padding-top: 10.125rem;
-            padding-bottom: 10.125rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
 
             @include breakpoint(S) {
                 padding: 0 3rem 0 0;

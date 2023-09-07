@@ -6,6 +6,7 @@ jQuery(function($){
     $('.js-booking-mask').submit(function(e) {
         // generic code to be modified
         e.preventDefault();
+        var location = $(this).data('url');
         var arrivalDate = $(this).find('input[name="arrival"]').val();
         var departureDate = $(this).find('input[name="departure"]').val();
         var arrival = dayjs(arrivalDate).format('YYYY-MM-DD');
@@ -13,19 +14,30 @@ jQuery(function($){
         var rooms = $(this).find('input[name="rooms"]').val();
         var adults = $(this).find('input[name="adults"]').val();
         var children = $(this).find('input[name="children"]').val();
-        // var propertyId = $(this).find('.js-location-selector-up').val();
+        var propertyId = $(this).data('property-id');
+        $('.js-booking-toggle').toggleClass('menu-open');
 
-        window.localStorage.setItem('bookingMaskData', JSON.stringify({
-            arrival,
-            departure,
-            rooms,
-            adults,
-            children
-        }));
-        
+
         // go to your IBE
-        // window.location.href = "/book/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults + "&children=" + children;
+        window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
     });
+
+
+    // location selector on booking form - UP IBE
+    $('.js-location-selector-up a').click(function(e) {
+        e.preventDefault();
+        var locationUrl = $(this).attr('data-url');
+        var locationID = $(this).attr('data-property-id');
+        var locationName = $(this).text();
+        $('.location-display').text(locationName);
+
+        if(locationID != null || locationID != '') {
+            $(this).parents('form').find('button[type=submit').removeClass('disabled');
+        }
+        
+        $(this).parents('form').attr('data-url', locationUrl);
+        $(this).parents('form').attr('data-property-id', locationID);
+    }); 
 
     $(".js-datepicker-trigger").flatpickr({
         mode: "range",

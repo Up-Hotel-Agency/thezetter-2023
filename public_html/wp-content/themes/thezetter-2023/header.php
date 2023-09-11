@@ -3,6 +3,18 @@
 <?php die; endif; ?>
 <!DOCTYPE html>
 <html id="html" lang="en" <?php if(get_field('not_zetter', 'options')): ?> class="secondary-typography" <?php endif; ?>>
+
+
+<?php 
+session_start();
+
+$_SESSION['not_zetter'] = false;
+
+if((get_field('not_zetter','options'))):  
+	$_SESSION['not_zetter'] = true;
+endif; 
+
+?>
 <head>
 
 <script>
@@ -38,9 +50,15 @@ var neighbourhoodScriptLoaded;
     <?php include 'secondary_styles.php'; ?>
 <?php endif; ?>
 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<?php if($_SESSION['not_zetter']): ?>
+    <link rel="apple-touch-icon" sizes="180x180" href="/no-zetter/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/no-zetter/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/no-zetter/favicon-16x16.png">
+<?php else: ?>
+    <link rel="apple-touch-icon" sizes="180x180" href="/zetter/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/zetter/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/zetter/favicon-16x16.png">
+<?php endif; ?>
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0e566e">
 <meta name="msapplication-TileColor" content="#0e566e">

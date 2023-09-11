@@ -73,3 +73,37 @@
         }
     }
 }
+.up-cookie-widget{
+    .up-container{
+        h3{
+            @include size-L;
+        }
+        .cookie-message p{
+            @include size-M;
+        }
+    }
+}
+.up-cookie-modal-container{
+    .cookie-modal-content{
+        .cookie-modal-details p{
+            @include size-M;
+        }
+        .cookie-modal-accordian{
+            .cookie-accordian-buttons{
+                .cookie-modal-accept-all label p{
+                    @include size-M;
+                }
+            }
+            .cookie-modal-accordian-section{
+                .cookie-modal-accordian-section-header{
+                    span.switch-text p{
+                        @include size-M;
+                    }
+                }
+            }
+            .cookie-modal-accordian-content p{
+                @include size-M;
+            }
+        }
+    }
+}

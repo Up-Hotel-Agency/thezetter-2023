@@ -41,15 +41,35 @@ function block_buttons($field, $opts = [] ){
                     <?php
                     $class = $button['button_type'];
                     $link = $button['link_field_link'];
-
-                    if( isLink( $link ) ):
-                        if($linkButtons):
-                            button_template($link, $class);
-                        else: ?>
-                            <div 
-                                class="button <?php echo $class; ?>">
+                    $sevenrooms = $button['open_sevenrooms'];
+                    if($sevenrooms):
+                        $sevenroomsID = $button['restaurant_name'];
+                        $sevenroomsTrigger = uniqid();
+                        ?>
+                         <div class="button <?php echo $class; ?>" id="<?php echo $sevenroomsTrigger; ?>">
                                 <?php echo linkField( $link, 'text' ); ?>
-                            </div>
+                        </div>
+                        <script src=https://www.sevenrooms.com/widget/embed.js></script>
+                        <script>
+                        SevenroomsWidget.init({
+                            venueId: "<?php echo $sevenroomsID; ?>",
+                            triggerId: "<?php echo $sevenroomsTrigger; ?>", // id of the dom element that will trigger this widget
+                            type: "reservations", // either 'reservations' or 'waitlist' or 'events'
+                            clientToken: "" //(Optional) Pass the api generated clientTokenId here
+                        })
+                        </script>
+
+                        <?php
+                    else: 
+                        if( isLink( $link ) ):
+                            if($linkButtons):
+                                button_template($link, $class);
+                            else: ?>
+                                <div 
+                                    class="button <?php echo $class; ?>">
+                                    <?php echo linkField( $link, 'text' ); ?>
+                                </div>
+                            <?php endif; ?>
                         <?php endif; ?>
                     <?php endif; ?>
                 <?php $buttonCount++; endforeach; ?>
@@ -73,4 +93,5 @@ function button_template($link = [], $class = false, $type = false, $data = fals
             <?php echo linkField( $link, 'text' ); ?>
         </a>
     <?php endif; 
+
 }

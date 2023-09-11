@@ -52,14 +52,14 @@ input[type="button"] {
     }
 
     //Focus reset
-    &:focus {
-        outline: 0;
+    // &:focus {
+    //     outline: 0;
 
-        &:before {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
+    //     &:before {
+    //         opacity: 1;
+    //         visibility: visible;
+    //     }
+    // }
 
     &.unstyled {
         background: none;

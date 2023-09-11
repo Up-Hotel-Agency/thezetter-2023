@@ -4,7 +4,7 @@ get_header();
 while ( have_posts() ) : the_post(); ?>
 
     <div class="single-modal forced">
-        <a href="<?php echo get_the_permalink( get_field('rooms_page', 'options') ); ?>" class="modal-close overline flex justify-center items-center">
+        <a href="javascript: history.go(-1)" class="modal-close overline flex justify-center items-center">
             <div class="close color-body">Close</div>
         </a>
         <div class="single-modal-inner">

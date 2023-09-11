@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class="buttons no-margin" data-aos="fade-up" data-aos-delay="200">
-                    <a class="button minor" href="<?php echo get_bloginfo( 'url' ); ?>">
+                    <a class="button secondary" href="<?php echo get_bloginfo( 'url' ); ?>">
                         Return to Homepage
                     </a>
                 </div>

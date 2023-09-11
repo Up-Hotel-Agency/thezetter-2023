@@ -36,7 +36,6 @@ jQuery(function($){
         $(this).addClass('item-active');
         var hotelID = $(this).attr('data-hotel');
         $('.hotels-list').addClass('items-hovered');
-        console.log("Slide number" + hotelID);
         $(this).parents().find('.slide-hotels-block .js-slider-hotels').slick('slickGoTo', hotelID);
     }, function(){
         $('.hotels-list').removeClass('items-hovered');

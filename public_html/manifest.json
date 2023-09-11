@@ -1,6 +1,6 @@
 {
-	"name": "NAME OF WEBSITE",
-	"short_name":"SHORT NAME OF WEBSITE",
+	"name": "The Zetter",
+	"short_name":"Zetter",
 	"icons": [
 		{
 			"src": "\/android-chrome-192x192.png",

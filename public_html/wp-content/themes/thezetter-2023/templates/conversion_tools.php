@@ -12,7 +12,7 @@
         <div class="exitcapture-container flex items-center justify-center">
             <div class="exitcapture-overlay js-exitcapture-close"></div>
             <div class="modal flex text-center<?php if( get_field('exit_capture_img',$options) ): ?> has-image<?php endif; ?>">
-                <a class="exitcapture-close js-exitcapture-close button icon secondary size-s no-margin" data-dismiss="modal" title="Close modal" id="event-exitcapture-close">
+                <a class="exitcapture-close js-exitcapture-close button size-s no-margin" data-dismiss="modal" title="Close modal" id="event-exitcapture-close">
                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.755 19.245L19.245 4.755"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.245 19.245L4.755 4.755"/></svg>
                 </a>
                 <?php if( get_field('exit_capture_img',$options) ): ?>

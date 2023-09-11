@@ -195,6 +195,7 @@
         }
     }
     .credits{
+        line-height: .8rem;
         font-weight: 400 !important;
         font-size: 8px;
         font-family: $font-stack-headings;
@@ -241,6 +242,9 @@
         margin-bottom: 2rem;
         .footer-submenu{
             margin-bottom: 2rem;
+            a{
+                margin: 0 auto !important;
+            }
         }
     }
     .footer-menu-wrap {

@@ -22,6 +22,26 @@ var googleMapScriptLoaded;
 var neighbourhoodScriptLoaded;
 </script>
 
+<?php if( get_field('is_book_page') ): ?>
+<script>
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  event: 'visitedIbePage',
+  <?php if( get_current_blog_id() == 2 ): // Zetter Hotel GTM ?>
+  hotel_location: 'clerkenwell'
+  <?php elseif( get_current_blog_id() == 3 ): // Clerkenwell GTM ?>
+  hotel_location: 'marrables-hotel'
+  <?php elseif( get_current_blog_id() == 4 ): // Clerkenwell GTM ?>
+  hotel_location: 'marylebone'
+  <?php elseif( get_current_blog_id() == 5 ): // Marylebone GTM ?>
+  hotel_location: 'bloomsbury'
+  <?php else: // Group ?>
+  hotel_location: 'group'
+  <?php endif; ?>
+});
+</script>
+<?php endif; ?>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

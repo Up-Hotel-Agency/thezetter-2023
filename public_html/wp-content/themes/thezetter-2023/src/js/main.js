@@ -183,10 +183,12 @@ jQuery(function($){
 
     if(window.location.hash == "#book") {
         $('.js-booking-toggle').toggleClass('menu-open');
+        $('.single-modal.forced').css("z-index", "10");
     }
     window.addEventListener('hashchange', function () {
         if(window.location.hash == "#book") {
             $('.js-booking-toggle').toggleClass('menu-open');
+            $('.single-modal.forced').css("z-index", "10");
         }
     });
     

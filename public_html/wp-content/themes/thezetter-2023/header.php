@@ -68,6 +68,10 @@ dataLayer.push({
 </style>
 <?php if(get_field('not_zetter', 'options') || !get_field('is_group', 'options')): ?>
     <?php include 'secondary_styles.php'; ?>
+    <!-- Hotels Network -->
+    <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042281&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+    <!-- TripTease -->
+    <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
 <?php endif; ?>
 
 <?php if($_SESSION['not_zetter']): ?>

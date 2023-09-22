@@ -183,6 +183,12 @@ input[type="button"] {
         padding-bottom: 0;
     }
 }
+button.ibe-persons-qty-selector-button{
+    margin: unset;
+    letter-spacing: unset;
+    padding: unset;
+    color: #2b8ca1;
+}
 
 //Import Button variations
 @import "primary-buttons";

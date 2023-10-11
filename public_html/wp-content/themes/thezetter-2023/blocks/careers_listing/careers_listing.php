@@ -51,47 +51,58 @@ function careers_listing_render_callback( $block, $content = '', $is_preview = f
                 <?php endif; ?>
             </div>
         </div>
-        <?php
-        $args = array(
-            'posts_per_page' => -1,
-            'post_type' => 'careers',
-        );
-        $the_query = new WP_Query( $args );
-        if ( $the_query->have_posts() ) :
-            $careersCount = 1;
-            while ( $the_query->have_posts() ) : $the_query->the_post(); $career = get_the_ID(); ?>
-                <div class="img-content img-content-banner <?php if( $careersCount % 2 ): ?>text-image<?php else: ?>image-text<?php endif; ?>">
-                    <div class="img" data-aos="fade-up">
-                        <?php block_media( get_field('job_image', $career), [
-                            'img_sizes' => array('default' => 'img_800', 'page_area' => 100, 'mobile_page_area' => 100),
-                            'default_aspect' => '4/3',
-                            'slick_dots' => true,
-                        ]); ?>
-                    </div>
+        <div class="careers">
+            <?php
+            $args = array(
+                'posts_per_page' => -1,
+                'post_type' => 'careers',
+            );
+            $the_query = new WP_Query( $args );
+            if ( $the_query->have_posts() ) :
+                $careersCount = 1;
+                while ( $the_query->have_posts() ) : $the_query->the_post(); $career = get_the_ID(); ?>
+                    <div class="img-content <?php if( $careersCount % 2 ): ?>text-image<?php else: ?>image-text<?php endif; ?>">
 
-                    <div class="content">
-                        <div class="content-inner">
-                            <header>
-                                <?php if( get_field('job_type', $career) ): ?>
-                                    <h1 class="mb-3 h4 regular-weight" data-aos="fade-up">
-                                        <?php the_field('job_type', $career); ?>
-                                    </h1>
+                        <div class="content">
+                            <div class="content-inner">
+                                <header>
+                                    <?php if( get_field('job_type', $career) ): ?>
+                                        <h1 class="mb-3 h4 regular-weight" data-aos="fade-up">
+                                            <?php the_field('job_type', $career); ?>
+                                        </h1>
+                                    <?php endif; ?>
+                                    <h2 data-aos="fade-up">
+                                        <?php the_title(); ?>
+                                    </h2>
+                                </header>
+
+                                <?php if(get_field('job_description', $career)): ?>
+                                    <article class="content-wrap content-wrap-careers" data-aos="fade-up" data-aos-delay="150">
+                                        <?php the_field('job_description', $career); ?>
+                                    </article>
                                 <?php endif; ?>
-                                <h2 data-aos="fade-up">
-                                    <?php the_title(); ?>
-                                </h2>
-                            </header>
 
-                            <?php if(get_field('job_description', $career)): ?>
-                                <article class="content-wrap content-wrap-careers" data-aos="fade-up" data-aos-delay="150">
-                                    <?php the_field('job_description', $career); ?>
-                                </article>
-                            <?php endif; ?>
+                                <?php if( have_rows('buttons_buttons', $career) ): ?>
+                                    <div class="buttons"  data-aos="fade-up" data-aos-delay="200">
+                                        <?php while ( have_rows('buttons_buttons', $career) ) : the_row(); ?>
+                                            <?php
+                                            $class = get_sub_field('button_type', $career);
+                                            $link = get_sub_field('link_field_link', $career);
+                                            if( isLink( $link ) ):
+                                            ?>
+                                                <a class="button <?php echo $class; ?>" href="<?php echo linkField( $link, 'url' ); ?>" <?php echo linkField( $link, 'target' ); ?>>
+                                                    <?php echo linkField( $link, 'text' ); ?>
+                                                </a>
+                                            <?php endif; ?>
+                                        <?php endwhile; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php $careersCount++; endwhile;
-        endif; wp_reset_query(); ?>
+                <?php $careersCount++; endwhile;
+            endif; wp_reset_query(); ?>
+        </div>
     </section>
     <?php
 }

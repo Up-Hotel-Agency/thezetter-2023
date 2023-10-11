@@ -46,9 +46,6 @@ function block_buttons($field, $opts = [] ){
                         $sevenroomsID = $button['restaurant_name'];
                         $sevenroomsTrigger = uniqid();
                         ?>
-                         <div class="button <?php echo $class; ?>" id="<?php echo $sevenroomsTrigger; ?>">
-                                <?php echo linkField( $link, 'text' ); ?>
-                        </div>
                         <script src=https://www.sevenrooms.com/widget/embed.js></script>
                         <script>
                         SevenroomsWidget.init({
@@ -58,6 +55,9 @@ function block_buttons($field, $opts = [] ){
                             clientToken: "" //(Optional) Pass the api generated clientTokenId here
                         })
                         </script>
+                         <div class="button <?php echo $class; ?>" id="<?php echo $sevenroomsTrigger; ?>">
+                                <?php echo linkField( $link, 'text' ); ?>
+                        </div>
 
                         <?php
                     else: 

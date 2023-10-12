@@ -66,10 +66,18 @@ function careers_listing_render_callback( $block, $content = '', $is_preview = f
                         <div class="content">
                             <div class="content-inner">
                                 <header>
-                                    <?php if( get_field('job_type', $career) ): ?>
-                                        <h1 class="mb-3 h4 regular-weight" data-aos="fade-up">
-                                            <?php the_field('job_type', $career); ?>
-                                        </h1>
+                                    <?php $hotel = get_field_object( 'hotel', $career ); ?>
+                                    <?php $value = $hotel['value']; ?>
+                                    <?php if(($value) && ($value != 'no-logo')): ?>
+                                        <?php $url =  get_template_directory_uri() . "/assets/img/" . $value . ".png"; ?>
+                                        <div class="logo">
+                                            <img class="mb-5 logos-careers" src="<?php echo $url; ?>">
+                                            <?php if( get_field('job_type', $career) ): ?>
+                                                <h1 class="mb-3 h4 regular-weight min-hotel" data-aos="fade-up">
+                                                    <?php the_field('job_type', $career); ?>
+                                                </h1>
+                                            <?php endif; ?>
+                                        </div>
                                     <?php endif; ?>
                                     <h2 data-aos="fade-up">
                                         <?php the_title(); ?>

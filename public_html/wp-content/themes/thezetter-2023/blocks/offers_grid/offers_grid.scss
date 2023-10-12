@@ -35,6 +35,38 @@
         padding: 2rem 0;
         .content{
             .content-inner{
+                .logo{
+                    display: flex;
+                    flex-direction: row;
+                    .logos-careers{
+                        max-height: 2.5rem;
+                        width: auto;
+                        object-fit: contain;
+                    }
+                    .min-hotel{
+                        position: relative;
+                        padding-left: 2.5rem;
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 0;
+                        @include size-M;
+                        font-style: italic;
+                        font-weight: 500;
+                        line-height: normal;
+                        letter-spacing: 0.72px;
+                        text-transform: capitalize;
+                        &::after{
+                            content: "";
+                            position: absolute;
+                            width: 1.5rem;
+                            height: 1px;
+                            left: .5rem;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            @include color(background-color, 'body');
+                        }
+                    }
+                }
                 .buttons{
                     display: flex;
                     flex-direction: column;

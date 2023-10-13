@@ -50,12 +50,12 @@ function block_buttons($field, $opts = [] ){
                         <script>
                         SevenroomsWidget.init({
                             venueId: "<?php echo $sevenroomsID; ?>",
-                            triggerId: "<?php echo $sevenroomsTrigger; ?>", // id of the dom element that will trigger this widget
+                            triggerId: "sr-res-root", // id of the dom element that will trigger this widget
                             type: "reservations", // either 'reservations' or 'waitlist' or 'events'
                             clientToken: "" //(Optional) Pass the api generated clientTokenId here
                         })
                         </script>
-                         <div class="button <?php echo $class; ?>" id="<?php echo $sevenroomsTrigger; ?>">
+                         <div class="button <?php echo $class; ?> <?php echo $sevenroomsID; ?>" id="sr-res-root">
                                 <?php echo linkField( $link, 'text' ); ?>
                         </div>
 

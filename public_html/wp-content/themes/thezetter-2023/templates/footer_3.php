@@ -29,6 +29,10 @@
                     <input type="text" name="SURNAME" required placeholder="SURNAME*" aria-label="Enter surname">
                     <input type="email" name="EMAIL" required placeholder="EMAIL ADDRESS*" aria-label="Enter email address">
                     <button class="primary flex items-center no-margin" type="submit" id="btnsubmit" name="btnsubmit">Sign up</button>
+                    <div class="">
+                        <input type="checkbox" required id="acceptance" name="acceptance" value="acceptance">
+                        <label for="acceptance" class="body-xs regular"> I have read and accept <a href="https://thezetter.com/terms-conditions/">Terms & Condifions</a>.</label>
+                    </div>
                 </div>
                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9ea26ca78a5fa6ab143c116df_f01fa4434c" aria-label="Hidden Input" tabindex="-1" value=""></div>
             </form>

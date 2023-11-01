@@ -65,7 +65,7 @@ function newsletter_render_callback( $block, $content = '', $is_preview = false 
                     </div>
                     <p class="flex items-center text-left size-xs">
                         <input type="checkbox" id="terms" required />
-                        <label for="terms">I have read the Terms &amp; Conditions and would like to be added to the mailing list</label>
+                        <label for="terms">I am happy to receive emails for The Zetter and agree to the <a href="https://thezetter.com/privacy-policy/">privacy policy</a>.</label>
                     </p>
                 </form>
             </div>

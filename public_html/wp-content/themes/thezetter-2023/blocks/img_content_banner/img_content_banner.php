@@ -21,6 +21,10 @@ function img_content_banner_render_callback( $block, $content = '', $is_preview 
     extract(set_theme_override_values());
     // the img-content-row class below is for vogue
     ?>
+    <?php 
+        wp_enqueue_script( 'img-content-banner', get_template_directory_uri() . '/assets/js/img_content/img_content.min.js' );
+        wp_enqueue_style( 'img-content-banner', get_template_directory_uri() . '/assets/css/img_content/img_content.css' );
+    ?>
     <section
     class="row full-height banner-image-content  side-spacing layout-text-image container img-content-row<?php if( get_field('override_page_theme') ):?> theme--<?php echo $theme; endif; ?><?php if( array_key_exists('className', $block) ): echo ' ' . $block['className']; endif; ?>"
     id="<?php if( array_key_exists('anchor', $block) && !empty($block['anchor'])): echo esc_attr($block['anchor']); else: echo $block['id']; endif ?>"

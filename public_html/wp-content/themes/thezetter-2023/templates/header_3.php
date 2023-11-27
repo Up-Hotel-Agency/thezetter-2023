@@ -126,3 +126,48 @@
 
 	</div>
 </header>
+
+<?php if(get_field('display_header_banner', 'options')): ?>
+	<?php if(!get_field('display_in_all_pages', 'options')): ?>
+		<?php $page_id = get_queried_object_id(); ?>
+		<?php while ( have_rows('pages', 'options') ) : the_row(); ?>
+			<?php $pages[] = get_sub_field('page', 'options'); ?>
+		<?php endwhile; ?>
+	<?php endif; ?>
+	<?php if(get_field('display_in_all_pages', 'options') || in_array($page_id, $pages)): ?>
+		<?php $link = get_field('banner_link_link', 'options');
+		if( linkField( $link, 'text') ): ?>
+			<a href="<?php echo linkField( $link, 'url' ); ?>" class="header-banner <?php if( get_field('background_image', 'options') ):?> img-abs theme--image <?php else: ?> theme--accent <?php endif; ?>" <?php echo linkField( $link, 'target' ); ?>>
+		<?php else: ?>
+			<div class="header-banner <?php if( get_field('background_image', 'options') ):?> img-abs theme--image <?php else: ?> theme--accent <?php endif; ?>">
+		<?php endif; ?>
+			<div class="header-banner-content">
+				<?php if(get_field('top_overline', 'options')): ?>
+					<p class="mb-1 overline">
+						<?php the_field('top_overline', 'options'); ?>
+					</p>
+				<?php endif; ?>
+				<?php if( get_field('title', 'options') ): ?>
+					<h2 class="h1 no-margin">
+						<?php the_field('title', 'options'); ?>
+					</h2>
+				<?php endif; ?>
+				<?php if(get_field('description', 'options')): ?>
+					<p class="mb-1">
+						<?php the_field('description', 'options'); ?>
+					</p>
+				<?php endif; ?>
+				<?php if(get_field('bottom_overline', 'options')): ?>
+					<p class="mb-1 overline">
+						<?php the_field('bottom_overline', 'options'); ?>
+					</p>
+				<?php endif; ?>
+			</div>
+			<?php if( get_field('background_image', 'options') ): echo img_sizes(get_field('background_image', 'options'), ['default' => 'img_2200', 'page_area' => '100', 'mobile_page_area' => '100', 'lazy_load' => true]); endif; ?>
+		<?php if( linkField( $link, 'text') ): ?>
+			</a>
+		<?php else: ?>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
+<?php endif; ?>

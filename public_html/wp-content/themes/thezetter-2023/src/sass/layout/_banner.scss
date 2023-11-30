@@ -283,15 +283,17 @@
     position: relative;
     margin-bottom: 2px;
     display: block;
-    &::before{
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-color: $color-body;
-        opacity: .6;
+    &.opacity{
+        &::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: $color-body;
+            opacity: .6;
+        }
     }
     img{
         position: absolute;
@@ -309,16 +311,16 @@
         z-index: 2;
         .overline{
             font-family: $font-stack-headings;
-            text-transform: math-auto;
+            text-transform: unset !important;
             font-style: italic;
         }
         h2{
             padding: 0.5rem 0;
+            font-size: clamp(1.857rem, 2.208727vw, 2rem);
         }
-        p{
+        p.text{
             text-transform: uppercase;
-
-    @include size-S;
+        @include size-S;
         }
     }
 }

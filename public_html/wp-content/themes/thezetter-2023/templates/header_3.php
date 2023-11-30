@@ -137,13 +137,13 @@
 	<?php if(get_field('display_in_all_pages', 'options') || in_array($page_id, $pages)): ?>
 		<?php $link = get_field('banner_link_link', 'options');
 		if( linkField( $link, 'text') ): ?>
-			<a href="<?php echo linkField( $link, 'url' ); ?>" class="header-banner <?php if( get_field('background_image', 'options') ):?> img-abs theme--image <?php else: ?> theme--accent <?php endif; ?>" <?php echo linkField( $link, 'target' ); ?>>
+			<a href="<?php echo linkField( $link, 'url' ); ?>" class="header-banner <?php if(get_field('add_opacity', 'options')):?>opacity<?php endif;?> <?php if( get_field('background_image', 'options') ):?> img-abs theme--image <?php else: ?> theme--accent <?php endif; ?>" <?php echo linkField( $link, 'target' ); ?>>
 		<?php else: ?>
-			<div class="header-banner <?php if( get_field('background_image', 'options') ):?> img-abs theme--image <?php else: ?> theme--accent <?php endif; ?>">
+			<div class="header-banner <?php if(get_field('add_opacity', 'options')):?>opacity<?php endif;?> <?php if( get_field('background_image', 'options') ):?> img-abs theme--image <?php else: ?> theme--accent <?php endif; ?>">
 		<?php endif; ?>
 			<div class="header-banner-content">
 				<?php if(get_field('top_overline', 'options')): ?>
-					<p class="mb-1 overline">
+					<p class="mb-0 overline">
 						<?php the_field('top_overline', 'options'); ?>
 					</p>
 				<?php endif; ?>
@@ -153,12 +153,12 @@
 					</h2>
 				<?php endif; ?>
 				<?php if(get_field('description', 'options')): ?>
-					<p class="mb-1">
+					<p class="mb-1 text">
 						<?php the_field('description', 'options'); ?>
 					</p>
 				<?php endif; ?>
 				<?php if(get_field('bottom_overline', 'options')): ?>
-					<p class="mb-1 overline">
+					<p class="mb-0 overline">
 						<?php the_field('bottom_overline', 'options'); ?>
 					</p>
 				<?php endif; ?>

@@ -172,6 +172,8 @@ jQuery(function($){
 
     $('.location-selector-inner a').click(function(e){
         e.preventDefault();
+        $(this).parents('.location-select').removeClass('error');
+        $(this).parents('.location-select').addClass('active');
         var locationText = $(this).text(); 
         $('.location-display').text(locationText);
     });

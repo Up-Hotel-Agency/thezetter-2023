@@ -6,20 +6,24 @@ jQuery(function($){
     $('.js-booking-mask').submit(function(e) {
         // generic code to be modified
         e.preventDefault();
-        var location = $(this).data('url');
-        var arrivalDate = $(this).find('input[name="arrival"]').val();
-        var departureDate = $(this).find('input[name="departure"]').val();
-        var arrival = dayjs(arrivalDate).format('YYYY-MM-DD');
-        var departure = dayjs(departureDate).format('YYYY-MM-DD');
-        var rooms = $(this).find('input[name="rooms"]').val();
-        var adults = $(this).find('input[name="adults"]').val();
-        var children = $(this).find('input[name="children"]').val();
-        var propertyId = $(this).data('property-id');
-        $('.js-booking-toggle').toggleClass('menu-open');
-
-
-        // go to your IBE
-        window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
+        if($('.location-select').hasClass('active')){
+            var location = $(this).data('url');
+            var arrivalDate = $(this).find('input[name="arrival"]').val();
+            var departureDate = $(this).find('input[name="departure"]').val();
+            var arrival = dayjs(arrivalDate).format('YYYY-MM-DD');
+            var departure = dayjs(departureDate).format('YYYY-MM-DD');
+            var rooms = $(this).find('input[name="rooms"]').val();
+            var adults = $(this).find('input[name="adults"]').val();
+            var children = $(this).find('input[name="children"]').val();
+            var propertyId = $(this).data('property-id');
+            $('.js-booking-toggle').toggleClass('menu-open');
+    
+    
+            // go to your IBE
+            window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
+        }else{
+            $('.location-select').addClass('error');
+        }
     });
 
 

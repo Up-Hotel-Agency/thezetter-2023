@@ -22,6 +22,7 @@
     <h2><?php _e('Reserve A Room', 'zetter'); ?></h2>
     <div class="input-wrap location-select input-styled">
         <label class="size-l"><?php _e('Destination', 'zetter'); ?></label>
+        <div class="error-message">*Select a destination</div>
         <div class="location-drop-down">
             <span class="location-display size-xs"><?php if($curBlog == 1): _e('Choose Location', 'zetter'); else: echo get_bloginfo('name'); endif; ?></span>
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>caret-down</title><g class="caret-down"><polyline class="arrowhead" points="36.036 18.982 24 31.018 11.964 18.982" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg>

@@ -20,7 +20,7 @@
         <?php echo file_get_contents( get_field('header_logo', 'options') ); ?>
     </div>
     <h2><?php _e('Reserve A Room', 'zetter'); ?></h2>
-    <div class="input-wrap location-select input-styled">
+    <div class="input-wrap location-select input-styled <?php if($curBlog != 1):?> active <?php endif; ?>">
         <label class="size-l"><?php _e('Destination', 'zetter'); ?></label>
         <div class="error-message">*Select a destination</div>
         <div class="location-drop-down">

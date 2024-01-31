@@ -7,6 +7,12 @@ if( function_exists('acf_add_options_page') ) {
     acf_add_options_page('Site Options');
 }
 
+// Allow unsafe HTML from client side (ACF the_field)
+add_filter( 'acf/the_field/allow_unsafe_html', function() { return true; }, 10, 2);
+
+//Disable ACF admin notice about upcoming ACF escape function 
+add_filter( 'acf/admin/prevent_escaped_html_notice', '__return_true' );
+
 /**
 * @desc auto set licenese key
 */

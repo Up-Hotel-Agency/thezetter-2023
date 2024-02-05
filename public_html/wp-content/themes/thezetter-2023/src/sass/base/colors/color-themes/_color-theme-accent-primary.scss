@@ -34,6 +34,6 @@ $color-vars-accent-primary: (
 
     @include color(background-color, 'background');
     a{
-        --color-accent-primary: rgba($color-background-alt, 0.75);
+        @include color(--color-accent-primary, 'body-50');
     }
 }

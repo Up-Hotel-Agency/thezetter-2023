@@ -3,15 +3,28 @@
     .img-content-banner{
         .img{
             order: 2;
+            @include breakpoint(M){
+                order: 1;
+            }
         }
         @include breakpoint(S){
             display: revert;
+            .img{
+                width: 100% !important;
+            }
+            .content{
+                width: 100% !important;
+                padding: 3.25rem 3.063rem !important;
+            }
         }
     }
     .content{
         padding-left: 3rem !important;
         .content-inner{
             max-width: unset !important;
+        }
+        @include breakpoint(M){
+            order: 2;
         }
     }
     .side-spacing.layout-text-image{

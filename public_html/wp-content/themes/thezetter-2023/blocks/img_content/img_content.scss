@@ -15,7 +15,7 @@
             }
         }
     }
-    @include breakpoint(XS) {
+    @include breakpoint(M) {
         min-height: auto;
         .content{
             padding: 3rem 3.429rem !important;
@@ -45,7 +45,7 @@
                     width: 40%;
                 }
             }
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
                 padding: 0;
                 .img{
                     width: 100%;
@@ -61,7 +61,7 @@
             }
         }
     }
-    @include breakpoint(XS) {
+    @include breakpoint(M) {
         .content{
             padding-top: 3.25rem !important;
             padding-bottom: 3.25rem !important;
@@ -100,7 +100,7 @@
                     width: 40%;
                 }
             }
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
                 padding: 0;
                 .img{
                     width: 100%;
@@ -123,7 +123,7 @@
         .content {
             width: 40%;
         }
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             padding: 0 !important;
             .img {
                 width: 100%;
@@ -140,7 +140,7 @@
     display: flex;
     position: relative;
 
-    @include breakpoint(XS) {
+    @include breakpoint(M) {
         flex-direction: column;
     }
     &.slick-slide {
@@ -157,10 +157,10 @@
         padding-top: 2rem;
         padding-bottom: 2rem;
 
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             padding: 0 0 0 3rem;
         }
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             padding: 2rem 0 0 0;
             margin: 0;
             width: 100%;
@@ -175,7 +175,7 @@
                 .button {
                     white-space: nowrap;
                 }
-                @include breakpoint(XS) {
+                @include breakpoint(M) {
                     justify-content: start;
                 }
             }
@@ -197,7 +197,7 @@
             flex-direction: column;
             margin: 0 auto;
 
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
                 align-items: start;
                 text-align: left;
                 &.mobile-left{
@@ -231,7 +231,7 @@
             p, ul li{
                 font-family: $font-stack-headings;
             }
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
                 p{
                     @include size-M;
                 }
@@ -256,18 +256,18 @@
         .image-carousel {
            // min-height: 30rem;
 
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
               //  min-height: 16rem;
             }
             &.shorter {
               //  min-height: 24rem;
 
-                @include breakpoint(XS) {
+                @include breakpoint(M) {
                    // min-height: 16rem;
                 }
             }
         }
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             width: 100%;
         }
         img {
@@ -304,10 +304,10 @@
             padding-top: 2rem;
             padding-bottom: 2rem;
 
-            @include breakpoint(S) {
+            @include breakpoint(M) {
                 padding: 0 3rem 0 0;
             }
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
                 padding: 2rem 0 0 0;
                 display: block;
                 margin: 0;
@@ -317,14 +317,14 @@
         .img {
             order: 2;
 
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
                 order: unset;
                 width: 100%;
             }
         }
     }
     &.mob-img-bottom {
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             .content {
                 order: 1;
                 padding: 0 0 2rem 0;
@@ -348,7 +348,7 @@
             .buttons {
                 justify-content: center;
                 margin-bottom: 0;
-                @include breakpoint(XS) {
+                @include breakpoint(M) {
                     justify-content: start;
                 }
             }
@@ -359,7 +359,7 @@
             .image-carousel {
                 min-height: 18rem;
 
-                @include breakpoint(XS) {
+                @include breakpoint(M) {
                     min-height: 16rem;
                 }
             }
@@ -381,7 +381,7 @@
 .button.icon.content-carousel-prev {
     top: calc(50% - 3.25rem);
 
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         left: calc(50% - 3.25rem);
         top: auto;
         bottom: 2rem;
@@ -391,7 +391,7 @@
 .button.icon.content-carousel-next {
     bottom: calc(50% - 3.25rem);
 
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         right: calc(50% - 3.25rem);
         top: auto;
         bottom: 2rem;
@@ -399,7 +399,7 @@
 }
 
 .content-carousel-container {
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         padding-bottom: 7rem;
     }
 }
@@ -412,7 +412,7 @@
         padding-left: 4rem;
         padding-right: 4rem;
     }
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         padding-left: 0;
         padding-right: 0;
     }
@@ -420,7 +420,7 @@
         margin: 0 1rem;
         width: calc(50% - 2rem - 1px);
 
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             margin: 0;
             width: 100%;
             padding-bottom: 2rem;
@@ -479,7 +479,7 @@ section.map-style-block{
             @include breakpoint(L){
                 width: 40%;
             }
-            @include breakpoint(S){
+            @include breakpoint(M){
                 width: 100%;
             }
         }
@@ -488,7 +488,7 @@ section.map-style-block{
             @include breakpoint(L){
                 width: 60%;
             }
-            @include breakpoint(S){
+            @include breakpoint(M){
                 width: 100%;
             }
             .media-container{

@@ -84,6 +84,11 @@
         }
     }
 }
+.footer-content-top{
+    @include breakpoint(M) {
+        flex-direction: column;
+    }
+}
 .footer-menu-main{
     display: flex;
     flex-direction: column;
@@ -105,7 +110,7 @@
             }
         }
     }
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         flex-direction: column;
         text-align: center;
         padding-top: 4.214rem;
@@ -123,11 +128,11 @@
 
 .footer-logo {
     flex-basis: 25%;
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         width: 100%;
     }
     svg {
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             width: 10rem;
             height: auto;
         }
@@ -140,7 +145,7 @@
         flex-basis: 25%;
         flex-grow: 1;
 
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             width: 100%;
             flex-basis: 100%;
         }
@@ -172,7 +177,7 @@
     grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     gap: 2rem;
 
-    @include breakpoint(XS) {
+    @include breakpoint(M) {
         flex-basis: 100%;
         width: 100%;
         display: block;
@@ -189,7 +194,7 @@
         a{
             @include size-S;
             text-transform: uppercase;
-            @include breakpoint(XS) {
+            @include breakpoint(M) {
                 padding: 0.357rem 0 !important;
                 margin: 0 auto;
             }
@@ -201,7 +206,7 @@
         font-size: 8px;
         font-family: $font-stack-headings;
         @include color(color, 'body');
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             margin-top: 1.786rem;
         }
     }
@@ -216,7 +221,7 @@
     .email {
         white-space: nowrap;
     }
-    @include breakpoint(XS) {
+    @include breakpoint(M) {
         padding-top: 1rem;
         padding-bottom: 1.5rem;
 
@@ -238,7 +243,7 @@
         flex-direction: column;
         justify-content: space-between;
     }
-    @include breakpoint(XS) {
+    @include breakpoint(M) {
         padding-right: 0;
         margin-bottom: 2rem;
         .footer-submenu{
@@ -277,14 +282,14 @@
     .h5{
         margin-bottom: 1.813rem;
         @include size-M;
-        @include breakpoint(XS) { 
+        @include breakpoint(M) { 
             justify-content: center;
         }
     }
     ul {
         width: 100%;
 
-        @include breakpoint(XS) { 
+        @include breakpoint(M) { 
             display: flex;
             flex-wrap: wrap;
         }
@@ -295,9 +300,12 @@
             &:last-of-type{
                 margin-bottom: 0;
             }
-            @include breakpoint(XS) {
-                width: 50%;
+            @include breakpoint(M) {
+                width: 100%;
                 margin-bottom: 0;
+                a{
+                    margin: auto;
+                }
             }
         }
     }
@@ -307,7 +315,7 @@
         @include size-S;
         text-transform: uppercase;
 
-        @include breakpoint(XS) {
+        @include breakpoint(M) {
             padding: 0.357rem 0 !important;
             margin: 0;
         }
@@ -316,6 +324,9 @@
         }
         &:last-of-type{
             margin: 0;
+            @include breakpoint(M) {
+                margin: auto;
+            }
         }
     }
 }

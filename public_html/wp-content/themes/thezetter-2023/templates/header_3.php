@@ -48,7 +48,7 @@
 			'class' => 'button no-margin button-header',
 			'type'  => 'primary'
 		]); ?>
-		<a href="#" title="Toggle menu" class="hidden nav-toggle js-nav-toggle sm:flex items-center justify-center"><div class="menu-icon"><span></span><span></span><span></span></div></a>
+		<a href="#" title="Toggle menu" class="hidden nav-toggle js-nav-toggle md:flex items-center justify-center"><div class="menu-icon"><span></span><span></span><span></span></div></a>
 	</div>
 	<div class="overlay overlay-menu">
 		<div>

@@ -98,7 +98,7 @@ body {
     ul {
         display: flex;
 
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             display: none;
         }
         a {
@@ -190,7 +190,7 @@ body {
         height: 2.8125rem;
         padding: unset;
         align-items: end;
-        @include breakpoint(S){
+        @include breakpoint(M){
             svg{
                 max-width: 10rem;
             }
@@ -239,7 +239,7 @@ body {
         margin-right: .5rem;
         @include size-S;
         position: relative;
-        @include breakpoint(S){
+        @include breakpoint(M){
             display: none!important;
         }
         &::after{
@@ -281,14 +281,14 @@ body {
             @include color(background-color, 'background');
             @include color(border-color, 'buttons');
         }
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             padding: 0.429rem 0.929rem !important;
         }
     }
     @media only screen and (max-width: 850px) {
         padding-right: 1rem;
     }
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         padding-right: 0;
     }
     @include breakpoint(XS) {
@@ -353,7 +353,7 @@ body {
                     margin-right: 1rem;
                     @extend %transition;
                     
-                    @include breakpoint(S) {
+                    @include breakpoint(M) {
                         transform: rotate(-45deg) translate(0.5rem, 0.325rem);
                         margin-right: 0.75rem;
                     }
@@ -371,7 +371,7 @@ body {
             @include size-S;
             padding: 0.5rem 0.875rem;
         }
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             height: var(--header-height);
             display: flex;
             justify-content: center;
@@ -615,7 +615,7 @@ body {
     height: 100%;
     @extend %transition;
 
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         width: 100%;
         top: 0;
         left: 0;
@@ -677,7 +677,7 @@ body {
         height: 3.5rem;
         @extend %transition;
 
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             display: flex;
             transform: translateX(100%);
         }
@@ -755,14 +755,14 @@ body {
             z-index: -1;
             @extend %transition;
 
-            @include breakpoint(S) {
+            @include breakpoint(M) {
                 transform: translateX(100%);
             }
             &.active {
                 transform: translateX(100%);
                 opacity: 1;
 
-                @include breakpoint(S) {
+                @include breakpoint(M) {
                     z-index: 2;
                     opacity: 1;
                     transform: translateX(0);
@@ -812,7 +812,7 @@ body {
         flex-direction: column;
         justify-content: center;
 
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             justify-content: flex-start;
             padding-top: 2rem !important;
             min-height: 100vh;
@@ -836,7 +836,7 @@ body {
                     width: auto;
                 }
             }
-            @include breakpoint(S) {
+            @include breakpoint(M) {
                 .bookingmask-footer-content{
                     margin-top: 2.5rem;
                 }
@@ -897,7 +897,7 @@ body {
         overflow: hidden;
         position: relative;
 
-        @include breakpoint(S) {
+        @include breakpoint(M) {
             display: none;
         }
 
@@ -942,7 +942,7 @@ body {
         }
     }
 
-    @include breakpoint(S) {
+    @include breakpoint(M) {
         .nav-left,
         .nav-right {
             width: 100%;
@@ -968,7 +968,7 @@ body {
         .nav-toggle {
             left: auto;
             right: 3.75rem;
-            @include breakpoint(S) {
+            @include breakpoint(M) {
                 top: 0;
                 right: 2.143rem;
             }

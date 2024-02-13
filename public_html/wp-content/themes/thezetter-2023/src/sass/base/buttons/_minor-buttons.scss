@@ -43,7 +43,7 @@ input[type="button"].minor {
             height: 1px;
             right: -1px;
             left: unset;
-            bottom: calc(50% - 8px);
+            bottom: 2px;
             @include color(background-color, 'body');
             animation-name: underline-menu-leave;
             animation-duration: .5s;

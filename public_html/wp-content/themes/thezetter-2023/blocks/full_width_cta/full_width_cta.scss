@@ -43,7 +43,7 @@
     padding-left: 3.188rem;
     z-index: 3;
 
-    @include breakpoint(XS) {
+    @include breakpoint(M) {
       max-width: unset;
       width: 100%;
       padding: 4.5rem 3.5rem;

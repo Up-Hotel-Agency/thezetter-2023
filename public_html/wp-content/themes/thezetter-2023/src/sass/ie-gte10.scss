@@ -10,7 +10,7 @@
 }
 
 //Target IE 10-11
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 
     @include checkBrowser;
 

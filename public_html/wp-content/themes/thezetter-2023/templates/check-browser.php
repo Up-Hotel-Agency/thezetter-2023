@@ -8,8 +8,12 @@
       <a href="#" onclick="hidePopUp()" class="btn-other">Continue Without Updating</a>
     </div>
   </div>
-
-<?php wp_enqueue_style( 'ie-gte10', get_template_directory_uri() . '/assets/css/ie-gte10.css' ); ?>
+  <?php
+    $msie = strpos($_SERVER["HTTP_USER_AGENT"], 'MSIE') ? true : false;
+    if ($msie):
+      wp_enqueue_style( 'ie-gte10', get_template_directory_uri() . '/assets/css/ie-gte10.css' ); 
+    endif; 
+  ?>
 
 <script type="text/javascript">
   function hidePopUp() {

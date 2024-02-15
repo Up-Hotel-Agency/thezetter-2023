@@ -3,6 +3,12 @@
     font-synthesis: small-caps;
 }
 
+// this is here so it loads above the fold and doesn't flash up
+
+.check-browser-pop-up {
+    display: none;
+}
+
 .cf:before,
 .cf:after,
 .clearfix:before,
@@ -165,12 +171,6 @@ body {
             }
         }
     }
-}
-
-// this is here so it loads above the fold and doesn't flash up
-
-.check-browser-pop-up {
-    display: none;
 }
 
 .gallery-modal,

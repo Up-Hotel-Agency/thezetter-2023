@@ -85,9 +85,11 @@ function posts_carousel_render_callback( $block, $content = '', $is_preview = fa
                             <a class="no-margin flex justify-end" href="<?php the_permalink( $event ); ?>">
                                 <div class="img">
                                     <div class="image-carousel">
-                                        
-                                        <?php block_media( get_field('featured_image__video', $event), [
-                                            'img_sizes' => array('default' => 'img_1367', 'page_area' => 42, 'mobile_page_area' => 85)
+                                        <?php block_media( get_field('featured_image__video'), [
+                                            'img_sizes' => array('default' => 'img_1367', 'page_area' => 42, 'mobile_page_area' => 85),
+                                            'allow_aspect' => false, 
+                                            'dynamic_mobile' => false,
+                                            'video_autoplay' => true
                                         ]); ?>
                                     </div>
                                 </div>

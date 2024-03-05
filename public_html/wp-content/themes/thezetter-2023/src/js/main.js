@@ -103,7 +103,7 @@ jQuery(function($){
         $("[data-aos^=fade][data-aos^=fade]").css("opacity", "1");
         $("[data-aos^=fade][data-aos^=fade]").css("transform", "none");
         $("[data-aos^=fade][data-aos^=fade]").css("pointer-events", "auto");
-        $("head").append('<link rel="stylesheet" type="text/css" href="/wp-content/themes/thezetter-2023/assets/css/ie-gte10.css" />');
+        // $("head").append('<link rel="stylesheet" type="text/css" href="/wp-content/themes/thezetter-2023/assets/css/ie-gte10.css" />');
     } else {
         AOS.init();
     }

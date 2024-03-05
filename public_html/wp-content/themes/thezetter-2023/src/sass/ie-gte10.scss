@@ -1,6 +1,5 @@
 @import "utilities/variables";
 @import "utilities/mixins";
-@import "utilities/_checkbrowser";
 @import "base/colors/_colors-core";
 
 //Hide check browser popup by default
@@ -11,7 +10,7 @@
 
 //Target IE 10-11
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-
+    @import "utilities/_checkbrowser";
     @include checkBrowser;
 
     // stop AOS

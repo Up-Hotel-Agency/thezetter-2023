@@ -88,7 +88,7 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
         if ( $the_query->have_posts() ) :
             $offersCount = 1;
             while ( $the_query->have_posts() ) : $the_query->the_post(); $offer = get_the_ID(); ?>
-                <div class="img-content img-content-banner <?php if($offersCount == 1): ?> theme--accent <?php endif; ?><?php if( $offersCount % 2 ): ?>text-image<?php else: ?>image-text<?php endif; ?>">
+                <div class="img-content img-content-banner <?php if( $offersCount % 2 ): ?>text-image<?php else: ?>image-text<?php endif; ?>">
                     <div class="img" data-aos="fade-up">
                         <?php block_media( get_field('offers_media', $offer), [
                             'img_sizes' => array('default' => 'img_800', 'page_area' => 100, 'mobile_page_area' => 100),
@@ -100,53 +100,30 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
 
                     <div class="content">
                         <div class="content-inner">
-
-                            <?php if($offersCount == 1): ?>
-                                <h1 class="mb-6 h4" data-aos="fade-up">
-                                    Special Offer
-                                </h1>
-                                <h2 class="regular-weight" data-aos="fade-up">
+                            <header>
+                                <h2 data-aos="fade-up">
                                     <?php if( get_field('title', $offer) ): ?>
                                         <?php the_field('title', $offer); ?>
                                     <?php else: ?>
                                         <?php the_title(); ?>
                                     <?php endif; ?>
                                 </h2>
-                                <div class="buttons" data-aos="fade-up" data-aos-delay="150">
-                                    <a class="button minor" href="<?php echo get_the_permalink(); ?>">
-                                        Learn More
-                                    </a>
-                                    <?php block_buttons(get_field('link_field', $offer), [
-                                        'class' => 'button minor '
-                                    ]); ?>
-                                </div>
+                            </header>
 
-                            <?php else: ?>
-                                <header>
-                                    <h2 data-aos="fade-up">
-                                        <?php if( get_field('title', $offer) ): ?>
-                                            <?php the_field('title', $offer); ?>
-                                        <?php else: ?>
-                                            <?php the_title(); ?>
-                                        <?php endif; ?>
-                                    </h2>
-                                </header>
-
-                                <?php if(get_field('content_content', $offer)): ?>
-                                    <article class="content-wrap" data-aos="fade-up" data-aos-delay="150">
-                                        <?php the_field('content_content', $offer); ?>
-                                    </article>
-                                <?php endif; ?>
-                                
-                                <div class="buttons" data-aos="fade-up" data-aos-delay="150">
-                                    <a class="button minor" href="<?php echo get_the_permalink(); ?>">
-                                        Let's go
-                                    </a>
-                                    <?php block_buttons(get_field('link_field', $offer), [
-                                        'class' => 'button minor '
-                                    ]); ?>
-                                </div>
+                            <?php if(get_field('content_content', $offer)): ?>
+                                <article class="content-wrap" data-aos="fade-up" data-aos-delay="150">
+                                    <?php the_field('content_content', $offer); ?>
+                                </article>
                             <?php endif; ?>
+                            
+                            <div class="buttons" data-aos="fade-up" data-aos-delay="150">
+                                <a class="button minor" href="<?php echo get_the_permalink(); ?>">
+                                    Let's go
+                                </a>
+                                <?php block_buttons(get_field('link_field', $offer), [
+                                    'class' => 'button minor '
+                                ]); ?>
+                            </div>
                         </div>
                     </div>
                 </div>

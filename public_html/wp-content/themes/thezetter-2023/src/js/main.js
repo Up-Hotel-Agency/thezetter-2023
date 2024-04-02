@@ -182,11 +182,14 @@ jQuery(function($){
         e.preventDefault();
         $('.js-booking-toggle').toggleClass('menu-open');
     });
-
-    if(window.location.hash == "#book") {
-        $('.js-booking-toggle').toggleClass('menu-open');
-        $('.single-modal.forced').css("z-index", "10");
-    }
+    
+    $('.button').click(function(e) {
+        if(window.location.hash == "#book") {
+            e.preventDefault();
+            $('.js-booking-toggle').toggleClass('menu-open');
+            $('.single-modal.forced').css("z-index", "10");
+        }
+    });
     window.addEventListener('hashchange', function () {
         if(window.location.hash == "#book") {
             $('.js-booking-toggle').toggleClass('menu-open');

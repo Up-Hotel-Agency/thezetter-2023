@@ -10,7 +10,10 @@
 // conversion tools
 include 'templates/conversion_tools.php';
 //Include broswer warning 
+$msie = strpos($_SERVER["HTTP_USER_AGENT"], 'MSIE') ? true : false;
+if($msie):
 include 'templates/check-browser.php';
+endif;
 
 // ajax modal container 
 include 'templates/ajax_modal.php';

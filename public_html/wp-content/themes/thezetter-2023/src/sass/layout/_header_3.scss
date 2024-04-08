@@ -98,7 +98,7 @@ body {
     ul {
         display: flex;
 
-        @include breakpoint(M) {
+        @include breakpoint(L) {
             display: none;
         }
         a {
@@ -239,7 +239,7 @@ body {
         margin-right: .5rem;
         @include size-S;
         position: relative;
-        @include breakpoint(M){
+        @include breakpoint(L){
             display: none!important;
         }
         &::after{

@@ -46,7 +46,7 @@ function block_buttons($field, $opts = [] ){
                         $sevenroomsID = $button['restaurant_name'];
                         $sevenroomsTrigger = uniqid();
                         ?>
-                         <div class="button <?php echo $class; ?> <?php echo $sevenroomsTrigger; ?>" id="sr-res-root<?php echo $sevenroomsTrigger; ?>">
+                         <div class="button button-opentable <?php echo $class; ?> <?php echo $sevenroomsTrigger; ?>" id="sr-res-root<?php echo $sevenroomsTrigger; ?>" data-button="<?php echo $buttonCount; ?>">
                                 <?php echo linkField( $link, 'text' ); ?>
                         </div>
                         <script src="https://www.sevenrooms.com/widget/embed.js"></script>
@@ -59,6 +59,24 @@ function block_buttons($field, $opts = [] ){
                         })
                         </script>
 
+                        <!-- Open Table hidden for now -->
+                        <?php
+                            // if($sevenroomsID == 'theparlouratthezetterclerkenwell'):
+                            //     $loader_rid = '330768';
+                            //     $logo_pid = '63819867';
+                            // elseif($sevenroomsID == 'theparlouratthezettermarylebone'):
+                            //     $loader_rid = '330780';
+                            //     $logo_pid = '63820019';
+                            // else:
+                            //     $loader_rid = '';
+                            //     $logo_pid = '';
+                            // endif; 
+                        ?>
+                        <!-- <div class="open-table-class" data-ot="<?php echo $buttonCount; ?>">
+                            <div class="close-open-table"></div>
+                            <script type='text/javascript' src='//www.opentable.co.uk/widget/reservation/loader?rid=<?php echo $loader_rid; ?>&type=standard&theme=standard&color=8&dark=false&iframe=true&domain=couk&lang=en-GB&newtab=true&ot_source=Restaurant%20website&font=georgia&ot_logo=standard&primary_color=f2eae6&primary_font_color=333333&button_color=525525&button_font_color=ffffff&logo_pid=<?php echo $logo_pid; ?>&cfe=true'></script>
+                        </div> -->
+                        <!-- Open Table hidden for now -->
                         <?php
                     else: 
                         if( isLink( $link ) ):

@@ -38,10 +38,14 @@ body {
     isolation: isolate;
 }
 
-.editor-styles-wrapper,
 body {
     height: auto !important;
     width: auto !important;
+}
+
+.editor-styles-wrapper {
+    height: 100% !important;
+    width: 100% !important;
 }
 
 @import "blocks-editor/editor";

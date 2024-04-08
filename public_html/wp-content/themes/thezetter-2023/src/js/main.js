@@ -164,6 +164,17 @@ jQuery(function($){
         $('.js-menu-toggle, html, body, header').toggleClass('menu-open');
     });
 
+    // Open Table
+    $('.button-opentable').click(function(e){
+        e.preventDefault();
+        var opentablePopup = $(this).attr('data-button');
+        $(this).parents('.buttons').find('.open-table-class[data-ot='+ opentablePopup +']').addClass('open-ot');
+    });
+    $('.close-open-table').click(function(e){
+        e.preventDefault();
+        $(this).parent('.open-table-class').removeClass('open-ot');
+    });
+    
     //Handles booking mask dropdown
     $('.location-drop-down').click(function(e){
         e.preventDefault();

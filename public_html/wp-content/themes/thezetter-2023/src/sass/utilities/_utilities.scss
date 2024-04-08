@@ -404,6 +404,80 @@ img:not(.object-fit),
     order: 0
 }
 
+/* ml */
+
+@include breakpoint(L) {
+
+    .l\:flex {
+        display: flex;
+    }
+
+    .l\:flex-col {
+        flex-direction: column;
+    }
+
+    .l\:justify-end {
+        justify-content: flex-end;
+    }
+
+    .l\:justify-center {
+        justify-content: center;
+    }
+
+    .l\:flex-none {
+        flex: none
+    }
+
+    .l\:flex-wrap {
+        flex-wrap: wrap
+    }
+
+    .l\:flex-no-wrap {
+        flex-wrap: nowrap;
+    }
+
+    .l\:items-center {
+        align-items: center
+    }
+}
+
+/* ml */
+
+@include breakpoint(ML) {
+
+    .ml\:flex {
+        display: flex;
+    }
+
+    .ml\:flex-col {
+        flex-direction: column;
+    }
+
+    .ml\:justify-end {
+        justify-content: flex-end;
+    }
+
+    .ml\:justify-center {
+        justify-content: center;
+    }
+
+    .ml\:flex-none {
+        flex: none
+    }
+
+    .ml\:flex-wrap {
+        flex-wrap: wrap
+    }
+
+    .ml\:flex-no-wrap {
+        flex-wrap: nowrap;
+    }
+
+    .ml\:items-center {
+        align-items: center
+    }
+}
+
 /* md */
 
 @include breakpoint(M) {

@@ -49,7 +49,7 @@ function block_buttons($field, $opts = [] ){
                          <div class="button button-opentable <?php echo $class; ?> <?php echo $sevenroomsTrigger; ?>" id="sr-res-root<?php echo $sevenroomsTrigger; ?>" data-button="<?php echo $buttonCount; ?>">
                                 <?php echo linkField( $link, 'text' ); ?>
                         </div>
-                        <script src="https://www.sevenrooms.com/widget/embed.js"></script>
+                        <!-- <script src="https://www.sevenrooms.com/widget/embed.js"></script>
                         <script>
                         SevenroomsWidget.init({
                             venueId: "<?php echo $sevenroomsID; ?>",
@@ -57,26 +57,26 @@ function block_buttons($field, $opts = [] ){
                             type: "reservations", // either 'reservations' or 'waitlist' or 'events'
                             clientToken: "" //(Optional) Pass the api generated clientTokenId here
                         })
-                        </script>
+                        </script> -->
 
-                        <!-- Open Table hidden for now -->
+                        <!-- Open Table -->
                         <?php
-                            // if($sevenroomsID == 'theparlouratthezetterclerkenwell'):
-                            //     $loader_rid = '330768';
-                            //     $logo_pid = '63819867';
-                            // elseif($sevenroomsID == 'theparlouratthezettermarylebone'):
-                            //     $loader_rid = '330780';
-                            //     $logo_pid = '63820019';
-                            // else:
-                            //     $loader_rid = '';
-                            //     $logo_pid = '';
-                            // endif; 
+                            if($sevenroomsID == 'theparlouratthezetterclerkenwell'):
+                                $loader_rid = '330768';
+                                $logo_pid = '63819867';
+                            elseif($sevenroomsID == 'theparlouratthezettermarylebone'):
+                                $loader_rid = '330780';
+                                $logo_pid = '63820019';
+                            else:
+                                $loader_rid = '';
+                                $logo_pid = '';
+                            endif; 
                         ?>
-                        <!-- <div class="open-table-class" data-ot="<?php echo $buttonCount; ?>">
+                        <div class="open-table-class" data-ot="<?php echo $buttonCount; ?>">
                             <div class="close-open-table"></div>
                             <script type='text/javascript' src='//www.opentable.co.uk/widget/reservation/loader?rid=<?php echo $loader_rid; ?>&type=standard&theme=standard&color=8&dark=false&iframe=true&domain=couk&lang=en-GB&newtab=true&ot_source=Restaurant%20website&font=georgia&ot_logo=standard&primary_color=f2eae6&primary_font_color=333333&button_color=525525&button_font_color=ffffff&logo_pid=<?php echo $logo_pid; ?>&cfe=true'></script>
-                        </div> -->
-                        <!-- Open Table hidden for now -->
+                        </div>
+                        <!-- Open Table -->
                         <?php
                     else: 
                         if( isLink( $link ) ):

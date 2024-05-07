@@ -247,7 +247,7 @@
     }
 
     return {
-      caption: data.caption,
+      caption: data.caption.split(' ').slice(0, 50).join(' '),
       id: data.id,
       image: image,
       link: data.permalink,

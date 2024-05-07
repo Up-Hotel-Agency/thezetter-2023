@@ -2,25 +2,14 @@
 /*global AOS, jQuery */
 "use strict";
 
-
 function initializeInsta() {
-
     $('.insta-images').each(function(){
-
-        var username = $(this).attr('data-account');
-        if( username == "golf"){
-            var token = "IGQVJXTTNZAeVRoU0t1aHFUU295S1ZAnVE04Rkk3UkF1bEhhT1ktZAExGc0FncV9vaEg1Tkg1ajNPRWhPZAWJPbWRlUFYtNERWZAHFaaWY3Rk5tVjY5OW9DZAjR5cEZAGZAWhTS2dGQk5HVG1ReWtaRTVUNTdDMgZDZD";
-        }else if( username == "grove"){
-            var token = "IGQVJVblRkRmFVWndXRkdoV2ZAvUXktZA3FUT252VHRCTU1zbUhmeTNDX21zMEQ1ZAHAwQ0w0Y3pnSUxyQ3VDdzNqUVZAjX2V0X19CS1NnaDZAfc2czRUZAOcWVVaGhsR2plMTd1Nll0dm1NQkhqVTRZALVJsdQZDZD";
-        }else{
-            var token = "IGQVJVblRkRmFVWndXRkdoV2ZAvUXktZA3FUT252VHRCTU1zbUhmeTNDX21zMEQ1ZAHAwQ0w0Y3pnSUxyQ3VDdzNqUVZAjX2V0X19CS1NnaDZAfc2czRUZAOcWVVaGhsR2plMTd1Nll0dm1NQkhqVTRZALVJsdQZDZD";
-        }
         var userFeed = new Instafeed({
             get: 'user',
             target: "instafeed",
             limit:4,
             resolution: 'low_resolution',
-            accessToken: token
+            accessToken: 'IGQVJVa0dBaGFFc2hUMFotRFZAKMDJWQkI4RTRPWHRITGhoNFVkUV9xVzJxUzJBeGo5WFhTN1ZAKRVFYRXJNRVdBaW5EOXZAfUnJkOXZAySWVQRjU4VVBybHRxVHJmMXY2OWs1cDRlZAU1hSTlCUkhGQS1uagZDZD'
         });
         userFeed.run();
 
@@ -59,7 +48,7 @@ function instagram(){
     // if not already initialised
     if(instagramInit) {
         // if no, load the api script and run the function
-        loadinstagramScript('/wp-content/themes/the-grove/assets/js/instafeed.js', function() {
+        loadinstagramScript('/wp-content/themes/thezetter-2023/assets/js/instafeed.js', function() {
             instagramScriptLoaded = true;
             // run the map function
             initializeInsta();

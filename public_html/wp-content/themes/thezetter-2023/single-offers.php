@@ -165,10 +165,52 @@ if( get_offer_single_type() == 'offer_2' ) { ?>
                         <?php endif; ?>
                     </h2>
                     <div class="flex offers-actions mb-6 xs:flex-wrap">
-                        <?php block_buttons(get_field('link_field'), [
-                            'class' => 'buttons no-margin',
-                            'type'  => 'secondary'
-                        ]); ?>
+
+                        <div class="buttons no-margin">
+
+                            <?php if( get_current_blog_id() == 1 ): // Zetter main ?>
+                                <?php 
+                                $terms = get_the_terms( $offer, 'hotel_categories' );
+                                $taxonomies = get_object_taxonomies( $offer, 'hotel_categories' );
+                                foreach ( $terms as $term ) {
+                                    $promoCode = get_field('promocode', $offer);?>
+                                    <?php if( $term->slug == 'clerkenwell' ): // Clerkenwell ?>
+                                        <?php $hotelID = 'TZTC';?>
+                                    <?php elseif( $term->slug == 'marrables' ): // Marrables ?>
+                                        <?php $hotelID = 'TZHC';?>
+                                    <?php elseif( $term->slug == 'marylebone' ): // Marylebone ?>
+                                        <?php $hotelID = 'TZTM';?>
+                                    <?php elseif( $term->slug == 'bloomsbury' ): // Bloomsbury ?>
+                                        <?php $hotelID = '';?>
+                                    <?php else: // Group ?>
+                                        <?php $hotelID = '';?>
+                                    <?php endif; ?>
+                                    <a class="button secondary" href="https://thezetter.com/<?php echo $term->slug;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
+                                        Book <?php echo $term->name; ?>
+                                    </a><?php 
+                                }
+                                ?>
+                            <?php else: ?>
+                                <?php $promoCode = get_field('promocode');?>
+                                <?php if( get_current_blog_id() == 2 ): // Clerkenwell ?>
+                                    <?php $hotelID = 'TZTC';?>
+                                    <?php $hotel = 'clerkenwell';?>
+                                <?php elseif( get_current_blog_id() == 3 ): // Marrables ?>
+                                    <?php $hotelID = 'TZHC';?>
+                                    <?php $hotel = 'marrables';?>
+                                <?php elseif( get_current_blog_id() == 4 ): // Marylebone ?>
+                                    <?php $hotelID = 'TZTM';?>
+                                    <?php $hotel = 'marylebone';?>
+                                <?php elseif( get_current_blog_id() == 5 ): // Bloomsbury ?>
+                                    <?php $hotelID = '';?>
+                                    <?php $hotel = 'bloomsbury';?>
+                                <?php endif; ?>
+                                <a class="button secondary" href="https://thezetter.com/<?php echo $hotel;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
+                                    Book now
+                                </a>
+                            <?php endif; ?>
+
+                        </div>
                     </div>
                     <?php the_field('content_content'); ?>
                 </div>

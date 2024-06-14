@@ -120,9 +120,28 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                                 <a class="button minor" href="<?php echo get_the_permalink(); ?>">
                                     Let's go
                                 </a>
-                                <?php block_buttons(get_field('link_field', $offer), [
-                                    'class' => 'button minor '
-                                ]); ?>
+
+                                <?php 
+                                $terms = get_the_terms( $offer, 'hotel_categories' );
+                                $taxonomies = get_object_taxonomies( $offer, 'hotel_categories' );
+                                foreach ( $terms as $term ) {
+                                    $promoCode = get_field('promocode', $offer);?>
+                                    <?php if( $term->slug == 'clerkenwell' ): // Clerkenwell ?>
+                                        <?php $hotelID = 'TZTC';?>
+                                    <?php elseif( $term->slug == 'marrables' ): // Marrables ?>
+                                        <?php $hotelID = 'TZHC';?>
+                                    <?php elseif( $term->slug == 'marylebone' ): // Marylebone ?>
+                                        <?php $hotelID = 'TZTM';?>
+                                    <?php elseif( $term->slug == 'bloomsbury' ): // Bloomsbury ?>
+                                        <?php $hotelID = '';?>
+                                    <?php else: // Group ?>
+                                        <?php $hotelID = '';?>
+                                    <?php endif; ?>
+                                    <a class="button minor" href="https://thezetter.com/<?php echo $term->slug;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
+                                        Book <?php echo $term->name; ?>
+                                    </a><?php 
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

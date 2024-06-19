@@ -126,18 +126,24 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                                 $taxonomies = get_object_taxonomies( $offer, 'hotel_categories' );
                                 foreach ( $terms as $term ) {
                                     $promoCode = get_field('promocode', $offer);?>
+                                    <?php $slug = $term->slug; ?>
                                     <?php if( $term->slug == 'clerkenwell' ): // Clerkenwell ?>
                                         <?php $hotelID = 'TZTC';?>
+                                        <?php $url = "https://thezetter.com/"; ?>
                                     <?php elseif( $term->slug == 'marrables' ): // Marrables ?>
                                         <?php $hotelID = 'TZHC';?>
+                                        <?php $url = "https://marrableshotel.com/"; ?>
+                                        <?php $slug = ""; ?>
                                     <?php elseif( $term->slug == 'marylebone' ): // Marylebone ?>
                                         <?php $hotelID = 'TZTM';?>
+                                        <?php $url = "https://thezetter.com/"; ?>
                                     <?php elseif( $term->slug == 'bloomsbury' ): // Bloomsbury ?>
                                         <?php $hotelID = '';?>
+                                        <?php $url = "https://thezetter.com/"; ?>
                                     <?php else: // Group ?>
                                         <?php $hotelID = '';?>
                                     <?php endif; ?>
-                                    <a class="button minor" href="https://thezetter.com/<?php echo $term->slug;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
+                                    <a class="button minor" href="<?php echo $url;?><?php echo $slug;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
                                         Book <?php echo $term->name; ?>
                                     </a><?php 
                                 }

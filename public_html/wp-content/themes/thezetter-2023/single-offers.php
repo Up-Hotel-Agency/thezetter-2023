@@ -195,17 +195,21 @@ if( get_offer_single_type() == 'offer_2' ) { ?>
                                 <?php if( get_current_blog_id() == 2 ): // Clerkenwell ?>
                                     <?php $hotelID = 'TZTC';?>
                                     <?php $hotel = 'clerkenwell';?>
+                                    <?php $url = "https://thezetter.com/";?>
                                 <?php elseif( get_current_blog_id() == 3 ): // Marrables ?>
                                     <?php $hotelID = 'TZHC';?>
-                                    <?php $hotel = 'marrables';?>
+                                    <?php $hotel = '';?>
+                                    <?php $url = "https://marrableshotel.com/";?>
                                 <?php elseif( get_current_blog_id() == 4 ): // Marylebone ?>
                                     <?php $hotelID = 'TZTM';?>
                                     <?php $hotel = 'marylebone';?>
+                                    <?php $url = "https://thezetter.com/";?>
                                 <?php elseif( get_current_blog_id() == 5 ): // Bloomsbury ?>
                                     <?php $hotelID = '';?>
                                     <?php $hotel = 'bloomsbury';?>
+                                    <?php $url = "https://thezetter.com/";?>
                                 <?php endif; ?>
-                                <a class="button secondary" href="https://thezetter.com/<?php echo $hotel;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
+                                <a class="button secondary" href="<?php echo $url;?><?php echo $hotel;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
                                     Book now
                                 </a>
                             <?php endif; ?>

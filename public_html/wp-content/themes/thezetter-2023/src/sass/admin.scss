@@ -33,7 +33,8 @@
 }
 
 //Make editor sidebar wider than default
-.interface-complementary-area{
+.interface-complementary-area,
+.interface-complementary-area__fill{
     width: 100%!important;
 }
 .interface-interface-skeleton__sidebar{

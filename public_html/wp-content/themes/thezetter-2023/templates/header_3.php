@@ -163,7 +163,7 @@
 					</p>
 				<?php endif; ?>
 			</div>
-			<?php if( get_field('background_image', 'options') ): echo img_sizes(get_field('background_image', 'options'), ['default' => 'img_2200', 'page_area' => '100', 'mobile_page_area' => '100', 'lazy_load' => true]); endif; ?>
+			<?php if( get_field('background_image', 'options') ): echo img_sizes(get_field('background_image', 'options'), ['default' => 'img_2200', 'page_area' => '100', 'mobile_page_area' => '100']); endif; ?>
 		<?php if( linkField( $link, 'text') ): ?>
 			</a>
 		<?php else: ?>

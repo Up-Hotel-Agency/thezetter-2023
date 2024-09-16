@@ -43,39 +43,6 @@ function acf_google_map_api( $api ){
 }
 add_filter('acf/fields/google_map/api', 'acf_google_map_api');
 
-/**
- * @desc Load all SVGs from <theme dir>/autoload-svgs/
- *
- * Example:
- * add_filter('acf/load_field/name=autoloaded_icon', 'up_load_icon_choices');
- *
- * ensure your field is named 'autoloaded_icon' if using the direct example above
- *
- */
-function up_load_icon_choices($field) {
-    $path = __DIR__ . '/' . '../autoload-svgs/';
-    $field['choices'] = array();
-
-    if(!is_dir($path)){
-        return $field;
-    }
-
-    $svgsUnprocessed = scandir($path);
-
-    $svgs = array_filter($svgsUnprocessed, function($svg){
-        return (substr($svg, -4) == '.svg');
-    });
-
-    foreach($svgs as $svg){
-        $friendlyName = basename($svg, '.svg');
-        $svgContents = file_get_contents($path . $svg);
-        $field['choices'][ $svgContents ] = $friendlyName;
-    }
-
-    return $field;
-}
-add_filter('acf/load_field/name=autoloaded_icon', 'up_load_icon_choices');
-
 
 /**
  * @desc get link from the cloned link group

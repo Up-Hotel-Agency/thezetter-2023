@@ -1,0 +1,196 @@
+.up-icon-picker-modal{
+    position: fixed;
+    inset: 0;
+    background: #0000004a;
+    z-index: 9999999;
+    display: flex;
+    justify-content: center;
+    overflow:scroll;
+    opacity:0;
+    visibility: hidden;
+    pointer-events:none;
+    transition: all 0.5s;
+
+}
+.up-icon-picker-modal.active{
+    opacity:1;
+    visibility: visible;
+    pointer-events:all;
+}
+.up-icon-picker{
+    background: white;
+    width: 50%;
+    margin-block:3rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: all 0.5s;
+
+}
+.up-icon-picker-modal.active .up-icon-picker{
+    transform: translateY(0%);
+}
+.up-icon-picker-header{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+.up-icon-picker-header .up-icon-picker-title {
+    padding:0.5rem 1rem;  
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:solid 1px #dbdbdb; 
+}
+
+.up-icon-picker-header .up-icon-picker-title .up-icon-picker-actions{
+    display:flex;
+    flex-wrap:nowrap;
+    align-items:center;
+    gap:0.5rem;
+}
+.up-icon-picker-header .up-icon-picker-title .up-icon-picker-upload{
+    all:unset;
+    display:flex;
+    flex-direction:row;
+    gap:0.25rem;
+    align-items:center;
+    cursor:pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: solid 1px #1890ff;
+    background: transparent;
+    color: #1890ff;
+    transition: all 0.5s;
+    flex:none;
+}
+.up-icon-picker-header .up-icon-picker-title .up-icon-picker-upload:hover{
+    opacity: 0.5;
+}
+.up-icon-picker-header .up-icon-picker-title .up-icon-picker-upload svg{
+    width: 1em;
+    height: 1rem;
+}
+.up-icon-picker-header .up-icon-picker-title .up-icon-picker-close{
+    all:unset;
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;   
+    border:solid 1px transparent;
+    border-radius:4px;
+    padding: 0.5rem;
+    transition: all 0.5s;
+}
+.up-icon-picker-header .up-icon-picker-title .up-icon-picker-close:hover{
+    border-color: #dbdbdb;
+}
+.up-icon-picker-header .up-icon-picker-title .up-icon-picker-close svg{
+    width: 100%;
+    header: 100%;
+    object-fit: contain;
+}
+.up-icon-picker-header .up-icon-picker-search{
+    margin-inline: 1.5rem;
+    display:flex;
+    position: relative;
+}
+.up-icon-picker-header .up-icon-picker-search:after{
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    left:0.75rem;
+    transform: translateY(-50%);
+    top: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M20.39 20.39l-7.48-7.48'/%3E%3Ccircle cx='9.059' cy='9.059' r='5.449' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+.up-icon-picker-header .up-icon-picker-search input[type=text]{
+    all:unset;
+    padding:1rem 1rem 1rem 2rem;
+    border:solid 1px #dbdbdb;
+    border-radius: 4px;
+    width: 100%;
+}
+.up-icon-picker-filter{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:1rem;
+    margin-inline: 1.5rem;
+}
+.up-icon-picker-filter .up-icon-picker-results p{
+    margin:unset;
+    color: gray;
+}
+.up-icon-picker-filter .up-icon-picker-results p span{
+    font-weight:bold;
+}
+
+.up-icon-picker-categories{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem;
+}
+.up-icon-picker-categories .up-icon-picker-category{
+    all:unset; 
+    cursor:pointer; 
+    padding:0.5rem 1rem;
+    background:transparent;
+    border:solid 1px #dbdbdb;
+    border-radius:4px;
+    transition: all 0.5s;
+}
+.up-icon-picker-categories .up-icon-picker-category.active, .up-icon-picker-categories .up-icon-picker-category:hover{
+    background:#1890ff;
+    border-color:#1890ff;
+    color:white;
+}
+.up-icon-picker-grid{
+    display: grid;
+    grid-template-columns:  repeat(auto-fill, minmax(6rem, 1fr));
+    gap: 1rem;
+    overflow: scroll;
+    padding:1rem;
+    background: #f6f6f6;
+    margin-inline: 1.5rem;
+    margin-top: 1.5rem;
+    border-radius: 6px 6px 0 0;
+    align-content:start;
+    flex:1;
+}
+.up-icon-picker-grid p{
+    font-size:12px;
+}
+.up-icon-picker .up-icon-preview svg{
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+    height: unset;
+}
+.up-icon-picker-grid .up-icon-select{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    gap:0.25rem;
+    aspect-ratio: 1/1;
+    padding:0.5rem;
+    background:white;
+    border-radius:4px;
+    filter: grayscale(1);
+    transition: all 0.5s;
+    cursor: pointer; 
+}
+.up-icon-picker-grid .up-icon-select.hidden,  .up-icon-picker-grid .up-icon-select.cat-hidden{
+    display:none;
+}
+.up-icon-picker-grid .up-icon-select:hover{
+    background: #dadada;
+}
+
+.up-icon-picker-grid .up-icon-select p{
+    margin:unset;
+}

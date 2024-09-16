@@ -81,6 +81,11 @@ include 'functions/setup-gutenberg.php';
 */
 include 'blocks/register-blocks.php';
 
+/**
+* @desc Icons Functions
+*/
+include 'functions/setup-icons/setup-icons.php';
+
 // Don't forget to customise your custom post types and fields
 require_once('inc/cpts/cpts.php');
 

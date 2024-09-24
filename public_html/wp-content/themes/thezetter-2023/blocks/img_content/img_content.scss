@@ -275,7 +275,7 @@
          //   top: 0;
          //   left: 0;
          //   height: 100%;
-            width: 100%;
+            width: 100% !important;
         }
         .slick-list,
         .slick-track {
@@ -283,7 +283,7 @@
             top: 0;
             left: 0;
             height: 100%;
-            width: 100%;
+            width: 100% !important;
         }
         .slick-controls {
             width: 100%;

@@ -197,6 +197,13 @@
             .post-item-img{
                 aspect-ratio: 16/9;
             }
+            @include breakpoint(M) {
+
+                .post-item-content{
+                    padding: 0 2rem;
+                    width: 100%;
+                }
+            }
             @include breakpoint(XS) {
                 width: 100%;
 

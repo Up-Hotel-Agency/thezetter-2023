@@ -69,7 +69,7 @@
             .first-block{
                 .img-content{
                     .content{
-                        order: 1;
+                        order: 2;
                         .content-inner{
                             text-align: center;
                             header{
@@ -81,8 +81,8 @@
                         }
                     }
                     .img{
-                        order: 2;
-                        margin-left: -2rem;
+                        order: 1;
+                        // margin-left: -2rem;
                     }
                 }
             }
@@ -94,11 +94,18 @@
                 width: 100%;
                 right: -1rem;
                 align-items: end;
+                img{
+                    margin: auto;
+                }
             }
             .image-right{
+                margin: auto;
                 width: 100%;
                 margin: 0;
                 padding: 3rem 0;
+                img{
+                    margin: auto;
+                }
             }
         }
         .content{

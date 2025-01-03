@@ -45,7 +45,7 @@ if($change_colours):
 <?php endif; ?>
 
 <?php if(get_field('not_zetter', 'options')): ?>
-	<link rel="stylesheet" href="https://use.typekit.net/oiy1gyo.css">
+	<link rel="stylesheet" href=https://use.typekit.net/ttk1dgt.css>
 <?php endif; ?>
 
 <style>

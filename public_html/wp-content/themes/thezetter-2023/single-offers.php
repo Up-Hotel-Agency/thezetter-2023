@@ -213,8 +213,13 @@ if( get_offer_single_type() == 'offer_2' ) { ?>
                                     Book now
                                 </a>
                             <?php endif; ?>
-
                         </div>
+
+                        <?php block_buttons(get_field('buttons'), [
+                            'class' => 'no-margin',
+                            'aos' => true, 
+                            'aos_delay' => '150'
+                        ]); ?>
                     </div>
                     <?php the_field('content_content'); ?>
                 </div>

@@ -149,6 +149,11 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                                 }
                                 ?>
                             </div>
+                            <?php block_buttons(get_field('buttons', $offer), [
+                                'class' => 'no-margin',
+                                'aos' => true, 
+                                'aos_delay' => '150'
+                            ]); ?>
                         </div>
                     </div>
                 </div>

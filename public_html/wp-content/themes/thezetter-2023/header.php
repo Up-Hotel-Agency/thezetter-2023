@@ -59,9 +59,6 @@ dataLayer.push({
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/ie-9.css" rel="stylesheet">
 <![endif]-->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com"> 
-<link rel="preconnect" href="https://ajax.googleapis.com">
 
 <?php global $post; ?>
 

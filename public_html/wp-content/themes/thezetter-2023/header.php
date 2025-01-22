@@ -124,13 +124,13 @@ dataLayer.push({
 <?php if(get_field('footer_color', 'options')): ?>
     <style>
         body{
-            --color-foter: <?php the_field('footer_color', 'options'); ?>;
+            --color-footer: <?php the_field('footer_color', 'options'); ?>;
         }
     </style>
 <?php else: ?>
     <style>
         body{
-            --color-foter: #101921;
+            --color-footer: #101921;
         }
     </style>
 <?php endif; ?>

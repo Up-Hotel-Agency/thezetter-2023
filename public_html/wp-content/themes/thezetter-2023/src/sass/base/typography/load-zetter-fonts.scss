@@ -13,6 +13,58 @@
      font-weight: 500;
 }
 
+//Adjusted fallback system fonts
+
+@font-face {
+     font-family: Seravek;
+     src: local(Seravek);
+     size-adjust: 95%; //Size relative to main font
+     ascent-override: 101%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: 'Gill Sans Nova';
+     src: local('Gill Sans Nova');
+     size-adjust: 102%; //Size relative to main font
+     ascent-override: 100%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: 'Gill Sans Nova';
+     src: local('Gill Sans Nova');
+     size-adjust: 102%; //Size relative to main font
+     ascent-override: 100%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: Ubuntu;
+     src: local(Ubuntu);
+     size-adjust: 89.425%; //Size relative to main font
+     ascent-override: 96%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: Calibri;
+     src: local(Calibri);
+     size-adjust: 99.675%; //Size relative to main font
+     ascent-override: 94%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: 'DejaVu Sans';
+     src: local('DejaVu Sans');
+     size-adjust: 79.675%; //Size relative to main font
+     ascent-override: 108%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: source-sans-pro;
+     src: local(source-sans-pro);
+     size-adjust: 97%; //Size relative to main font
+     ascent-override: 100%; //Adjust the vertical position relative to main font
+}
+
+
 ////////////////////
 /// /End Gill Sans
 ////////////////////
@@ -68,6 +120,43 @@
      font-display: swap;
      font-style: italic;
      font-weight: 700;
+}
+
+//Adjusted fallback system fonts
+
+@font-face {
+     font-family: 'Iowan Old Style';
+     src: local('Iowan Old Style');
+     size-adjust: 88.75%; //Size relative to main font
+     ascent-override: 89%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: 'Iowan Old Style';
+     src: local('Iowan Old Style');
+     size-adjust: 88.75%; //Size relative to main font
+     ascent-override: 89%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: 'Palatino Linotype';
+     src: local('Palatino Linotype');
+     size-adjust: 89%; //Size relative to main font
+     ascent-override: 84%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: 'URW Palladio L';
+     src: local('URW Palladio L');
+     size-adjust: 89%; //Size relative to main font
+     ascent-override: 84%; //Adjust the vertical position relative to main font
+}
+
+@font-face {
+     font-family: P052;
+     src: local(P052);
+     size-adjust: 89%; //Size relative to main font
+     ascent-override: 84%; //Adjust the vertical position relative to main font
 }
 
 ////////////////////

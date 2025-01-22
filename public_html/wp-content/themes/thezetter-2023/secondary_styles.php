@@ -44,6 +44,11 @@ if($change_colours):
 
 <?php endif; ?>
 
+<!-- Preload webfont -->
+<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/Abhaya_Libre/abhaya-libre-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="https://use.typekit.net/ttk1dgt.css" as="style" crossorigin />
+<!-- End Preload webfont -->`
+
 <?php if(get_field('not_zetter', 'options')): ?>
 	<link rel="stylesheet" href=https://use.typekit.net/ttk1dgt.css>
 <?php endif; ?>

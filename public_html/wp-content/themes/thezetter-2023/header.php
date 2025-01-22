@@ -66,25 +66,40 @@ dataLayer.push({
     ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 </script>
 
-<style>
-<?php echo file_get_contents(get_template_directory() . '/assets/css/abovethefold.css'); ?>
-</style>
 <?php if(get_field('not_zetter', 'options') || !get_field('is_group', 'options')): ?>
+
     <?php include 'secondary_styles.php'; ?>
     <!-- TripTease -->
     <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
+
+<?php else: ?>
+
+    <!-- Preload webfont -->
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/GillSans/18257675-171f-479d-8d82-cd9c11870d5f.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/Louize/205TF-Louize-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/Louize/205TF-Louize-Medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/Louize/205TF-Louize-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- End Preload webfont -->
+
+    <?php echo file_get_contents(get_template_directory() . '/assets/css/base/typography/load-zetter-fonts.css'); ?>
+
 <?php endif; ?>
+
+<style>
+<?php echo file_get_contents(get_template_directory() . '/assets/css/abovethefold.css'); ?>
+</style>
 
 
 <?php if( get_current_blog_id() == 2 ): ?>
-  <!-- The Hotels Network - Clerkenwell -->
-  <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042280&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+    <!-- The Hotels Network - Clerkenwell -->
+    <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042280&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
 <?php elseif( get_current_blog_id() == 3 ): ?>
-  <!-- The Hotels Network - Marrable's   -->
-  <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042281&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+    <!-- The Hotels Network - Marrable's   -->
+    <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042281&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
 <?php elseif( get_current_blog_id() == 4 ): ?>
-  <!-- The Hotels Network - Marylebone -->
-  <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1039746&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+    <!-- The Hotels Network - Marylebone -->
+    <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1039746&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
 <?php endif; ?>
 
 <?php if($_SESSION['not_zetter']): ?>

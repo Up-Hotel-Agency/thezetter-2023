@@ -18,24 +18,128 @@
             </div>
         </div>
         <div class="newsletter-form"  data-aos="fade-up">
-            <form method="post" target="_blank" action="https://r1.for-email.com/signup.ashx" autocomplete="off">
-                <input type="hidden" name="userid" value="323089">
-                <input type="hidden" name="SIG83f80dfbb07870791e2f733bd2416efcc80f7df2d993c0aa1a3e99ef86669417" value="">
-                <input type="hidden" name="addressbookid" value="690525" />
-                <input type="hidden" name="ReturnURL" value="https://thezetter.com/newsletter-sign-up/">
-                <input type="hidden" id="ci_consenturl" name="ci_consenturl" value="">    
-                <div class="newsletter-signup_input">
-                    <input type="text" name="NAME" required placeholder="NAME*" aria-label="Enter name">
-                    <input type="text" name="SURNAME" required placeholder="SURNAME*" aria-label="Enter surname">
-                    <input type="email" name="EMAIL" required placeholder="EMAIL ADDRESS*" aria-label="Enter email address">
-                    <button class="primary flex items-center no-margin" type="submit" id="btnsubmit" name="btnsubmit">Sign up</button>
-                    <div class="">
-                        <input type="checkbox" required id="acceptance" name="acceptance" value="acceptance">
-                        <label for="acceptance" class="body-xs regular"> I am happy to receive emails from The Zetter and agree to the <a href="https://thezetter.com/privacy-policy/">privacy policy</a>.</label>
+            <?php $currentID = get_the_ID(); ?>
+            <script data-xp-widget-newsletter-409 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=409"></script>
+            <?php if(get_current_blog_id() == 3):?>
+                <!-- Marrables Hotel -->
+                <template>
+                    <div class="xp-widget-newsletter-panel">
+
+                        <div v-if="loading" class="loader">
+                            <div class="xp-loader-light">
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                            </div>
+                        </div>
+
+                        <h3 v-if="title" class="title">{{ title }}</h3>
+
+                        <p v-if="introduction" class="intro">{{ introduction }}</p>
+
+                        <div v-if="display_message" class="end-action-message" v-html="end_action_message"></div>
+
+                        <form v-if="!display_message" @submit.prevent="submitForm()">
+
+                            <div
+                                v-for="field in fields"
+                                :class="[`form-line-${field.name}`, {'filled': fields_value[field.name]}]"
+                                class="form-line"
+                            >
+                                <label v-if="labelIsShown(field)" :for="inputId(field)">{{ field.text }}{{
+                                        field.mandatory ? " *" : ""
+                                    }}</label>
+                                <component
+                                    :is="getFieldComponent(field)"
+                                    :ref="field.name"
+                                    v-model="fields_value[field.name]"
+                                    v-bind="getFieldProps(field)"
+                                />
+                            </div>
+
+                            <div v-if="multi_list === 1">
+                                <div v-if="multi_list_intro" class="multi_list_intro">{{ multi_list_intro }}</div>
+                                <div v-for="list in lists" class="form-checkbox">
+                                    <label><input v-model="selected_lists" :value="list.id" type="checkbox"> {{ list.name }}</label>
+                                </div>
+                            </div>
+
+                            <p class="text-mandatory">{{ mandatory_fields }}</p>
+
+                            <button class="form-submit">{{ call_to_action }}</button>
+
+                        </form>
                     </div>
-                </div>
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9ea26ca78a5fa6ab143c116df_f01fa4434c" aria-label="Hidden Input" tabindex="-1" value=""></div>
-            </form>
+                </template>
+            <?php else: ?>
+                <template>
+                    <div class="xp-widget-newsletter-panel">
+
+                        <div v-if="loading" class="loader">
+                            <div class="xp-loader-light">
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                            </div>
+                        </div>
+
+                        <h3 v-if="title" class="title">{{ title }}</h3>
+
+                        <p v-if="introduction" class="intro">{{ introduction }}</p>
+
+                        <div v-if="display_message" class="end-action-message" v-html="end_action_message"></div>
+
+                        <form v-if="!display_message" @submit.prevent="submitForm()">
+
+                            <div
+                                v-for="field in fields"
+                                :class="[`form-line-${field.name}`, {'filled': fields_value[field.name]}]"
+                                class="form-line"
+                            >
+                                <label v-if="labelIsShown(field)" :for="inputId(field)">{{ field.text }}{{
+                                        field.mandatory ? " *" : ""
+                                    }}</label>
+                                <component
+                                    :is="getFieldComponent(field)"
+                                    :ref="field.name"
+                                    v-model="fields_value[field.name]"
+                                    v-bind="getFieldProps(field)"
+                                />
+                            </div>
+
+                            <div v-if="multi_list === 1">
+                                <div v-if="multi_list_intro" class="multi_list_intro">{{ multi_list_intro }}</div>
+                                <div v-for="list in lists" class="form-checkbox">
+                                    <label><input v-model="selected_lists" :value="list.id" type="checkbox"> {{ list.name }}</label>
+                                </div>
+                            </div>
+
+                            <p class="text-mandatory">{{ mandatory_fields }}</p>
+
+                            <button class="form-submit">{{ call_to_action }}</button>
+
+                        </form>
+                    </div>
+                </template>
+            <?php endif; ?>
         </div>
     </div>
 <?php endif; ?>

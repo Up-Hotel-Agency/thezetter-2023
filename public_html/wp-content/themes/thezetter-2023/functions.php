@@ -98,6 +98,9 @@ if ( ! function_exists( 'is_woocommerce_activated' ) ) {
 	}
 }
 
+// Temporary WP Rocket
+add_filter( 'rocket_lrc_optimization', '__return_false' , 999); 
+
 /**
 * @desc Set up WooCommerce
 */

@@ -82,7 +82,9 @@ dataLayer.push({
     <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/Louize/205TF-Louize-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <!-- End Preload webfont -->
 
-    <?php echo file_get_contents(get_template_directory() . '/assets/css/base/typography/load-zetter-fonts.css'); ?>
+    <style>
+        <?php echo file_get_contents(get_template_directory() . '/assets/css/base/typography/load-zetter-fonts.css'); ?>
+    </style>
 
 <?php endif; ?>
 

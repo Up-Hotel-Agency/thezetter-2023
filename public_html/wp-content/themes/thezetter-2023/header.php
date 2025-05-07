@@ -73,7 +73,6 @@ dataLayer.push({
     <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
 
 <?php else: ?>
-
     <!-- Preload webfont -->
     <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/GillSans/18257675-171f-479d-8d82-cd9c11870d5f.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -85,6 +84,10 @@ dataLayer.push({
     <style>
         <?php echo file_get_contents(get_template_directory() . '/assets/css/base/typography/load-zetter-fonts.css'); ?>
     </style>
+
+    <!-- TripTease -->
+    <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
+
 
 <?php endif; ?>
 

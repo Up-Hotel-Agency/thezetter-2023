@@ -42,6 +42,7 @@ function block_buttons($field, $opts = [] ){
                     $class = $button['button_type'];
                     $link = $button['link_field_link'];
                     $sevenrooms = $button['open_sevenrooms'];
+                    $meeting = $button['book_a_meeting'];
                     if($sevenrooms):
                         $sevenroomsID = $button['restaurant_name'];
                         $sevenroomsTrigger = uniqid();
@@ -77,6 +78,29 @@ function block_buttons($field, $opts = [] ){
                             <script type='text/javascript' src='//www.opentable.co.uk/widget/reservation/loader?rid=<?php echo $loader_rid; ?>&type=standard&theme=standard&color=8&dark=false&iframe=true&domain=couk&lang=en-GB&newtab=true&ot_source=Restaurant%20website&font=georgia&ot_logo=standard&primary_color=f2eae6&primary_font_color=333333&button_color=525525&button_font_color=ffffff&logo_pid=<?php echo $logo_pid; ?>&cfe=true'></script>
                         </div>
                         <!-- Open Table -->
+                        <?php
+                    elseif($meeting):
+                        $hotelID = $button['meeting_hotel'];
+                        $sevenroomsTrigger = uniqid();
+                        ?>
+                         <div class="button button-opentable <?php echo $class; ?> <?php echo $sevenroomsTrigger; ?>" id="sr-res-root<?php echo $sevenroomsTrigger; ?>" data-button="<?php echo $buttonCount; ?>">
+                                <?php echo linkField( $link, 'text' ); ?>
+                        </div>
+
+                        <!-- Events -->
+                        <?php
+                            if($hotelID == 'clerkenwell'):
+                                $meeting_id = '682721';
+                            else:
+                                $sevenroomsID = '';
+                            endif; 
+                        ?>
+                        <div class="open-table-class" data-ot="<?php echo $buttonCount; ?>">
+                            <div class="close-open-table"></div>
+                            <script src="https://meetingpackage.com/whitelabel/simplewidget/<?php echo $meeting_id; ?>/en" async></script>
+                            <div id="mp-widget" class="horizontal"></div>
+                        </div>
+                        <!-- Events -->
                         <?php
                     else: 
                         if( isLink( $link ) ):

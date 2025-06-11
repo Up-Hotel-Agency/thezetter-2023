@@ -350,7 +350,7 @@ jQuery(function($){
     
 
     // Add dropdown parent element around selects
-   $( "select" ).not('.block-editor select, .ibe-custom-select').wrap( "<div class='dropdown'></div>" );
+   $( "select" ).not('.block-editor select, .ibe-custom-select, #property-custom-select').wrap( "<div class='dropdown'></div>" );
 
     // Add active state to wrapping input label when input is active
     $("input, textarea").on('focusin',

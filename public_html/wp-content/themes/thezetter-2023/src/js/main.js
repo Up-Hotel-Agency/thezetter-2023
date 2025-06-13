@@ -169,10 +169,12 @@ jQuery(function($){
         e.preventDefault();
         var opentablePopup = $(this).attr('data-button');
         $(this).parents('.buttons').find('.open-table-class[data-ot='+ opentablePopup +']').addClass('open-ot');
+        $(this).parents('.row').addClass('to-top');
     });
     $('.close-open-table').click(function(e){
         e.preventDefault();
         $(this).parent('.open-table-class').removeClass('open-ot');
+        $(this).parents('.row').removeClass('to-top');
     });
     
     //Handles booking mask dropdown

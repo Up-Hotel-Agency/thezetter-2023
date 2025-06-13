@@ -96,15 +96,84 @@ dataLayer.push({
 </style>
 
 
-<?php if( get_current_blog_id() == 2 ): ?>
+<?php if( get_current_blog_id() == 1 ): ?>
+    <!-- Main site -->
+     <?php if(is_page(756)):?>
+        <!-- Offers page -->
+        <!-- Meta Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1122813799671176');
+            fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1122813799671176&ev=PageView&noscript=1" /></noscript>
+        <!-- End Meta Pixel Code -->
+    <?php endif; ?>
+<?php  elseif( get_current_blog_id() == 2 ): ?>
     <!-- The Hotels Network - Clerkenwell -->
     <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042280&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1075706911123677');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1075706911123677&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
 <?php elseif( get_current_blog_id() == 3 ): ?>
     <!-- The Hotels Network - Marrable's   -->
     <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042281&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1934848163586583');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1934848163586583&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 <?php elseif( get_current_blog_id() == 4 ): ?>
     <!-- The Hotels Network - Marylebone -->
     <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1039746&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2421061501598648');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2421061501598648&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 <?php endif; ?>
 
 <?php if($_SESSION['not_zetter']): ?>
@@ -116,6 +185,8 @@ dataLayer.push({
     <link rel="icon" type="image/png" sizes="32x32" href="/zetter/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/zetter/favicon-16x16.png">
 <?php endif; ?>
+
+
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0e566e">
 <meta name="msapplication-TileColor" content="#0e566e">

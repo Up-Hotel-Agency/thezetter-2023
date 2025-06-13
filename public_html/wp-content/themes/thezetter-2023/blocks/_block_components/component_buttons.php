@@ -97,8 +97,15 @@ function block_buttons($field, $opts = [] ){
                         ?>
                         <div class="open-table-class" data-ot="<?php echo $buttonCount; ?>">
                             <div class="close-open-table"></div>
-                            <script src="https://meetingpackage.com/whitelabel/simplewidget/<?php echo $meeting_id; ?>/en" async></script>
                             <div id="mp-widget" class="horizontal"></div>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    var s = document.createElement("script");
+                                    s.src = "https://meetingpackage.com/whitelabel/simplewidget/<?php echo $meeting_id; ?>/en";
+                                    document.body.appendChild(s);
+                                });
+                            </script>
                         </div>
                         <!-- Events -->
                         <?php

@@ -51,7 +51,9 @@
 
 .row {
     position: relative;
-
+    &.to-top{
+        z-index: 99 !important;
+    }
     &.theme--image {
         z-index: 1;
     }

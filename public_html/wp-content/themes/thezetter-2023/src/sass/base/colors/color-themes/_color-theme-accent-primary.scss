@@ -36,4 +36,29 @@ $color-vars-accent-primary: (
     a{
         @include color(--color-accent-primary, 'body-50');
     }
+    .open-table-class #mp-widget{
+    // Reset inherited CSS variables
+        @each $name, $value in $color-vars-accent-primary {
+            --color-#{$name}: initial; // or set to your neutral/default
+        }
+
+        // Optionally override specific styles
+        background-color: unset;
+
+        a {
+            color: unset;
+        }
+        input{
+            background: white;
+            color: #000410;
+        }
+        label { 
+            font-weight: 700; 
+            font-size: .625rem; 
+            font-size: clamp(0.7142rem, 1.333vw, 0.625rem); 
+            font-family: "Louize", "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif; 
+            color: #000410; 
+            color: var(--color-body, #000410);
+        }
+    }
 }

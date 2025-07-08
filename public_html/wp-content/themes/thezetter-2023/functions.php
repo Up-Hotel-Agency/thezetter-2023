@@ -118,3 +118,26 @@ include 'functions/setup-conversion-tools.php';
  */
 
 include 'functions/setup-gravityforms.php';
+
+/**
+ * @desc Exclude js delay on clerkenwell book page
+ */
+add_filter( 'rocket_delay_js', function( $delay, $html ) {
+    $excluded_paths = [
+        '/clerkenwell/book',
+        '/marylebone/book',
+        '/bloomsbury/book',
+        '/book-now',
+    ];
+
+    foreach ( $excluded_paths as $path ) {
+        if ( strpos( $_SERVER['REQUEST_URI'], $path ) !== false ) {
+            return false; // Disable Delay JS on matching path
+        }
+    }
+
+    return $delay;
+}, 10, 2 );
+
+
+

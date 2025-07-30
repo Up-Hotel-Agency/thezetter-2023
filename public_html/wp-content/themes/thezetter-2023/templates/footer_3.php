@@ -22,6 +22,9 @@
             <?php if(get_current_blog_id() == 3):?>
                 <!-- Marrables Hotel -->
                 <script data-xp-widget-newsletter-427 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=427"></script>
+            <?php elseif(get_current_blog_id() == 5):?>
+                <!-- Bloomsbury Hotel -->
+                 <script data-xp-widget-newsletter-457 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=457"></script>
             <?php else: ?>
                 <script data-xp-widget-newsletter-409 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=409"></script>
             <?php endif; ?>

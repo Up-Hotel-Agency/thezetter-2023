@@ -51,6 +51,20 @@ if (navigator.hasOwnProperty('serviceWorker')) {
 
 jQuery(function($){
 
+    $('.js-trigger-collins-modal').click(function(e) {
+        e.preventDefault();
+        var collinsID = $(this).attr('data-collins-modal-id');
+        $('.js-collins-booking-modal[data-collins-id="' + collinsID + '"]').addClass('active');
+        $('body').addClass('modal-open');
+    });
+
+    $('.js-close-collins-modal').click(function(e) {
+        e.preventDefault();
+        var collinsID = $(this).parents('.js-collins-booking-modal').attr('data-collins-id');
+        $('.js-collins-booking-modal[data-collins-id="' + collinsID + '"]').removeClass('active');
+        $('body').removeClass('modal-open');
+    });
+
     $(".bg-image-carousel").each(function(){
         $(this).not('.slick-initialized').filter(function() {
             return $(this).parents('.banner-block').length === 0;

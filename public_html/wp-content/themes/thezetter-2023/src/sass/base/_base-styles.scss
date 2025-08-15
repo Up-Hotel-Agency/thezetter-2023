@@ -505,4 +505,14 @@ lite-youtube{
             transform: translate(-50%,-50%) rotate(-45deg);
         }
     }
+
+    #dmn-partner-widget {
+        #dmn-widget-inner {
+            .dropdown {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
 }

@@ -41,16 +41,16 @@ function block_buttons($field, $opts = [] ){
                     <?php
                     $class = $button['button_type'];
                     $link = $button['link_field_link'];
-                    $sevenrooms = $button['open_sevenrooms'];
-                    $collins = $button['open_collins'];
+                    $collins = $button['open_sevenrooms'];
+                    // $collins = $button['open_collins'];
                     $meeting = $button['book_a_meeting'];
-                    if($sevenrooms):
-                        $sevenroomsID = $button['restaurant_name'];
-                        $sevenroomsTrigger = uniqid();
+                    // if($sevenrooms):
+                        // $sevenroomsID = $button['restaurant_name'];
+                        // $sevenroomsTrigger = uniqid();
                         ?>
-                         <div class="button button-opentable <?php echo $class; ?> <?php echo $sevenroomsTrigger; ?>" id="sr-res-root<?php echo $sevenroomsTrigger; ?>" data-button="<?php echo $buttonCount; ?>">
+                         <!-- <div class="button button-opentable <?php echo $class; ?> <?php echo $sevenroomsTrigger; ?>" id="sr-res-root<?php echo $sevenroomsTrigger; ?>" data-button="<?php echo $buttonCount; ?>">
                                 <?php echo linkField( $link, 'text' ); ?>
-                        </div>
+                        </div> -->
                         <!-- <script src="https://www.sevenrooms.com/widget/embed.js"></script>
                         <script>
                         SevenroomsWidget.init({
@@ -63,25 +63,25 @@ function block_buttons($field, $opts = [] ){
 
                         <!-- Open Table -->
                         <?php
-                            if($sevenroomsID == 'theparlouratthezetterclerkenwell'):
-                                $loader_rid = '330768';
-                                $logo_pid = '63819867';
-                            elseif($sevenroomsID == 'theparlouratthezettermarylebone'):
-                                $loader_rid = '330780';
-                                $logo_pid = '63820019';
-                            else:
-                                $loader_rid = '';
-                                $logo_pid = '';
-                            endif; 
+                            // if($sevenroomsID == 'theparlouratthezetterclerkenwell'):
+                            //     $loader_rid = '330768';
+                            //     $logo_pid = '63819867';
+                            // elseif($sevenroomsID == 'theparlouratthezettermarylebone'):
+                            //     $loader_rid = '330780';
+                            //     $logo_pid = '63820019';
+                            // else:
+                            //     $loader_rid = '';
+                            //     $logo_pid = '';
+                            // endif; 
                         ?>
-                        <div class="open-table-class" data-ot="<?php echo $buttonCount; ?>">
+                        <!-- <div class="open-table-class" data-ot="<?php echo $buttonCount; ?>">
                             <div class="close-open-table"></div>
                             <script type='text/javascript' src='//www.opentable.co.uk/widget/reservation/loader?rid=<?php echo $loader_rid; ?>&type=standard&theme=standard&color=8&dark=false&iframe=true&domain=couk&lang=en-GB&newtab=true&ot_source=Restaurant%20website&font=georgia&ot_logo=standard&primary_color=f2eae6&primary_font_color=333333&button_color=525525&button_font_color=ffffff&logo_pid=<?php echo $logo_pid; ?>&cfe=true'></script>
-                        </div>
+                        </div> -->
                         <!-- Open Table -->
                         <?php
-                    elseif($collins):
-                        $collinsID = $button['collins_restaurant_name'];
+                    if($collins):
+                        $collinsID = $button['restaurant_name'];
                         $collinsTrigger = uniqid();
                         ?>
                          <div class="button <?php echo $class; ?> js-trigger-collins-modal" data-collins-modal-id="<?php echo $collinsTrigger; ?>">
@@ -90,19 +90,23 @@ function block_buttons($field, $opts = [] ){
 
                         <?php
                             if($collinsID == 'theparlouratthezetterclerkenwell'):
+                                // Zetter Clerkenwell
                                 $venue = '688b9ff5b56440f24d3fcd69';
                             elseif($collinsID == 'theparlouratthezettermarylebone'):
+                                // Zetter Marylebone
                                 $venue = '688b9e8818d792f3070e8b1b';
                             elseif($collinsID == 'thezetterhotel'):
+                                // Zetter Group
                                 $venue = '688ba041b56440ece2080195,688b9ff5b56440f24d3fcd69,688b9e8818d792f3070e8b1b';
                             else:
                                 $venue = '';
                             endif; 
                         ?>
+                        
                         <div class="collins-booking-modal js-collins-booking-modal" data-collins-id="<?php echo $collinsTrigger; ?>">
                             <a href="#" class="js-close-collins-modal close-collins-modal"></a>
-                            <link rel="stylesheet" type="text/css" href="https://onsass.designmynight.com/?background-color=%23FFFFFF&primary-color=%237f8447&body-text-color=%23000000&outer-border-color=gray">
-                            <script src="//widgets.designmynight.com/bookings-partner.min.js" dmn-booking-form="true" venue="<?php echo $venue; ?>" hide-offers="false" hide-powered-by="false" search-venues="false" monday-first="true" locale="undefined" show-type-first="true" return-url="https://thezetter.com/parlours/" return-method="post"></script>
+                            <link rel="stylesheet" type="text/css" href="https://onsass.designmynight.com/?background-color=%23FFFFFF&primary-color=%236DA8A6&body-text-color=%23000000&outer-border-color=gray">
+                            <script src="//widgets.designmynight.com/bookings-partner.min.js" dmn-booking-form="true" venue="<?php echo $venue; ?>" hide-offers="false" hide-powered-by="false" search-venues="false" monday-first="true" locale="undefined"></script>
                         </div>
                         <?php
                     elseif($meeting):

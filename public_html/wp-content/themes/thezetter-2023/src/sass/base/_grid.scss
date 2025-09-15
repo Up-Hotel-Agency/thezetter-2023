@@ -53,9 +53,18 @@
     position: relative;
     &.to-top{
         z-index: 99 !important;
+        @extend %transition;
     }
     &.theme--image {
         z-index: 1;
+        @extend %transition;
+    }
+}
+
+section{
+    &.modal-open{
+        z-index: 999 !important;
+        @extend %transition;
     }
 }
 

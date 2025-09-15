@@ -56,6 +56,7 @@ jQuery(function($){
         var collinsID = $(this).attr('data-collins-modal-id');
         $('.js-collins-booking-modal[data-collins-id="' + collinsID + '"]').addClass('active');
         $('body').addClass('modal-open');
+        $(this).parents('section').addClass('modal-open');
     });
 
     $('.js-close-collins-modal').click(function(e) {
@@ -63,6 +64,7 @@ jQuery(function($){
         var collinsID = $(this).parents('.js-collins-booking-modal').attr('data-collins-id');
         $('.js-collins-booking-modal[data-collins-id="' + collinsID + '"]').removeClass('active');
         $('body').removeClass('modal-open');
+        $(this).parents('section').removeClass('modal-open');
     });
 
     $(".bg-image-carousel").each(function(){

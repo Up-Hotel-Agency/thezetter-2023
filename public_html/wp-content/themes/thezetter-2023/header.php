@@ -66,6 +66,9 @@ dataLayer.push({
     ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 </script>
 
+<script type="text/javascript" src="https://app.prommt.com/sdk/prommt.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://app.prommt.com/sdk/prommt.min.css">
+
 <?php if(get_field('not_zetter', 'options') || !get_field('is_group', 'options')): ?>
 
     <?php include 'secondary_styles.php'; ?>

@@ -42,14 +42,15 @@ dataLayer.push({
 </script>
 <?php endif; ?>
 
-<!-- Marrables Hotel -->
 <?php $currentID = get_the_ID(); ?>
 <?php if(get_current_blog_id() == 3):?>
+    <!-- Marrables Hotel -->
     <?php if($currentID == '2864'):?>
         <!-- Pickup page -->
         <script type="application/javascript"> var customice_pickup_config = { configurator_url: 'https://cfg.customice.de/the-zetter-group_marrable-farringdon-hotel?token=<selfpickuptoken>#reservation', iframe_id: 'customicepickup' }; </script> <script type='application/javascript' src='https://www.customice.de/selfpickup-v2.js'></script>
     <?php endif;?>
 <?php endif;?>
+
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

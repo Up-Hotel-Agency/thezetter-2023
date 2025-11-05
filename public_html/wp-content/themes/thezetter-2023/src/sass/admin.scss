@@ -102,3 +102,32 @@
 
 }
 
+// Hotel Unique ID field
+.acf-field-64f88de50e263{
+    .acf-repeater{
+        .acf-table{
+            tbody{
+                .acf-row{
+                    .acf-field-690b0d7f2b6f7{
+                        input{
+                            pointer-events: none;
+                            background-color: #f0f0f0;
+                            color: #888;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Location Name ID
+.acf-field-690b22d07899c{
+    .acf-input{
+        input{
+            pointer-events: none;
+            background-color: #f0f0f0;
+            color: #888;
+        }
+    }
+}

@@ -8,19 +8,55 @@ jQuery(function($){
         e.preventDefault();
         if($('.location-select').hasClass('active')){
             var location = $(this).data('url');
+            var site = $(this).data('site');
             var arrivalDate = $(this).find('input[name="arrival"]').val();
             var departureDate = $(this).find('input[name="departure"]').val();
             var arrival = dayjs(arrivalDate).format('YYYY-MM-DD');
             var departure = dayjs(departureDate).format('YYYY-MM-DD');
             var rooms = $(this).find('input[name="rooms"]').val();
             var adults = $(this).find('input[name="adults"]').val();
-            var children = $(this).find('input[name="children"]').val();
+            // var children = $(this).find('input[name="children"]').val();
             var propertyId = $(this).data('property-id');
             $('.js-booking-toggle').toggleClass('menu-open');
+
+
+            // --- DISTRIBUTE ADULTS ---
+            var adultsPerRoom = [];
+            var baseAdults = Math.floor(adults / rooms);
+            var remainder = adults % rooms;
+
+            for (var i = 0; i < rooms; i++) {
+                adultsPerRoom.push(baseAdults + (i < remainder ? 1 : 0));
+            }
+
+            var params = new URLSearchParams({
+                rooms: rooms
+            });
+            params.set('adult', adultsPerRoom.join(','));   // e.g. "2,2"
+            var totalRoomsandGuests = params.toString();
+
+            console.log(site);
+            if(site == 'clerkenwell'){
+                // console.log("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
+                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter";
+                //  https://reservations.thezetter.com/?&brand=ZETTER&chain=34634&level=chain&theme=Zetter&hotel=35181
+            }else if(site == 'marylebone'){
+                window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
+            }else if(site == 'marrables'){
+                window.location.href = "https://reservations.marrableshotel.com/?arrive=" + arrival + "&chain=34634&level=hotel&hotel=35182&currency=GBP&depart=" + departure + "&" + totalRoomsandGuests;
+                // https://reservations.marrableshotel.com/?&chain=34634&level=hotel&hotel=35182
+            }else if(site == 'bloomsbury'){
+                window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
+            }else{
+                console.log(5);
+                // Group
+                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter";
+                // https://reservations.thezetter.com/&brand=ZETTER&chain=34634&level=chain&theme=Zetter
+            }
     
     
             // go to your IBE
-            window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
+            // window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
         }else{
             $('.location-select').addClass('error');
         }
@@ -31,6 +67,7 @@ jQuery(function($){
     $('.js-location-selector-up a').click(function(e) {
         e.preventDefault();
         var locationUrl = $(this).attr('data-url');
+        var locationSite = $(this).attr('data-site');
         var locationID = $(this).attr('data-property-id');
         var locationName = $(this).text();
         $('.location-display').text(locationName);
@@ -41,6 +78,7 @@ jQuery(function($){
         
         $(this).parents('form').attr('data-url', locationUrl);
         $(this).parents('form').attr('data-property-id', locationID);
+        $(this).parents('form').attr('data-site', locationSite);
     }); 
 
     $(".js-datepicker-trigger").flatpickr({

@@ -13,7 +13,7 @@
 ?>
 <form action="#" id="booking-mask" 
     <?php $curBlog = get_current_blog_id(); switch_to_blog( $curBlog ); ?>
-    data-url="<?php echo get_bloginfo( 'url' ); ?>/book" data-property-id="<?php the_field('booking_property_id', 'options'); ?>"
+    data-url="<?php echo get_bloginfo( 'url' ); ?>/book" data-site="<?php the_field('location_name_id', 'options'); ?>" data-property-id="<?php the_field('booking_property_id', 'options'); ?>"
     class="js-booking-mask booking-mask flex flex-col theme--default" data-aos="fade-up"
     >
     <div class="logo">
@@ -31,7 +31,7 @@
                 <?php
                 switch_to_blog( 1 );
                 while ( have_rows('hotels', 'options') ) : the_row(); ?>
-                        <a href="#" class="" data-property-id="<?php the_sub_field('booking_id', 'options'); ?>" data-url="<?php echo get_sub_field( 'homepage_url', 'options' ); ?>/book"><?php echo get_sub_field( 'hotel_name', 'options' ); ?></a>
+                        <a href="#" class="" data-site="<?php the_sub_field('hotel_unique_id', 'options'); ?>" data-property-id="<?php the_sub_field('booking_id', 'options'); ?>" data-url="<?php echo get_sub_field( 'homepage_url', 'options' ); ?>/book"><?php echo get_sub_field( 'hotel_name', 'options' ); ?></a>
                 <?php endwhile; restore_current_blog();?>                
             </div>
 

@@ -153,6 +153,15 @@ jQuery(function($){
         $(".menu-wrapper.js-menu-toggle.header-with-dropdowns.menu-open").removeClass('active');
     });
 
+    $(".button").click(function(e) {
+        const href = $(this).attr('href');
+        if (href === '#book') {
+            // Do nothing — prevent default behavior
+            e.preventDefault();
+            $('.js-booking-toggle').toggleClass('menu-open');
+        }
+    }); 
+
     $(".js-locations-dropdown").click(function(e) {
         e.preventDefault();
         $(this).toggleClass('active');

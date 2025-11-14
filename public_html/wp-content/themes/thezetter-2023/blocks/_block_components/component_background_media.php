@@ -29,6 +29,9 @@ function block_background_media() {
                     preload="none"
                     muted=""
                     autoplay=""
+                    <?php if($themeField['poster']):?>
+                        poster="<?php echo $themeField['poster'];?>"
+                    <?php endif; ?>
                     loop
                     playsinline
                     src="<?php echo $themeVid; ?>"></video>

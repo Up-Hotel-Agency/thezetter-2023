@@ -21,5 +21,13 @@ include 'templates/ajax_modal.php';
 <?php wp_footer(); ?>
 <?php acf_load_listener(); ?>
 
+
+<?php if(get_field('not_zetter', 'options') || !get_field('is_group', 'options')): ?>
+    <!-- TripTease -->
+    <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
+<?php else: ?>
+    <!-- TripTease -->
+    <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
+<?php endif; ?>
 </body>
 </html>

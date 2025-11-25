@@ -73,8 +73,6 @@ dataLayer.push({
 <?php if(get_field('not_zetter', 'options') || !get_field('is_group', 'options')): ?>
 
     <?php include 'secondary_styles.php'; ?>
-    <!-- TripTease -->
-    <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
 
 <?php else: ?>
     <!-- Preload webfont -->
@@ -88,10 +86,6 @@ dataLayer.push({
     <style>
         <?php echo file_get_contents(get_template_directory() . '/assets/css/base/typography/load-zetter-fonts.css'); ?>
     </style>
-
-    <!-- TripTease -->
-    <script src="https://onboard.triptease.io/bootstrap.js?integrationId=01E4X68PPMXP1TVN2VV3FHBD2W" defer async crossorigin="anonymous" type="text/javascript"></script>
-
 
 <?php endif; ?>
 

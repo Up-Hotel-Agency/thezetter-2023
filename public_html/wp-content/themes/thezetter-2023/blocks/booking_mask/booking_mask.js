@@ -37,26 +37,21 @@ jQuery(function($){
 
             console.log(site);
             if(site == 'clerkenwell'){
-                // console.log("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
                 window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter";
-                //  https://reservations.thezetter.com/?&brand=ZETTER&chain=34634&level=chain&theme=Zetter&hotel=35181
             }else if(site == 'marylebone'){
                 window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35183&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter"
             }else if(site == 'marrables'){
                 window.location.href = "https://reservations.marrableshotel.com/?arrive=" + arrival + "&chain=34634&level=hotel&hotel=35182&currency=GBP&depart=" + departure + "&" + totalRoomsandGuests;
-                // https://reservations.marrableshotel.com/?&chain=34634&level=hotel&hotel=35182
             }else if(site == 'bloomsbury'){
-                window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
+                // NEW
+                // window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0&currency=GBP&depart=" + departure + "&hotel=95317&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter";
+                // TEMPORARY
+                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter";
             }else{
-                console.log(5);
                 // Group
                 window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter";
-                // https://reservations.thezetter.com/&brand=ZETTER&chain=34634&level=chain&theme=Zetter
             }
-    
-    
-            // go to your IBE
-            // window.location.href = location + "/#/booking/results?propertyId="+ propertyId +"&arrival=" + arrival + "&departure=" + departure + "&rooms=" + rooms + "&adults=" + adults;
+
         }else{
             $('.location-select').addClass('error');
         }

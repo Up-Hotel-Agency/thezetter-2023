@@ -236,6 +236,9 @@
                     @include size-M;
                 }
             }
+            pre{
+                white-space: break-spaces;
+            }
             &.content-wrap-careers{
                 p{
                     @include size-S;

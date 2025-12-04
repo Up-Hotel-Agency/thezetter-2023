@@ -127,23 +127,41 @@ function offers_listing_render_callback( $block, $content = '', $is_preview = fa
                                 foreach ( $terms as $term ) {
                                     $promoCode = get_field('promocode', $offer);?>
                                     <?php $slug = $term->slug; ?>
+                                    <?php $arrival = date('Y-m-d', strtotime('+1 day')); ?>
+                                    <?php $departure = date('Y-m-d', strtotime('+2 days')); ?>
                                     <?php if( $term->slug == 'clerkenwell' ): // Clerkenwell ?>
-                                        <?php $hotelID = 'TZTC';?>
-                                        <?php $url = "https://thezetter.com/"; ?>
+                                        <?php $hotelID = '';?>
+                                        <?php if($promoCode):?>
+                                            <?php $url = "https://reservations.thezetter.com/?arrive=" . $arrival . "&brand=ZETTER&chain=34634&currency=GBP&depart=" . $departure . "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&rooms=1&adult=2&theme=Zetter&promo=" . $promoCode ; ?>
+                                        <?php else:?>    
+                                            <?php $url = "https://reservations.thezetter.com/?arrive=" . $arrival . "&brand=ZETTER&chain=34634&currency=GBP&depart=" . $departure . "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&rooms=1&adult=2&theme=Zetter"; ?>
+                                        <?php endif; ?>
                                     <?php elseif( $term->slug == 'marrables' ): // Marrables ?>
-                                        <?php $hotelID = 'TZHC';?>
-                                        <?php $url = "https://marrableshotel.com/"; ?>
+                                        <?php $hotelID = '';?>
+                                        <?php if($promoCode):?>
+                                            <?php $url = "https://reservations.marrableshotel.com/?arrive=" . $arrival . "&chain=34634&level=hotel&hotel=35182&currency=GBP&depart=" . $departure . "&rooms=1&adult=2&promo=" . $promoCode ; ?>
+                                        <?php else:?>  
+                                            <?php $url = "https://reservations.marrableshotel.com/?arrive=" . $arrival . "&chain=34634&level=hotel&hotel=35182&currency=GBP&depart=" . $departure . "&rooms=1&adult=2"; ?>
+                                        <?php endif; ?>
                                         <?php $slug = ""; ?>
                                     <?php elseif( $term->slug == 'marylebone' ): // Marylebone ?>
-                                        <?php $hotelID = 'TZTM';?>
-                                        <?php $url = "https://thezetter.com/"; ?>
+                                        <?php $hotelID = '';?>
+                                         <?php if($promoCode):?>
+                                            <?php $url = "https://reservations.thezetter.com/?arrive=" . $arrival . "&brand=ZETTER&chain=34634&currency=GBP&depart=" . $departure . "&hotel=35183&level=chain&locale=en-US&productcurrency=GBP&rooms=1&adult=2&theme=Zetter&promo=" . $promoCode ; ?>
+                                        <?php else:?>  
+                                            <?php $url = "https://reservations.thezetter.com/?arrive=" . $arrival . "&brand=ZETTER&chain=34634&currency=GBP&depart=" . $departure . "&hotel=35183&level=chain&locale=en-US&productcurrency=GBP&rooms=1&adult=2&theme=Zetter"; ?>
+                                        <?php endif; ?>
                                     <?php elseif( $term->slug == 'bloomsbury' ): // Bloomsbury ?>
                                         <?php $hotelID = '';?>
-                                        <?php $url = "https://thezetter.com/"; ?>
+                                        <?php if($promoCode):?>
+                                            <?php $url = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0&currency=GBP&depart=" + departure + "&hotel=95317&level=chain&locale=en-US&productcurrency=GBP&rooms=1&adult=2&theme=Zetter&promo=" . $promoCode ; ?>
+                                        <?php else:?>  
+                                            <?php $url = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0&currency=GBP&depart=" + departure + "&hotel=95317&level=chain&locale=en-US&productcurrency=GBP&rooms=1&adult=2&theme=Zetter"; ?>
+                                        <?php endif; ?>
                                     <?php else: // Group ?>
                                         <?php $hotelID = '';?>
                                     <?php endif; ?>
-                                    <a class="button minor" href="<?php echo $url;?><?php echo $slug;?>/book/#/booking/results?propertyId=<?php echo $hotelID; ?>&promoCode=<?php echo $promoCode; ?>&" target="_blank" rel="noopener">
+                                    <a class="button minor" href="<?php echo $url;?>" target="_blank" rel="noopener">
                                         Book <?php echo $term->name; ?>
                                     </a><?php 
                                 }

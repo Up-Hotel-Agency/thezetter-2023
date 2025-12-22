@@ -35,7 +35,7 @@ function block_buttons($field, $opts = [] ){
 
     if(!$single): 
         if( is_array($root_field) ): ?>
-            <div class="buttons <?php if($class): echo $class; endif;?>" <?php if($aos): echo 'data-aos="true"'; if($aos_delay): echo 'data-aos-delay="'.$aos_delay.'"'; endif; endif; ?>>
+            <div class="buttons <?php if($class): echo $class; endif;?>" <?php if($aos): echo 'data-aos="fade-up"'; if($aos_delay): echo 'data-aos-delay="'.$aos_delay.'"'; endif; endif; ?>>
                 <?php $buttonCount = 1;
                 foreach ( $root_field as $button ) : ?>
                     <?php
@@ -168,7 +168,7 @@ function block_buttons($field, $opts = [] ){
 function button_template($link = [], $class = false, $type = false, $data = false, $aos = false, $aos_delay = false){
     ?>
     <?php if(linkField( $link, 'url' )): ?>
-        <a class="button <?php echo $class; ?> <?php echo $type; ?>" href="<?php echo linkField( $link, 'url' ); ?>" <?php echo linkField( $link, 'target' ); ?> <?php echo $data; ?> <?php if($aos): echo 'data-aos="true"'; if($aos_delay): echo 'data-aos-delay="'.$aos_delay.'"'; endif; endif; ?>>
+        <a class="button <?php echo $class; ?> <?php echo $type; ?>" href="<?php echo linkField( $link, 'url' ); ?>" <?php echo linkField( $link, 'target' ); ?> <?php echo $data; ?> <?php if($aos): echo 'data-aos="fade-up"'; if($aos_delay): echo 'data-aos-delay="'.$aos_delay.'"'; endif; endif; ?>>
             <?php echo linkField( $link, 'text' ); ?>
         </a>
     <?php endif; 

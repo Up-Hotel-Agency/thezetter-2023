@@ -56,7 +56,8 @@ function feat_content_render_callback( $block, $content = '', $is_preview = fals
 
             <?php block_buttons(get_field('buttons'), [
                 'class' => 'no-margin items-center centered',
-                'type'  => 'primary'
+                'type'  => 'primary',
+                'aos'   => true
             ]); ?>
 
         </div>

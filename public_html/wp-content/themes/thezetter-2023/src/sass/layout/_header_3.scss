@@ -32,12 +32,9 @@ section:last-of-type{
         display: none;
     }
 }
-body {
-    padding-top: var(--header-height);
-}
 
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -155,6 +152,12 @@ body {
         }
     }
 }
+
+/* If the WP admin bar is present on the page, offset the header's sticky position by the admin bar height */
+body:has(#wpadminbar) header {
+  top: 32px;
+}
+
 .js-locations-dropdown{
     cursor: pointer;
     display: flex;

@@ -179,8 +179,8 @@
                     <?php endif; ?>
                 </div>
                 <div class="credits">
-                    Copyright 2023, The Zetter. All Rights Reserved.<br>
-                    Design by <a class="credits" href="https://ruthcostello.com" target="_blank" rel="nofollow">Ruth Costello</a>. Build by <a class="credits" href="https://uphotel.agency" target="_blank" rel="nofollow">UP Hotel Agency</a>.
+                    Copyright 2023, The Zetter.<br>All Rights Reserved.<br>
+                    Design by <a class="credits" href="https://ruthcostello.com" target="_blank" rel="nofollow">Ruth Costello</a>.<br>Build by <a class="credits" href="https://uphotel.agency" target="_blank" rel="nofollow">UP Hotel Agency</a>.
                 </div>
             </div>
         </div>

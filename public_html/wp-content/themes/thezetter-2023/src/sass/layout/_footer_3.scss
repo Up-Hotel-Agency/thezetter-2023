@@ -218,13 +218,17 @@
         }
     }
     .credits{
-        line-height: .8rem;
+        line-height: 1.2rem;
         font-weight: 400 !important;
-        font-size: 8px;
+        @include size-S;
         font-family: $font-stack-headings;
         @include color(color, 'body');
         @include breakpoint(M) {
             margin-top: 1.786rem;
+        }
+
+        a {
+            letter-spacing: unset;
         }
     }
     a {

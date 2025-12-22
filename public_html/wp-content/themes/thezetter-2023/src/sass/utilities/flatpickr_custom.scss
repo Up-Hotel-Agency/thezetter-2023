@@ -7,11 +7,15 @@
 //Custom styling for the Flatpickr datepicker plugin
 
 .flatpickr-calendar {
-    @include color('background-color', 'background');
+    @include color('background-color', 'background-alt');
     box-shadow: 4px 8px 24px rgba(0, 10, 44, 0.075);
     border-radius: 2px;
     padding: 2rem;
     width: auto !important; //Force auto width on calendar so it doesn't crop out columns
+
+    &.arrowTop::after {
+        border-bottom-color: var(--color-background-alt);
+    }
 
     &.multiMonth {
         padding: 1.5rem;

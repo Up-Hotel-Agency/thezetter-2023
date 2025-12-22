@@ -65,7 +65,7 @@ body {
                         width: calc(100%);
                         height: 1px;
                         left: 0;
-                        bottom: calc(50% - 6px);
+                        bottom: -0.333lh;
                         @include color(background-color, 'body');
                         animation-name: underline-menu;
                         animation-duration: .5s;
@@ -320,7 +320,7 @@ body {
                         width: calc(100% - 2.5rem);
                         height: 1px;
                         left: 1.25rem;
-                        bottom: calc(50% - 10px);
+                        bottom: -0.333lh;
                         @include color(background-color, 'body');
                         animation-name: underline-menu-header;
                         animation-duration: .5s;

@@ -178,7 +178,7 @@
                 width: calc(100%);
                 height: 1px;
                 left: 0rem;
-                bottom: 0;
+                bottom: -0.333lh;
                 @include color(background-color, 'body');
                 animation-name: underline-menu;
                 animation-duration: .5s;

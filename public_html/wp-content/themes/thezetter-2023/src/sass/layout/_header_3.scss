@@ -45,6 +45,7 @@ body {
     height: var(--header-height);
     // @include color(background-color, 'background');
     background: rgba($color-background, .85);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid;
     @include color(border-color, 'body');
     @extend %transition;

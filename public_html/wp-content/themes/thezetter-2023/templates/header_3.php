@@ -96,7 +96,9 @@
 		<div>
 			<div class="overlay-bottom">
 				<div class="logo-side-menu">
-					<?php echo file_get_contents( get_field('side_menu_logo', 'options') ); ?>
+					<?php if(get_field('side_menu_logo', 'options')): ?>
+						<?php echo file_get_contents( get_field('side_menu_logo', 'options') ); ?>
+					<?php endif; ?>
 				</div>
 				<div class="close-overlay-menu">
 					<div class="close open-menu">Close</div>

@@ -17,7 +17,9 @@
     class="js-booking-mask booking-mask flex flex-col theme--default" data-aos="fade-up"
     >
     <div class="logo">
-        <?php echo file_get_contents( get_field('header_logo', 'options') ); ?>
+        <?php if(get_field('side_menu_logo', 'options')): ?>
+            <?php echo file_get_contents( get_field('header_logo', 'options') ); ?>
+        <?php endif; ?>
     </div>
     <h2><?php _e('Reserve A Room', 'zetter'); ?></h2>
     <div class="input-wrap location-select input-styled <?php if($curBlog != 1):?> active <?php endif; ?>">

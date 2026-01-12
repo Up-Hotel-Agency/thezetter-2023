@@ -7,7 +7,8 @@
 //Custom styling for the Flatpickr datepicker plugin
 
 .flatpickr-calendar {
-    @include color('background-color', 'background-alt');
+    // @include color('background-color', 'background');
+    background-color: var(--color-background);
     box-shadow: 4px 8px 24px rgba(0, 10, 44, 0.075);
     border-radius: 2px;
     padding: 2rem;

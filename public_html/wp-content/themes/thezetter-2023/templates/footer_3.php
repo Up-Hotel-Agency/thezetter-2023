@@ -1,93 +1,95 @@
-<?php if(get_field('display_newsletter', 'options')): ?>
-    <div class="footer-newsletter container spacing flex flex-row">
-        <div class="footer-newsletter-left flex flex-row">
-            <?php if(get_field('illustration_newsletter', 'options')): ?>
-                <div class="illustration-newsletter <?php if(get_field('add_blend_mode', 'options')):?> blend-mode <?php endif; ?>"  data-aos="fade-up">
-                    <?php echo img_sizes(get_field('illustration_newsletter', 'options'), ['default' => 'img_1367', 'page_area' => '30', 'mobile_page_area' => '85', 'lazy_load' => true]); ?>
-                </div>
-            <?php endif; ?>
-            <div class="content-newsletter flex flex-col">
-                <?php if(get_field('title_newsletter', 'options')): ?>
-                    <h4 class="bold h2 mb-5"  data-aos="fade-up"><?php echo get_field('title_newsletter', 'options');?></h4>
-                <?php endif; ?>
-                <?php if(get_field('content_newsletter', 'options')): ?>
-                    <article  data-aos="fade-up">
-                        <?php echo get_field('content_newsletter', 'options');?>
-                    </article>
-                <?php endif; ?>
-            </div>
-        </div>
-        <div class="newsletter-form"  data-aos="fade-up">
-            <?php $currentID = get_the_ID(); ?>
-            <?php if(get_current_blog_id() == 3):?>
-                <!-- Marrables Hotel -->
-                <script data-xp-widget-newsletter-427 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=427"></script>
-            <?php elseif(get_current_blog_id() == 5):?>
-                <!-- Bloomsbury Hotel -->
-                 <script data-xp-widget-newsletter-457 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=457"></script>
-            <?php else: ?>
-                <script data-xp-widget-newsletter-409 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=409"></script>
-            <?php endif; ?>
-            <template>
-                <div class="xp-widget-newsletter-panel">
-
-                    <div v-if="loading" class="loader">
-                        <div class="xp-loader-light">
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                            <div/>
-                        </div>
+<?php if ( ! ( is_main_site() && is_page(5139) ) ) : ?>
+    <?php if(get_field('display_newsletter', 'options')): ?>
+        <div class="footer-newsletter container spacing flex flex-row">
+            <div class="footer-newsletter-left flex flex-row">
+                <?php if(get_field('illustration_newsletter', 'options')): ?>
+                    <div class="illustration-newsletter <?php if(get_field('add_blend_mode', 'options')):?> blend-mode <?php endif; ?>"  data-aos="fade-up">
+                        <?php echo img_sizes(get_field('illustration_newsletter', 'options'), ['default' => 'img_1367', 'page_area' => '30', 'mobile_page_area' => '85', 'lazy_load' => true]); ?>
                     </div>
+                <?php endif; ?>
+                <div class="content-newsletter flex flex-col">
+                    <?php if(get_field('title_newsletter', 'options')): ?>
+                        <h4 class="bold h2 mb-5"  data-aos="fade-up"><?php echo get_field('title_newsletter', 'options');?></h4>
+                    <?php endif; ?>
+                    <?php if(get_field('content_newsletter', 'options')): ?>
+                        <article  data-aos="fade-up">
+                            <?php echo get_field('content_newsletter', 'options');?>
+                        </article>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="newsletter-form"  data-aos="fade-up">
+                <?php $currentID = get_the_ID(); ?>
+                <?php if(get_current_blog_id() == 3):?>
+                    <!-- Marrables Hotel -->
+                    <script data-xp-widget-newsletter-427 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=427"></script>
+                <?php elseif(get_current_blog_id() == 5):?>
+                    <!-- Bloomsbury Hotel -->
+                    <script data-xp-widget-newsletter-457 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=457"></script>
+                <?php else: ?>
+                    <script data-xp-widget-newsletter-409 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=409"></script>
+                <?php endif; ?>
+                <template>
+                    <div class="xp-widget-newsletter-panel">
 
-                    <h3 v-if="title" class="title">{{ title }}</h3>
-
-                    <p v-if="introduction" class="intro">{{ introduction }}</p>
-
-                    <div v-if="display_message" class="end-action-message" v-html="end_action_message"></div>
-
-                    <form v-if="!display_message" @submit.prevent="submitForm()">
-
-                        <div
-                            v-for="field in fields"
-                            :class="[`form-line-${field.name}`, {'filled': fields_value[field.name]}]"
-                            class="form-line"
-                        >
-                            <label v-if="labelIsShown(field)" :for="inputId(field)">{{ field.text }}{{
-                                    field.mandatory ? " *" : ""
-                                }}</label>
-                            <component
-                                :is="getFieldComponent(field)"
-                                :ref="field.name"
-                                v-model="fields_value[field.name]"
-                                v-bind="getFieldProps(field)"
-                            />
-                        </div>
-
-                        <div v-if="multi_list === 1">
-                            <div v-if="multi_list_intro" class="multi_list_intro">{{ multi_list_intro }}</div>
-                            <div v-for="list in lists" class="form-checkbox">
-                                <label><input v-model="selected_lists" :value="list.id" type="checkbox"> {{ list.name }}</label>
+                        <div v-if="loading" class="loader">
+                            <div class="xp-loader-light">
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
+                                <div/>
                             </div>
                         </div>
 
-                        <p class="text-mandatory">{{ mandatory_fields }}</p>
+                        <h3 v-if="title" class="title">{{ title }}</h3>
 
-                        <button class="form-submit">{{ call_to_action }}</button>
+                        <p v-if="introduction" class="intro">{{ introduction }}</p>
 
-                    </form>
-                </div>
-            </template>
+                        <div v-if="display_message" class="end-action-message" v-html="end_action_message"></div>
+
+                        <form v-if="!display_message" @submit.prevent="submitForm()">
+
+                            <div
+                                v-for="field in fields"
+                                :class="[`form-line-${field.name}`, {'filled': fields_value[field.name]}]"
+                                class="form-line"
+                            >
+                                <label v-if="labelIsShown(field)" :for="inputId(field)">{{ field.text }}{{
+                                        field.mandatory ? " *" : ""
+                                    }}</label>
+                                <component
+                                    :is="getFieldComponent(field)"
+                                    :ref="field.name"
+                                    v-model="fields_value[field.name]"
+                                    v-bind="getFieldProps(field)"
+                                />
+                            </div>
+
+                            <div v-if="multi_list === 1">
+                                <div v-if="multi_list_intro" class="multi_list_intro">{{ multi_list_intro }}</div>
+                                <div v-for="list in lists" class="form-checkbox">
+                                    <label><input v-model="selected_lists" :value="list.id" type="checkbox"> {{ list.name }}</label>
+                                </div>
+                            </div>
+
+                            <p class="text-mandatory">{{ mandatory_fields }}</p>
+
+                            <button class="form-submit">{{ call_to_action }}</button>
+
+                        </form>
+                    </div>
+                </template>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 <?php endif; ?>
 <footer class="footer container theme--image">
     <div class="footer-logo flex justify-between items-center mb-14">

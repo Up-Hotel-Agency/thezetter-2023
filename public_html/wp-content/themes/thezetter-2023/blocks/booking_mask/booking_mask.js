@@ -49,7 +49,7 @@ jQuery(function($){
                 // window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter";
             }else{
                 // Group
-                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter";
+                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&config=TZO&currency=GBP&depart=" + departure + "&level=chain&" + totalRoomsandGuests + "&theme=Zetter";
             }
 
         }else{
@@ -76,23 +76,112 @@ jQuery(function($){
         $(this).parents('form').attr('data-site', locationSite);
     }); 
 
-    $(".js-datepicker-trigger").flatpickr({
-        mode: "range",
-        minDate: "today",
-        showMonths: "2",
-        locale: {
-            firstDayOfWeek: 1
-        },
-        onClose: function(selectedDates) {
-            var startDate = selectedDates[0];
-            var endDate = selectedDates[1];
-            $('.js-check-in-display').html( dayjs(startDate).format('ddd D MMM') );
-            $('.js-check-out-display').html( dayjs(endDate).format('ddd D MMM') );
+    $(function () {
+        const $form = $('#booking-mask');
+        const formEl = $form[0];
 
-            $('.js-arrive-input').val( dayjs(startDate).format('YYYY-MM-DD') );
-            $('.js-departure-input').val( dayjs(endDate).format('YYYY-MM-DD') );
+        function handleSiteChange(siteValue) {
+            console.log('data-site:', siteValue);
+            // 🔹 your logic here
+            if(siteValue == 'bloomsbury'){
+                // Display value
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                // Target date: April 1, 2026
+                var targetDate = new Date('2026-04-01');
+                targetDate.setHours(0, 0, 0, 0);
+
+                // Compare
+                if (today < targetDate) {
+
+                    var checkInDate = dayjs('2026-04-01'); // dayjs object
+                    var checkOutDate = checkInDate.add(1, 'day'); // day after
+
+                    // Format both as YYYY-MM-DD
+                    $('input[name="arrival"]').val(checkInDate.format('YYYY-MM-DD'));
+                    $('input[name="departure"]').val(checkOutDate.format('YYYY-MM-DD'));
+                    $('.js-check-in-display').html(dayjs(checkInDate).format('ddd D MMM'));
+                    $('.js-check-out-display').html(dayjs(checkOutDate).format('ddd D MMM'));
+                }
+
+                // Set min date 1st April
+                $(".js-datepicker-trigger").flatpickr({
+                    mode: "range",
+                    minDate: "2026-04-01",
+                    showMonths: "2",
+                    locale: {
+                        firstDayOfWeek: 1
+                    },
+                    onClose: function(selectedDates) {
+                        var startDate = selectedDates[0];
+                        var endDate = selectedDates[1];
+                        $('.js-check-in-display').html( dayjs(startDate).format('ddd D MMM') );
+                        $('.js-check-out-display').html( dayjs(endDate).format('ddd D MMM') );
+
+                        $('.js-arrive-input').val( dayjs(startDate).format('YYYY-MM-DD') );
+                        $('.js-departure-input').val( dayjs(endDate).format('YYYY-MM-DD') );
+                    }
+                });
+            }else{
+
+                // get new selected date
+                var tomorrow = new Date();
+                tomorrow.setHours(0, 0, 0, 0);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+
+                var checkInDate = tomorrow.toISOString().split('T')[0];
+                // figure out check out date (the next day)
+                var checkOutDate = dayjs(checkInDate).add(1, 'day').format('YYYY-MM-DD');
+                // update departure date input
+                $('input[name="departure"]').val(checkOutDate);
+                // set the depart date input min date
+                $('input[name="departure"]').attr({
+                    'min' : dayjs(checkOutDate).format('YYYY-MM-DD')
+                });
+                // update text on the labels
+                $('.js-check-in-display').html(dayjs(checkInDate).format('ddd D MMM'));
+                $('.js-check-out-display').html(dayjs(checkOutDate).format('ddd D MMM'));
+                
+                $(".js-datepicker-trigger").flatpickr({
+                    mode: "range",
+                    minDate: "today",
+                    showMonths: "2",
+                    locale: {
+                        firstDayOfWeek: 1
+                    },
+                    onClose: function(selectedDates) {
+                        var startDate = selectedDates[0];
+                        var endDate = selectedDates[1];
+                        $('.js-check-in-display').html( dayjs(startDate).format('ddd D MMM') );
+                        $('.js-check-out-display').html( dayjs(endDate).format('ddd D MMM') );
+
+                        $('.js-arrive-input').val( dayjs(startDate).format('YYYY-MM-DD') );
+                        $('.js-departure-input').val( dayjs(endDate).format('YYYY-MM-DD') );
+                    }
+                });
+            }
         }
+
+        // 1️⃣ Run on page load
+        handleSiteChange($form.attr('data-site'));
+
+        // 2️⃣ Watch for changes to data-site
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-site') {
+                    handleSiteChange($form.attr('data-site'));
+                }
+            });
+        });
+
+        observer.observe(formEl, {
+            attributes: true
+        });
     });
+
+
+    
 
     $('.js-arrive-input').change(function(){
         // get new selected date

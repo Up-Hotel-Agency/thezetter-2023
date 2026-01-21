@@ -93,9 +93,255 @@ dataLayer.push({
 <?php echo file_get_contents(get_template_directory() . '/assets/css/abovethefold.css'); ?>
 </style>
 
+<!-- Adding Schema -->
+<?php if( get_current_blog_id() == 1 ): ?>
+    <!-- Main Site -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://thezetter.com/#organization",
+                "name": "The Zetter",
+                "url": "https://thezetter.com/",
+                "logo": "https://thezetter.com/wp-content/themes/zetter/assets/img/logo.png",
+                "sameAs": [
+                    "https://www.instagram.com/thezetterhotels/",
+                    "https://www.facebook.com/thezetterhotels",
+                    "https://www.linkedin.com/company/the-zetter-group"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+44-20-7324-4444",
+                    "contactType": "customer service",
+                    "email": "info@thezetter.com"
+                }
+                },
+                {
+                "@type": "WebSite",
+                "@id": "https://thezetter.com/#website",
+                "url": "https://thezetter.com/",
+                "name": "The Zetter",
+                "publisher": { "@id": "https://thezetter.com/#organization" }
+                }
+            ]
+        }
+    </script>
+<?php elseif( get_current_blog_id() == 2 ): ?>
+    <!-- Clerkenwell -->
+     <?php if(is_page(145)):?>
+        <!-- Parlour -->
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://thezetter.com/#organization",
+                "name": "The Zetter"
+                },
+                {
+                "@type": ["BarOrPub", "Place"],
+                "name": "The Parlour Clerkenwell",
+                "description": "Make yourself at home in The Parlour with a menu of stunning classic cocktails and small plates — perfect for lounging lunches or catch-ups.",
+                "url": "https://thezetter.com/clerkenwell/the-parlour/",
+                "telephone": "+44-20-7324-4444",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "49-50 St John's Square",
+                    "addressLocality": "London",
+                    "postalCode": "EC1V 4JJ",
+                    "addressCountry": "GB"
+                },
+                "containedInPlace": {
+                    "@type": "Hotel",
+                    "name": "The Zetter Clerkenwell",
+                    "@id": "https://thezetter.com/clerkenwell/#hotel"
+                },
+                "parentOrganization": { "@id": "https://thezetter.com/#organization" }
+                }
+            ]
+            }
+        </script>
+    <?php else: ?>
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://thezetter.com/#organization",
+                "name": "The Zetter",
+                "url": "https://thezetter.com/",
+                "logo": "https://thezetter.com/wp-content/themes/zetter/assets/img/logo.png"
+                },
+                {
+                "@type": ["Hotel", "Place"],
+                "@id": "https://thezetter.com/clerkenwell/#hotel",
+                "name": "The Zetter Clerkenwell",
+                "description": "Nestled in a townhouse on one of London's oldest squares, our Clerkenwell home is fuelled by a passion for British hospitality, and sensational parties.",
+                "url": "https://thezetter.com/clerkenwell/",
+                "telephone": "+44-20-7324-4444",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "49-50 St John's Square",
+                    "addressLocality": "London",
+                    "postalCode": "EC1V 4JJ",
+                    "addressCountry": "GB"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 51.5229,
+                    "longitude": -0.1017
+                },
+                "parentOrganization": { "@id": "https://thezetter.com/#organization" }
+                }
+            ]
+            }
+        </script>
+    <?php endif; ?>
+<?php  elseif( get_current_blog_id() == 4 ): ?>
+    <!-- Marylebone -->
+     <?php if(is_page(145)):?>
+        <!-- Parlour -->
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://thezetter.com/#organization",
+                "name": "The Zetter"
+                },
+                {
+                "@type": ["BarOrPub", "Place"],
+                "name": "The Parlour Marylebone",
+                "description": "Moments from Oxford Street, enjoy stunning classic cocktails, small plates, and the ultimate British tradition: Afternoon Tea.",
+                "url": "https://thezetter.com/marylebone/parlour",
+                "telephone": "+44-20-7324-4544",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "28-30 Seymour St",
+                    "addressLocality": "London",
+                    "postalCode": "W1H 7JB",
+                    "addressCountry": "GB"
+                },
+                "containedInPlace": {
+                    "@type": "Hotel",
+                    "name": "The Zetter Marylebone",
+                    "@id": "https://thezetter.com/marylebone/#hotel"
+                },
+                "parentOrganization": { "@id": "https://thezetter.com/#organization" }
+                }
+            ]
+            }
+        </script>
+    <?php else: ?>
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://thezetter.com/#organization",
+                "name": "The Zetter",
+                "url": "https://thezetter.com/"
+                },
+                {
+                "@type": ["Hotel", "Place"],
+                "@id": "https://thezetter.com/marylebone/#hotel",
+                "name": "The Zetter Marylebone",
+                "description": "An elegant Georgian townhouse in a perfect central location, fuelled by a passion for super cocktails and the perfect slumber.",
+                "url": "https://thezetter.com/marylebone/",
+                "telephone": "+44-20-7324-4544",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "28-30 Seymour St",
+                    "addressLocality": "London",
+                    "postalCode": "W1H 7JB",
+                    "addressCountry": "GB"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 51.5147,
+                    "longitude": -0.1584
+                },
+                "parentOrganization": { "@id": "https://thezetter.com/#organization" }
+                }
+            ]
+            }
+        </script>
+    <?php endif; ?>
+<?php  elseif( get_current_blog_id() == 5 ): ?>
+    <!-- Bloomsbury -->
+     <?php if(is_page(145)):?>
+        <!-- Parlour -->
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://thezetter.com/#organization",
+                "name": "The Zetter"
+                },
+                {
+                "@type": ["BarOrPub", "Place"],
+                "name": "The Parlour & Orangery Bloomsbury",
+                "description": "A tree-lined garden terrace and cosy parlour within a row of Georgian townhouses, set for drinks and dining from morning to night.",
+                "url": "https://thezetter.com/bloomsbury/lounges/",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "2-7 Montague St",
+                    "addressLocality": "London",
+                    "postalCode": "WC1B 5BP",
+                    "addressCountry": "GB"
+                },
+                "containedInPlace": {
+                    "@type": "Hotel",
+                    "name": "The Zetter Bloomsbury",
+                    "@id": "https://thezetter.com/bloomsbury/#hotel"
+                },
+                "parentOrganization": { "@id": "https://thezetter.com/#organization" }
+                }
+            ]
+            }
+        </script>
+    <?php else: ?>
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                "@type": "Organization",
+                "@id": "https://thezetter.com/#organization",
+                "name": "The Zetter"
+                },
+                {
+                "@type": ["Hotel", "Place"],
+                "@id": "https://thezetter.com/bloomsbury/#hotel",
+                "name": "The Zetter Bloomsbury",
+                "description": "Opening April 2026. A hideaway in the heart of bustling Bloomsbury, blending classic Georgian influences with present-day hospitality.",
+                "url": "https://thezetter.com/bloomsbury/",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "2-7 Montague St",
+                    "addressLocality": "London",
+                    "postalCode": "WC1B 5BP",
+                    "addressCountry": "GB"
+                },
+                "parentOrganization": { "@id": "https://thezetter.com/#organization" }
+                }
+            ]
+            }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+
+
 
 <?php if( get_current_blog_id() == 1 ): ?>
-    <!-- Main site -->
      <?php if(is_page(756)):?>
         <!-- Offers page -->
         <!-- Meta Pixel Code -->
@@ -117,7 +363,8 @@ dataLayer.push({
 
 <?php  elseif( get_current_blog_id() == 2 ): ?>
     <!-- The Hotels Network - Clerkenwell -->
-    <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042280&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+    <!-- <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042280&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script> -->
+     <script src="https://www.thehotelsnetwork.com/js/loader.js?property_id=1042280" async></script>
 
     <!-- Meta Pixel Code -->
     <script>
@@ -157,7 +404,8 @@ dataLayer.push({
 
 <?php elseif( get_current_blog_id() == 3 ): ?>
     <!-- The Hotels Network - Marrable's   -->
-    <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042281&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+    <!-- <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1042281&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script> -->
+    <script src="https://www.thehotelsnetwork.com/js/loader.js?property_id=1042281" async></script>
 
     <!-- Meta Pixel Code -->
     <script>
@@ -176,7 +424,8 @@ dataLayer.push({
     <!-- End Meta Pixel Code -->
 <?php elseif( get_current_blog_id() == 4 ): ?>
     <!-- The Hotels Network - Marylebone -->
-    <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1039746&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script>
+    <!-- <script src='https://www.thehotelsnetwork.com/js/loader.js?property_id=1039746&account_key=C46AE18617ED62CF0B1CA1E7F6CEFB84' async></script> -->
+    <script src="https://www.thehotelsnetwork.com/js/loader.js?property_id=1039746" async></script>
 
     <!-- Meta Pixel Code -->
     <script>

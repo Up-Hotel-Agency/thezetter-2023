@@ -1,6 +1,7 @@
 <header class="header flex justify-between items-center theme--default">
 	<div class="header-left flex items-center">
-		<a title="<?php echo get_bloginfo( 'name' ); ?>" class="logo flex justify-center items-center" href="<?php echo get_bloginfo( 'url' ); ?>">
+		<?php $main_site_url = get_site_url( get_main_site_id() ); ?>
+		<a title="<?php echo get_bloginfo( 'name' ); ?>" class="logo flex justify-center items-center" href="<?php echo $main_site_url; ?>">
 			<?php 
 			if(!get_field('not_zetter', 'options')): 
 				switch_to_blog(1);

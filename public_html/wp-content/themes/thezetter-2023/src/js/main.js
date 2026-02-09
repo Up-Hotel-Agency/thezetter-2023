@@ -677,12 +677,12 @@ jQuery(function($){
             var scrollTop = $(window).scrollTop();
             if (scrollTop > 500) {
                 $('.js-header-switch-theme').addClass('scrolled');
-                $('.js-header-switch-theme').removeClass('theme--image');
-                $('.js-header-switch-theme').addClass('theme--default');
+                // $('.js-header-switch-theme').removeClass('theme--image');
+                // $('.js-header-switch-theme').addClass('theme--default');
             } else {
                 $('.js-header-switch-theme').removeClass('scrolled');
-                $('.js-header-switch-theme').removeClass('theme--default');
-                $('.js-header-switch-theme').addClass('theme--image');
+                // $('.js-header-switch-theme').removeClass('theme--default');
+                // $('.js-header-switch-theme').addClass('theme--image');
             }
         });
     }

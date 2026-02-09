@@ -50,6 +50,10 @@ section:last-of-type{
         background: $color-background;
     }
 
+    &.scrolled{
+        position: fixed;
+        @extend %transition;
+    }
     .header-right{
         .locations-drop-down{
             a{

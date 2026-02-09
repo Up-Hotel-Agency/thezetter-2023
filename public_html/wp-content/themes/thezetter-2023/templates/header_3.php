@@ -1,4 +1,4 @@
-<header class="header flex justify-between items-center theme--default">
+<header class="header flex justify-between items-center theme--default js-header-switch-theme">
 	<div class="header-left flex items-center">
 		<?php $main_site_url = get_site_url( get_main_site_id() ); ?>
 		<a title="<?php echo get_bloginfo( 'name' ); ?>" class="logo flex justify-center items-center" href="<?php echo $main_site_url; ?>">

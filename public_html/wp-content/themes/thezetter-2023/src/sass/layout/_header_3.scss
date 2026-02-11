@@ -128,7 +128,7 @@ section:last-of-type{
         left: 0;
         width: 100%;
         margin: 0;
-        @include color(background-color, 'accent-primary');
+        @include color(background-color, 'accent-secondary');
         top: var(--header-height);
         justify-content: center;
         align-items: center;
@@ -146,6 +146,10 @@ section:last-of-type{
         a {
             @include color(color, 'background');
             padding: 0 1.5rem;
+            letter-spacing: 0.15em;
+            font-weight: 400;
+            font-size: 11px;
+            text-transform: uppercase;
 
             @include breakpoint(M) {
                 padding: 0 0.75rem;
@@ -329,9 +333,14 @@ body:has(#wpadminbar) header {
                         height: 1px;
                         left: 1.25rem;
                         bottom: -0.333lh;
-                        @include color(background-color, 'body');
+                        // @include color(background-color, 'body');
                         animation-name: underline-menu-header;
                         animation-duration: .5s;
+                        right: 0 !important;
+                        left: unset !important;
+                        width: 7px !important;
+                        height: 7px !important;
+                        bottom: unset !important;
                     }
                 }
             }
@@ -359,6 +368,9 @@ body:has(#wpadminbar) header {
                     width: 7px;
                     height: 7px;
                     margin-right: 1rem;
+                    position: absolute;
+                    right: 0 !important;
+                    left: unset !important;
                     @extend %transition;
                     
                     @include breakpoint(M) {

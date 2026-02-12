@@ -418,13 +418,36 @@ body:has(#wpadminbar) header {
     @include color(background-color, 'background');
     min-height: calc(100vh - var(--header-height));
     min-width: 23.87rem;
-    padding: 3rem 2.56rem;
+    padding: 0;
     opacity: 0;
     visibility: hidden;
     @extend %transition;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    .overlay-menu-top{
+        padding-top: 3rem;
+        .mini-menu{
+            .label{
+                padding: 0 2.56rem;
+            }
+            a{
+                padding: 0 2.56rem;
+            }
+        }
+    }
+    .overlay-menu-bottom{
+        padding: 3rem 2.56rem;
+        padding-top: 0;
+        .mini-menu{
+            .label{
+                padding: 0 2.56rem;
+            }
+            a{
+                padding: 0 2.56rem;
+            }
+        }
+    }
     &.active{
         @extend %transition;
         right: 0;
@@ -432,6 +455,7 @@ body:has(#wpadminbar) header {
         visibility: visible;
         overflow: scroll;
         max-height: calc(100vh - var(--header-height));
+        box-shadow: -5px 0px 5px -8px;
     }
     .mini-menu{
         margin-bottom: 3.5rem;
@@ -443,6 +467,37 @@ body:has(#wpadminbar) header {
             margin-bottom: 0;
             &:last-of-type{
                 margin: 0;
+            }
+        }
+        .sub-menu{
+            position: fixed;
+            right: 23.87rem;
+            height: calc(100vh - var(--header-height));
+            top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            padding: 0 2rem;
+            left: unset;
+            background: var(--color-accent-primary-lightest);
+            opacity: 0;
+            visibility: hidden;
+            @extend %transition;
+            &.active{
+                @extend %transition;
+                opacity: 1;
+                visibility: visible;
+            }
+            li{
+                padding: .5rem 0;
+                a{
+                    color: var(--color-body);
+                    @include size-M;
+                    text-transform: capitalize;
+                }
+            }
+            &.active{
+                box-shadow: -5px 0px 5px -8px;
             }
         }
     }
@@ -564,6 +619,39 @@ body:has(#wpadminbar) header {
             padding-left: 0;
             &::before{
                 display: none;
+            }
+        }
+        .sub-menu{
+            position: fixed;
+            right: 23.87rem;
+            height: calc(100vh - var(--header-height));
+            top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            padding: 0 2rem;
+            left: unset;
+            background: var(--color-accent-primary-lightest);
+            opacity: 0;
+            visibility: hidden;
+            @extend %transition;
+            &.active{
+                opacity: 1;
+                visibility: visible;
+                @extend %transition;
+                position: relative;
+                right: 0;
+                width: 100%;
+                height: auto;
+                top: unset;
+                background: transparent;
+                margin-bottom: 1rem;
+            }
+            li{
+                a{
+                    color: var(--color-body);
+                    @include size-M;
+                }
             }
         }
     }
@@ -998,4 +1086,22 @@ body:has(#wpadminbar) header {
 
 .nav-wrap.js-booking-toggle{
     z-index: 999;
+}
+
+.ui-datepicker{
+    background-color: var(--color-background, #000000);
+    border: 1px solid var(--color-accent-primary, #000000);
+    .ui-datepicker-header{
+        padding: .5rem .5rem 0 .5rem;
+        .ui-datepicker-next{
+            float: right;
+        }
+        .ui-datepicker-title{
+            padding: .5rem 0;
+            text-align: center;
+        }
+    }
+    .ui-state-disabled{
+        opacity: .3;
+    }
 }

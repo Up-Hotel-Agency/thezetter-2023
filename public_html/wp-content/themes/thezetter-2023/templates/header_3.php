@@ -52,7 +52,7 @@
 		<a href="#" title="Toggle menu" class="hidden nav-toggle js-nav-toggle l:flex items-center justify-center"><div class="menu-icon"><span></span><span></span><span></span></div></a>
 	</div>
 	<div class="overlay overlay-menu">
-		<div>
+		<div class="overlay-menu-top">
 			<div class="mini-menu">
 				<?php if(get_field('is_group', 'options')): ?>
 					<p class="label xs:mb-0">Locations</p>
@@ -94,7 +94,7 @@
 				</div>
 			<?php endif; ?>
 		</div>
-		<div>
+		<div class="overlay-menu-bottom">
 			<div class="overlay-bottom">
 				<div class="logo-side-menu">
 					<?php if(get_field('side_menu_logo', 'options')): ?>

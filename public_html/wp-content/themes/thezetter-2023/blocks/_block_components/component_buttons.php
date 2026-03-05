@@ -98,6 +98,9 @@ function block_buttons($field, $opts = [] ){
                             elseif($collinsID == 'thezetterhotel'):
                                 // Zetter Group
                                 $venue = '688ba041b56440ece2080195,688b9ff5b56440f24d3fcd69,688b9e8818d792f3070e8b1b';
+                            elseif($collinsID == 'bloomsbury'):
+                                // Bloomsbury
+                                $venue = '688ba041b56440ece2080195';
                             else:
                                 $venue = '';
                             endif; 

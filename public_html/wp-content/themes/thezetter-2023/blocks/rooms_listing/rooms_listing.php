@@ -84,7 +84,7 @@ function rooms_listing_render_callback( $block, $content = '', $is_preview = fal
                 
                 
 
-                <div class="post-item mb-12 two xs:flex xs:items-center" data-aos="fade-up">
+                <div class="post-item mb-12 two xs:flex xs:items-center">
                     <a href="<?php the_permalink(); ?>" class="post-item-img mb-6">
                         <?php block_media( get_field('room_media', $room), [
                             'img_sizes' => array('default' => 'img_1367', 'page_area' => 100, 'mobile_page_area' => 100),
@@ -101,7 +101,7 @@ function rooms_listing_render_callback( $block, $content = '', $is_preview = fal
                         </p>
 
                         <?php if(get_field('sleeps', $room) || get_field('bed_size', $room) || get_field('average_size', $room)): ?>
-                            <div class="post-item-items mb-2 flex flex-row">
+                            <div class="post-item-items mb-2 flex flex-row" data-aos="fade-up" data-aos-delay="150">
                                 <?php if(get_field('sleeps', $room)): ?>
                                     <div class="item">
                                         <?php the_field('sleeps', $room); ?>

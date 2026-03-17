@@ -312,36 +312,36 @@ body:has(#wpadminbar) header {
         > li {
             &.current-menu-item{
                 a{
-                    &::after{
-                        content: "";
-                        position: absolute;
-                        width: calc(100% - 2.5rem);
-                        height: 1px;
-                        left: 1.25rem;
-                        bottom: calc(50% - 10px);
-                        @include color(background-color, 'body');
-                    }
+                    // &::after{
+                    //     content: "";
+                    //     position: absolute;
+                    //     width: calc(100% - 2.5rem);
+                    //     height: 1px;
+                    //     left: 1.25rem;
+                    //     bottom: calc(50% - 10px);
+                    //     @include color(background-color, 'body');
+                    // }
                 }
             }
             &:hover{
                 a{
                     position: relative;
-                    &::after{
-                        content: "";
-                        position: absolute;
-                        width: calc(100% - 2.5rem);
-                        height: 1px;
-                        left: 1.25rem;
-                        bottom: -0.333lh;
-                        // @include color(background-color, 'body');
-                        animation-name: underline-menu-header;
-                        animation-duration: .5s;
-                        right: 0 !important;
-                        left: unset !important;
-                        width: 7px !important;
-                        height: 7px !important;
-                        bottom: unset !important;
-                    }
+                    // &::after{
+                    //     content: "";
+                    //     position: absolute;
+                    //     width: calc(100% - 2.5rem);
+                    //     height: 1px;
+                    //     left: 1.25rem;
+                    //     bottom: -0.333lh;
+                    //     // @include color(background-color, 'body');
+                    //     animation-name: underline-menu-header;
+                    //     animation-duration: .5s;
+                    //     right: 0 !important;
+                    //     left: unset !important;
+                    //     width: 7px !important;
+                    //     height: 7px !important;
+                    //     bottom: unset !important;
+                    // }
                 }
             }
             > a {

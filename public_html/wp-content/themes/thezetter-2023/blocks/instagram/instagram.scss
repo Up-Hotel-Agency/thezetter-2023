@@ -57,7 +57,10 @@
             gap:1.5rem;
             @include breakpoint(S){
                 display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                padding-inline: 2rem;
+                width: auto;
+                overflow: scroll;
             }
             .instagram-image{
                 width: 100%;
@@ -70,6 +73,9 @@
                     height: 100%;
                     object-fit: cover;
                     transition: all 0.5s;
+                }
+                @include breakpoint(S){
+                    width: 10rem;
                 }
             }
         }
@@ -131,5 +137,8 @@
               }
             }
         }
+    }
+    @include breakpoint(S){
+        padding-inline: 0;
     }
 }

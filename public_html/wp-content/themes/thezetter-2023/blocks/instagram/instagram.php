@@ -40,11 +40,57 @@ function instagram_render_callback( $block, $content = '', $is_preview = false )
                     <h2 data-aos="fade-up"><?php echo get_field('title_title'); ?></h2>
                 <?php endif; ?>
             </div>
-            <div class="insta-images" id="instafeed" data-account="<?php echo get_field('instagram', 'options'); ?>">
-                <div class="instagram-image load"></div>
-                <div class="instagram-image load"></div>
-                <div class="instagram-image load"></div>
-                <div class="instagram-image load"></div>
+
+            <?php if(get_current_blog_id() == 3):?>
+                <?php $instaAccount = "marrableshotel" ;?>
+            <?php else: ?>
+                <?php $instaAccount = "thezetterhotels" ;?>
+            <?php endif; ?>
+            <div class="insta-images js-insta up-instagram-block" data-account="<?php echo $instaAccount; ?>">
+                <?php 
+                    $posts = up_instagram($instaAccount);
+                    $count = 0;
+
+                    foreach($posts as $post):
+                        if($count == 5): break; endif;
+
+                        $src = $post['src'];
+
+                        // Get path info
+                        $pathInfo = pathinfo($src);
+                        $path = str_replace( home_url(), '', $pathInfo['dirname'] );
+                        
+                        // Multisite to get the mainsite URL image
+                        $main_url = network_home_url( $path );
+                        $basePath = $main_url . '/' . $pathInfo['filename'];
+
+                        $webpPath = $basePath . '.webp';
+                        $jpgPath  = $basePath . '.jpg';
+
+                        // Convert URL to server file path if needed
+                        $webpFile = $_SERVER['DOCUMENT_ROOT'] . parse_url($webpPath, PHP_URL_PATH);
+                        $jpgFile  = $_SERVER['DOCUMENT_ROOT'] . parse_url($jpgPath, PHP_URL_PATH);
+
+                        $finalSrc = false;
+
+                        if(file_exists($webpFile)) {
+                            $finalSrc = $webpPath;
+                        } elseif(file_exists($jpgFile)) {
+                            $finalSrc = $jpgPath;
+                        }
+
+                        // Only output if a file exists
+                        if($finalSrc):
+                    ?>
+                            <a href="<?php echo $post['permalink'];?>" target="_blank" class="instagram-image load">
+                                <img src="<?php echo $finalSrc; ?>">
+                            </a>
+                    <?php 
+                            $count++;
+                        endif;
+
+                    endforeach;
+                ?>
             </div>
         </div>
     </section>

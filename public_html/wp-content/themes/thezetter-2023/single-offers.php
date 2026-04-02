@@ -243,9 +243,13 @@ if( get_offer_single_type() == 'offer_2' ) { ?>
                                         <?php $url = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0&currency=GBP&depart=" + departure + "&hotel=95317&level=chain&locale=en-US&productcurrency=GBP&rooms=1&adult=2&theme=Zetter"; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
-                                <a class="button secondary" href="<?php echo $url;?>" target="_blank" rel="noopener">
-                                    Book now
-                                </a>
+
+                                <?php if(get_current_blog_id() != 3):?>
+                                    <!-- Not Marrables -->
+                                    <a class="button secondary" href="<?php echo $url;?>" target="_blank" rel="noopener">
+                                        Book now
+                                    </a>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
 

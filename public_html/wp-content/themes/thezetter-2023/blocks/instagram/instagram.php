@@ -42,6 +42,7 @@ function instagram_render_callback( $block, $content = '', $is_preview = false )
             </div>
 
             <?php if(get_current_blog_id() == 3):?>
+                <!-- Marrables -->
                 <?php $instaAccount = "marrableshotel" ;?>
             <?php else: ?>
                 <?php $instaAccount = "thezetterhotels" ;?>

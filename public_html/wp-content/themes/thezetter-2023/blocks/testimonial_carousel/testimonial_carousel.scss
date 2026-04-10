@@ -7,9 +7,11 @@
     @include breakpoint(S) {
         padding: 2.25rem 3rem;
     }
+
     @include breakpoint(XS) {
         padding: 2.25rem 2rem;
     }
+
     .testimonial-carousel-slide-inner {
         max-width: 50rem;
         margin: 0 auto;
@@ -25,27 +27,36 @@
             @include breakpoint(S) {
                 padding: 3rem;
             }
+
             @include breakpoint(XS) {
                 padding: 3rem 2rem;
             }
         }
+
         .testimonial-carousel-wrapper,
-        .media-container{
+        .media-container {
             width: 50%;
 
             @include breakpoint(XS) {
                 width: 100%;
             }
         }
+
         &.img-quotes {
             .testimonial-carousel-wrapper {
                 order: 2;
             }
-            .media-container{
+
+            .media-container {
                 order: 1;
             }
         }
     }
+
+    .slick-controls {
+        bottom: 0;
+    }
+
     .slick-control {
         @include color(color, 'body');
 
@@ -53,11 +64,12 @@
             @include color(color, 'accent-primary');
         }
     }
-    .media-container{
+
+    .media-container {
         position: relative;
+
         img {
             box-shadow: 4px 8px 24px rgba($color-body, 0.1);
         }
     }
 }
-

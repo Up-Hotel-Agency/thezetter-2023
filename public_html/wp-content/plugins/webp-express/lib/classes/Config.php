@@ -8,10 +8,94 @@ class Config
 
 
     /**
+     * Migrate old predictable config files to randomized names (CVE-2025-11379 fix)
+     * This should be called during plugin upgrade or early on admin load
+     */
+    public static function migrateConfigFiles()
+    {
+        $oldConfigFile = Paths::getOldConfigFileName();
+        $newConfigFile = Paths::getConfigFileName();
+        $oldWodFile = Paths::getOldWodOptionsFileName();
+        $newWodFile = Paths::getWodOptionsFileName();
+
+        $migrated = false;
+
+        // Migrate config.json if it exists and new one doesn't
+        if (file_exists($oldConfigFile) && !file_exists($newConfigFile)) {
+            if (@rename($oldConfigFile, $newConfigFile)) {
+                $migrated = true;
+            } elseif (@copy($oldConfigFile, $newConfigFile)) {
+                @unlink($oldConfigFile);
+                $migrated = true;
+            }
+        }
+
+        // Migrate wod-options.json if it exists and new one doesn't
+        if (file_exists($oldWodFile) && !file_exists($newWodFile)) {
+            if (@rename($oldWodFile, $newWodFile)) {
+                $migrated = true;
+            } elseif (@copy($oldWodFile, $newWodFile)) {
+                @unlink($oldWodFile);
+                $migrated = true;
+            }
+        }
+
+        // Clean up any remaining old files (in case new files already existed)
+        if (file_exists($oldConfigFile) && file_exists($newConfigFile)) {
+            @unlink($oldConfigFile);
+        }
+        if (file_exists($oldWodFile) && file_exists($newWodFile)) {
+            @unlink($oldWodFile);
+        }
+
+        return $migrated;
+    }
+
+    /**
+     * Check and perform config file migration if needed (CVE-2025-11379 fix)
+     * This is called early on admin load to ensure migration happens even if options page is never visited
+     *
+     * @return boolean true if its either already migrated or it was migratede successfully or there is no need for migration (in case one starts from newer WebP Express version). false if migration fails
+     */
+    public static function checkAndMigrateConfigIfNeeded()
+    {
+        // Only run once per request to avoid performance impact
+        static $checked = false;
+        if ($checked) {
+            return true;
+        }
+        $checked = true;
+
+        // Check if migration flag is set to avoid checking filesystem on every request
+        if (Option::getOption('webp-express-config-migrated-cve-2025-11379', false)) {
+            return true;
+        }
+
+        // Check if old files exist
+        $oldConfigFile = Paths::getOldConfigFileName();
+        $oldWodFile = Paths::getOldWodOptionsFileName();
+
+        if (file_exists($oldConfigFile) || file_exists($oldWodFile)) {
+            if (self::migrateConfigFiles()) {
+                Option::updateOption('webp-express-config-migrated-cve-2025-11379', true, true);
+                return true;
+            }
+            return false;
+        } else {
+            // No old files found, mark as migrated to avoid future checks
+            Option::updateOption('webp-express-config-migrated-cve-2025-11379', true, true);
+            return true;
+        }
+    }
+
+    /**
      *  @return  object|false   Returns config object if config file exists and can be read. Otherwise it returns false
      */
     public static function loadConfig()
     {
+        // Attempt migration before loading config
+        self::checkAndMigrateConfigIfNeeded();
+
         return FileHelper::loadJSONOptions(Paths::getConfigFileName());
     }
 

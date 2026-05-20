@@ -429,6 +429,78 @@ class Paths
         return PathHelper::getRelPathFromDocRootToDirNoDirectoryTraversalAllowed(self::getConfigDirAbs());
     }
 
+    /**
+     * Get or create a random hash for config filename obfuscation (CVE-2025-11379 fix)
+     * This prevents predictable config file access on Nginx servers
+     */
+    public static function getConfigHash()
+    {
+        $hash = \WebPExpress\Option::getOption('webp-express-config-hash', false);
+        if (!$hash) {
+            // Generate a cryptographically secure random hash
+            if (function_exists('random_bytes')) {
+                $hash = bin2hex(random_bytes(16));
+            } else {
+                // Fallback for older PHP versions
+                $hash = md5(uniqid(mt_rand(), true) . microtime(true));
+            }
+            \WebPExpress\Option::updateOption('webp-express-config-hash', $hash, true);
+        }
+        return $hash;
+    }
+
+    // Only call if certain that config dir exists
+    private static function doCreateIndexPHPInConfigDirIfMissing()
+    {
+        $configDir = self::getConfigDirAbs();
+        $indexPHPfilename = rtrim($configDir, '/') . '/index.php';
+
+        if (!@file_exists($indexPHPfilename)) {
+          // Additional protection for Nginx: PHP-based access control (CVE-2025-11379 fix)
+          @file_put_contents($indexPHPfilename, <<<'PHP'
+<?php
+// Prevent direct access to config files on Nginx (CVE-2025-11379 fix)
+if (!defined('ABSPATH')) {
+  http_response_code(403);
+  die('Direct access forbidden');
+}
+PHP
+          );
+          @chmod($indexPHPfilename, 0644);
+        }
+    }
+
+    // Only call if certain that config dir exists
+    private static function doCreateHTAccessInConfigDirIfMissing()
+    {
+        $configDir = self::getConfigDirAbs();
+        $filename = rtrim($configDir, '/') . '/.htaccess';
+
+        if (!@file_exists($filename)) {
+          // Additional protection for Nginx: PHP-based access control (CVE-2025-11379 fix)
+          @file_put_contents(rtrim($configDir . '/') . '/.htaccess', <<<APACHE
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order deny,allow
+Deny from all
+</IfModule>
+APACHE
+          );
+          @chmod($filename, 0664);
+        }
+    }
+
+    public static function createIndexPHPInConfigDirIfMissing()
+    {
+        $configDir = self::getConfigDirAbs();
+
+        if (is_dir($configDir)) {
+          self::doCreateIndexPHPInConfigDirIfMissing();
+        }
+    }
+
     public static function createConfigDirIfMissing()
     {
         $configDir = self::getConfigDirAbs();
@@ -438,27 +510,40 @@ class Paths
         if (!is_dir($configDir)) {
             @mkdir($configDir, 0775);
             @chmod($configDir, 0775);
-            @file_put_contents(rtrim($configDir . '/') . '/.htaccess', <<<APACHE
-<IfModule mod_authz_core.c>
-Require all denied
-</IfModule>
-<IfModule !mod_authz_core.c>
-Order deny,allow
-Deny from all
-</IfModule>
-APACHE
-            );
-            @chmod($configDir . '/.htaccess', 0664);
+
+            self::doCreateIndexPHPInConfigDirIfMissing();
+            self::doCreateHTAccessInConfigDirIfMissing();
+
         }
         return is_dir($configDir);
     }
 
     public static function getConfigFileName()
     {
-        return self::getConfigDirAbs() . '/config.json';
+        // Use randomized filename to prevent predictable access on Nginx (CVE-2025-11379 fix)
+        $hash = self::getConfigHash();
+        return self::getConfigDirAbs() . '/config.' . $hash . '.json';
     }
 
     public static function getWodOptionsFileName()
+    {
+        // Use randomized filename to prevent predictable access on Nginx (CVE-2025-11379 fix)
+        $hash = self::getConfigHash();
+        return self::getConfigDirAbs() . '/wod-options.' . $hash . '.json';
+    }
+
+    /**
+     * Get old predictable config filename for migration purposes
+     */
+    public static function getOldConfigFileName()
+    {
+        return self::getConfigDirAbs() . '/config.json';
+    }
+
+    /**
+     * Get old predictable wod-options filename for migration purposes
+     */
+    public static function getOldWodOptionsFileName()
     {
         return self::getConfigDirAbs() . '/wod-options.json';
     }
@@ -792,7 +877,7 @@ APACHE
      */
     public static function getWebPExpressPluginUrl()
     {
-        return untrailingslashit(plugins_url(null, WEBPEXPRESS_PLUGIN));
+        return untrailingslashit(plugins_url('', WEBPEXPRESS_PLUGIN));
     }
 
     public static function getWebPExpressPluginUrlPath()

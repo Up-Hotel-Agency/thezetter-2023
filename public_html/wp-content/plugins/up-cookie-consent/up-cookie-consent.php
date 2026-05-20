@@ -7,7 +7,7 @@
  *
  * Plugin Name:       UP Cookie Consent
  * Description:       GDPR EU / UK Cookie Consent Plugin
- * Version:           1.0.3
+ * Version:           1.1.1
  * Author:            UP Hotel Agency
  * Author URI:        https://uphotel.agency
  * License:           GPL-2.0+
@@ -25,7 +25,7 @@ $up_db_name = "up_cookie_consent_";
 /**
  * Currently plugin version.
  */
-define( 'UP_COOKIE_CONSENT_VERSION', '1.0.3' );
+define( 'UP_COOKIE_CONSENT_VERSION', '1.1.1' );
 
 
 /**
@@ -167,6 +167,7 @@ function up_check_license($info = false){
 	
 }
 
+
 //Function used to validate plugin license 
 function up_validate_license($key = false){
 
@@ -277,9 +278,6 @@ if( ! class_exists( 'UPUpdateChecker' ) ) {
 
 		function info( $res, $action, $args ) {
 
-			// print_r( $action );
-			// print_r( $args );
-
 			// do nothing if you're not getting plugin information right now
 			if( 'plugin_information' !== $action ) {
 				return $res;
@@ -370,7 +368,6 @@ if( ! class_exists( 'UPUpdateChecker' ) ) {
 
 		}
 
-
 	}
 
 	new UPUpdateChecker();
@@ -415,6 +412,18 @@ function up_default_options(){
 		}
 		if(!up_get_option('widget_font')){
 			up_update_option('widget_font', true);
+		}
+		if(!up_get_option('reconsent_setting')){
+			up_update_option('reconsent_setting', true);
+		}
+		if(!up_get_option('widget_advert')){
+			up_update_option('widget_advert', true);
+		}
+		if(!up_get_option('widget_variables')){
+			up_update_option('widget_variables', true);
+		}
+		if(!up_get_option('widget_reject')){
+			up_update_option('widget_reject', false);
 		}
 		if(!up_get_option('policy_intro')){
 			$db_data = array(
@@ -471,5 +480,10 @@ function up_default_options(){
 	}
 
 }
+
+//Register Ajax for Cookie Checks
+include( plugin_dir_path( __FILE__ ) . 'cookies_check/ajax-up-cookie-consent-admin.php' );
+
+
 
 

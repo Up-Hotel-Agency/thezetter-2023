@@ -96,7 +96,7 @@
         <a href="<?php echo get_bloginfo( 'url' ); ?>" title="<?php echo get_bloginfo( 'name' ); ?>" class="footer-logo flex xs:justify-start">
             <?php if(!get_field('not_zetter', 'options')):  
                 switch_to_blog(1);
-                    echo file_get_contents( get_field('footer_logo', 'options') ); 
+                    echo  file_get_contents( get_field('footer_logo', 'options') ); 
                 restore_current_blog();
             else: 
                 echo file_get_contents( get_field('footer_logo', 'options') ); 

@@ -114,21 +114,22 @@ class GF_Field_Number extends GF_Field {
 
 		// Raw value will be tested against the is_numeric() function to make sure it is in the right format.
 		// If the POST value is an array then the field is inside a repeater so use $value.
-		$raw_value = isset( $_POST[ 'input_' . $this->id ] ) && ! is_array( $_POST[ 'input_' . $this->id ] ) ? GFCommon::maybe_add_leading_zero( rgpost( 'input_' . $this->id ) ) : $value;
+		$raw_value = isset( $_POST[ 'input_' . $this->id ] ) && ! is_array( $_POST[ 'input_' . $this->id ] ) ? GFCommon::maybe_add_leading_zero( rgpost( 'input_' . $this->id ) ) : $value; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		$requires_valid_number = ! rgblank( $raw_value ) && ! $this->has_calculation();
+		$has_raw_value         = ! rgblank( trim( $raw_value ) );
+		$requires_valid_number = $has_raw_value && ! $this->has_calculation();
 		$is_valid_number       = $this->validate_range( $value ) && GFCommon::is_numeric( $raw_value, $this->numberFormat );
 
 		if ( $requires_valid_number && ! $is_valid_number ) {
 			$this->failed_validation  = true;
 			$this->validation_message = empty( $this->errorMessage ) ? $this->get_range_message() : $this->errorMessage;
-		} elseif ( $this->type == 'quantity' ) {
+		} elseif ( $this->type == 'quantity' && $has_raw_value ) {
 			if ( intval( $value ) != $value ) {
 				$this->failed_validation  = true;
-				$this->validation_message = empty( $field['errorMessage'] ) ? esc_html__( 'Please enter a valid quantity. Quantity cannot contain decimals.', 'gravityforms' ) : $field['errorMessage'];
-			} elseif ( ! empty( $value ) && ( ! is_numeric( $value ) || intval( $value ) != floatval( $value ) || intval( $value ) < 0 ) ) {
+				$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'Please enter a valid quantity. Quantity cannot contain decimals.', 'gravityforms' ) : $this->errorMessage;
+			} elseif ( ( ! is_numeric( $value ) || intval( $value ) != floatval( $value ) || intval( $value ) < 0 ) ) {
 				$this->failed_validation  = true;
-				$this->validation_message = empty( $field['errorMessage'] ) ? esc_html__( 'Please enter a valid quantity', 'gravityforms' ) : $field['errorMessage'];
+				$this->validation_message = empty( $this->errorMessage ) ? esc_html__( 'Please enter a valid quantity', 'gravityforms' ) : $this->errorMessage;
 			}
 		}
 
@@ -215,11 +216,11 @@ class GF_Field_Number extends GF_Field {
 		$id       = intval( $this->id );
 		$field_id = $is_entry_detail || $is_form_editor || $form_id == 0 ? "input_$id" : 'input_' . $form_id . "_$id";
 
-		$size          = $this->size;
-		$disabled_text = $is_form_editor ? "disabled='disabled'" : '';
-		$class_suffix  = $is_entry_detail ? '_admin' : '';
-		$class         = $size . $class_suffix;
-		$class         = esc_attr( $class );
+		$size            = $this->size;
+		$disabled_text   = $is_form_editor ? "disabled='disabled'" : '';
+		$class_suffix    = $is_entry_detail ? '_admin' : '';
+		$class_read_only = ( ! $is_entry_detail && ! $is_form_editor ) && $this->has_calculation() ? ' gform-text-input-reset' : '';
+		$class           = esc_attr( $size . $class_suffix . $class_read_only );
 
 		$instruction = '';
 		$read_only   = '';
@@ -230,7 +231,6 @@ class GF_Field_Number extends GF_Field {
 
 				// calculation-enabled fields should be read only
 				$read_only = 'readonly="readonly"';
-
 			} else {
 
 				$message          = $this->get_range_message();
@@ -244,15 +244,14 @@ class GF_Field_Number extends GF_Field {
 			$value = GFCommon::format_number( $value, $this->numberFormat, rgar( $entry, 'currency' ) );
 		}
 
-		$is_html5        = RGFormsModel::is_html5_enabled();
-		$html_input_type = $is_html5 && ! $this->has_calculation() && ( $this->numberFormat != 'currency' && $this->numberFormat != 'decimal_comma' ) ? 'number' : 'text'; // chrome does not allow number fields to have commas, calculations and currency values display numbers with commas
-		$step_attr       = $is_html5 ? "step='any'" : '';
+		$html_input_type = ! $this->has_calculation() && ( $this->numberFormat != 'currency' && $this->numberFormat != 'decimal_comma' ) ? 'number' : 'text'; // chrome does not allow number fields to have commas, calculations and currency values display numbers with commas
+		$step_attr       = "step='any'";
 
 		$min = $this->rangeMin;
 		$max = $this->rangeMax;
 
-		$min_attr = $is_html5 && is_numeric( $min ) ? "min='{$min}'" : '';
-		$max_attr = $is_html5 && is_numeric( $max ) ? "max='{$max}'" : '';
+		$min_attr = is_numeric( $min ) ? "min='{$min}'" : '';
+		$max_attr = is_numeric( $max ) ? "max='{$max}'" : '';
 
 		$include_thousands_sep = apply_filters( 'gform_include_thousands_sep_pre_format_number', $html_input_type == 'text', $this );
 		$value                 = GFCommon::format_number( $value, $this->numberFormat, rgar( $entry, 'currency' ), $include_thousands_sep );
@@ -260,9 +259,8 @@ class GF_Field_Number extends GF_Field {
 		$placeholder_attribute = $this->get_field_placeholder_attribute();
 		$required_attribute    = $this->isRequired ? 'aria-required="true"' : '';
 		$invalid_attribute     = $this->failed_validation ? 'aria-invalid="true"' : 'aria-invalid="false"';
-
-		$range_message        = $this->get_range_message();
-		$describedby_extra_id = empty( $range_message ) ? array() : array( "gfield_instruction_{$this->formId}_{$this->id}" );
+		
+		$describedby_extra_id = '' == $instruction ? array() : array( "gfield_instruction_{$this->formId}_{$this->id}" );
 		$aria_describedby     = $this->get_aria_describedby( $describedby_extra_id );
 
 		$autocomplete_attribute = $this->enableAutocomplete ? $this->get_field_autocomplete_attribute() : '';
@@ -279,10 +277,24 @@ class GF_Field_Number extends GF_Field {
 		return GFCommon::format_number( $value, $this->numberFormat, rgar( $entry, 'currency' ), $include_thousands_sep );
 	}
 
-	public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
+	/**
+	 * Format the entry value for display on the entry detail page and for the {all_fields} merge tag.
+	 *
+	 * @since 1.9
+	 * @since 2.9.29 Changed the second parameter $currency (string) to $entry (array).
+	 *
+	 * @param string|array $value    The field value.
+	 * @param array        $entry    The entry.
+	 * @param bool|false   $use_text When processing choice based fields should the choice text be returned instead of the value.
+	 * @param string       $format   The format requested for the location the merge is being used. Possible values: html, text or url.
+	 * @param string       $media    The location where the value will be displayed. Possible values: screen or email.
+	 *
+	 * @return string
+	 */
+	public function get_value_entry_detail( $value, $entry = array(), $use_text = false, $format = 'html', $media = 'screen' ) {
 		$include_thousands_sep = apply_filters( 'gform_include_thousands_sep_pre_format_number', $use_text, $this );
 
-		return GFCommon::format_number( $value, $this->numberFormat, $currency, $include_thousands_sep );
+		return GFCommon::format_number( $value, $this->numberFormat, rgar( $entry, 'currency' ), $include_thousands_sep );
 	}
 
 	/**

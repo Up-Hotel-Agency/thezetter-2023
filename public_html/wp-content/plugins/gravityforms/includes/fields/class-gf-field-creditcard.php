@@ -9,6 +9,15 @@ class GF_Field_CreditCard extends GF_Field {
 
 	public $type = 'creditcard';
 
+	/**
+	 * Indicates the field is used to capture payments.
+	 *
+	 * @since 2.9.23
+	 *
+	 * @var bool
+	 */
+	public $is_payment = true;
+
 	public function get_form_editor_field_title() {
 		return esc_attr__( 'Credit Card', 'gravityforms' );
 	}
@@ -92,7 +101,7 @@ class GF_Field_CreditCard extends GF_Field {
 		foreach ( $this->inputs as $input ) {
 			$input_id    = str_replace( $this->id . '.', '', $input['id'] );
 			$input_value = GFForms::get( $input['id'], $values );
-			if ( ! empty( $_POST[ 'is_submit_' . $this->formId ] ) && $this->isRequired && in_array( $input_id, $required_inputs_ids ) &&  empty( $input_value ) ) {
+			if ( ! empty( $_POST[ 'is_submit_' . $this->formId ] ) && $this->isRequired && in_array( $input_id, $required_inputs_ids ) &&  empty( $input_value ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				$describedby_attributes[ $input_id ] = "aria-describedby='validation_message_{$this->formId}_{$this->id} {$warning_container_id}'";
 			} else {
 				$describedby_attributes[ $input_id ] = empty( $warning_container_id ) ? '' : "aria-describedby='{$warning_container_id}'";
@@ -226,7 +235,7 @@ class GF_Field_CreditCard extends GF_Field {
 		$expiration_month = '';
 		$expiration_year  = '';
 		$security_code    = '';
-		$autocomplete     = RGFormsModel::is_html5_enabled() ? "autocomplete='off'" : '';
+		$autocomplete     = "autocomplete='off'";
 
 		if ( is_array( $value ) ) {
 			$card_number     = esc_attr( rgget( $this->id . '.1', $value ) );
@@ -300,7 +309,7 @@ class GF_Field_CreditCard extends GF_Field {
 		//card number fields
 		$tabindex                = $this->get_tabindex();
 		$card_number_field_input = GFFormsModel::get_input( $this, $this->id . '.1' );
-		$html5_output            = ! is_admin() && GFFormsModel::is_html5_enabled() ? "pattern='[0-9]*' title='" . esc_attr__( 'Only digits are allowed', 'gravityforms' ) . "'" : '';
+		$validation_helper       = ! is_admin() ? "pattern='[0-9]*' title='" . esc_attr__( 'Only digits are allowed', 'gravityforms' ) . "'" : '';
 		$card_number_label       = rgar( $card_number_field_input, 'customLabel' ) != '' ? $card_number_field_input['customLabel'] : esc_html__( 'Card Number', 'gravityforms' );
 		$card_number_label       = gf_apply_filters( array( 'gform_card_number', $form_id ), $card_number_label, $form_id );
 
@@ -309,12 +318,12 @@ class GF_Field_CreditCard extends GF_Field {
 			$card_field = "<span class='ginput_full{$class_suffix} gform-grid-col' id='{$field_id}_1_container' >
                                     {$card_icons}
                                     <label for='{$field_id}_1' id='{$field_id}_1_label' class='gform-field-label gform-field-label--type-sub {$sub_label_class}'>{$card_number_label}</label>
-                                    <input type='text' name='input_{$id}.1' id='{$field_id}_1' value='{$card_number}' {$tabindex} {$disabled_text} {$onchange} {$onkeyup} {$autocomplete} {$html5_output} {$card_number_placeholder} {$number_aria_attributes}/>
+                                    <input type='text' name='input_{$id}.1' id='{$field_id}_1' value='{$card_number}' {$tabindex} {$disabled_text} {$onchange} {$onkeyup} {$autocomplete} {$validation_helper} {$card_number_placeholder} {$number_aria_attributes}/>
                                  </span>";
 		} else {
 			$card_field = "<span class='ginput_full{$class_suffix} gform-grid-col' id='{$field_id}_1_container' >
                                     {$card_icons}
-                                    <input type='text' name='input_{$id}.1' id='{$field_id}_1' value='{$card_number}' {$tabindex} {$disabled_text} {$onchange} {$onkeyup} {$autocomplete} {$html5_output} {$card_number_placeholder} {$number_aria_attributes}/>
+                                    <input type='text' name='input_{$id}.1' id='{$field_id}_1' value='{$card_number}' {$tabindex} {$disabled_text} {$onchange} {$onkeyup} {$autocomplete} {$validation_helper} {$card_number_placeholder} {$number_aria_attributes}/>
                                     <label for='{$field_id}_1' id='{$field_id}_1_label' class='gform-field-label gform-field-label--type-sub {$sub_label_class}'>{$card_number_label}</label>
                                  </span>";
 		}
@@ -394,18 +403,18 @@ class GF_Field_CreditCard extends GF_Field {
 		$security_code_field_input = GFFormsModel::get_input( $this, $this->id . '.3' );
 		$security_code_label       = rgar( $security_code_field_input, 'customLabel' ) != '' ? $security_code_field_input['customLabel'] : esc_html__( 'Security Code', 'gravityforms' );
 		$security_code_label       = gf_apply_filters( array( 'gform_card_security_code', $form_id ), $security_code_label, $form_id );
-		$html5_output              = GFFormsModel::is_html5_enabled() ? "pattern='[0-9]*' title='" . esc_attr__( 'Only digits are allowed', 'gravityforms' ) . "'" : '';
+		$validation_helper         = "pattern='[0-9]*' title='" . esc_attr__( 'Only digits are allowed', 'gravityforms' ) . "'";
 		$security_code_placeholder = $this->get_input_placeholder_attribute( $security_code_field_input );
 		if ( $is_sub_label_above ) {
 			$security_field = "<span class='ginput_cardinfo_right{$class_suffix} gform-grid-col' id='{$field_id}_2_cardinfo_right'>
                                                 <label for='{$field_id}_3' class='gform-field-label gform-field-label--type-sub {$sub_label_class}'>$security_code_label</label>
-                                                <input type='text' name='input_{$id}.3' id='{$field_id}_3' {$tabindex} {$disabled_text} class='ginput_card_security_code' value='{$security_code}' {$autocomplete} {$html5_output} {$security_code_placeholder} {$security_aria_attributes}/>
+                                                <input type='text' name='input_{$id}.3' id='{$field_id}_3' {$tabindex} {$disabled_text} class='ginput_card_security_code' value='{$security_code}' {$autocomplete} {$validation_helper} {$security_code_placeholder} {$security_aria_attributes}/>
                                                 <span class='ginput_card_security_code_icon'>&nbsp;</span>
                                              </span>
                                         </span>";
 		} else {
 			$security_field = "<span class='ginput_cardinfo_right{$class_suffix} gform-grid-col' id='{$field_id}_2_cardinfo_right'>
-                                                <input type='text' name='input_{$id}.3' id='{$field_id}_3' {$tabindex} {$disabled_text} class='ginput_card_security_code' value='{$security_code}' {$autocomplete} {$html5_output} {$security_code_placeholder} {$security_aria_attributes}/>
+                                                <input type='text' name='input_{$id}.3' id='{$field_id}_3' {$tabindex} {$disabled_text} class='ginput_card_security_code' value='{$security_code}' {$autocomplete} {$validation_helper} {$security_code_placeholder} {$security_aria_attributes}/>
                                                 <span class='ginput_card_security_code_icon'>&nbsp;</span>
                                                 <label for='{$field_id}_3' class='gform-field-label gform-field-label--type-sub {$sub_label_class}'>$security_code_label</label>
                                              </span>
@@ -497,17 +506,33 @@ class GF_Field_CreditCard extends GF_Field {
 
 	}
 
-	public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
+	/**
+	 * Format the entry value for display on the entry detail page and for the {all_fields} merge tag.
+	 *
+	 * @since 1.9
+	 * @since 2.9.29 Changed the second parameter $currency (string) to $entry (array).
+	 *
+	 * @param string|array $value    The field value.
+	 * @param array        $entry    The entry.
+	 * @param bool|false   $use_text When processing choice based fields should the choice text be returned instead of the value.
+	 * @param string       $format   The format requested for the location the merge is being used. Possible values: html, text or url.
+	 * @param string       $media    The location where the value will be displayed. Possible values: screen or email.
+	 *
+	 * @return string
+	 */
+	public function get_value_entry_detail( $value, $entry = array(), $use_text = false, $format = 'html', $media = 'screen' ) {
 
 		if ( is_array( $value ) ) {
 			$card_number = trim( rgget( $this->id . '.1', $value ) );
 			$card_type   = trim( rgget( $this->id . '.4', $value ) );
 			$separator   = $format == 'html' ? '<br/>' : "\n";
-
+			if ( $format === 'html' ) {
+				$card_type   = esc_html( $card_type );
+				$card_number = esc_html( $card_number );
+			}
 			return empty( $card_number ) ? '' : $card_type . $separator . $card_number;
-		} else {
-			return '';
 		}
+		return '';
 	}
 
 	public function get_form_inline_script_on_page_render( $form ) {
@@ -564,13 +589,12 @@ class GF_Field_CreditCard extends GF_Field {
 			$value              = substr( $value, - 4, 4 );
 			$value              = str_pad( $value, $card_number_length, 'X', STR_PAD_LEFT );
 		} elseif ( $input_id == '4' ) {
-
 			$value = rgpost( "input_{$field_id_token}_4" );
 
 			if ( ! $value ) {
 				$card_number = rgpost( "input_{$field_id_token}_1" );
 				$card_type   = GFCommon::get_card_type( $card_number );
-				$value       = $card_type ? $card_type['name'] : '';
+				$value       = $card_type ? strip_tags( $card_type['name'] ) : '';
 			}
 		} else {
 			$value = '';

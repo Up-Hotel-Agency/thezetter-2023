@@ -1,0 +1,548 @@
+//Colours
+$color-white: #fff;
+$color-grey: #4a4a4a;
+$color-light-grey:#c7c7c7;
+$color-accent: #1b556d;
+$color-active: #abf3ab;
+$color-success: #008500;
+$color-error: #850000;
+$color-notice: #abd3f3;
+$color-inactive: #f3abab;
+$color-warning: #f3c5ab;
+
+.up-instagram-accent{
+    color:$color-accent;
+}
+.up-instagram-success{
+    color:$color-success;
+}
+.up-instagram-error{
+    color:$color-error;
+}
+
+/* HTML: <div class="loader"></div> */
+.up-instagram-loader {
+    width: 60px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side,#4a4a4a 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 100%;
+    animation: l7 1s infinite linear;
+  }
+  @keyframes l7 {
+      33%{background-size:calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%}
+      50%{background-size:calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%}
+      66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%  }
+  }
+
+.up-instagram-popover-container{
+    position: fixed;
+    z-index: 99999;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e2c39e2;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.5s;
+    &.up-instagram-active{
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+    .up-instagram-popover{
+        position: relative;
+        background-color: $color-white;
+        border-radius: 6px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .up-instagram-grahic{
+            max-width: 20rem;
+            height: fit-content;
+            svg{
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+        .up-instagram-content{
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            h1{
+                line-height: normal;
+            }
+            .up-instagram-auth-container{
+                margin-top: unset;
+                font-size: medium;
+            }
+        }
+    }
+}
+
+.up-instagram-background-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    svg{
+        position: absolute;
+        width: 100%;
+        inset: 0;
+    }
+}
+
+.up-instagram-main-admin{
+    width: 100%;
+    height: 100%;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 2.5rem;
+}
+
+.up-instagram-container{
+    max-width: 850px;
+    background-color: $color-white;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    .up-instagram-top-banner{
+        background-color: $color-accent;
+        color:$color-white;
+        padding: 1rem 2.5rem;
+        border-radius: 6px 6px 0px 0px;
+        .up-instagram-logo-wrap{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            svg{
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            h1{
+                display: flex;
+                flex-direction: column;
+                color:$color-white;
+                gap: 0.5rem;
+                span{
+                    font-size: small;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+    .up-instagram-content{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 2.5rem;
+        .up-instagram-content-wrap{
+            display: flex;
+            flex-direction: column;
+            padding-bottom:2rem;
+            &:first-of-type{
+                padding-top: 2rem;
+            }
+            h2{
+                color: $color-grey;
+                margin-top: unset;
+            }
+            .up-instagram-notices{
+                display: flex;
+                flex-direction: column;
+                .up-instagram-notice{
+                    padding: 1rem;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 1rem;
+                    align-items: center;
+                    border-radius: 6px;
+                    margin-bottom: 1rem;
+                    svg{
+                        width: 2rem;
+                        height: 2rem;
+                        padding: 0.75rem;
+                        background-color: $color-white;
+                        border-radius: 100%;
+                        overflow: visible;
+                        color: $color-grey;
+                    }
+                    p{
+
+                    }
+                    &.up-notice-error{
+                        background-color: $color-inactive;
+                    }
+                    &.up-notice{
+                        background-color: $color-notice;
+                    }
+                }
+            }
+            .up-instagram-accounts-wrap, .up-instagram-accounts{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                .up-instagram-account-first{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2rem;
+                    padding: 2rem;
+                    padding-left: unset;
+                    box-shadow: 3px 10px 20px rgba(0,0,0,.04);
+                    border: solid 1px rgb(128 128 128 / 14%);
+                    border-radius: 6px;
+                    .up-instagram-graphic{
+                        flex: 1;
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        svg{
+                            width: 90%;
+                            height: 90%;
+                            position: absolute;
+                            object-fit: contain;
+                        }
+                    }
+                    .up-instagram-content-inner{
+                        flex: 1;
+                        h2{
+                            font-size: xxx-large;
+                            color:$color-grey;
+                            line-height: normal;
+                            margin-bottom: unset;
+                        }
+                        .up-instagram-subtitle{
+                            font-size: large;
+                            margin-top: 0.25rem;
+                        }
+                        .up-instagram-terms{
+                            color:#7c7c7c;
+                        }
+                        .up-ig-connect{
+                            all: unset;
+                            cursor: pointer;
+                            background-color: $color-accent;
+                            border:solid 1px $color-accent;
+                            padding: 0.5rem 1rem;
+                            color:$color-white;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 0.5rem;
+                            border-radius: 4px;
+                            transition: all 0.5s;
+                            margin-top: 1.5rem;
+                            svg{
+                                color:$color-white;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                transition: all 0.5s;
+                            }
+                            &:hover{
+                                background-color: transparent;
+                                color:$color-accent;
+                                svg{
+                                    color:$color-accent;
+                                }
+                            }
+                        }
+                    }
+                }
+                .up-instagram-account{
+                    border-radius: 6px;
+                    padding: 1rem;
+                    box-shadow: 3px 10px 20px rgba(0,0,0,.04);
+                    border: solid 1px rgb(128 128 128 / 14%);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    .up-instagram-account-container{
+                        display: flex;
+                        flex-direction: wrap;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+                    .up-instagram-account-notice{
+                        padding: 1rem;
+                        background: $color-warning;
+                        border-radius: 4px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 0.5rem;
+                        svg{
+                            width:1.25rem;
+                        }
+                    }
+                    &.js-add-account{
+                        border: unset;
+                        box-shadow: unset;
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 1rem;
+                        align-items: center;
+                        justify-content: center;
+                        color:$color-light-grey;
+                        gap: 0.5rem;
+                        padding: unset;
+                        cursor: pointer;
+                        flex-direction: row;
+                        h3{
+                            color:$color-light-grey;
+                            font-weight: normal;
+                            transition: all 0.5s;
+                        }
+                        svg{
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            color:$color-light-grey;
+                            transition: all 0.5s;
+                        }
+                        &:hover{
+                            h3, svg{
+                                color:$color-grey;
+                            }
+                        }
+                    }
+                    .up-instagram-account-drag{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.25rem;
+                        cursor: pointer;
+                        span{
+                            width: 1.5rem;
+                            height: 2px;
+                            border-radius: 12px;
+                            background-color: $color-light-grey;
+                            transition: all 0.5s;
+                        }
+                        &:hover{
+                            span{
+                                background-color: $color-grey;
+                            }
+                        }
+                    }
+                    .up-instagram-account-img{
+                        position: relative;
+                        aspect-ratio: 1/1;
+                        width: 5rem;
+                        height: fit-content;
+                        flex: none;
+                        border-radius: 100%;
+                        border: solid 5px #6565650f;
+                        overflow: hidden;
+                        img{
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .up-instagram-account-info{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: start;
+                        gap: 0.25rem;
+                        h3, p{
+                            margin: unset;
+                        }
+                        .up-instagram-status-wrap{
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 0.5rem;
+                            .up-instagram-status{
+                                padding: 0.15rem 0.5rem;
+                                border-radius: 6px;
+                                font-size: small;
+                                color:$color-grey;
+                                margin-bottom: 0.25rem;
+                                &.color-success{
+                                    background-color: $color-active;
+                                }
+                                &.color-notice{
+                                    background-color: $color-notice;
+                                }
+                                &.color-error{
+                                    background-color: $color-inactive;
+                                }       
+                            }
+                        }
+                    }
+                    .up-instagram-account-actions{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        flex: 1;
+                        justify-content: flex-end;
+                        button{
+                            all:unset;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 0.5rem 1rem;
+                            cursor: pointer;
+                            gap: 0.25rem;
+                            span{
+                                font-size: smaller;
+                                color:$color-grey;
+                            }
+                            svg{
+                                width: 2rem;
+                                color: $color-grey;
+                                height: 2rem;
+                                padding: 0.5rem;
+                                background: #f7f7f7;
+                                border-radius: 100%;
+                                transition: all 0.5s;
+                            }
+                            &:hover{
+                                &[data-type="sync"]{
+                                    svg{
+                                        background-color: $color-notice;
+                                    }
+                                }
+                                &[data-type="remove"]{
+                                    svg{
+                                        background-color: $color-inactive;
+                                    }
+                                }
+                                &[data-type="repair"]{
+                                    svg{
+                                        background-color: $color-active;
+                                    }
+                                }
+                            }
+                            @keyframes rotate360 {
+                                to {
+                                    transform: rotate(360deg);
+                                }
+                            }
+                            &.load-active{
+                                &[data-type="sync"]{
+                                    svg{
+                                        animation: linear infinite 1s rotate360;
+                                        background-color: $color-notice;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .up-instagram-settings-wrap{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                .up-instagram-input-wrap{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+                    label{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.25rem;
+                        h3,p{
+                            margin: unset;
+                            color:$color-grey;
+                        }
+                        p{
+                            font-size: small;
+                            font-weight: normal;
+                        }
+                    }
+                    .up-instagram-rate-select{
+                        display: flex;
+                        flex-direction: row;
+                        width: fit-content;
+                        border: solid 1px $color-grey;
+                        border-radius: 6px;
+                        overflow: hidden;
+                        button{
+                            all: unset;
+                            cursor: pointer;
+                            padding: 1rem 1.5rem;
+                            color:$color-grey;
+                            transition: all 0.5s;
+                            border-right: 1px solid $color-grey;
+                            &:last-of-type{
+                                border:unset
+                            }
+                            &.active{
+                                background-color: $color-accent;
+                                color:white;
+                            }
+                            &:hover{
+                                background-color: $color-notice;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .up-instagram-footer{
+        background-color: #f8f8ff;
+        border-radius: 0px 0px 6px 6px;
+        padding: 1rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        h2, p{
+            color: $color-grey;
+            margin: unset;
+        }
+        h2{
+            margin-bottom: 1rem;
+        }
+        .up-instagram-meta-terms{
+            display: flex;
+            flex-direction: row;
+            gap: 0.25rem;
+            text-align: center;
+            margin: 0 auto;
+            align-items: center;
+            svg{
+                width: 1rem;
+                height: 1rem;
+                color:$color-grey;
+            }
+        }
+        p:last-of-type{
+            a{
+                all:unset;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.settings_page_up-instagram #wpbody-content .notice{
+    margin-bottom: 1rem;
+}

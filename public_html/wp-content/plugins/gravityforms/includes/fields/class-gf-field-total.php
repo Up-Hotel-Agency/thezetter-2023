@@ -7,7 +7,8 @@ if ( ! class_exists( 'GFForms' ) ) {
 
 class GF_Field_Total extends GF_Field {
 
-	public $type = 'total';
+	public $type         = 'total';
+	public $numberFormat = 'currency'; // This is used to property format the total during conditional logic evaluation.
 
 	function get_form_editor_field_settings() {
 		return array(
@@ -83,8 +84,22 @@ class GF_Field_Total extends GF_Field {
 		}
 	}
 
-	public function get_value_entry_detail( $value, $currency = '', $use_text = false, $format = 'html', $media = 'screen' ) {
-		return GFCommon::to_money( $value, $currency );
+	/**
+	 * Format the entry value for display on the entry detail page and for the {all_fields} merge tag.
+	 *
+	 * @since 1.9
+	 * @since 2.9.29 Changed the second parameter $currency (string) to $entry (array).
+	 *
+	 * @param string|array $value    The field value.
+	 * @param array        $entry    The entry.
+	 * @param bool|false   $use_text When processing choice based fields should the choice text be returned instead of the value.
+	 * @param string       $format   The format requested for the location the merge is being used. Possible values: html, text or url.
+	 * @param string       $media    The location where the value will be displayed. Possible values: screen or email.
+	 *
+	 * @return string
+	 */
+	public function get_value_entry_detail( $value, $entry = array(), $use_text = false, $format = 'html', $media = 'screen' ) {
+		return GFCommon::to_money( $value, rgar( $entry, 'currency' ) );
 	}
 
 	public function get_value_save_entry( $value, $form, $input_name, $lead_id, $lead ) {
@@ -129,6 +144,67 @@ class GF_Field_Total extends GF_Field {
 		return GFCommon::format_variable_value( $value, $url_encode, $esc_html, $format );
 	}
 
+	/**
+	 * Validates the field value.
+	 *
+	 * @since 2.8.2
+	 *
+	 * @param string $value The submitted value.
+	 * @param array  $form  The form currently being validated.
+	 *
+	 * @return void
+	 */
+	public function validate( $value, $form ) {
+		if ( ! $this->validateTotal ) {
+			return;
+		}
+
+		// API requests, such as the one used by Convo Forms, are not currently supported.
+		if ( GFFormDisplay::get_submission_context() !== 'form-submit' ) {
+			return;
+		}
+
+		$entry = GFFormsModel::get_current_lead( $form );
+		if ( empty( $entry ) ) {
+			return;
+		}
+
+		$currency_code  = rgar( $entry, 'currency' );
+		$currency       = new RGCurrency( $currency_code );
+		$expected_value = GFCommon::get_order_total( $form, $entry );
+		$clean_value    = GFCommon::to_number( $value, $currency_code );
+
+		if ( $currency->is_zero_decimal() ) {
+			$expected_value_int = (int) $expected_value;
+			$clean_value_int    = (int) $clean_value;
+		} else {
+			$expected_value_int = (int) round( $expected_value * 100 );
+			$clean_value_int    = (int) round( $clean_value * 100 );
+		}
+
+		if ( $expected_value_int === $clean_value_int ) {
+			return;
+		}
+
+		GFCommon::log_debug( __METHOD__ . sprintf( '(): Amount mismatch (%s - #%d). Submitted: %s. Clean (int): %s. Expected (int): %s.', $this->label, $this->id, var_export( $value, true ), var_export( $clean_value_int, true ), var_export( $expected_value_int, true ) ) ); // phpcs:ignore QITStandard.PHP.DebugCode.DebugFunctionFound
+
+		$this->failed_validation  = true;
+		$this->validation_message = sprintf( esc_html__( 'Submitted value (%s) does not match expected value (%s).', 'gravityforms' ), $clean_value ? GFCommon::to_money( $clean_value, $currency_code ) : esc_html( $value ), GFCommon::to_money( $expected_value, $currency_code ) );
+	}
+
+	/**
+	 * Sanitizes the field properties.
+	 *
+	 * @since 2.8.2
+	 *
+	 * @return void
+	 */
+	public function sanitize_settings() {
+		parent::sanitize_settings();
+		if ( isset( $this->validateTotal ) ) {
+			$this->validateTotal = (bool) $this->validateTotal;
+		}
+	}
 
 }
 

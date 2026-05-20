@@ -1,0 +1,20 @@
+{
+    "name": "up-hotel-agency/dynamic-content-engine",
+    "description": "Wordpress Plugin that works in tandem with the Dynamic Content Engine to dynamically generate website contentWordpress Plugin that works in tandem with t",
+    "type": "wordpress-plugin",
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "license": "SEE LICENSE.txt",
+    "autoload": {
+        "psr-4": {
+            "UpHotelAgency\\DynamicContentEngine\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Brendan Kedwards",
+            "email": "bkedwards03@gmail.com"
+        }
+    ]
+}

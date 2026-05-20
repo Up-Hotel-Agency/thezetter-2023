@@ -72,8 +72,8 @@ class Up_Cookie_Consent_Admin {
 			"ckb" => "Central Kurdish - کوردی (دەستنوسی عەرەبی)",
 			"zh" => "Chinese - 中文",
 			"zh-HK" => "Chinese (Hong Kong) - 中文（香港）",
-			"zh-CN" => "Chinese (Simplified) - 中文（简体）",
-			"zh-TW" => "Chinese (Traditional) - 中文（繁體）",
+			"zh-hans" => "Chinese (Simplified) - 中文（简体）",
+			"tc" => "Chinese (Traditional) - 中文（繁體）",
 			"co" => "Corsican",
 			"hr" => "Croatian - hrvatski",
 			"cs" => "Czech - čeština",
@@ -185,6 +185,12 @@ class Up_Cookie_Consent_Admin {
 			"Performance and Analytics",
 			"Advertisement and Targeting",
 			"Update cookie consent",
+			"Cookie",
+			"Duration",
+			"Description",
+			"Vendor",
+			"Privacy Policy",
+			"Powered by"
 		);
 		return array($languages_list, $language_strings);
 	}
@@ -231,6 +237,7 @@ class Up_Cookie_Consent_Admin {
 				handle_form();
 			} 
 			include( plugin_dir_path( __FILE__ ) . 'partials/up-cookie-consent-admin-display.php' );
+
 		}
 
 	}

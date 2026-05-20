@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "chameleon/suggested-pages",
+	"title": "Suggested Pages",
+	"description": "Block that displays suggested pages to visit to the user.",
+	"category": "chameleon",
+	"supports": {
+		"align": ["wide"]
+	},
+	"attributes": {
+    "class": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "section",
+      "attribute": "class"
+    }
+	},
+  "keywords": [
+    "recently",
+    "return",
+    "page",
+		"suggested"
+  ],
+	"editorScript": "file:./index.js",
+	"style": "file:./suggested-pages-block.css",
+	"render": "file:./render.php"
+}

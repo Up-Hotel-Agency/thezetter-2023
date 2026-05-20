@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "chameleon/dynamic-content",
+	"title": "Dynamic Content",
+	"description": "Block that we can change the content of on the fly",
+	"category": "chameleon",
+	"supports": {
+		"align": ["wide"]
+	},
+	"attributes": {
+    "class": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "section",
+      "attribute": "class"
+    },
+		"image_side": {
+			"type": "boolean"
+		},
+		"suggested_pages": {
+			"type": "array"
+		}
+	},
+  "keywords": [
+    "dynamic"
+  ],
+	"editorScript": "file:./index.js",
+	"style": "file:./dynamic-content-block.css"
+}

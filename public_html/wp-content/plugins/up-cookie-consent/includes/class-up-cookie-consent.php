@@ -174,6 +174,7 @@ class Up_Cookie_Consent {
 
 		$plugin_public = new Up_Cookie_Consent_Public( $this->get_plugin_name(), $this->get_version() );
 		if(up_check_license()){  
+			//$this->loader->add_action( 'wp_head', $plugin_public, 'preload_scripts');
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'up_load_cookies', 2);
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');

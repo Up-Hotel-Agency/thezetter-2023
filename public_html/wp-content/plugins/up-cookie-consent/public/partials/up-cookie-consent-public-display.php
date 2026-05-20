@@ -16,8 +16,10 @@
 <?php 
 
     //Load required options
-    global $widget_setting, $layout_settings, $widget_colors, $settings_policy, $cookie_cats, $current_lang, $translating_mode, $current_string_translations, $widget_custom_css;
+    global $widget_setting, $layout_settings, $widget_colors, $widget_default_variables, $settings_policy, $cookie_cats, $current_lang, $translating_mode, $current_string_translations, $widget_custom_css, $version_number, $gtm_connected;
 
+    //Variables function
+    include( plugin_dir_path( __FILE__ ) . '/up-cookie-consent-public-variables.php' ); 
     
     //Translation function
     function up_text($text, $return = false){
@@ -48,7 +50,10 @@
     //Get current language setting
     $translating_mode = false;
     if(up_get_option('translation_setting')){
-        $current_lang = substr( get_bloginfo ( 'language' ), 0, 2 );
+        $current_lang = get_bloginfo ( 'language' );
+        if($current_lang != "zh-hans"){ //this is the only lang supported with - values
+            $current_lang = substr( get_bloginfo ( 'language' ), 0, 2 );
+        }
         $current_string_translations = up_get_option('languages_string');
         $current_supported_langs = up_get_option('languages');
         if($current_lang != null){
@@ -63,6 +68,7 @@
     $widget_setting = up_get_option('widget_setting');
     $layout_settings = up_get_option('layout');
     $widget_colors = up_get_option('widget_colors');
+    $widget_default_variables = up_get_option('widget_variables');
     $widget_custom_css = up_get_option('widget_css');
     $dev_mode = up_get_option('dev_setting');
     if($translating_mode){
@@ -89,12 +95,112 @@
 
     //Add shortcode to update Cookie Preferences
     function up_cookie_plugin_modal(){
-        $output = '<a href="#" class="js-up-view-cookie-options-revisit">';
+        $output = '<a href="#" class="js-upcc-view-upcc-cookie-options-revisit">';
         $output .= up_text('Update cookie consent', true);
         $output .= '</a>';
         return $output;
     }
     add_shortcode('up_cookie_plugin', 'up_cookie_plugin_modal');
+
+
+    //Add shortcode to list cookies and categorises table
+    function up_cookie_plugin_list(){
+
+        global $translating_mode, $cookie_cats, $version_number;
+
+        $output = "<div class='upcc-cookie-list'>";
+        $output .= "<p><a href='#' class='js-upcc-view-upcc-cookie-options-revisit'>".up_text('Update cookie consent', true)."</a></p>";
+
+        foreach($cookie_cats as $current_cat):
+
+            //Define variables 
+            $settings = up_get_option($current_cat['slug']);
+            $cat_groups = $settings['groups'] ?? false;
+            $cat_desc = $settings['desc'] ?? "";
+            $cookies_count = 0;
+            $output_cookies = "";
+            $output_cat = "";
+            $output_cookies_table_start = "";
+            $output_cookies_table_end = "";
+
+            //If translating, check for language
+            if($translating_mode): 
+                if(up_get_option($current_cat['slug'].'_'.$current_lang)):
+                    $settings_translated = up_get_option($current_cat['slug'].'_'.$current_lang);
+                    $cat_desc = $settings_translated['desc'] ?? "";
+                    $cat_groups = $settings_translated['groups'] ?? $cat_groups;
+                endif;
+            endif;
+
+            if($cat_groups):
+                $cat_groups = (array)json_decode($cat_groups);
+            endif;
+
+            if($cat_groups):
+                foreach($cat_groups as $group):
+                    $group = (array)$group;
+                    if($group['cookies']):
+                        $cookies = json_decode(stripslashes($group['cookies']));
+                        foreach($cookies as $cookie):
+                            $cookieName = $cookie->name;
+                            if($cookie->wildcard):
+                                $cookieName = "$cookie->wildcard*ID*";
+                            endif;
+                            if(str_contains($cookie->gdpr, "http")):
+                                $cookiePolicy = "<a href='$cookie->gdpr' rel='noopener' target='_blank'>$cookie->gdpr</a>";
+                            else:
+                                $cookiePolicy = $cookie->gdpr;
+                            endif;
+                            $output_cookies .= "<tr>";
+                            $output_cookies .= "
+                            <td>$cookieName</td>
+                            <td>$cookie->retention</td>
+                            <td>$cookie->description</td>
+                            <td>$cookie->platform</td>
+                            <td>$cookiePolicy</td>
+                            ";
+                            $output_cookies .= "</tr>";
+                        $cookies_count++; endforeach;
+                    endif;
+                endforeach;
+            endif;
+            
+            $output_cat .= " 
+            <p class='upcc-cat-title'><b>".up_text($current_cat['name'], true)." ($cookies_count)</b></p>
+            <p class='upcc-cat-desc'>$cat_desc</p>
+            ";
+
+            if($cookies_count):
+                $output_cookies_table_start = "
+                <table class='upcc-cat-table'>
+                <tr>
+                    <th>".up_text('Cookie', true)."</th>
+                    <th>".up_text('Duration', true)."</th>
+                    <th>".up_text('Description', true)."</th>
+                    <th>".up_text('Vendor', true)."</th>
+                    <th>".up_text('Privacy Policy', true)."</th>
+                </tr>";
+                 $output_cookies_table_end = "</table>";
+            endif;
+            $output .= "<div class='upcc-cookie-cat-details'>".$output_cat.$output_cookies_table_start.$output_cookies.$output_cookies_table_end."</div>";
+        endforeach;
+
+        if($version_number):
+            $output .= "<p>";
+                if(isset($version_number[0])): 
+                    $output .= "V: ".$version_number[0];
+                endif;
+                if(isset($version_number[1])):
+                    $output .= " - ".$version_number[1];
+                endif;
+            $output .= "</p>"; 
+        endif;
+
+        $output .= "<p class='upcc-cookie-list-logo'><a href='https://uphotel.agency' rel='noopener' target='_blank'>".up_text('Powered by', true)." UP Hotel Agency</a></p>";
+        $output .= "</div>";
+        return $output;
+    }
+    add_shortcode('up_cookie_list', 'up_cookie_plugin_list');
 
     //Start front end view
     if(isset($widget_setting) && $widget_setting == true){
@@ -106,192 +212,24 @@
         //Get widget style 
         if(isset($layout_settings)){
             up_insert_variables();
+            require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/widget_types/up_cookie_modal.php';
+            require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/widget_types/up_'.$layout_settings.'.php';
             $layout_settings();
             up_cookie_modal();
         }
     }
 
-?>
-
-<?php function  up_insert_variables(){ ?>
-    <?php global $widget_colors, $widget_custom_css; ?>
-    <style>
-    :root{
-    <?php if(isset($widget_colors['button'])){ ?>
-        --up-buttons-color: <?php echo $widget_colors['button']; ?>;
-    <?php }; ?>
-    <?php if(isset($widget_colors['button-text'])){ ?>
-        --up-buttons-color-text: <?php echo $widget_colors['button-text']; ?>;
-    <?php }; ?>
-    <?php if(isset($widget_colors['background'])){ ?>
-        --up-background-color: <?php echo $widget_colors['background']; ?>;
-    <?php }; ?>
-    <?php if(isset($widget_colors['text'])){ ?>
-        --up-text-color: <?php echo $widget_colors['text']; ?>;
-    <?php }; ?>
+    //Check for cookie to show consent
+    //Currently upsupported due cross env cookie issue
+    function up_show_consent(){
+        return false;
+        if(isset($_COOKIE['up-cookie-consent'])){
+            if($_COOKIE['up-cookie-consent'] != "true"){
+                return true;
+            }
+        }else{
+            return true;
+        }
     }
-    </style>
-    <?php if($widget_custom_css){ ?>
-    <style>
-        <?php echo htmlentities(stripslashes($widget_custom_css)); ?>
-    </style>
-    <?php } ?>
-<?php } ?>
-
-<?php function floating_notice(){ ?>
-    <?php global $widget_colors, $settings_policy; ?>
-    <div class="up-cookie-widget up-floating-notice <?php if(up_get_option('widget_font')){ echo "up-default-fonts"; } ?>" style="visibility: hidden; opacity: 0;">
-        <div class="up-container">
-            <?php if(isset($settings_policy['intro-short'])){ ?>
-                <div class="cookie-message">
-                    <p><?php echo htmlentities(stripslashes($settings_policy['intro-short']));  ?></p>
-                </div>
-            <?php } ?>
-            <div class="cookie-buttons">
-                <a class="cookie-options js-up-view-cookie-options" href="#"><?php up_text('View Options'); ?></a>
-                <a class="up-button up-cookie-accept" href="#"><?php up_text('Accept All'); ?></a>
-            </div>
-        </div>
-    </div>
-<?php } ?>
-
-<?php function slim_floating_notice(){ ?>
-    <?php global $widget_colors, $settings_policy; ?>
-    <div class="up-cookie-widget up-slim-floating-notice <?php if(up_get_option('widget_font')){ echo "up-default-fonts"; } ?>" style="visibility: hidden; opacity: 0;">
-        <div class="up-container">
-            <?php if(isset($settings_policy['intro-short'])){ ?>
-                <div class="cookie-message">
-                    <p><?php echo htmlentities(stripslashes($settings_policy['intro-short']));  ?></p>
-                </div>
-            <?php } ?>
-            <div class="cookie-buttons">
-                <a class="cookie-options js-up-view-cookie-options" href="#"><?php up_text('Options'); ?></a>
-                <a class="up-button up-cookie-accept" href="#"><?php up_text('Accept'); ?></a>
-            </div>
-        </div>
-    </div>
-<?php } ?>
-
-<?php function mandatory_modal_notice(){ ?>
-    <?php global $widget_colors, $settings_policy; ?>
-    <div class="up-cookie-widget up-mandatory-modal <?php if(up_get_option('widget_font')){ echo "up-default-fonts"; } ?>" style="visibility: hidden; opacity: 0;">
-        <div class="up-mandatory-overlay"></div>
-        <div class="up-container">
-            <?php if(isset($settings_policy['title'])){ ?>
-                <h3><?php echo htmlentities(stripslashes($settings_policy['title'])); ?></h3>
-            <?php } ?>
-            <?php if(isset($settings_policy['intro-short'])){ ?>
-                <div class="cookie-message">
-                    <p><?php echo htmlentities(stripslashes($settings_policy['intro-short']));  ?></p>
-                </div>
-            <?php } ?>
-            <div class="cookie-buttons">
-                <a class="cookie-options js-up-view-cookie-options" href="#"><?php up_text('Options'); ?></a>
-                <a class="up-button up-cookie-accept" href="#"><?php up_text('Accept'); ?></a>
-            </div>
-        </div>
-    </div>
-<?php } ?>
-
-<?php function up_cookie_modal(){ ?>
-<?php 
-    global $widget_setting, $layout_settings, $widget_colors, $settings_policy, $cookie_cats, $translating_mode, $current_lang;
+     
 ?>
-    <div class="up-cookie-modal-container <?php if(up_get_option('widget_font')){ echo "up-default-fonts"; } ?>" style="visibility: hidden; opacity: 0;">
-        <div class="cookie-modal">
-            <div class="cookie-modal-content">
-                <a class="up-cookie-modal-close" href="#"><?php up_text('Close'); ?></a>
-                <div class="cookie-modal-title">
-                    <h2><?php up_text('Cookie Preferences'); ?></h2>
-                </div>
-                <div class="cookie-modal-details">
-                    <p><?php if(isset($settings_policy['intro'])){ echo htmlentities(stripslashes($settings_policy['intro'])); } ?></p>
-                </div>
-                <a class="cookie-modal-view-more" href="#"><span class="up-open"><?php up_text('View More'); ?></span><span class="up-close"><?php up_text('Show Less'); ?></span></a>
-                <div class="cookie-modal-accordian">
-                    <div class="cookie-accordian-buttons">
-                        <?php if(isset($settings_policy['link'])){ ?>
-                            <a class="cookie-modal-view-policy" href="<?php echo $settings_policy['link']; ?>"><?php up_text('View our Cookie Policy'); ?></a>
-                        <?php } ?>
-                        <a class="cookie-modal-accept-all" href="#">
-                            <label class="switch">
-                                <p><?php up_text('Accept All'); ?></p>
-                                <input type="checkbox" id="select-all">
-                                <span class="slider"></span>
-                            </label>
-                        </a>
-                    </div>
-                    <?php if(isset($cookie_cats)){ foreach($cookie_cats as $current_cat){ 
-
-                        $settings = up_get_option($current_cat['slug']);
-
-                        $cat_name = $current_cat['name'] ?? "";
-                        $default = $settings['default'] ?? false;
-                        $cat_desc = $settings['desc'] ?? "";   
-                        $cat_slug = $current_cat['slug'] ?? "";    
-                        
-                        //Check if user has already set cookies 
-                        if(!empty($_COOKIE['up-cookie-consent'])){
-                            if(isset($_COOKIE['up-cookie-consent-options'])){
-                                if(in_array($cat_slug, json_decode(stripslashes($_COOKIE['up-cookie-consent-options'])))){
-                                    $default = true;
-                                }
-                            }
-                        }
-                        
-                        if($translating_mode){ 
-                            if(up_get_option($current_cat['slug'].'_'.$current_lang)){
-                                $settings_translated = up_get_option($current_cat['slug'].'_'.$current_lang);
-                                $cat_desc = $settings_translated['desc'] ?? "";
-                            }
-                        }
-
-                        if(!$settings){
-                            continue;
-                        }
-                        if($settings['toggle'] == false){
-                            continue;
-                        }
-                 
-                    ?>
-                    <div class="cookie-modal-accordian-section">
-                        <div class="cookie-modal-accordian-section-header">
-                            <a class="cookie-accordian-open-button" href="#"><?php echo up_text($cat_name); ?></a>
-                            <?php if($cat_slug == "strictly_necessary"){ ?>
-                                <span class="switch-text"><p><?php up_text('Always Enabled'); ?></p></span>
-                            <?php }else{ ?>
-                                <?php 
-
-                                    if($default){
-                                        $toggleText = "Enabled";
-                                        $toggleCheck = "checked";
-                                        $parentToggle = "toggle-on";
-                                    }else{
-                                        $toggleText = "Disabled";
-                                        $toggleCheck = "";
-                                        $parentToggle = "";
-                                    }
-
-                                ?>
-                                <label class="switch <?php echo $parentToggle; ?>"><span class="switch-text off"><p><?php up_text('Disabled'); ?></p></span><span class="switch-text on"><p><?php up_text('Enabled'); ?></p></span>
-                                    <input class="up-selected-cookies" name="<?php echo $current_cat['slug']; ?>" <?php echo $toggleCheck; ?> id="isEnabled" type="checkbox">
-                                    <span class="slider"></span>
-                                </label>
-                            <?php } ?>
-                        </div>
-                        <div class="cookie-modal-accordian-content">
-                            <p><?php echo htmlentities(stripslashes($cat_desc)); ?></p>
-                        </div>  
-                    </div>
-                    <?php }} ?>
-                </div>
-                <div class="cookie-buttons">
-                    <a class="cookie-options up-cookie-reject-all" href="#"><?php up_text('Reject All'); ?></a>
-                    <a class="up-button up-cookie-accept up-selectable" href="#"><?php up_text('Accept Selected'); ?></a>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php } ?>
-
-

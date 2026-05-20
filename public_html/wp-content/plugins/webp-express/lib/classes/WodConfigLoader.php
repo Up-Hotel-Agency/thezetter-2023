@@ -90,6 +90,20 @@ class WodConfigLoader
         return false;
     }
 
+    protected static function getPassedHash() {
+        // First check if it is passed in as an environment variable
+        $hash = self::getEnvPassedInRewriteRule('HASH');
+        if ($hash !== false) {
+          return $hash;
+        }
+        // Then check if it is passed in the query string
+        if (isset($_GET['hash'])) {
+            return $_GET['hash'];
+        }
+        return false;
+    }
+
+
     protected static function getWebPExpressContentDirWithDocRoot()
     {
         // Get relative path to wp-content
@@ -180,8 +194,60 @@ class WodConfigLoader
         return new ImageRoots(self::$wodOptions['image-roots']);
     }
 
+    /**
+     * Find the hash from config.[hash].json inside a directory.
+     *
+     * @param string $configDir Absolute path to the config directory (no trailing slash)
+     */
+    protected static function findConfigFileByInspection($configDir)
+    {
+        if (!is_dir($configDir)) {
+            throw new \Exception(
+              'WebP Express configuration directory was not found. ' .
+              'Please check that wp-content/webp-express/config exists and is readable.'
+            );
+        }
+
+        if (!is_readable($configDir)) {
+            throw new \Exception('WebP Express configuration directory is not readable. Please fix the permissions (wp-content/webp-express/config)');
+        }
+
+        $files = glob($configDir . '/wod-options.*.json');
+
+        if ($files === false || empty($files)) {
+            // Failed finding the pattern. Lets see if old plain "wod-options.json" is there due to migration not complete
+            $oldFileName = $configDir . '/wod-options.json';
+            if (file_exists($oldFileName)) {
+                return $oldFileName;
+            }
+            throw new \Exception('Could not find a file that matches the pattern "wod-options.[hash].json" in the config dir. Is it there? Please check manually in this folder: wp-content/webp-express/config');
+        }
+
+        // We expect only one match. But failed migrations / manual restores could perhaps cause there to be several
+        // So therefore, lets make sure to pick the newest file, in case there are several
+        usort($files, function ($a, $b) {
+            return filemtime($b) <=> filemtime($a);
+        });
+
+        $configFilename = $files[0];
+        if (!file_exists($configFilename)) {
+            throw new \Exception('Configuration file found in filesystem, but at the same, it seems not to exist!');
+        }
+        return $configFilename;
+
+        // Take the first match
+        //$filename = basename($files[0]);
+        // Extract hash between "config." and ".json"
+        /*
+        if (preg_match('/^wod-options\.([a-f0-9]+)\.json$/i', $filename, $matches)) {
+            return $matches[1];
+        }*/
+        // throw new \Exception('The filename Could not find a file that matches the pattern "wod-options.[hash].json" in the config dir. Is it there? Please check manually in this folder: wp-content/webp-express/config');
+    }
+
     protected static function loadConfig() {
 
+        self::$checking = 'config folder';
         $usingDocRoot = !(
             isset($_GET['xwp-content-rel-to-we-plugin-dir']) ||
             self::getEnvPassedInRewriteRule('WE_WP_CONTENT_REL_TO_WE_PLUGIN_DIR') ||
@@ -217,16 +283,32 @@ class WodConfigLoader
         // ---------------------------------
         self::$checking = 'config file';
 
-        $configFilename = self::$webExpressContentDirAbs . '/config/wod-options.json';
-        if (!file_exists($configFilename)) {
-            throw new \Exception('Configuration file was not found (wod-options.json)');
+        $hash = self::getPassedHash();
+        if ($hash === false) {
+            self::$checking = 'finding config file by introspecting config dir';
+            $configFilename = self::findConfigFileByInspection(self::$webExpressContentDirAbs . '/config');
+        } else {
+            $hash = SanityCheck::noDirectoryTraversal($hash);
+            if (!preg_match('/^[a-f0-9]{32}$/i', $hash)) {
+                //throw new \Exception('Provided hash does not match correct pattern. Hash is expected to be 32 chars of letters/digits. Check the .htaccess files, its where the hash comes from (unless you are using Nginx - then check your Nginx rewrite rules)');
+                self::$checking = 'finding config file by introspecting config dir (as no hash passed in did not conform to expected pattern, which is 32 chars of letters/digits)';
+                $configFilename = self::findConfigFileByInspection(self::$webExpressContentDirAbs . '/config');
+            }
+            else {
+                $filename = 'wod-options.' . $hash . '.json';
+                $configFilename = self::$webExpressContentDirAbs . '/config/' . $filename;
+                if (!file_exists($configFilename)) {
+                    self::$checking = 'finding config file by introspecting config dir (as no config file was found using hash passed in)';
+                    $configFilename = self::findConfigFileByInspection(self::$webExpressContentDirAbs . '/config');
+                }
+            }
         }
 
         // Check config file
         // --------------------
         $configLoadResult = file_get_contents($configFilename);
         if ($configLoadResult === false) {
-            throw new \Exception('Cannot open config file');
+            throw new \Exception('Cannot open config file: ' . $configFilename);
         }
         $json = SanityCheck::isJSONObject($configLoadResult);
 

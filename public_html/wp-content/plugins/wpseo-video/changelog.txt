@@ -1,0 +1,9 @@
+*** Yoast SEO: Video Changelog ***
+
+
+2026-04-14 - version 15.2
+* update -  Sets the minimum supported WordPress version to 6.8.
+* update -  Sets the _WordPress tested up to_ version to 7.0.
+* update -  Updates the description copy of the XML Video Sitemap.
+* update -  Modernizes how translations of the plugin work by removing the unneeded `load_plugin_textdomain()` calls.
+

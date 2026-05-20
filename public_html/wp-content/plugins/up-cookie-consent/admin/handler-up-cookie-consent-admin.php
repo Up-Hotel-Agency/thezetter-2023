@@ -34,8 +34,31 @@ function handle_form() {
 			//Get form fields 
 			$cat = $_POST['update-scripts'] ?? false;
 			$desc = $_POST['up-cat-info'] ?? false;
-			$head = $_POST['up-head'] ?? false;
-			$body = $_POST['up-body'] ?? false; 
+			$groups = (array)json_decode(stripslashes($_POST['group-ids'])) ?? false;
+			$groups_output = array();
+
+			foreach($groups as $group):
+				$head = $_POST['up-head-'.$group] ?? false;
+				$body = $_POST['up-body-'.$group] ?? false; 
+				$autoload_script = $_POST['up-autoload-script-'.$group] ?? false;
+				$name = $_POST['up-group-name-'.$group] ?? "Untitled";
+				$autoload = $_POST['up-autoload-'.$group] ?? false; 
+				$autoload_script = $_POST['up-autoload-script-'.$group] ?? false; 
+				$cookies = $_POST['up-cookies-'.$group];
+				if($_POST['up-cookies-'.$group] == "[]"):
+					$cookies = false;
+				endif;
+				$groups_output[$group] = array(
+					"head" =>  $head,
+					"body" =>  $body,
+					"name" => $_POST['up-group-name-'.$group] ?? "Untitled",
+					"autoload" => $_POST['up-autoload-'.$group] ?? false,
+					"autoload_script" => $autoload_script,
+					"cookies" => $cookies,
+				);
+			endforeach;
+			
+			$groups_output = json_encode($groups_output);
 
 			$translation = "";
 			if(isset($_POST['update-scripts-lang'])){
@@ -71,19 +94,180 @@ function handle_form() {
 				$default = true;
 				$toggle = true;
 			}
-			
+
 
 			$db_data = array(
 				'desc' => $desc,
 				'toggle' => $toggle,
 				'default' => $default,
-				'head' => $head,
-				'body' => $body
+				'groups' => $groups_output,
 			);
+
+			//Add global cookies 
+			if($cat == "strictly_necessary"){
+				$db_data['strictly_necessary'] = $_POST['up-cookies-strictly_necessary'];
+			}
 
 			up_update_option($cat.$translation, $db_data );
 
+			//Update cookie policy version number (used when re-consent required) - Not required when translating
+			if($translation == ""){
+				date_default_timezone_set("Europe/London");
+				$current_time = date("Y-m-d h:i:sa");
+				if(up_get_option('policy_version')){
+					$version_number = up_get_option('policy_version');
+				}else{
+					$version_number = array(0, "");
+				}
+				$current_version_number = (int)$version_number[0];
+				$current_version_number++;
+				$version_number = array($current_version_number, $current_time);
+				up_update_option('policy_version', $version_number);
+			}
+		
+		}elseif(isset( $_POST['disconnect-gtm'] ) ){
+			up_update_option('gtm_connect', false);
+			up_update_option('gtm_cookies', false);
+			$up_cookie_categories = array("functional" => array(), "performance_analytics" => array(), "advertisement_targeting" => array());
+			foreach($up_cookie_categories as $current_cat => $data):
+				$current_cat_data = up_get_option($current_cat);
+				$groups = (array)json_decode($current_cat_data['groups']);
+				unset($groups['gtm']);
+				$groups = json_encode($groups);	
+				$current_cat_data['groups'] = $groups;	
+				up_update_option($current_cat, $current_cat_data);	
+			endforeach;
 
+
+		}elseif(isset( $_POST['update-gtm-connect'] ) ){
+
+			//Which function to run
+			$function = $_POST['update-gtm-connect-function'];
+
+			// Used when updating a cookie category
+			if($function == "update-cookie"):
+
+				$name = $_POST['up-cookie-name'];
+				$category = $_POST['up-cookie-cat'];
+				$up_cookie_categories = array();
+				$new_cookie = array(array(
+					'name' => $name, 
+					'description' => "not_found",
+					'platform' => false,
+					'retention' => false,
+					'gdpr' => false,
+					'wildcard' => false,
+					'category' => false,
+				));
+				$up_cookie_categories[$category] = $new_cookie;
+				$orginal_gtm_cookies = json_decode(up_get_option('gtm_cookies'));
+				$orginal_gtm_cookies->$name = true;
+
+
+			endif; 
+
+			// Used when connecting GTM for the first time
+			if($function == "gtm-new"):
+
+				//Get GTM ID & Cookies
+				$gtm_id = $_POST['up-gtm-id'];
+				$gtm_cookies = $_POST['up-gtm-cookies'] ?? array();
+				if($gtm_cookies):
+					$gtm_cookies = json_decode(stripslashes($gtm_cookies));
+				endif;
+
+				//Get orginal cookies caught by GTM
+				$orginal_gtm_cookies = json_decode(up_get_option('gtm_cookies'));
+				if(!$orginal_gtm_cookies):
+					$orginal_gtm_cookies = array();
+				endif;
+
+				//Define categories map (as Open Cookie DB does not use the same naming conventions)
+				$up_cookie_categories = array("functional" => array(), "performance_analytics" => array(), "advertisement_targeting" => array());
+				$cookie_cats_map = array(
+					"functional" => "functional",
+					"personalization" => "functional",
+					"analytics" => "performance_analytics",
+					"marketing" => "advertisement_targeting",
+					"security" => "functional" // We don't have a category for this, so for now use "functional"
+				);
+				//Get required groups & loop through cookies
+				foreach($gtm_cookies as $cookie){
+
+					$cookie_name = $cookie->name;
+					if($cookie->wildcard){
+						$cookie_name = $cookie->wildcard;
+					}
+
+					//Check if this cookie has already been assigned & proccessed
+					if(!array_key_exists($cookie_name, (array)$orginal_gtm_cookies)){
+						if($cookie->category):
+							$orginal_gtm_cookies[$cookie_name] = true; //assigned 
+						else:
+							$orginal_gtm_cookies[$cookie_name] = false; //unassigned 
+							continue; //We can't proccess this cookie any further 
+						endif;
+					}else{
+						//We've already processed this cookie before
+						continue;
+					}
+					$cookie_category = $cookie_cats_map[strtolower($cookie->category)];
+					array_push($up_cookie_categories[$cookie_category], $cookie);
+				}
+
+				if(isset($gtm_id)):
+					up_update_option('gtm_connect', $gtm_id);
+				endif;
+
+			endif; 
+
+			//Now we need to add these cookies to the categories within a group called "gtm"
+			foreach($up_cookie_categories as $current_cat => $data):
+				//First get the cookie cat from database
+				$current_cat_data = up_get_option($current_cat);
+
+				if(is_array($data)):
+					$data_to_be_added = array(
+						"head" =>  "",
+						"body" =>  "",
+						"name" => "Google Tag Manager",
+						"autoload" => false,
+						"autoload_script" => "",
+						"cookies" => json_encode($data),
+					);
+					if(isset($current_cat_data['groups'])):
+						$groups = (array)json_decode($current_cat_data['groups']);
+						
+						//Check if the group "gtm" is within this category
+						if(isset($groups['gtm'])):
+							//Extract Information and merge
+							$current_group_cookies = json_decode(stripslashes($groups['gtm']->cookies)) ?? array();
+							$new_group_cookies = json_decode($data_to_be_added['cookies']);	
+							$data_to_be_added['cookies'] = json_encode(array_merge($current_group_cookies, $new_group_cookies));
+							//Remove old gtm group
+							unset($groups['gtm']);
+						endif;
+						$groups_temp = array('gtm' => $data_to_be_added);
+						$groups = array_merge($groups_temp, $groups);
+						$groups = json_encode($groups);
+						$current_cat_data['groups'] = $groups;	
+						up_update_option($current_cat, $current_cat_data);			
+					else:
+						//No groups have been created, we're starting fresh
+						$groups = array();
+						$groups['gtm'] = $data_to_be_added;
+						$groups = json_encode($groups);
+						$current_cat_data['groups'] = $groups; 
+						up_update_option($current_cat, $current_cat_data);	
+					endif;
+				endif;
+			endforeach;
+
+		//Finally update option orginal cookies
+		if(isset($orginal_gtm_cookies)):
+			up_update_option('gtm_cookies', json_encode($orginal_gtm_cookies));
+		endif;
+	
 		}else if(isset( $_POST['update-intro'])){
 
 			$translation = "";
@@ -107,16 +291,27 @@ function handle_form() {
 
 			$layout = $_POST['layout'] ?? false;
 			up_update_option('layout', $layout );
-
+		}else if(isset( $_POST['update-widget-variables'])){
+			$setting_widget = $_POST['update-widget-setting-toggle'] ?? false;
+			up_update_option('widget_variables', $setting_widget );
+		}else if(isset( $_POST['update-widget-advert'])){
+			$setting_widget = $_POST['update-widget-setting-toggle'] ?? false;
+			up_update_option('widget_advert', $setting_widget );
 		}else if(isset( $_POST['update-widget-font'])){
 			$setting_widget = $_POST['update-widget-setting-toggle'] ?? false;
 			up_update_option('widget_font', $setting_widget );
+		}else if(isset( $_POST['update-widget-reject'])){
+			$setting_widget = $_POST['update-widget-setting-toggle'] ?? false;
+			up_update_option('widget_reject', $setting_widget );
 		}else if(isset( $_POST['update-widget-setting'])){
 			$setting_widget = $_POST['update-widget-setting-toggle'] ?? false;
 			up_update_option('widget_setting', $setting_widget );
 		}else if(isset( $_POST['update-translation-setting'])){
 			$setting_widget = $_POST['update-translation-setting-toggle'] ?? false;
 			up_update_option('translation_setting', $setting_widget );
+		}else if(isset( $_POST['update-cookie-reconsent'])){
+			$setting_widget = $_POST['update-cookie-reconsent-toggle'] ?? false;
+			up_update_option('reconsent_setting', $setting_widget );
 		}else if(isset( $_POST['update-multisite-setting'])){
 			$setting_widget = $_POST['update-multisite-setting-toggle'] ?? false;
 			up_update_option('multisite_setting', $setting_widget, up_main_site_id());
@@ -124,12 +319,19 @@ function handle_form() {
 			$setting_widget = $_POST['update-dev-setting-toggle'] ?? false;
 			up_update_option('dev_setting', $setting_widget);
 		}else if(isset( $_POST['update-colors'])){
+			$color_mode = $_POST['update-mode'];
 			$background_color = $_POST['background-color'];
 			$text_color = $_POST['text-color'];
 			$buttons_color = $_POST['buttons-color'];
 			$buttons_text_color = $_POST['buttons-text-color'];
+			$color_theme =  $_POST['color-theme'] ?? false;
+			$color_palette =  $_POST['color-palette'] ?? false;
+			
 
 			$db_data = array(
+				'color_mode' => $color_mode,
+				'color_theme' => $color_theme,
+				'color_palette' => $color_palette,
 				'background' => $background_color,
 				'text' => $text_color,
 				'button' => $buttons_color,

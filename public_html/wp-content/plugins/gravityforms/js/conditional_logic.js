@@ -23,14 +23,26 @@ function gf_apply_rules(formId, fields, isInit){
 		gf_apply_field_rule(formId, fields[i], isInit, function(){
 			var is_last_field = ( i >= fields.length - 1 );
 			if( is_last_field ) {
+
+				// Gather the fields that are dependents of the processed fields (inside pages/sections).
+				var dependentFields = [];
+				var dependents = window["gf_form_conditional_logic"][formId]["dependents"][fields[i]];
+				if ( dependents ) {
+					dependents.forEach( function ( dependentFieldId ) {
+						if ( dependentFields.indexOf( dependentFieldId ) === -1 ) {
+							dependentFields.push( dependentFieldId );
+						}
+					});
+				}
+
 				jQuery(document).trigger('gform_post_conditional_logic', [formId, fields, isInit]);
 				gform.utils.trigger( {
 					event: 'gform/conditionalLogic/applyRules/end',
 					native: false,
-					data: { formId: formId, fields: fields, isInit: isInit },
+					data: { formId: formId, fields: fields, dependentFields: dependentFields, isInit: isInit },
 				} );
-				if(window["gformCalculateTotalPrice"]){
-					window["gformCalculateTotalPrice"](formId);
+				if( window.gformCalculateTotalPrice ) {
+					window.gformCalculateTotalPrice( formId );
 				}
 			}
 		});
@@ -144,7 +156,7 @@ function gf_is_match( formId, rule ) {
 		$inputs;
 
 	if( isInputSpecific ) {
-		$inputs = $( '#input_{0}_{1}_{2}'.gformFormat( formId, fieldId, inputIndex ) );
+		$inputs = $( '#input_{0}_{1}_{2}, #choice_{0}_{1}_{2}'.gformFormat( formId, fieldId, inputIndex ) );
 	} else {
 		$inputs = $( 'input[id="input_{0}_{1}"], input[id^="input_{0}_{1}_"], input[id^="choice_{0}_{1}_"], select#input_{0}_{1}, textarea#input_{0}_{1}'.gformFormat( formId, fieldId ) );
 	}
@@ -255,7 +267,7 @@ function gf_format_number( value, fieldNumberFormat ) {
 	decimalSeparator = '.';
 
 	if( fieldNumberFormat == 'currency' ) {
-		decimalSeparator = gformGetDecimalSeparator( 'currency' );
+		decimalSeparator = gform.Currency.getDecimalSeparator( 'currency' );
 	} else if( fieldNumberFormat == 'decimal_comma' ) {
 		decimalSeparator = ',';
 	} else if( fieldNumberFormat == 'decimal_dot' ) {
@@ -263,7 +275,7 @@ function gf_format_number( value, fieldNumberFormat ) {
 	}
 
 	// transform to a decimal dot number
-	value = gformCleanNumber( value, '', '', decimalSeparator );
+	value = gform.Currency.cleanNumber( value, '', '', decimalSeparator );
 
 	/**
 	 * Looking at format specified by wp locale creates issues. When performing conditional logic, all numbers will be formatted to decimal dot and then compared that way. AC
@@ -292,7 +304,7 @@ function gf_try_convert_float(text){
 	var format = 'decimal_dot';
 	if( gformIsNumeric( text, format ) ) {
 		var decimal_separator = format == "decimal_comma" ? "," : ".";
-		return gformCleanNumber( text, "", "", decimal_separator );
+		return gform.Currency.cleanNumber( text, "", "", decimal_separator );
 	}
 
 	return text;
@@ -315,14 +327,14 @@ function gf_matches_operation(val1, val2, operation){
 			val1 = gf_try_convert_float(val1);
 			val2 = gf_try_convert_float(val2);
 
-			return gformIsNumber(val1) && gformIsNumber(val2) ? val1 > val2 : false;
+			return gform.utils.isNumber(val1) && gform.utils.isNumber(val2) ? val1 > val2 : false;
 			break;
 
 		case "<" :
 			val1 = gf_try_convert_float(val1);
 			val2 = gf_try_convert_float(val2);
 
-			return gformIsNumber(val1) && gformIsNumber(val2) ? val1 < val2 : false;
+			return gform.utils.isNumber(val1) && gform.utils.isNumber(val2) ? val1 < val2 : false;
 			break;
 
 		case "contains" :
@@ -381,6 +393,8 @@ function gf_do_field_action(formId, action, fieldId, isInit, callback){
 		let abort = gform.applyFilters( 'gform_abort_conditional_logic_do_action', false, action, targetId, conditional_logic[ "animation" ], defaultValues, isInit, formId, do_callback );
 		if ( ! abort ) {
 			gf_do_action( action, targetId, conditional_logic[ "animation" ], defaultValues, isInit, do_callback, formId );
+		} else if ( do_callback ) {
+			do_callback();
 		}
 
 		gform.doAction('gform_post_conditional_logic_field_action', formId, action, targetId, defaultValues, isInit);
@@ -429,7 +443,6 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 	}
 
 	if(action == "show"){
-
 		// reset tabindex for selects
 		$target.find( 'select' ).each( function() {
 			var $select = jQuery( this );
@@ -438,38 +451,28 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 
 		if(useAnimation && !isInit){
 			if($target.length > 0){
-				$target.find(':input:hidden:not(.gf-default-disabled)').removeAttr( 'disabled' );
+				$target.find(':input:hidden:not(.gf-default-disabled)').prop( 'disabled', false );
 				if ( $target.is( 'input[type="submit"]' ) || $target.hasClass( 'gform_next_button' ) ) {
-					$target.removeAttr( 'disabled' ).css( 'display', '' );
-					$target.attr( 'data-conditional-logic', 'hidden' );
-					if ( '1' == gf_legacy.is_legacy ) {
-						// for legacy markup, remove screen reader class.
-						$target.removeClass( 'screen-reader-text' );
-					}
+					gf_show_button( $target );
 				}
 				$target.slideDown(callback);
+				$target.attr( 'data-conditional-logic', 'visible' );
 			} else if(callback){
 				callback();
 			}
 		}
 		else{
-
 			var display = $target.data('gf_display');
 
 			// set display if previous (saved) display isn't set for any reason
 			if ( display == '' || display == 'none' ){
 				display = '1' === gf_legacy.is_legacy ? 'list-item' : 'block';
 			}
-			$target.find(':input:hidden:not(.gf-default-disabled)').removeAttr( 'disabled' ).attr( 'data-conditional-logic', 'visible' );
+			$target.find(':input:hidden:not(.gf-default-disabled)').prop( 'disabled', false ).attr( 'data-conditional-logic', 'visible' );
 
 			// Handle conditional submit and next buttons.
 			if ( $target.is( 'input[type="submit"]' ) || $target.hasClass( 'gform_next_button' ) ) {
-				$target.removeAttr( 'disabled' ).css( 'display', '' );
-				$target.attr( 'data-conditional-logic', 'visible' );
-				if ( '1' == gf_legacy.is_legacy ) {
-					// for legacy markup, remove screen reader class.
-					$target.removeClass( 'screen-reader-text' );
-				}
+				gf_show_button( $target );
 			} else {
 				$target.css( 'display', display );
 				if( display == 'none' ) {
@@ -509,13 +512,10 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 
 		if(useAnimation && !isInit){
 			if( $target.is( 'input[type="submit"]' ) || $target.hasClass( 'gform_next_button' ) ) {
-				$target.attr( 'disabled', 'disabled' ).hide();
-				if ( '1' === gf_legacy.is_legacy ) {
-					// for legacy markup, let screen readers read the button.
-					$target.addClass( 'screen-reader-text' );
-				}
+				gf_hide_button( $target );
 			} else if ( $target.length > 0 && $target.is( ":visible" ) ) {
 				$target.slideUp( callback );
+				$target.attr( 'data-conditional-logic', 'hidden' );
 			} else if ( callback ) {
 				callback();
 			}
@@ -523,12 +523,7 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 
 			// Handle conditional submit and next buttons.
 			if ( $target.is( 'input[type="submit"]' ) || $target.hasClass( 'gform_next_button' ) ) {
-				$target.attr( 'disabled', 'disabled' ).hide();
-				$target.attr( 'data-conditional-logic', 'hidden' );
-				if ( '1' === gf_legacy.is_legacy ) {
-					// for legacy markup, let screen readers read the button.
-					$target.addClass( 'screen-reader-text' );
-				}
+				gf_hide_button( $target );
 			} else {
 				$target.css( 'display', 'none' );
 				$target.attr( 'data-conditional-logic', 'hidden' );
@@ -542,7 +537,45 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 
 }
 
+function gf_show_button( $target ) {
+	$target.prop( 'disabled', false ).css( 'display', '' );
+	$target.attr( 'data-conditional-logic', 'visible' );
+	if ( '1' == gf_legacy.is_legacy ) {
+		// for legacy markup, remove screen reader class.
+		$target.removeClass( 'screen-reader-text' );
+	}
+
+	// Sometimes the next button is pretending to be a submit button, so it needs conditional logic too.
+	var fauxSubmitButton = jQuery( 'input.gform_next_button[type="button"][value="Submit"]' );
+	if ( fauxSubmitButton ) {
+		fauxSubmitButton.prop( 'disabled', false ).css( 'display', '' );
+		fauxSubmitButton.attr( 'data-conditional-logic', 'visible' );
+	}
+}
+
+function gf_hide_button( $target ) {
+	$target.attr( 'disabled', 'disabled' ).hide();
+	$target.attr( 'data-conditional-logic', 'hidden' );
+	if ( '1' === gf_legacy.is_legacy ) {
+		// for legacy markup, let screen readers read the button.
+		$target.addClass( 'screen-reader-text' );
+	}
+
+	// Sometimes the next button is pretending to be a submit button, so it needs conditional logic too.
+	var fauxSubmitButton = jQuery( 'input.gform_next_button[type="button"][value="Submit"]' );
+	if ( fauxSubmitButton ) {
+		fauxSubmitButton.attr( 'disabled', 'disabled' ).hide();
+		fauxSubmitButton.attr( 'data-conditional-logic', 'hidden' );
+	}
+}
+
 function gf_reset_to_default(targetId, defaultValue){
+
+	var $target = jQuery( targetId );
+    if( $target.hasClass('gfield_shipping') || $target.hasClass('gfield_total') ||
+        $target.hasClass('gfield--type-shipping') || $target.hasClass('gfield--type-total') ) {
+        return;
+    }
 
 	var dateFields = jQuery( targetId ).find( '.gfield_date_month input, .gfield_date_day input, .gfield_date_year input, .gfield_date_dropdown_month select, .gfield_date_dropdown_day select, .gfield_date_dropdown_year select' );
 	if( dateFields.length > 0 ) {
@@ -610,11 +643,11 @@ function gf_reset_to_default(targetId, defaultValue){
 
 		//get name of previous input field to see if it is the radio button which goes with the "Other" text box
 		//otherwise field is populated with input field name
-		var radio_button_name = element.prev("input").attr("value");
+		var radio_button_name = element.prevAll("input").first().attr("value");
 		if(radio_button_name == "gf_other_choice"){
 			val = element.attr("value");
 		}
-		else if( jQuery.isArray( defaultValue ) && ! element.is( 'select[multiple]' ) ) {
+		else if( Array.isArray( defaultValue ) && ! element.is( 'select[multiple]' ) ) {
 			val = defaultValue[target_index];
 		}
 		else if(jQuery.isPlainObject(defaultValue)){
@@ -624,7 +657,7 @@ function gf_reset_to_default(targetId, defaultValue){
 				var inputId = element.attr( 'id' ).split( '_' ).slice( 2 ).join( '.' );
 				val = defaultValue[ inputId ];
 			}
-			if( ! val && element.attr( 'name' ) ) {
+			if( ! val && element.attr( 'name' ) && element.attr( 'type' ) != 'email' ) {
 				var inputId = element.attr( 'name' ).split( '_' )[1];
 				val = defaultValue[ inputId ];
 			}

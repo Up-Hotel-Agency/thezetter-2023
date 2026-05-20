@@ -92,9 +92,7 @@ class WPSEO_Frontend {
 	 * @return static The instance.
 	 */
 	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-		}
+		self::$instance ??= new self();
 
 		return self::$instance;
 	}
@@ -113,6 +111,7 @@ class WPSEO_Frontend {
 
 		$presentation = $this->get_current_page_presentation();
 		$presenter    = new Canonical_Presenter();
+
 		/** This filter is documented in src/integrations/front-end-integration.php */
 		$presenter->presentation = $presentation;
 		$presenter->helpers      = $this->helpers;
@@ -139,6 +138,8 @@ class WPSEO_Frontend {
 
 	/**
 	 * Outputs the meta robots value.
+	 *
+	 * @return void
 	 */
 	public function robots() {
 		_deprecated_function( __METHOD__, 'Yoast SEO 14.0' );
@@ -222,6 +223,8 @@ class WPSEO_Frontend {
 	 * Adds 'prev' and 'next' links to archives.
 	 *
 	 * @link http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
+	 *
+	 * @return void
 	 */
 	public function adjacent_rel_links() {
 		_deprecated_function( __METHOD__, 'Yoast SEO 14.0' );
@@ -270,6 +273,7 @@ class WPSEO_Frontend {
 	 */
 	private function get_current_page_presentation() {
 		$context = $this->context_memoizer->for_current_page();
+
 		/** This filter is documented in src/integrations/front-end-integration.php */
 		return apply_filters( 'wpseo_frontend_presentation', $context->presentation, $context );
 	}

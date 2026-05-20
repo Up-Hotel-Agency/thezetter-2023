@@ -1,0 +1,11 @@
+*** Yoast SEO: Local Changelog ***
+
+
+2026-03-24 - version 15.8
+* fix -  Fixes a performance issue that was causing a timeout/memory exhaustion when using the Schema aggregation feature.
+* update -  Modernizes how translations of the plugin work by removing the unneeded `load_plugin_textdomain()` calls.
+* update -  Sets the minimum supported WordPress version to 6.8.
+* update -  Improved compatibility with PHP 8.5
+* update -  Compatibility with PHP 8.4 and 8.5 is now being safeguarded more stringently
+* update -  Bumps the minimum required Free version to 27.3.
+

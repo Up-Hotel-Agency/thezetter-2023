@@ -207,6 +207,12 @@ jQuery(function($){
         e.preventDefault();
         $('.location-selector-inner').toggleClass('active');
     });
+    //Soft dismissals for booking mask location picker
+    $(document).click(function(e){
+        if (!$(e.target).closest('.location-drop-down').length) {
+            $('.location-selector-inner').removeClass('active');
+        }
+    });
 
     $('.location-selector-inner a').click(function(e){
         e.preventDefault();

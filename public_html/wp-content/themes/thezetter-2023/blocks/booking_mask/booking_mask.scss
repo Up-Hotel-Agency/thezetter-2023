@@ -1,6 +1,10 @@
 @import "../gutenberg_block";
 
 .location-select {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
     .error-message {
         display: none;
     }
@@ -17,12 +21,19 @@
 
 .location-drop-down {
     cursor: pointer;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    width: 100%;
-    justify-content: space-between;
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+
+    svg {
+        width: 24px;
+        height: 24px;
+
+        @include breakpoint(S) {
+            width: 15px;
+            height: 15px;
+        }
+    }
 
     .location-selector-inner {
         display: flex;
@@ -34,9 +45,11 @@
         border: solid 1px;
         width: 100%;
         top: 4rem;
+        right: 0;
         justify-content: center;
         text-align: center;
         align-items: center;
+        background-color: white;
         @extend %transition;
 
         a {

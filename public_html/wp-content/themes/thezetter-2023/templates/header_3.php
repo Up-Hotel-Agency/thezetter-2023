@@ -118,7 +118,7 @@
 		<div class="nav-left container-left container-right flex items-center">
 			
 			<div class="close-booking-menu nav-toggle">
-				<div class="close">Close</div>
+				<div class="close"></div>
 			</div>
 			<?php 
 				wp_enqueue_script( 'flatpickr-js', get_template_directory_uri() . '/assets/js/flatpickr.min.js' );

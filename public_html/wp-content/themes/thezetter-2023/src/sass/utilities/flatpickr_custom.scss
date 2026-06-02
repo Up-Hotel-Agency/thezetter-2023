@@ -8,11 +8,13 @@
 
 .flatpickr-calendar {
     // @include color('background-color', 'background');
-    background-color: var(--color-background);
+    //background-color: var(--color-background);
     box-shadow: 4px 8px 24px rgba(0, 10, 44, 0.075);
     border-radius: 2px;
     padding: 2rem;
     width: auto !important; //Force auto width on calendar so it doesn't crop out columns
+    right: 45% !important;
+    top: 35% !important;
 
     &.arrowTop::after {
         border-bottom-color: var(--color-background-alt);
@@ -23,7 +25,9 @@
     }
 
     //Spacing between months
-    .flatpickr-months, .flatpickr-weekdays, .flatpickr-days {
+    .flatpickr-months,
+    .flatpickr-weekdays,
+    .flatpickr-days {
         @supports (display: grid) {
             display: grid;
             grid-auto-columns: 1fr;
@@ -71,12 +75,14 @@
     }
 
     .flatpickr-current-month {
+
         .cur-month,
         .numInput {
-            font-family: $font-stack-headings;
+            font-family: Louize;
+            font-size: 0.875rem;
+            font-style: italic;
             font-weight: 400;
-            @include size-L;
-            @include color('color', 'body');
+            line-height: 1.19188rem;
         }
     }
 
@@ -188,6 +194,7 @@
     .flatpickr-day.endRange.endRange {
         border-radius: 100%;
     }
+
     .flatpickr-day.selected,
     .flatpickr-day.startRange,
     .flatpickr-day.endRange,
@@ -206,9 +213,10 @@
     .flatpickr-day.selected.nextMonthDay,
     .flatpickr-day.startRange.nextMonthDay,
     .flatpickr-day.endRange.nextMonthDay {
-        @include color(background-color, 'accent-primary');
-        @include color(border-color, 'accent-primary');
+        @include color(background-color, 'buttons');
+        @include color(border-color, 'buttons');
     }
+
     .flatpickr-day.inRange,
     .flatpickr-day.prevMonthDay.inRange,
     .flatpickr-day.nextMonthDay.inRange,
@@ -221,12 +229,16 @@
     .flatpickr-day:focus,
     .flatpickr-day.prevMonthDay:focus,
     .flatpickr-day.nextMonthDay:focus {
-        @include color(background-color, 'accent-primary-lightest');
-        @include color(border-color, 'accent-primary-lightest');
+        background-color: #E9EAE6;
+        border-color: #E9EAE6;
+        //@include color(background-color, 'accent-primary-lightest');
+        //@include color(border-color, 'accent-primary-lightest');
     }
+
     .flatpickr-day.inRange {
         box-shadow: -5px 0 0 var(--color-accent-primary-lightest), 5px 0 0 var(--color-accent-primary-lightest);
     }
+
     .flatpickr-day.selected.startRange,
     .flatpickr-day.startRange.startRange,
     .flatpickr-day.selected.endRange,
@@ -241,9 +253,10 @@
             width: calc(50% + 1px);
             height: calc(100% + 2px);
             z-index: -1;
-            @include color(background-color, 'accent-primary-lightest');
+            background-color: #E9EAE6;
         }
     }
+
     .flatpickr-day.selected.endRange,
     .flatpickr-day.endRange.endRange {
         &:after {
@@ -251,6 +264,7 @@
             right: 50%;
         }
     }
+
     // when two dates are right noext to each other
     .flatpickr-day.selected.startRange+.endRange:not(:nth-child(7n+1)),
     .flatpickr-day.startRange.startRange+.endRange:not(:nth-child(7n+1)),
@@ -261,10 +275,13 @@
             width: calc(50% + 6px);
         }
     }
+
     .flatpickr-current-month span.cur-month:hover {
         background: none;
     }
-    .flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
+
+    .flatpickr-months .flatpickr-prev-month:hover svg,
+    .flatpickr-months .flatpickr-next-month:hover svg {
         fill: var(--color-accent-primary);
     }
 }

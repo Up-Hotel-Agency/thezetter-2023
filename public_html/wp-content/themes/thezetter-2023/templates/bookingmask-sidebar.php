@@ -23,10 +23,11 @@
     </div>
     <h2><?php _e('Reserve A Room', 'zetter'); ?></h2>
     <?php if($curBlog != 1):?>
-        <div class="input-wrap location-select input-styled <?php if($curBlog != 1):?> active <?php endif; ?>">
-            <label class="size-l"><?php _e('Destination', 'zetter'); ?></label>
+        <div class="input-wrap location-select <?php if($curBlog != 1):?> active <?php endif; ?>">
+            <label class="body-m mb-0"><?php _e('Destination', 'zetter'); ?></label>
+            <div class="sidebar-booking-dots"></div>
             <div class="error-message">*Select a destination</div>
-            <div class="location-drop-down">
+            <div class="location-drop-down input-styled">
                 <span class="location-display size-xs"><?php if($curBlog == 1): _e('Choose Location', 'zetter'); else: echo get_bloginfo('name'); endif; ?></span>
                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><title>caret-down</title><g class="caret-down"><polyline class="arrowhead" points="36.036 18.982 24 31.018 11.964 18.982" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></g></svg>
                 
@@ -51,54 +52,84 @@
         </div>
     <?php endif; ?>
     <div class="dates-fields flex">
-        <div class="date-field check-in-field flex items-center input-styled">
-            <p class="no-margin">
-                <label class="size-l color-body block mb-0">Arrival</label>
-                <span class="js-check-in-display size-xs"><?php echo date('D d M'); ?></span>
-            </p>
-            <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" />
+        <label class="body-m mb-0">Dates</label>
+        <div class="sidebar-booking-dots"></div>
+        <div class="dates">
+            <div class="date-field check-in-field flex items-center">
+                <p class="no-margin js-check-out-display body-l">
+                    <?php echo date('D d M'); ?>
+                </p>
+                <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" />
+            </div>
+            <svg viewBox="0 0 14 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 5C10.7 4.57 10.89 4.2 11.08 3.88H0V3.04H11.08C10.89 2.81 10.7 2.54 10.5 2.22C10.31 1.9 10.12 1.53 9.92 1.12H10.62C11.46 2.09 12.34 2.81 13.26 3.28V3.64C12.34 4.09 11.46 4.81 10.62 5.8H9.92Z" fill="currentColor"/>
+            </svg>
+            <div class="date-field check-out-field flex items-center">
+                <p class="no-margin js-check-out-display body-l">
+                    <?php echo date('D d M', strtotime('tomorrow')); ?>
+                </p>
+                <input aria-label="Check Out" type="date" class="hidden xs:block js-departure-input" name="departure" value="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" min="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" />
+            </div>
+            <div class="js-datepicker-trigger datepicker-trigger xs:hidden"></div>
         </div>
-        <div class="date-field check-out-field flex items-center input-styled">
-            <p class="no-margin">
-                <label class="size-l color-body block mb-0">Departure</label>
-                <span class="js-check-out-display size-xs"><?php echo date('D d M', strtotime('tomorrow')); ?></span>
-            </p>
-            <input aria-label="Check Out" type="date" class="hidden xs:block js-departure-input" name="departure" value="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" min="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" />
-        </div>
-        <div class="js-datepicker-trigger datepicker-trigger xs:hidden"></div>
     </div>
-    <div class="rooms-guests-fields flex justify-between mb-10">
-        <div class="selector-wrap flex flex-col items-start justify-between mb-6 input-styled" data-max="4" data-min="1">
-            <input type="hidden" class="js-count-adults" name="adults" value="2" />
-            <label class="size-l mb-5">Number of Guests</label>
-            <div class="selector flex items-center justify-between mb-2">
-                <div class="buttons">
-                    <button class="selector-control minus button icon secondary size-xs no-margin"><svg fill="none" height="11" viewBox="0 0 11 11" width="11" xmlns="http://www.w3.org/2000/svg"><title>minus</title><g fill="#525535"><path d="m3.75 6v-1h3.5v1z"/><path clip-rule="evenodd" d="m5.5 10c2.48528 0 4.5-2.01472 4.5-4.5s-2.01472-4.5-4.5-4.5-4.5 2.01472-4.5 4.5 2.01472 4.5 4.5 4.5zm0 1c3.03757 0 5.5-2.46243 5.5-5.5s-2.46243-5.5-5.5-5.5-5.5 2.46243-5.5 5.5 2.46243 5.5 5.5 5.5z" fill-rule="evenodd"/></g></svg></button>
-                </div>
-                <span class="size-xs">0<span class="selector-value text-center">2</span></span>
-                <div class="buttons">
-                    <button class="selector-control plus button icon secondary size-xs no-margin"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><title>plus</title><path d="M5.0061 7.75V5.98606H3.25V5.0061H5.0061V3.25H5.9939V5.0061H7.75V5.98606H5.9939V7.75H5.0061Z" fill="#525535"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10ZM5.5 11C8.53757 11 11 8.53757 11 5.5C11 2.46243 8.53757 0 5.5 0C2.46243 0 0 2.46243 0 5.5C0 8.53757 2.46243 11 5.5 11Z" fill="#525535"/> </svg></button>
-                </div>
-            </div>
-        </div>        
-        <div class="selector-wrap flex flex-col items-start justify-between mb-6 input-styled" data-max="4" data-min="1">
+    <div class="rooms-guests-fields flex flex-col justify-between">
+        <div class="selector-wrap flex justify-between mb-6" data-max="4" data-min="1">
             <input type="hidden" class="js-count-rooms" name="rooms" value="1" />
-            <label class="size-l mb-5">Number of Rooms</label>
+            <label class="body-m mb-0">Rooms</label>
+            <div class="sidebar-booking-dots"></div>
             <div class="selector flex items-center justify-between mb-2">
                 <div class="buttons">
-                    <button class="selector-control minus button icon secondary size-xs no-margin disabled"><svg fill="none" height="11" viewBox="0 0 11 11" width="11" xmlns="http://www.w3.org/2000/svg"><title>minus</title><g fill="#525535"><path d="m3.75 6v-1h3.5v1z"/><path clip-rule="evenodd" d="m5.5 10c2.48528 0 4.5-2.01472 4.5-4.5s-2.01472-4.5-4.5-4.5-4.5 2.01472-4.5 4.5 2.01472 4.5 4.5 4.5zm0 1c3.03757 0 5.5-2.46243 5.5-5.5s-2.46243-5.5-5.5-5.5-5.5 2.46243-5.5 5.5 2.46243 5.5 5.5 5.5z" fill-rule="evenodd"/></g></svg></button>
+                    <button class="selector-control minus button icon secondary size-xs no-margin disabled">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <title>minus</title>
+                        <path d="M3.33331 10H16.6666" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                <span class="size-xs">0<span class="selector-value text-center">1</span></span>
+                <p class="body-l mb-0">0<span class="selector-value text-center">1</span></p>
                 <div class="buttons">
-                    <button class="selector-control plus button icon secondary size-xs no-margin"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><title>plus</title><path d="M5.0061 7.75V5.98606H3.25V5.0061H5.0061V3.25H5.9939V5.0061H7.75V5.98606H5.9939V7.75H5.0061Z" fill="#525535"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 10C7.98528 10 10 7.98528 10 5.5C10 3.01472 7.98528 1 5.5 1C3.01472 1 1 3.01472 1 5.5C1 7.98528 3.01472 10 5.5 10ZM5.5 11C8.53757 11 11 8.53757 11 5.5C11 2.46243 8.53757 0 5.5 0C2.46243 0 0 2.46243 0 5.5C0 8.53757 2.46243 11 5.5 11Z" fill="#525535"/> </svg></button>
+                    <button class="selector-control plus button icon secondary size-xs no-margin">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <title>plus</title>
+                        <path d="M10 16.6667V3.33334" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.33331 10H16.6666" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                   
+                    </button>
                 </div>
             </div>
         </div>
-
-        
+        <div class="selector-wrap flex justify-between mb-6" data-max="4" data-min="1">
+            <input type="hidden" class="js-count-adults" name="adults" value="2" />
+            <label class="body-m mb-0">Guests</label>
+            <div class="sidebar-booking-dots"></div>
+            <div class="selector flex items-center justify-between mb-2">
+                <div class="buttons">
+                    <button class="selector-control minus button icon secondary size-xs no-margin">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <title>minus</title>
+                        <path d="M3.33331 10H16.6666" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>            
+                    </button>
+                </div>
+                <p class="body-l mb-0">0<span class="selector-value text-center">2</span></p>
+                <div class="buttons">
+                    <button class="selector-control plus button icon secondary size-xs no-margin">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <title>plus</title>
+                        <path d="M10 16.6667V3.33334" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.33331 10H16.6666" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>                
     </div>
     <button type="submit" class="button primary">
         Check Availability
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.15799 6.315L14.842 12L9.15799 17.685" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </button>
 </form>
 <div class="bookingmask-footer flex flex-row">

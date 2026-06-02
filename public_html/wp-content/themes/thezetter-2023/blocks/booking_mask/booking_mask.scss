@@ -28,7 +28,6 @@
         display: flex;
         flex-direction: column;
         position: absolute;
-        @include color(background-color, 'background');
         padding: 1rem 1.5rem;
         gap: 1rem;
         z-index: 99;
@@ -73,10 +72,17 @@
 
 .booking-mask {
     width: 100%;
-    @include color(background-color, 'background');
 
     .button.primary {
         width: fit-content;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        font-size: 0.75rem;
+        font-weight: 400;
+        line-height: 0.86125rem;
+        letter-spacing: 0.105rem;
     }
 
     .logo {
@@ -105,8 +111,12 @@
         }
 
         h2 {
-            margin-top: 3.929rem;
-            text-align: center;
+            margin-top: 4.38rem;
+        }
+
+        .body-l {
+            font-size: 0.9375rem;
+            line-height: 1.24125rem;
         }
     }
 
@@ -135,6 +145,31 @@
     }
 }
 
+.nav-left {
+    form {
+
+        .dates-fields,
+        .selector-wrap,
+        .location-select {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            margin-bottom: 2.5rem;
+        }
+    }
+
+    @include breakpoint(S) {
+
+        &.container-left,
+        &.container-right {
+            padding-inline: 2.1875rem;
+        }
+    }
+
+
+}
+
 .sidebar-booking-dots {
     padding: 0 6px;
     border-bottom: none !important;
@@ -159,13 +194,25 @@
     @include breakpoint(S) {
         gap: 1.5rem;
         border-right: 0;
-        flex-direction: column;
+        //flex-direction: column;
     }
 
     .dates {
         display: flex;
         gap: 1rem;
         flex-shrink: 0;
+
+        @include breakpoint(S) {
+            gap: 0.5rem;
+        }
+
+        svg {
+            width: 20px;
+
+            @include breakpoint(S) {
+                width: 12px;
+            }
+        }
     }
 
     .date-field {
@@ -194,10 +241,6 @@
             white-space: nowrap;
         }
 
-        @include breakpoint(S) {
-            width: 100%;
-        }
-
         svg {
             margin-right: 0.75rem;
             @include color(color, 'body');
@@ -217,8 +260,12 @@
 
 .rooms-guests-fields {
     position: relative;
-    margin-bottom: 4.38rem;
+    margin-bottom: 2.38rem;
     flex-direction: column;
+
+    @include breakpoint(S) {
+        margin-bottom: 0.5rem;
+    }
 
     .selector-wrap {
         width: 100%;
@@ -247,6 +294,11 @@
                 stroke: #383E42;
                 border-radius: 62500rem;
                 border: 1px solid var(--color-body);
+
+                @include breakpoint(S) {
+                    width: 2rem;
+                    height: 2rem;
+                }
             }
 
             &.disabled {
@@ -277,8 +329,8 @@
     }
 
     @include breakpoint(S) {
-        gap: 1.5rem;
-        flex-direction: column;
+        // gap: 1.5rem;
+        // flex-direction: column;
 
         .selector-wrap {
             width: 100%;
@@ -308,7 +360,6 @@
         width: 100%;
         border-radius: 2px;
         box-shadow: 4px 8px 24px rgba(0, 10, 44, 0.075);
-        @include color(background-color, 'background');
 
         &.no-padding {
             padding: 0;
@@ -384,4 +435,16 @@
 
 .banner-portrait {
     padding-bottom: 0;
+}
+
+.bookingmask-footer-content {
+    @include breakpoint(S) {
+        display: none;
+    }
+}
+
+.bookingmask-footer-image {
+    position: absolute;
+    bottom: 6rem;
+    right: 6rem;
 }

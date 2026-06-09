@@ -11,7 +11,7 @@
     ),
   ));
 ?>
-<form action="#" id="booking-mask" 
+<form action="#" id="booking-mask" target="_blank"
     <?php $curBlog = get_current_blog_id(); switch_to_blog( $curBlog ); ?>
     data-url="<?php echo get_bloginfo( 'url' ); ?>/book" data-site="<?php the_field('location_name_id', 'options'); ?>" data-property-id="<?php the_field('booking_property_id', 'options'); ?>"
     class="js-booking-mask booking-mask flex flex-col theme--default" data-aos="fade-up"
@@ -53,7 +53,7 @@
         <div class="sidebar-booking-dots"></div>
         <div class="dates">
             <div class="date-field check-in-field flex items-center">
-                <p class="no-margin js-check-out-display body-l">
+                <p class="no-margin js-check-in-display body-l">
                     <?php echo date('D d M'); ?>
                 </p>
                 <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" />

@@ -69,6 +69,76 @@
             }
         }
     }
+    .newsletter-form{
+        .xp-widget-newsletter-panel{
+            form{
+                row-gap: 16px;
+                .form-line{
+                    margin: 0;
+                    input{
+                        background-color: var(--color-background);
+                        text-transform: unset;
+                    }
+                }
+                button{
+                    margin: 0;
+                    background: var(--color-accent-secondary);
+                    border-color: var(--color-accent-secondary);
+                    @include size-M;
+                    font-family: $font-stack-primary;
+                    font-weight: 400;
+                    letter-spacing: 0.25em;
+                    border-radius: 10px;
+                    text-transform: uppercase;
+                }
+                @include breakpoint(S) {
+                    display: flex;
+                    flex-direction: column;
+                    button{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .newsletter-signup_input{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 3.5rem 1rem;
+            input[type=text],
+            input[type=email]{
+                @include size-XS;
+                padding: 0;
+                padding-bottom: .5rem;
+                border: none;
+                border-bottom: 1px solid;
+                letter-spacing:  0.15em;
+                @include color(border-color, 'buttons');
+                @include color(color, 'buttons');
+                width: calc(50% - .5rem);
+                &::placeholder {
+                    @include color(color, 'buttons');
+                }
+            }
+
+        }
+        @include breakpoint(S) {
+            width: 100%;
+            flex-direction: column;
+            .newsletter-signup_input{
+                flex-direction: column;
+                input[type=text],
+                input[type=email]{
+                    width: 100%;
+                }
+                button{
+                    order: 1;
+                    width: fit-content;
+                    margin: auto;
+                }
+            }
+        }
+    }
 }
 
 .countdown {
@@ -142,7 +212,35 @@
         border-top: 1px solid;
         @include color(border-color, 'body-10');
         transition-delay: 0s;
-
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 2rem 0;
+            button{
+                color: var(--color-accent-reverse);
+                background: var(--color-buttons);
+                border: 1px solid;
+                border-color: var(--color-buttons);
+                width: 100%;
+                appearance: none;
+                cursor: pointer;
+                width: auto;
+                display: inline-block;
+                position: relative;
+                text-align: center;
+                z-index: 1;
+                @extend %button-transition;
+                margin-bottom: 1.5rem;
+                @include size-M;
+                font-family: $font-stack-primary;
+                font-weight: 400;
+                padding: 0.5rem 2.375rem;
+                letter-spacing: 0.25em;
+                border-radius: 10px;
+                text-transform: uppercase;
+            }
+        }
         p {
             padding: 1.5rem 0;
         }

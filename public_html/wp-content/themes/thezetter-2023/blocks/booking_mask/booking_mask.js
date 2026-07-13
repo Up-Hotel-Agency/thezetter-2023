@@ -16,8 +16,10 @@ jQuery(function($){
             var rooms = $(this).find('input[name="rooms"]').val();
             var adults = $(this).find('input[name="adults"]').val();
             // var children = $(this).find('input[name="children"]').val();
-            var propertyId = $(this).data('property-id');
-            $('.js-booking-toggle').toggleClass('menu-open');
+            // var propertyId = $(this).data('property-id');
+
+            var propertyId = $(this).find('.js-hotel-id').attr('property-id');
+            // $('.js-booking-toggle').toggleClass('menu-open');
 
 
             // --- DISTRIBUTE ADULTS ---
@@ -181,7 +183,27 @@ jQuery(function($){
     });
 
 
-    
+    $(document).on('click', function(e) {
+        if ($('.hotel-selector').hasClass('active') && !$(e.target).closest('.hotel-selector').length) {
+            $('.hotel-selector').removeClass('active');
+        }
+    });
+
+    $('.hotel-select').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation(); // prevents the document handler from firing
+        
+        $(this).parents('.js-booking-mask').find('.hotel-selector').toggleClass('active');
+    });
+
+    $('.hotel-selector .hotel').on('click', function (e) {
+        e.preventDefault();
+        var hotelID = $(this).attr('data-hotel-id');
+        var hotelName = $(this).attr('data-hotel-name');
+        $(this).parents('.js-booking-mask').find('.hotel-selector').removeClass('active');
+        $(this).parents('.js-booking-mask').find('.js-location-display').text(hotelName);
+        $(this).parents('.js-booking-mask').find('.js-hotel-id').val(hotelID);
+    });
 
     $('.js-arrive-input').change(function(){
         // get new selected date

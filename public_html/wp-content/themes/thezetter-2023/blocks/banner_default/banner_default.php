@@ -57,7 +57,13 @@ function banner_default_render_callback( $block, $content = '', $is_preview = fa
                 'type'  => 'primary'
             ]); ?>
         </div>
-        <?php if( get_field('display_scroll_button') ): ?>
+
+        <?php if( get_field('booking_mask') ): ?>
+            <div class="booking-mask-banner theme--default">
+                <?php include(get_template_directory() . '/templates/bookingmask.php'); ?>
+            </div>
+        <?php endif; ?>
+        <?php if( get_field('display_scroll_button') && !get_field('booking_mask') ): ?>
             <a href="#" class="js-scroll-next-block banner-default-continue flex items-center no-margin">
                 <div class="overline"><?php echo get_field('scroll_button_text'); ?></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Continue</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.685 9.158L12 14.842 6.315 9.158"/></svg>            

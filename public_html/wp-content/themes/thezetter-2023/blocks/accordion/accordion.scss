@@ -8,7 +8,12 @@
         cursor: pointer;
         position: relative;
         @extend %transition;
-
+        .button{
+            &::before,
+            &::after{
+                display: none;
+            }
+        }
         &:focus {
             outline: 0;
         }

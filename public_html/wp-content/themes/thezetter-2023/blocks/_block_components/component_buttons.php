@@ -30,8 +30,8 @@ function block_buttons($field, $opts = [] ){
     $data = isset($opts['data']) ? $opts['data'] : false; //AOS Options
     $type = isset($opts['type']) ? $opts['type'] : false; //AOS Options
     $linkButtons = isset($opts['link-buttons']) ? $opts['link-buttons'] : true; //Output button links
-
-    
+    $meeting = false;
+    $collins = false;
 
     if(!$single): 
         if( is_array($root_field) ): ?>
@@ -41,9 +41,9 @@ function block_buttons($field, $opts = [] ){
                     <?php
                     $class = $button['button_type'];
                     $link = $button['link_field_link'];
-                    $collins = $button['open_sevenrooms'];
+                    $collins = isset($button['open_sevenrooms']) ? $button['open_sevenrooms'] : false;
                     // $collins = $button['open_collins'];
-                    $meeting = $button['book_a_meeting'];
+                    $meeting == isset($button['book_a_meeting']) ? $button['book_a_meeting'] : false; 
                     // if($sevenrooms):
                         // $sevenroomsID = $button['restaurant_name'];
                         // $sevenroomsTrigger = uniqid();

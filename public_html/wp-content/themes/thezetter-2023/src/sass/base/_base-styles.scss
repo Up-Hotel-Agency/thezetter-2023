@@ -150,7 +150,7 @@ body {
         button {
             display: block;
             min-width: 0;
-            color: transparent;
+            //color: transparent;
             border-radius: 100%;
             padding: 0;
             width: 0.625rem;
@@ -169,7 +169,8 @@ body {
         }
         &.slick-active {
             button {
-                @include color(background, 'background-alt');
+                @include color(background-color, 'background-alt');
+                background: $color-background-alt;
                 opacity: 1;
             }
         }

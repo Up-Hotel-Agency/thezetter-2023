@@ -1,18 +1,23 @@
-:root{
-    --header-height:5.375rem;
+:root {
+    --header-height: 5.375rem;
+
     @include breakpoint(XS) {
-        --header-height:3.938rem;
+        --header-height: 3.938rem;
     }
 }
-section.row{
+
+section.row {
     position: relative;
-    &.full-height.banner-image-content{
+
+    &.full-height.banner-image-content {
+
         &::after,
-        &::before{
+        &::before {
             display: none;
         }
     }
-    &::after{
+
+    &::after {
         content: "";
         position: absolute;
         left: 0;
@@ -20,15 +25,18 @@ section.row{
         height: 1px;
         @include color(background-color, 'footer-25');
     }
-    &::after{
+
+    &::after {
         bottom: 0px;
     }
+
     // &::before{
     //     bottom: -1px;
     // }
 }
-section:last-of-type{
-    &::after{
+
+section:last-of-type {
+    &::after {
         display: none;
     }
 }
@@ -46,22 +54,26 @@ section:last-of-type{
     border-bottom: 1px solid;
     @include color(border-color, 'body');
     @extend %transition;
-    &.active{
+
+    &.active {
         background: $color-background;
     }
 
-    &.scrolled{
+    &.scrolled {
         position: fixed;
         @extend %transition;
     }
-    .header-right{
-        .locations-drop-down{
-            a{
+
+    .header-right {
+        .locations-drop-down {
+            a {
                 width: fit-content;
                 margin: auto;
                 @include color(color, 'body');
-                &.active, &:hover{
-                    &::after{
+
+                &.active,
+                &:hover {
+                    &::after {
                         content: "";
                         position: absolute;
                         width: calc(100%);
@@ -75,7 +87,8 @@ section:last-of-type{
                 }
             }
         }
-        .open-menu{
+
+        .open-menu {
             font-weight: 400;
             // @include size-S;
             font-size: 11px;
@@ -84,13 +97,15 @@ section:last-of-type{
             padding: 0 1.25rem;
             padding-left: 0;
             @include color(color, 'body');
-    
+
             &:hover {
                 @include color(color, 'accent-primary');
             }
+
             @media screen and (max-width: 80em) {
                 @include size-XS;
             }
+
             @include breakpoint(M) {
                 padding: 0 0.5rem;
             }
@@ -103,6 +118,7 @@ section:last-of-type{
         @include breakpoint(L) {
             display: none;
         }
+
         a {
             font-weight: 400;
             // @include size-S;
@@ -111,18 +127,21 @@ section:last-of-type{
             @extend .items-center;
             padding: 0 1.25rem;
             @include color(color, 'body');
-    
+
             &:hover {
                 @include color(color, 'accent-primary');
             }
+
             @media screen and (max-width: 80em) {
                 @include size-XS;
             }
+
             @include breakpoint(M) {
                 padding: 0 0.5rem;
             }
         }
     }
+
     .sub-menu {
         position: fixed;
         left: 0;
@@ -143,6 +162,7 @@ section:last-of-type{
             height: var(--header-height);
             visibility: visible;
         }
+
         a {
             @include color(color, 'background');
             padding: 0 1.5rem;
@@ -154,6 +174,7 @@ section:last-of-type{
             @include breakpoint(M) {
                 padding: 0 0.75rem;
             }
+
             &:hover {
                 @include color(color, 'body');
             }
@@ -163,20 +184,21 @@ section:last-of-type{
 
 /* If the WP admin bar is present on the page, offset the header's sticky position by the admin bar height */
 body:has(#wpadminbar) header {
-  top: 32px;
+    top: 32px;
 }
 
-.js-locations-dropdown{
+.js-locations-dropdown {
     cursor: pointer;
     display: flex;
     justify-content: center;
     letter-spacing: 0.15em;
-    .locations-drop-down{
+
+    .locations-drop-down {
         display: flex;
         flex-direction: column;
         position: absolute;
         width: max-content;
-        background:rgba(242,236,230,.85);
+        background: rgba(242, 236, 230, .85);
         padding: 2.5rem;
         gap: 1rem;
         top: 3.1rem;
@@ -186,8 +208,9 @@ body:has(#wpadminbar) header {
         pointer-events: none;
         @extend %transition;
     }
-    &.active{
-        .locations-drop-down{
+
+    &.active {
+        .locations-drop-down {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
@@ -198,33 +221,40 @@ body:has(#wpadminbar) header {
 .header-left {
     padding-left: 3.125rem;
     height: 4rem;
-    .logo{
+
+    .logo {
         height: 2.8125rem;
         padding: unset;
         align-items: end;
-        @include breakpoint(M){
-            svg{
+
+        @include breakpoint(M) {
+            svg {
                 max-width: 10rem;
             }
+
             padding-top: 0.3rem;
             padding-bottom: 0.3rem;
         }
-        svg{
+
+        svg {
             height: 100%;
             width: auto;
         }
-        .location-logo{
+
+        .location-logo {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             margin-left: 0.5rem;
             gap: 0.5rem;
-            .divider-line{
+
+            .divider-line {
                 width: 1rem;
                 height: 1px;
                 @include color('background-color', 'body');
             }
-            .location-logo-text{
+
+            .location-logo-text {
                 margin-bottom: 0;
                 @include size-M;
                 font-style: italic;
@@ -235,26 +265,30 @@ body:has(#wpadminbar) header {
             }
         }
     }
+
     @media only screen and (max-width: 850px) {
         padding-left: 1rem;
     }
 }
 
 .header-right {
-    a{
+    a {
         letter-spacing: 0.15em;
     }
-    .open-menu{
+
+    .open-menu {
         text-transform: uppercase;
         padding-right: 1.5rem;
         padding-left: 0;
         margin-right: .5rem;
         @include size-S;
         position: relative;
-        @include breakpoint(L){
-            display: none!important;
+
+        @include breakpoint(L) {
+            display: none !important;
         }
-        &::after{
+
+        &::after {
             content: "";
             position: absolute;
             right: 0;
@@ -269,49 +303,59 @@ body:has(#wpadminbar) header {
             @include color('background-color', 'body');
             @extend %transition;
         }
-        &:hover{
-            &::after{
+
+        &:hover {
+            &::after {
                 @include color('background-color', 'accent-primary-lighter');
             }
         }
-        &.js-side-menu{
-            &::after{
+
+        &.js-side-menu {
+            &::after {
                 transform: translateY(-50%) rotate(0deg);
             }
         }
     }
+
     padding-right: 3.125rem;
-    .button-header{
+
+    .button-header {
         font-family: $font-stack-primary;
         padding: 0.5rem 2.375rem !important;
         border-radius: 10px;
         @include color(background, 'buttons');
         margin-left: 1.25rem;
         height: auto !important;
-        &:hover{
+
+        &:hover {
             @include color(color, 'body');
             @include color(background-color, 'background');
             @include color(border-color, 'buttons');
         }
+
         @include breakpoint(M) {
             padding: 0.429rem 0.929rem !important;
         }
     }
+
     @media only screen and (max-width: 850px) {
         padding-right: 1rem;
     }
+
     @include breakpoint(M) {
         padding-right: 0;
     }
+
     @include breakpoint(XS) {
         padding-right: 0;
     }
-    > ul {
+
+    >ul {
         margin-right: 1rem;
 
-        > li {
-            &.current-menu-item{
-                a{
+        >li {
+            &.current-menu-item {
+                a {
                     // &::after{
                     //     content: "";
                     //     position: absolute;
@@ -323,8 +367,9 @@ body:has(#wpadminbar) header {
                     // }
                 }
             }
-            &:hover{
-                a{
+
+            &:hover {
+                a {
                     position: relative;
                     // &::after{
                     //     content: "";
@@ -344,19 +389,22 @@ body:has(#wpadminbar) header {
                     // }
                 }
             }
-            > a {
+
+            >a {
                 height: var(--header-height);
                 text-transform: uppercase;
             }
-            &.active{
-                a{
+
+            &.active {
+                a {
                     @extend %transition;
                     text-decoration: underline;
                 }
             }
         }
-        > .menu-item-has-children {
-            > a {
+
+        >.menu-item-has-children {
+            >a {
                 &:after {
                     content: "";
                     transform: rotate(-45deg) translate(0.75rem, 0.5rem);
@@ -372,12 +420,13 @@ body:has(#wpadminbar) header {
                     right: 0 !important;
                     left: unset !important;
                     @extend %transition;
-                    
+
                     @include breakpoint(M) {
                         transform: rotate(-45deg) translate(0.5rem, 0.325rem);
                         margin-right: 0.75rem;
                     }
                 }
+
                 &:hover {
                     &:after {
                         @include color(border-color, 'accent-primary');
@@ -386,11 +435,13 @@ body:has(#wpadminbar) header {
             }
         }
     }
+
     .button.primary {
         @include breakpoint(M) {
             @include size-S;
             padding: 0.5rem 0.875rem;
         }
+
         @include breakpoint(M) {
             height: var(--header-height);
             display: flex;
@@ -399,11 +450,13 @@ body:has(#wpadminbar) header {
             @include size-M;
             padding: 0.75rem 1.5rem;
         }
+
         &.active {
             &:before {
                 display: none;
             }
         }
+
         @media only screen and (max-width: 300px) {
             // for VERY small screens
             font-size: 0.875rem;
@@ -411,7 +464,8 @@ body:has(#wpadminbar) header {
         }
     }
 }
-.overlay-menu{
+
+.overlay-menu {
     position: absolute;
     top: var(--header-height);
     right: -50vw;
@@ -425,30 +479,37 @@ body:has(#wpadminbar) header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .overlay-menu-top{
+
+    .overlay-menu-top {
         padding-top: 3rem;
-        .mini-menu{
-            .label{
+
+        .mini-menu {
+            .label {
                 padding: 0 2.56rem;
             }
-            a{
+
+            a {
                 padding: 0 2.56rem;
             }
         }
     }
-    .overlay-menu-bottom{
+
+    .overlay-menu-bottom {
         padding: 3rem 2.56rem;
         padding-top: 0;
-        .mini-menu{
-            .label{
+
+        .mini-menu {
+            .label {
                 padding: 0 2.56rem;
             }
-            a{
+
+            a {
                 padding: 0 2.56rem;
             }
         }
     }
-    &.active{
+
+    &.active {
         @extend %transition;
         right: 0;
         opacity: 1;
@@ -457,19 +518,24 @@ body:has(#wpadminbar) header {
         max-height: calc(100vh - var(--header-height));
         box-shadow: -5px 0px 5px -8px;
     }
-    .mini-menu{
+
+    .mini-menu {
         margin-bottom: 3.5rem;
-        &:last-of-type{
+
+        &:last-of-type {
             margin-bottom: 0;
         }
-        a.h4{
+
+        a.h4 {
             font-weight: 400;
             margin-bottom: 0;
-            &:last-of-type{
+
+            &:last-of-type {
                 margin: 0;
             }
         }
-        .sub-menu{
+
+        .sub-menu {
             position: fixed;
             right: 23.87rem;
             height: calc(100vh - var(--header-height));
@@ -483,44 +549,53 @@ body:has(#wpadminbar) header {
             opacity: 0;
             visibility: hidden;
             @extend %transition;
-            &.active{
+
+            &.active {
                 @extend %transition;
                 opacity: 1;
                 visibility: visible;
             }
-            li{
+
+            li {
                 padding: .5rem 0;
-                a{
+
+                a {
                     color: var(--color-body);
                     @include size-M;
                     text-transform: capitalize;
                 }
             }
-            &.active{
+
+            &.active {
                 box-shadow: -5px 0px 5px -8px;
             }
         }
     }
-    .side-menu{
+
+    .side-menu {
         display: flex;
         flex-direction: column;
-        li{
+
+        li {
             @include heading-4;
             font-weight: 400;
-            a{
+
+            a {
                 @include heading-4;
                 font-weight: 400;
                 padding: 0;
                 margin-bottom: 0rem;
             }
-            &:last-of-type{
-                a{
+
+            &:last-of-type {
+                a {
                     margin: 0;
                 }
             }
         }
     }
-    .overlay-bottom{
+
+    .overlay-bottom {
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -529,15 +604,18 @@ body:has(#wpadminbar) header {
         bottom: 0;
         height: auto;
         margin-top: 1rem;
-        .close-overlay-menu{
+
+        .close-overlay-menu {
             display: flex;
             align-items: end;
             cursor: pointer;
-            .close{
+
+            .close {
                 text-decoration: underline;
                 padding-right: 2rem;
                 position: relative;
-                &::after{
+
+                &::after {
                     content: "";
                     position: absolute;
                     width: 1.375rem;
@@ -547,7 +625,8 @@ body:has(#wpadminbar) header {
                     transform: translateY(-50%) rotate(45deg);
                     @include color(background-color, 'body');
                 }
-                &::before{
+
+                &::before {
                     content: "";
                     position: absolute;
                     width: 1.375rem;
@@ -591,37 +670,45 @@ body:has(#wpadminbar) header {
         z-index: 2;
         transform: translateY(0);
     }
+
     @include color(background-color, 'background');
     @extend %transition;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    &.active{
+
+    &.active {
         @extend %transition;
         right: 0;
         opacity: 1;
         visibility: visible;
     }
-    .mini-menu{
+
+    .mini-menu {
         margin-bottom: 2.64rem;
-        p{
+
+        p {
             font-family: $font-stack-primary;
             padding-bottom: 0.786rem;
             text-transform: uppercase;
         }
+
         ul li a,
-        a{
+        a {
             @include heading-2;
             font-weight: 400 !important;
             margin-bottom: 0;
         }
-        li{
+
+        li {
             padding-left: 0;
-            &::before{
+
+            &::before {
                 display: none;
             }
         }
-        .sub-menu{
+
+        .sub-menu {
             position: fixed;
             right: 23.87rem;
             height: calc(100vh - var(--header-height));
@@ -635,7 +722,8 @@ body:has(#wpadminbar) header {
             opacity: 0;
             visibility: hidden;
             @extend %transition;
-            &.active{
+
+            &.active {
                 opacity: 1;
                 visibility: visible;
                 @extend %transition;
@@ -647,27 +735,32 @@ body:has(#wpadminbar) header {
                 background: transparent;
                 margin-bottom: 1rem;
             }
-            li{
-                a{
+
+            li {
+                a {
                     color: var(--color-body);
                     @include size-M;
                 }
             }
         }
     }
-    .side-menu{
+
+    .side-menu {
         display: flex;
         flex-direction: column;
-        li{
+
+        li {
             @include heading-4;
-            a{
+
+            a {
                 @include heading-4;
                 padding: 0;
                 margin-bottom: 1.5rem;
             }
         }
     }
-    .overlay-bottom{
+
+    .overlay-bottom {
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -675,15 +768,18 @@ body:has(#wpadminbar) header {
         width: 100%;
         bottom: 0;
         height: auto;
-        .close-overlay-menu{
+
+        .close-overlay-menu {
             display: flex;
             align-items: end;
             cursor: pointer;
-            .close{
+
+            .close {
                 text-decoration: underline;
                 padding-right: 2rem;
                 position: relative;
-                &::after{
+
+                &::after {
                     content: "";
                     position: absolute;
                     width: 1.375rem;
@@ -693,7 +789,8 @@ body:has(#wpadminbar) header {
                     transform: translateY(-50%) rotate(45deg);
                     @include color(background-color, 'body');
                 }
-                &::before{
+
+                &::before {
                     content: "";
                     position: absolute;
                     width: 1.375rem;
@@ -711,6 +808,7 @@ body:has(#wpadminbar) header {
 .gallery-full-container:first-child {
     margin-top: calc(var(--header-height) * -1);
 }
+
 .nav-wrap {
     display: flex;
     justify-content: center;
@@ -731,20 +829,24 @@ body:has(#wpadminbar) header {
         flex-direction: column;
         justify-content: flex-start;
     }
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+
+    @media screen and (-ms-high-contrast: active),
+    (-ms-high-contrast: none) {
         left: -100%;
     }
+
     &.menu-open {
         top: 0;
         left: 0;
     }
+
     .nav-toggle {
         position: absolute;
-        top: 2.5rem;
+        top: 2rem;
         left: 4rem;
         z-index: 5;
-        height: 3rem;
-        width: 4rem;
+        //height: 3rem;
+        //width: 4rem;
 
         &.subnav-open {
             left: auto;
@@ -756,6 +858,7 @@ body:has(#wpadminbar) header {
             left: 1.25rem;
         }
     }
+
     .nav-back {
         display: none;
         position: absolute;
@@ -771,10 +874,12 @@ body:has(#wpadminbar) header {
             width: 3.5rem;
             height: 3.5rem;
         }
+
         &.active {
             display: flex;
         }
     }
+
     .nav-subitem {
         display: none;
         position: absolute;
@@ -789,14 +894,17 @@ body:has(#wpadminbar) header {
             display: flex;
             transform: translateX(100%);
         }
+
         &.active {
             transform: translateX(0);
         }
+
         a {
             @include color(color, 'body');
             font-weight: 700;
         }
     }
+
     .nav-primary {
         width: 100%;
         height: 100%;
@@ -817,6 +925,7 @@ body:has(#wpadminbar) header {
             padding-top: 50%;
 
         }
+
         li {
             width: 100%;
             padding: 0;
@@ -838,8 +947,9 @@ body:has(#wpadminbar) header {
                     @include color(color, 'accent-primary');
                 }
             }
+
             &:hover {
-                > a {
+                >a {
                     @include color(color, 'accent-primary');
                 }
             }
@@ -866,6 +976,7 @@ body:has(#wpadminbar) header {
             @include breakpoint(M) {
                 transform: translateX(100%);
             }
+
             &.active {
                 transform: translateX(100%);
                 opacity: 1;
@@ -876,6 +987,7 @@ body:has(#wpadminbar) header {
                     transform: translateX(0);
                 }
             }
+
             a {
                 @include size-L;
                 font-weight: normal;
@@ -886,7 +998,8 @@ body:has(#wpadminbar) header {
             li {
                 width: 50%;
             }
-            .hotel-nav { 
+
+            .hotel-nav {
                 >ul {
                     li {
                         a {
@@ -895,10 +1008,11 @@ body:has(#wpadminbar) header {
                     }
                 }
             }
+
             >ul {
                 flex-flow: wrap;
             }
-            
+
             // #menu-main-menu {
             //     flex-flow: wrap;
             // }
@@ -911,58 +1025,72 @@ body:has(#wpadminbar) header {
             // }
         }
     }
-    
+
 
     .nav-left {
         width: 50%;
         height: 100%;
-        @include color(background-color, 'background');
+        background-color: white;
         flex-direction: column;
         justify-content: center;
 
         @include breakpoint(M) {
-            justify-content: flex-start;
+            // justify-content: flex-start;
             padding-top: 2rem !important;
             min-height: 100vh;
             height: auto;
             position: relative;
         }
-        .bookingmask-footer{
-            margin-top: 1rem;
+
+        .bookingmask-footer {
+            margin-top: 1.56rem;
             width: 100%;
             justify-content: space-between;
             align-items: end;
-            .bookingmask-footer-content{
-                p{
+
+            .bookingmask-footer-content {
+                p {
                     @include size-L;
                     margin: 0;
                 }
             }
-            .bookingmask-footer-image{
-                svg{
+
+            .bookingmask-footer-image {
+                svg {
                     max-height: 84px;
                     width: auto;
                 }
             }
+
             @include breakpoint(M) {
-                .bookingmask-footer-content{
+                .bookingmask-footer-content {
                     margin-top: 2.5rem;
                 }
-                .bookingmask-footer-image{
+
+                .bookingmask-footer-image {
                     display: none;
                 }
-            } 
+            }
         }
-        .close-booking-menu{
+
+        .close-booking-menu {
             display: flex;
             align-items: end;
             cursor: pointer;
-            .close{
+
+            @include breakpoint(XS) {
+                margin: 0;
+                top: 1rem !important;
+                right: 1rem !important;
+            }
+
+            .close {
                 text-decoration: underline;
                 text-transform: uppercase;
                 padding-right: 2rem;
                 position: relative;
-                &::after{
+
+                &::after {
                     content: "";
                     position: absolute;
                     width: 1.375rem;
@@ -972,7 +1100,8 @@ body:has(#wpadminbar) header {
                     transform: translateY(-50%) rotate(45deg);
                     @include color(background-color, 'body');
                 }
-                &::before{
+
+                &::before {
                     content: "";
                     position: absolute;
                     width: 1.375rem;
@@ -989,10 +1118,12 @@ body:has(#wpadminbar) header {
             a {
                 padding-top: 1rem;
                 margin: 0;
+
                 &.h2 {
                     padding-top: 1.5rem;
                 }
             }
+
             @include breakpoint(XS) {
                 margin-bottom: 1.5rem;
             }
@@ -1014,7 +1145,7 @@ body:has(#wpadminbar) header {
             height: 100%;
             width: 100%;
             top: 0;
-            left: 0;                    
+            left: 0;
         }
 
         .nav-images {
@@ -1034,28 +1165,30 @@ body:has(#wpadminbar) header {
                 opacity: 0;
                 // z-index: -1;
                 @extend %transition;
-                
+
                 &.active {
                     opacity: 1;
                     // z-index: 1;
                 }
+
                 img {
                     position: absolute;
                     height: 100%;
                     width: 100%;
                     top: 0;
-                    left: 0;                    
+                    left: 0;
                 }
             }
         }
     }
 
     @include breakpoint(M) {
+
         .nav-left,
         .nav-right {
             width: 100%;
         }
-    }    
+    }
 }
 
 .nav-wrap {
@@ -1075,7 +1208,8 @@ body:has(#wpadminbar) header {
 
         .nav-toggle {
             left: auto;
-            right: 3.75rem;
+            right: 2rem;
+
             @include breakpoint(M) {
                 top: 0;
                 right: 2.143rem;
@@ -1084,24 +1218,28 @@ body:has(#wpadminbar) header {
     }
 }
 
-.nav-wrap.js-booking-toggle{
+.nav-wrap.js-booking-toggle {
     z-index: 999;
 }
 
-.ui-datepicker{
+.ui-datepicker {
     background-color: var(--color-background, #000000);
     border: 1px solid var(--color-accent-primary, #000000);
-    .ui-datepicker-header{
+
+    .ui-datepicker-header {
         padding: .5rem .5rem 0 .5rem;
-        .ui-datepicker-next{
+
+        .ui-datepicker-next {
             float: right;
         }
-        .ui-datepicker-title{
+
+        .ui-datepicker-title {
             padding: .5rem 0;
             text-align: center;
         }
     }
-    .ui-state-disabled{
+
+    .ui-state-disabled {
         opacity: .3;
     }
 }

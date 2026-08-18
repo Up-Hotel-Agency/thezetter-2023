@@ -1,26 +1,37 @@
 <form action="#" class="js-booking-mask booking-mask flex sm:flex-col<?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>" data-aos="fade-up">
-    <div class="dates-fields flex no-margin">
-        <div class="date-field check-in-field flex items-center">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3.893" y="5.001" width="16.213" height="15.167" rx=".5" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.906 8.561L20.107 8.561"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.845 3.831L16.845 6.07"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.431 3.831L7.431 6.07"/><circle cx="12.047" cy="11.404" r="1" fill="currentColor"/><circle cx="16.047" cy="11.404" r="1" fill="currentColor"/><circle cx="12.047" cy="14.404" r="1" fill="currentColor"/><circle cx="16.047" cy="14.404" r="1" fill="currentColor"/><circle cx="12.047" cy="17.404" r="1" fill="currentColor"/><circle cx="16.047" cy="17.404" r="1" fill="currentColor"/><circle cx="8.047" cy="14.404" r="1" fill="currentColor"/><circle cx="8.047" cy="17.404" r="1" fill="currentColor"/></svg>
+    <div class="bm-field locations-field">
+        <div class="">
             <p class="no-margin">
-                <strong class="size-xs color-body-50 block">Check In</strong>
-                <span class="js-check-in-display"><?php echo date('D d M'); ?></span>
+                <strong class="size-xs color-body-50 block">Location</strong>
+                <div class="hotel-select" name="hotel-id" >
+                <?php if(get_current_blog_id() == 1):?>
+                    <span class="js-location-display">Find Location</span>
+                    <input type="hidden" class="js-hotel-id" name="hotel" value="0" data-property-id="0" />
+                <?php else: ?>
+                    <span class="js-location-display"><?php echo get_bloginfo( 'name' ); ?></span>
+                    <input type="hidden" class="js-hotel-id"  data-property-id="<?php the_field('booking_property_id', 'options'); ?>" name="hotel" value="<?php echo get_current_blog_id(); ?>" />
+                <?php endif; ?>
+            </div>
+
+            </p>
+            <input aria-label="location" type="text" class="hidden xs:block js-location-input" name="location" value=""/>
+        </div>
+    </div>
+    <div class="bm-field dates-fields flex no-margin">
+        <div class="date-field check-in-field flex items-center">
+            <p class="no-margin">
+                <strong class="size-xs color-body-50 block">Check In / Check Out</strong>
+                <span class="js-check-in-display">Add Dates</span>
+                <span> - </span>
+                <span class="js-check-out-display"></span>
             </p>
             <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" />
-        </div>
-        <div class="date-field check-out-field flex items-center">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3.893" y="5.001" width="16.213" height="15.167" rx=".5" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.906 8.561L20.107 8.561"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.845 3.831L16.845 6.07"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.431 3.831L7.431 6.07"/><circle cx="12.047" cy="11.404" r="1" fill="currentColor"/><circle cx="16.047" cy="11.404" r="1" fill="currentColor"/><circle cx="12.047" cy="14.404" r="1" fill="currentColor"/><circle cx="16.047" cy="14.404" r="1" fill="currentColor"/><circle cx="12.047" cy="17.404" r="1" fill="currentColor"/><circle cx="16.047" cy="17.404" r="1" fill="currentColor"/><circle cx="8.047" cy="14.404" r="1" fill="currentColor"/><circle cx="8.047" cy="17.404" r="1" fill="currentColor"/></svg>
-            <p class="no-margin">
-                <strong class="size-xs color-body-50 block">Check Out</strong>
-                <span class="js-check-out-display"><?php echo date('D d M', strtotime('tomorrow')); ?></span>
-            </p>
             <input aria-label="Check Out" type="date" class="hidden xs:block js-departure-input" name="departure" value="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" min="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" />
+            <div class="js-datepicker-trigger datepicker-trigger xs:hidden"></div>
         </div>
-        <div class="js-datepicker-trigger datepicker-trigger xs:hidden"></div>
     </div>
-    <div class="rooms-guests-fields flex no-margin">
+    <div class="bm-field rooms-guests-fields flex no-margin">
         <div class="rooms-guests flex items-center js-rooms-guests-trigger">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="8.173" r="4.625" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M4.345 20.452a7.655 7.655 0 0 1 15.31 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
             <p class="no-margin size-xs">
                 <strong class="color-body-50 block mb-1">Rooms / Guests</strong>
                 <span class="js-rooms-display">1 Room</span>, <span class="js-adults-display">2 Adults</span>, <span class="js-children-display">1 Child</span>
@@ -63,5 +74,19 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="button primary">Check Availability</button>
+    <button type="submit" class="bm-field bm-field-button primary theme--image">Check Availability</button>
+    <div class="hotel-selector theme--default">
+        <?php 
+            $sites = get_sites();
+            $hotel_logo = '';
+            foreach ($sites as $site) {
+                if ($site->blog_id != 1){
+                    switch_to_blog($site->blog_id);
+                        echo '<div class="hotel" data-hotel-id=" ' . get_field('booking_property_id', 'options') .' " data-hotel-name=" ' . get_bloginfo('name') .' ">';
+                        echo '<div class="hotel-title">' . get_bloginfo('name') . '</div></div>';
+                    restore_current_blog();
+                }
+            }  
+        ?>
+    </div>
 </form>

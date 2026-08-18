@@ -54,6 +54,6 @@ if($change_colours):
 <?php endif; ?>
 
 <style>
-<?php echo file_get_contents(get_template_directory() . '/assets/css/secondary_styles.css'); ?>
+<?php  echo file_get_contents(get_template_directory() . '/assets/css/secondary_styles.css'); ?>
 </style>
 

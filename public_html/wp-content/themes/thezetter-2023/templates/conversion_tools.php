@@ -25,6 +25,69 @@
                     <div class="mb-8">
                         <?php the_field('exit_capture_content', $options); ?>
                     </div>
+                    <?php if(get_field('newsletter_exit_capture',$options)):?>
+                        <div class="newsletter-form ">
+                            <script data-xp-widget-newsletter-531 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=531"></script>
+                            <template>
+                                <div class="xp-widget-newsletter-panel">
+
+                                    <div v-if="loading" class="loader">
+                                        <div class="xp-loader-light">
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                            <div/>
+                                        </div>
+                                    </div>
+
+                                    <h3 v-if="title" class="title">{{ title }}</h3>
+
+                                    <p v-if="introduction" class="intro">{{ introduction }}</p>
+
+                                    <div v-if="display_message" class="end-action-message" v-html="end_action_message"></div>
+
+                                    <form v-if="!display_message" @submit.prevent="submitForm()">
+
+                                        <div
+                                            v-for="field in fields"
+                                            :class="[`form-line-${field.name}`, {'filled': fields_value[field.name]}]"
+                                            class="form-line"
+                                        >
+                                            <label v-if="labelIsShown(field)" :for="inputId(field)">{{ field.text }}{{
+                                                    field.mandatory ? " *" : ""
+                                                }}</label>
+                                            <component
+                                                :is="getFieldComponent(field)"
+                                                :ref="field.name"
+                                                v-model="fields_value[field.name]"
+                                                v-bind="getFieldProps(field)"
+                                            />
+                                        </div>
+
+                                        <div v-if="multi_list === 1">
+                                            <div v-if="multi_list_intro" class="multi_list_intro">{{ multi_list_intro }}</div>
+                                            <div v-for="list in lists" class="form-checkbox">
+                                                <label><input v-model="selected_lists" :value="list.id" type="checkbox"> {{ list.name }}</label>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-mandatory">{{ mandatory_fields }}</p>
+
+                                        <button class="form-submit">{{ call_to_action }}</button>
+
+                                    </form>
+                                </div>
+                            </template>
+                        </div>
+                    <?php endif; ?>
                     <?php if( get_field('display_exit_capture_countdown',$options) && get_field('exit_capture_countdown',$options) ): ?>
                         <div class="countdown flex justify-center items-center mb-8 js-conversion-tools-countdown" data-countdown-date="<?php the_field('exit_capture_countdown', $options); ?>">
                             <div class="countdown-inner flex justify-center items-center">
@@ -71,6 +134,69 @@
                         <?php endwhile; ?>
                     </ul>
                 <?php endif; ?>
+            <?php endif; ?>
+            <?php if(get_field('newsletter_slide_callout',$options)):?>
+                <div class="newsletter-form ">
+                    <script data-xp-widget-newsletter-531 src="https://widgets.experience-hotel.com/front/widget/widget-newsletter/bootstrap.js?widget_id=531"></script>
+                    <template>
+                        <div class="xp-widget-newsletter-panel">
+
+                            <div v-if="loading" class="loader">
+                                <div class="xp-loader-light">
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                    <div/>
+                                </div>
+                            </div>
+
+                            <h3 v-if="title" class="title">{{ title }}</h3>
+
+                            <p v-if="introduction" class="intro">{{ introduction }}</p>
+
+                            <div v-if="display_message" class="end-action-message" v-html="end_action_message"></div>
+
+                            <form v-if="!display_message" @submit.prevent="submitForm()">
+
+                                <div
+                                    v-for="field in fields"
+                                    :class="[`form-line-${field.name}`, {'filled': fields_value[field.name]}]"
+                                    class="form-line"
+                                >
+                                    <label v-if="labelIsShown(field)" :for="inputId(field)">{{ field.text }}{{
+                                            field.mandatory ? " *" : ""
+                                        }}</label>
+                                    <component
+                                        :is="getFieldComponent(field)"
+                                        :ref="field.name"
+                                        v-model="fields_value[field.name]"
+                                        v-bind="getFieldProps(field)"
+                                    />
+                                </div>
+
+                                <div v-if="multi_list === 1">
+                                    <div v-if="multi_list_intro" class="multi_list_intro">{{ multi_list_intro }}</div>
+                                    <div v-for="list in lists" class="form-checkbox">
+                                        <label><input v-model="selected_lists" :value="list.id" type="checkbox"> {{ list.name }}</label>
+                                    </div>
+                                </div>
+
+                                <p class="text-mandatory">{{ mandatory_fields }}</p>
+
+                                <button class="form-submit">{{ call_to_action }}</button>
+
+                            </form>
+                        </div>
+                    </template>
+                </div>
             <?php endif; ?>
             <?php block_buttons(get_field('slide_callout_button_link', $options), [
                 'class' => 'button no-margin',

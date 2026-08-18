@@ -100,6 +100,32 @@ if( function_exists('acf_add_local_field_group') ):
                 'delay' => 0,
             ),
             array(
+                'key' => 'field_newsletter_exit_capture',
+                'label' => 'Activate Newsletter?',
+                'name' => 'newsletter_exit_capture',
+                'type' => 'true_false',
+                'required' => 0,
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_5fb519f6bc125',
+                            'operator' => '==',
+                            'value' => '1',
+                        ),
+                    ),
+                ),
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 0,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            ),
+            array(
                 'key' => 'field_5fb51a2abc129',
                 'label' => 'Exit Capture Button',
                 'name' => 'exit_capture_button',
@@ -415,6 +441,32 @@ if( function_exists('acf_add_local_field_group') ):
                         'type' => 'text',
                     ),
                 ),
+            ),
+            array(
+                'key' => 'field_newsletter_slide_callout',
+                'label' => 'Activate Newsletter?',
+                'name' => 'newsletter_slide_callout',
+                'type' => 'true_false',
+                'required' => 0,
+                'conditional_logic' => array(
+                    array(
+                        array(
+                            'field' => 'field_activate_slide_callout',
+                            'operator' => '==',
+                            'value' => '1',
+                        ),
+                    ),
+                ),
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 0,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
             ),
             array(
                 'key' => 'field_slide_callout_button',

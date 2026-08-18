@@ -16,8 +16,10 @@ jQuery(function($){
             var rooms = $(this).find('input[name="rooms"]').val();
             var adults = $(this).find('input[name="adults"]').val();
             // var children = $(this).find('input[name="children"]').val();
-            var propertyId = $(this).data('property-id');
-            $('.js-booking-toggle').toggleClass('menu-open');
+            // var propertyId = $(this).data('property-id');
+
+            var propertyId = $(this).find('.js-hotel-id').attr('property-id');
+            // $('.js-booking-toggle').toggleClass('menu-open');
 
 
             // --- DISTRIBUTE ADULTS ---
@@ -37,19 +39,19 @@ jQuery(function($){
 
             console.log(site);
             if(site == 'clerkenwell'){
-                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter";
+                window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
             }else if(site == 'marylebone'){
-                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35183&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter"
+                window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35183&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
             }else if(site == 'marrables'){
-                window.location.href = "https://reservations.marrableshotel.com/?arrive=" + arrival + "&chain=34634&level=hotel&hotel=35182&currency=GBP&depart=" + departure + "&" + totalRoomsandGuests;
+                window.open("https://reservations.marrableshotel.com/?arrive=" + arrival + "&chain=34634&level=hotel&hotel=35182&currency=GBP&depart=" + departure + "&" + totalRoomsandGuests);
             }else if(site == 'bloomsbury'){
                 // NEW
-                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0&currency=GBP&depart=" + departure + "&hotel=95317&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter";
+                window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0&currency=GBP&depart=" + departure + "&hotel=95317&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
                 // TEMPORARY
-                // window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter";
+                // window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter");
             }else{
                 // Group
-                window.location.href = "https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&config=TZO&currency=GBP&depart=" + departure + "&level=chain&" + totalRoomsandGuests + "&theme=Zetter";
+                window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&config=TZO&currency=GBP&depart=" + departure + "&level=chain&" + totalRoomsandGuests + "&theme=Zetter");
             }
 
         }else{
@@ -181,7 +183,27 @@ jQuery(function($){
     });
 
 
-    
+    $(document).on('click', function(e) {
+        if ($('.hotel-selector').hasClass('active') && !$(e.target).closest('.hotel-selector').length) {
+            $('.hotel-selector').removeClass('active');
+        }
+    });
+
+    $('.hotel-select').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation(); // prevents the document handler from firing
+        
+        $(this).parents('.js-booking-mask').find('.hotel-selector').toggleClass('active');
+    });
+
+    $('.hotel-selector .hotel').on('click', function (e) {
+        e.preventDefault();
+        var hotelID = $(this).attr('data-hotel-id');
+        var hotelName = $(this).attr('data-hotel-name');
+        $(this).parents('.js-booking-mask').find('.hotel-selector').removeClass('active');
+        $(this).parents('.js-booking-mask').find('.js-location-display').text(hotelName);
+        $(this).parents('.js-booking-mask').find('.js-hotel-id').val(hotelID);
+    });
 
     $('.js-arrive-input').change(function(){
         // get new selected date

@@ -28,7 +28,7 @@
         width: 28rem;
         z-index: 2;
         top: 10.5rem;
-        min-height: calc(100vh - 10.5rem);
+        // min-height: calc(100vh - 10.5rem);
 
         @include breakpoint(S) {
             display: none;
@@ -41,7 +41,12 @@
         width: 100%;
         padding: 1.5rem 2rem;
         z-index: 2;
-
+        .button{
+            &::before,
+            &::after{
+                display: none;
+            }
+        }
         &-content {
             padding-right: 1.75rem;
         }

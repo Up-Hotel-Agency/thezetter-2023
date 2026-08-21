@@ -109,7 +109,7 @@ function block_buttons($field, $opts = [] ){
                         <div class="collins-booking-modal js-collins-booking-modal" data-collins-id="<?php echo $collinsTrigger; ?>">
                             <a href="#" class="js-close-collins-modal close-collins-modal"></a>
                             <link rel="stylesheet" type="text/css" href="https://onsass.designmynight.com/?background-color=%23FFFFFF&primary-color=%236DA8A6&body-text-color=%23000000&outer-border-color=gray">
-                            <script src="//widgets.designmynight.com/bookings-partner.min.js" dmn-booking-form="true" venue="<?php echo $venue; ?>" hide-offers="false" hide-powered-by="false" search-venues="false" monday-first="true" locale="undefined"></script>
+                            <script src="//widgets.designmynight.com/bookings-partner.min.js" dmn-booking-form="true" venue="<?php echo $venue; ?>" hide-offers="false" hide-powered-by="false" search-venues="false" monday-first="true" locale="undefined" return-url="https://thezetter.com/thank-you-for-your-booking/"></script>
                         </div>
                         <?php
                     elseif($meeting):

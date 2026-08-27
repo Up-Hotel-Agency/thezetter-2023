@@ -17,6 +17,10 @@ endif;
 ?>
 <head>
 
+<?php if( get_current_blog_id() == 3 ): ?>
+<meta name="google-site-verification" content="dsRRoamTh8Rp0shZPMyOs8aVJXz9gUUeZ8W_9sanCTY" />
+<?php endif; ?>
+
 <script>
 var googleMapScriptLoaded;
 var neighbourhoodScriptLoaded;

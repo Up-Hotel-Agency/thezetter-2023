@@ -244,3 +244,65 @@ add_theme_support( 'disable-custom-gradients' );
 
 // remove patterns
 remove_theme_support( 'core-block-patterns' );
+
+/**
+ * Temporary function to fix WP 7.1 iframe editor
+ */
+function acf_enqueue_editor_assets(){
+
+    //Add additional required assets by enqueued id (Optional)
+    $enqueue_list = [
+        "libs-js",
+        "main-js",
+        "block-editor-js",
+        "flatpickr-css",
+        "block-acf-booking-mask",
+        "flatpickr-js",
+        "flatpickr-custom",
+        "gumshoe-js"
+    ];
+
+    function acf_load_assets($enqueue_list = []) {
+
+        $stages = ["scripts", "styles"];
+        $is_iframe = ! wp_should_load_block_editor_scripts_and_styles();
+
+        foreach($stages as $stage):
+            $wp_stage = $GLOBALS["wp_$stage"];
+            $wp_stage_array = (array) $wp_stage;
+
+            if(isset($wp_stage_array['registered']))
+            if(is_array($wp_stage_array['registered'])):
+                foreach($wp_stage_array['registered'] as $script):
+                    if(str_contains($script->handle, "block-acf-") || in_array($script->handle, $enqueue_list)):
+                        $block_name  = $script->handle;
+                        $block_asset = $script->src;
+                        if($stage == "scripts"):
+                            if (!$is_iframe):
+                                wp_dequeue_script( $block_name );
+                            else:
+                                wp_enqueue_script( $block_name, $block_asset );
+                            endif;
+                        else:
+                            if (!$is_iframe):
+                                wp_dequeue_style( $block_name );
+                            else:
+                                wp_enqueue_style( $block_name, $block_asset );
+                            endif;
+                        endif;
+                    endif;
+                endforeach;
+            endif;
+        endforeach;
+
+    }
+    add_action('enqueue_block_assets', function() use ($enqueue_list) {
+        acf_load_assets($enqueue_list);
+    });
+
+    //Filters for iframe detection
+    add_filter('should_load_block_editor_scripts_and_styles','__return_false');
+    do_action( 'enqueue_block_assets' );
+    remove_filter('should_load_block_editor_scripts_and_styles','__return_false');
+}
+add_action('admin_init', 'acf_enqueue_editor_assets');

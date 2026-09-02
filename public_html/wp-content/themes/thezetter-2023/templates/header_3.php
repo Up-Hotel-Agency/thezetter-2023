@@ -36,7 +36,7 @@
 							$site_id = get_sub_field('site_id'); 
 							$site_url = get_site_url($site_id); 
 						?>
-						<a class="<?php if($site_id == $current_site): ?> active <?php endif; ?>" href="<?php echo $site_url; ?>">The Zetter <?php echo get_sub_field('title_site');?></a>
+						<a class="<?php if($site_id == $current_site): ?> active <?php endif; ?>" href="<?php echo $site_url; ?>/">The Zetter <?php echo get_sub_field('title_site');?></a>
 					<?php $i++; endwhile; restore_current_blog(); ?>
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 							$site_id = get_sub_field('site_id'); 
 							$site_url = get_site_url($site_id);  
 						?>
-						<a data-id="<?php echo $i; ?>" href="<?php echo $site_url; ?>" class="h4 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>
+						<a data-id="<?php echo $i; ?>" href="<?php echo $site_url; ?>/" class="h4 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>
 					<?php $i++; endwhile; ?>
 				<?php else: ?>
 					<p class="label xs:mb-0"><?php echo get_bloginfo('name'); ?></p>

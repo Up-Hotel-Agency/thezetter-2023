@@ -326,7 +326,7 @@ dataLayer.push({
                 "@type": ["Hotel", "Place"],
                 "@id": "https://thezetter.com/bloomsbury/#hotel",
                 "name": "The Zetter Bloomsbury",
-                "description": "Opening April 2026. A hideaway in the heart of bustling Bloomsbury, blending classic Georgian influences with present-day hospitality.",
+                "description": "A hideaway in the heart of bustling Bloomsbury, blending classic Georgian influences with present-day hospitality.",
                 "url": "https://thezetter.com/bloomsbury/",
                 "address": {
                     "@type": "PostalAddress",

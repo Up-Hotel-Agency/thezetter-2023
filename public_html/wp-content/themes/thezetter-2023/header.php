@@ -17,6 +17,9 @@ endif;
 ?>
 <head>
 
+<meta name="google-site-verification" content="HdPQ96E2kPdaylOeuCT3W2CzRWk0AG-bV2DJb1_Bg40" />
+<meta name="msvalidate.01" content="837A920A509A2A5344BAC55B751DB791" />
+
 <?php if( get_current_blog_id() == 3 ): ?>
 <meta name="google-site-verification" content="dsRRoamTh8Rp0shZPMyOs8aVJXz9gUUeZ8W_9sanCTY" />
 <?php endif; ?>

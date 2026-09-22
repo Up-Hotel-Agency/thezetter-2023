@@ -37,18 +37,16 @@ jQuery(function($){
             params.set('adult', adultsPerRoom.join(','));   // e.g. "2,2"
             var totalRoomsandGuests = params.toString();
 
-            console.log(site);
             if(site == 'clerkenwell'){
                 window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35181&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
             }else if(site == 'marylebone'){
                 window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&hotel=35183&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
             }else if(site == 'marrables'){
                 window.open("https://reservations.marrableshotel.com/?arrive=" + arrival + "&chain=34634&level=hotel&hotel=35182&currency=GBP&depart=" + departure + "&" + totalRoomsandGuests);
+            }else if(site == 'amsterdam'){
+                window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0config=TZO&currency=GBP&depart=" + departure + "&hotel=102317&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
             }else if(site == 'bloomsbury'){
-                // NEW
                 window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&child=0&currency=GBP&depart=" + departure + "&hotel=95317&level=chain&locale=en-US&productcurrency=GBP&" + totalRoomsandGuests + "&theme=Zetter");
-                // TEMPORARY
-                // window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&currency=GBP&depart=" + departure + "&level=chain&theme=Zetter");
             }else{
                 // Group
                 window.open("https://reservations.thezetter.com/?arrive=" + arrival + "&brand=ZETTER&chain=34634&config=TZO&currency=GBP&depart=" + departure + "&level=chain&" + totalRoomsandGuests + "&theme=Zetter");

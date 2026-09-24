@@ -1089,14 +1089,16 @@ body:has(#wpadminbar) header {
                 text-transform: uppercase;
                 padding-right: 2rem;
                 position: relative;
+                height: 100%;
 
                 &::after {
                     content: "";
                     position: absolute;
                     width: 1.375rem;
                     height: 1px;
-                    right: 0;
+                    //right: 0;
                     top: 50%;
+                    left: 0;
                     transform: translateY(-50%) rotate(45deg);
                     @include color(background-color, 'body');
                 }
@@ -1106,8 +1108,9 @@ body:has(#wpadminbar) header {
                     position: absolute;
                     width: 1.375rem;
                     height: 1px;
-                    right: 0;
+                    //right: 0;
                     top: 50%;
+                    left: 0;
                     transform: translateY(-50%) rotate(-45deg);
                     @include color(background-color, 'body');
                 }
@@ -1207,7 +1210,7 @@ body:has(#wpadminbar) header {
         }
 
         .nav-toggle {
-            left: auto;
+            left: unset;
             right: 2rem;
 
             @include breakpoint(M) {

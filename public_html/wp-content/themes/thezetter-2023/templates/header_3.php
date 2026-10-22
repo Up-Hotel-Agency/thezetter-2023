@@ -23,29 +23,22 @@
 		</a>
 	</div>
 	<div class="header-right flex items-center">
-		<?php if(!get_field('not_zetter', 'options')): ?>
-			<?php if(get_field('is_group', 'options')): ?>
-				<a href="#" class="open-menu js-open-side-menu">Locations</a>
-			<?php else: ?>
-				<div href="#" class="open-menu js-locations-dropdown">Locations
-					<div class="locations-drop-down">
-					<?php $current_site = get_current_blog_id(); ?>
-					<?php switch_to_blog(1); $i=0; while ( have_rows('hotel_navigation', 'options') ) : the_row(); ?>
-						<?php 
-						
-							$site_id = get_sub_field('site_id'); 
-							$site_url = get_site_url($site_id); 
-						?>
-						<a class="<?php if($site_id == $current_site): ?> active <?php endif; ?>" href="<?php echo $site_url; ?>/">The Zetter <?php echo get_sub_field('title_site');?></a>
-					<?php $i++; endwhile; restore_current_blog(); ?>
-					</div>
-				</div>
-			<?php endif; ?>
-		<?php endif; ?>
-		<?php wp_nav_menu( array( 'theme_location' => 'Main Menu' , 'container' => false, 'menu_class' => 'list-reset hide-mobile' ) ); ?>
+		<?php $margin = 'margin-right';?>
+		<?php if(!get_field('is_group', 'options') && !get_field('not_zetter', 'options')): ?>
+			<?php $margin = 'none';?>
+		<?php endif ;?>
+		<?php switch_to_blog(1); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'Location Menu' , 'container' => false, 'menu_class' => 'list-reset hide-mobile ' . $margin ) ); ?>
+		<?php restore_current_blog(); ?>
+		<?php wp_nav_menu( array( 'theme_location' => 'Main Menu' , 'container' => false, 'menu_class' => 'list-reset hide-mobile ' . $margin ) ); ?>
 		<?php 
 			if(!get_field('is_group', 'options') && !get_field('not_zetter', 'options')):
-			?><a href="#" class="open-menu js-open-side-menu">More</a><?php 
+			?>
+			<?php switch_to_blog(1); ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'General Menu' , 'container' => false, 'menu_class' => 'list-reset hide-mobile' ) ); ?>
+			<?php restore_current_blog(); ?>
+			
+			<?php 
 			endif;
 		?>
 		<?php block_buttons(get_field('header_button_field', 'options'), [

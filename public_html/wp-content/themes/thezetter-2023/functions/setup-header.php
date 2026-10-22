@@ -8,6 +8,8 @@ if(!function_exists('get_header_type')){
 }
 
 register_nav_menu( 'Main Menu', 'Main Menu' );
+register_nav_menu( 'General Menu', 'General Menu' );
+register_nav_menu( 'Location Menu', 'Location Menu' );
 register_nav_menu( 'Secondary Menu', 'Secondary Menu' );
 register_nav_menu( 'Side Menu', 'Side Menu' );
 

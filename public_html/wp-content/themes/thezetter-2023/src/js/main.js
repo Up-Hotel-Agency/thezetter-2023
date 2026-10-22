@@ -345,16 +345,22 @@ jQuery(function($){
                         // if the li is not open then let's stop the link
                         e.preventDefault();
                         // first time, add class to main menu to make all other top level links fade out
-                        $(this).parents('.menu-wrapper').addClass('submenu-active')
+                        $(this).parents('.menu-wrapper').toggleClass('submenu-active');
                     }
                 });
                 
                 $('.menu-item-has-children').click(function() {
-                    if( !$(this).hasClass('active') ) {
-                        // if this is not already open, close all others
+                    if($('.menu-item-has-children').not(this).hasClass('active')){
+                        $('.menu-item-has-children').find('.sub-menu').removeClass('active');
                         $('.menu-item-has-children').removeClass('active');
                     }
-                    $(this).addClass('active');
+                    $(this).toggleClass('active');
+                    if( $(this).hasClass('active') ) {
+                        $(this).find('.sub-menu').addClass('active');
+                    }else{
+
+                        $(this).find('.sub-menu').removeClass('active');
+                    }
                 });
                 
             }

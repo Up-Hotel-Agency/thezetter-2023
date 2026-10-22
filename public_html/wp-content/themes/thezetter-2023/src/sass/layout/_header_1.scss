@@ -53,10 +53,10 @@ body {
 
 .header-right {
     padding-right: 1rem;
-    
     @include breakpoint(XS) {
         padding-right: 0;
     }
+    
     ul {
         display: flex;
 

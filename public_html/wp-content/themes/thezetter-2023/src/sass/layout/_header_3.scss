@@ -157,9 +157,22 @@ section:last-of-type {
         visibility: hidden;
         @extend %transition;
 
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        height: auto;
+        padding: 2rem 0;
+        width: fit-content;
+        position: absolute;
+        text-align: center;
+        min-width: 12rem;
+        left: 50%;
+        transform: translateX(-50%);
+
         &.active {
             opacity: 1;
-            height: var(--header-height);
+            height: auto;
             visibility: visible;
         }
 
@@ -177,6 +190,42 @@ section:last-of-type {
 
             &:hover {
                 @include color(color, 'body');
+            }
+        }
+
+        .menu-item-london{
+            margin-top: 1.5rem;
+            position: relative;
+            &::after{
+                content: "London";
+                top: -1.5rem;
+                position: absolute;
+                left: 0;
+                font-family: $font-stack-headings;
+                text-transform: unset !important;
+                font-style: italic;
+                font-size: 16px;
+                color: white;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .menu-item-amsterdam{
+            margin-top: 2rem;
+            position: relative;
+            &::after{
+                content: "Amsterdam";
+                top: -1.5rem;
+                position: absolute;
+                left: 0;
+                font-family: $font-stack-headings;
+                text-transform: unset !important;
+                font-style: italic;
+                font-size: 16px;
+                color: white;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
     }
@@ -352,7 +401,9 @@ body:has(#wpadminbar) header {
 
     >ul {
         margin-right: 1rem;
-
+        &.none{
+            margin-right: 0;
+        }
         >li {
             &.current-menu-item {
                 a {
@@ -685,7 +736,83 @@ body:has(#wpadminbar) header {
     }
 
     .mini-menu {
-        margin-bottom: 2.64rem;
+        // margin-bottom: 2.64rem;
+        > ul{
+            gap: 1rem;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+            li{
+                width: fit-content;
+                > a{
+                    font-size: 16px;
+                }
+                &.menu-item-has-children{
+                    position: relative;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        width: 20px;
+                        height: 20px;
+                        top: 6px;
+                        transform: unset;
+                        right: -30px;
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctitle%3EContinue%3C/title%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M17.685 9.158L12 14.842 6.315 9.158'%3E%3C/path%3E%3C/svg%3E");
+                        background-repeat: no-repeat no-repeat;
+                        background-position: center center;
+                        background-size: cover;
+                        @extend %transition;
+                    }
+                    &.active{
+                        &::after{
+                            transform: rotate(180deg);
+                            @extend %transition;
+                        }
+                    }
+                }
+                ul.sub-menu{
+                    padding: 0 !important;
+                    gap: 1rem;
+                    margin: 0 !important;
+                    &.active{
+                        margin-block: 1rem !important;
+                    }
+                    .menu-item-london{
+                        margin-top: 2rem;
+                        position: relative;
+                        &::after{
+                            content: "London";
+                            top: -2rem;
+                            position: absolute;
+                            left: 0;
+                            font-family: $font-stack-headings;
+                            text-transform: unset !important;
+                            font-style: italic;
+                            @include size-L;
+                            color: var(--color-body);
+                            text-decoration: underline;
+                        }
+                    }
+
+                    .menu-item-amsterdam{
+                        margin-top: 2.5rem;
+                        position: relative;
+                        &::after{
+                            content: "Amsterdam";
+                            top: -2rem;
+                            position: absolute;
+                            left: 0;
+                            font-family: $font-stack-headings;
+                            text-transform: unset !important;
+                            font-style: italic;
+                            @include size-L;
+                            color: var(--color-body);
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
 
         p {
             font-family: $font-stack-primary;
@@ -711,7 +838,8 @@ body:has(#wpadminbar) header {
         .sub-menu {
             position: fixed;
             right: 23.87rem;
-            height: calc(100vh - var(--header-height));
+            height: 0;
+            max-height: 0;
             top: var(--header-height);
             display: flex;
             flex-direction: column;
@@ -721,6 +849,7 @@ body:has(#wpadminbar) header {
             background: var(--color-accent-primary-lightest);
             opacity: 0;
             visibility: hidden;
+            overflow: hidden;
             @extend %transition;
 
             &.active {
@@ -731,15 +860,17 @@ body:has(#wpadminbar) header {
                 right: 0;
                 width: 100%;
                 height: auto;
+                max-height: 900rem;
                 top: unset;
                 background: transparent;
                 margin-bottom: 1rem;
+                @extend %transition;
             }
 
             li {
                 a {
                     color: var(--color-body);
-                    @include size-M;
+                    @include size-L;
                 }
             }
         }

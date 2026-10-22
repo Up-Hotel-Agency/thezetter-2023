@@ -3,35 +3,19 @@
 	<div>
 		<?php if($current_site == 1): ?>
 			<div class="mini-menu">
-				<p class="size-s xs:mb-0">Locations</p>
-				<?php $i=0; while ( have_rows('hotel_navigation', 'options') ) : the_row(); ?>
-					<?php $link = get_sub_field('site_id', 'options'); ?>
-					<a data-id="<?php echo $i; ?>" href="<?php echo get_blogaddress_by_id($link); ?>" class="h2 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>
-				<?php $i++; endwhile; ?>
-			</div>
-
-			<div class="mini-menu">
-				<p class="size-s xs:mb-0">About the Zetter</p>
-				<?php wp_nav_menu( array( 'theme_location' => 'Side Menu' , 'container' => false, 'menu_class' => 'list-reset side-menu' ) ); ?>
-			</div>
-
-			<div class="mini-menu">
-				<p class="size-s xs:mb-0">Our other Hotels</p>
-				<?php $i=0; while ( have_rows('other_hotels', 'options') ) : the_row(); ?>
-					<?php $link = get_sub_field('site_id', 'options'); ?>
-					<a data-id="<?php echo $i; ?>" href="<?php echo get_blogaddress_by_id($link); ?>" class="h2 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('title_site', 'options');?></a>
-				<?php $i++; endwhile; ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'Location Menu' , 'container' => false, 'menu_class' => 'list-reset') ); ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'Main Menu' , 'container' => false, 'menu_class' => 'list-reset' ) ); ?>
 			</div>
 		<?php else: ?>
-			<?php while ( have_rows('group', 'options') ) : the_row(); ?>
-				<div class="mini-menu">
-					<p class="size-s xs:mb-0"><?php the_sub_field('title'); ?></p>
-					<?php $i=0; while ( have_rows('pages', 'options') ) : the_row(); ?>
-						<?php $link = get_sub_field('page_link', 'options'); ?>
-						<a data-id="<?php echo $i; ?>" href="<?php echo $link; ?>" class="h2 <?php if($link == '#'): ?> no-pointer<?php endif; ?>" ><?php echo get_sub_field('page_name', 'options');?></a>
-					<?php $i++; endwhile; ?>
-				</div>
-			<?php endwhile; ?>
+			<div class="mini-menu">
+				<?php switch_to_blog(1); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'Location Menu' , 'container' => false, 'menu_class' => 'list-reset') ); ?>
+				<?php restore_current_blog(); ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'Main Menu' , 'container' => false, 'menu_class' => 'list-reset' ) ); ?>
+				<?php switch_to_blog(1); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'General Menu' , 'container' => false, 'menu_class' => 'list-reset hide-mobile' ) ); ?>
+				<?php restore_current_blog(); ?>
+			</div>
 		<?php endif; ?>
 	</div>
 	<div>

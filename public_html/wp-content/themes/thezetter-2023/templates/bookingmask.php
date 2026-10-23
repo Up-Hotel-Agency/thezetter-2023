@@ -1,4 +1,15 @@
-<form action="#" class="js-booking-mask booking-mask flex sm:flex-col<?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>" data-aos="fade-up">
+<?php
+// Site ID 7: earliest check in is 18 Dec 2026, afterwards today
+$bm_tz    = wp_timezone();
+$bm_today = new DateTimeImmutable('today', $bm_tz);
+$bm_in    = $bm_today;
+if ( get_current_blog_id() == 7 ) {
+    $bm_launch = new DateTimeImmutable('2026-12-18', $bm_tz);
+    if ( $bm_today < $bm_launch ) { $bm_in = $bm_launch; }
+}
+$bm_out = $bm_in->modify('+1 day');
+?>
+<form action="#" data-blog-id="<?php echo get_current_blog_id(); ?>" class="js-booking-mask booking-mask flex sm:flex-col<?php if( get_field('override_page_theme') ): if( $themeField['disable_overlay'] && $themeField['text_colour'] == 'dark' ): ?> theme--default<?php endif; endif; ?>" data-aos="fade-up">
     <div class="bm-field locations-field">
         <div class="">
             <p class="no-margin">
@@ -25,8 +36,8 @@
                 <span> - </span>
                 <span class="js-check-out-display"></span>
             </p>
-            <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" />
-            <input aria-label="Check Out" type="date" class="hidden xs:block js-departure-input" name="departure" value="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" min="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" />
+            <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo $bm_in->format('Y-m-d'); ?>" min="<?php echo $bm_in->format('Y-m-d'); ?>" />
+            <input aria-label="Check Out" type="date" class="hidden xs:block js-departure-input" name="departure" value="<?php echo $bm_out->format('Y-m-d'); ?>" min="<?php echo $bm_out->format('Y-m-d'); ?>" />
             <div class="js-datepicker-trigger datepicker-trigger xs:hidden"></div>
         </div>
     </div>

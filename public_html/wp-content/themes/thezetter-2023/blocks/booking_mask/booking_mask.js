@@ -94,10 +94,47 @@ jQuery(function($){
         const $form = $('#booking-mask');
         const formEl = $form[0];
 
+        // Blog ID of the current subsite (set on the form by the template)
+        var currentBlogId = parseInt($('.js-booking-mask').first().attr('data-blog-id'), 10);
+
         function handleSiteChange(siteValue) {
             console.log('data-site:', siteValue);
             // 🔹 your logic here
-            if(siteValue == 'bloomsbury'){
+            // Amsterdam selected (or preselected on site 7, where the block form has no data-site)
+            var isAmsterdam = (siteValue == 'amsterdam') || (typeof siteValue === 'undefined' && currentBlogId === 7);
+
+            if(isAmsterdam){
+                // Amsterdam: earliest check in is 18th December 2026.
+                // Once that day has passed, the earliest check in is today.
+                var today = dayjs().startOf('day');
+                var launchDate = dayjs('2026-12-18');
+                var minCheckIn = today.isBefore(launchDate) ? launchDate : today;
+                var minCheckOut = minCheckIn.add(1, 'day');
+
+                // Default values (check in = min date, check out = day after)
+                $('input[name="arrival"]').val(minCheckIn.format('YYYY-MM-DD')).attr('min', minCheckIn.format('YYYY-MM-DD'));
+                $('input[name="departure"]').val(minCheckOut.format('YYYY-MM-DD')).attr('min', minCheckOut.format('YYYY-MM-DD'));
+                $('.js-check-in-display').html(minCheckIn.format('ddd D MMM'));
+                $('.js-check-out-display').html(minCheckOut.format('ddd D MMM'));
+
+                $(".js-datepicker-trigger").flatpickr({
+                    mode: "range",
+                    minDate: minCheckIn.format('YYYY-MM-DD'),
+                    showMonths: "2",
+                    locale: {
+                        firstDayOfWeek: 1
+                    },
+                    onClose: function(selectedDates) {
+                        var startDate = selectedDates[0];
+                        var endDate = selectedDates[1];
+                        $('.js-check-in-display').html( dayjs(startDate).format('ddd D MMM') );
+                        $('.js-check-out-display').html( dayjs(endDate).format('ddd D MMM') );
+
+                        $('.js-arrive-input').val( dayjs(startDate).format('YYYY-MM-DD') );
+                        $('.js-departure-input').val( dayjs(endDate).format('YYYY-MM-DD') );
+                    }
+                });
+            }else if(siteValue == 'bloomsbury'){
                 // Display value
                 var today = new Date();
                 today.setHours(0, 0, 0, 0);
@@ -140,11 +177,9 @@ jQuery(function($){
             }else{
 
                 // get new selected date
-                var tomorrow = new Date();
-                tomorrow.setHours(0, 0, 0, 0);
-                tomorrow.setDate(tomorrow.getDate() + 1);
-
-                var checkInDate = tomorrow.toISOString().split('T')[0];
+                var checkInDate = dayjs().add(1, 'day').format('YYYY-MM-DD');
+                // reset arrival (e.g. when switching away from Amsterdam)
+                $('input[name="arrival"]').val(checkInDate).attr('min', dayjs().format('YYYY-MM-DD'));
                 // figure out check out date (the next day)
                 var checkOutDate = dayjs(checkInDate).add(1, 'day').format('YYYY-MM-DD');
                 // update departure date input

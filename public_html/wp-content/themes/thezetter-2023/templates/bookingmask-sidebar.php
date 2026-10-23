@@ -1,4 +1,15 @@
 <?php
+// Site ID 7: earliest check in is 18 Dec 2026, afterwards today
+$bm_tz    = wp_timezone();
+$bm_today = new DateTimeImmutable('today', $bm_tz);
+$bm_in    = $bm_today;
+if ( get_current_blog_id() == 7 ) {
+    $bm_launch = new DateTimeImmutable('2026-12-18', $bm_tz);
+    if ( $bm_today < $bm_launch ) { $bm_in = $bm_launch; }
+}
+$bm_out = $bm_in->modify('+1 day');
+?>
+<?php
   $curBlog = get_current_blog_id();
   $sites = get_sites(array(
     'site__not_in' => array(
@@ -11,7 +22,7 @@
     ),
   ));
 ?>
-<form action="#" id="booking-mask" target="_blank"
+<form action="#" id="booking-mask" target="_blank" data-blog-id="<?php echo get_current_blog_id(); ?>"
     <?php $curBlog = get_current_blog_id(); switch_to_blog( $curBlog ); ?>
     data-url="<?php echo get_bloginfo( 'url' ); ?>/book" data-site="<?php the_field('location_name_id', 'options'); ?>" data-property-id="<?php the_field('booking_property_id', 'options'); ?>"
     class="js-booking-mask booking-mask flex flex-col theme--default" data-aos="fade-up"
@@ -54,18 +65,18 @@
         <div class="dates">
             <div class="date-field check-in-field flex items-center">
                 <p class="no-margin js-check-in-display body-l">
-                    <?php echo date('D d M'); ?>
+                    <?php echo $bm_in->format('D d M'); ?>
                 </p>
-                <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" />
+                <input aria-label="Check In" type="date" class="hidden xs:block js-arrive-input" name="arrival" value="<?php echo $bm_in->format('Y-m-d'); ?>" min="<?php echo $bm_in->format('Y-m-d'); ?>" />
             </div>
             <svg viewBox="0 0 14 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 5C10.7 4.57 10.89 4.2 11.08 3.88H0V3.04H11.08C10.89 2.81 10.7 2.54 10.5 2.22C10.31 1.9 10.12 1.53 9.92 1.12H10.62C11.46 2.09 12.34 2.81 13.26 3.28V3.64C12.34 4.09 11.46 4.81 10.62 5.8H9.92Z" fill="currentColor"/>
             </svg>
             <div class="date-field check-out-field flex items-center">
                 <p class="no-margin js-check-out-display body-l">
-                    <?php echo date('D d M', strtotime('tomorrow')); ?>
+                    <?php echo $bm_out->format('D d M'); ?>
                 </p>
-                <input aria-label="Check Out" type="date" class="hidden xs:block js-departure-input" name="departure" value="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" min="<?php echo date('Y-m-d', strtotime('tomorrow')); ?>" />
+                <input aria-label="Check Out" type="date" class="hidden xs:block js-departure-input" name="departure" value="<?php echo $bm_out->format('Y-m-d'); ?>" min="<?php echo $bm_out->format('Y-m-d'); ?>" />
             </div>
             <div class="js-datepicker-trigger datepicker-trigger xs:hidden"></div>
         </div>
